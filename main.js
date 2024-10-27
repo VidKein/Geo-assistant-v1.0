@@ -39,16 +39,8 @@ function createMarker(name, position, systemCoordinates, vycka) {
         console.log(name, position, systemCoordinates, vycka);  
     }
 }
+/*------------------------------------------*/
 
-//Определяем координаты
-var popup = L.popup();
-function onMapClick(e) {
-popup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.toString())
-    .openOn(map);
-}
-map.on('click', onMapClick);
 
 //Моя геолокация
 function onLocationFound(e) {
@@ -60,14 +52,35 @@ L.marker(e.latlng).addTo(map)
 L.circle(e.latlng, radius).addTo(map);
 }
 map.on('locationfound', onLocationFound);
-function onLocationError(e) {
-alert(e.message);
-}
+//Выводит ошибки
+function onLocationError(e) {alert(e.message);}
 map.on('locationerror', onLocationError);
-let track = document.getElementById("track");
-track.addEventListener("change",function(){map.locate({setView: true, maxZoom: 19});})
+let clickContrGrupGeolocation = document.querySelector(".clickContrGrupGeolocation");
+clickContrGrupGeolocation.addEventListener("click",function(){
+    
+    clickContrGrupGeolocation.classList.toggle("activ");
+    if (clickContrGrupGeolocation.className == "clickContrGrupGeolocation activ") {
+        map.locate({setView: true, maxZoom: 19});
+        document.querySelector(".imgcontrGrupGeolocation").style["background-image"] = "url(../icons/location-crosshairs-solid-active.svg)";
+    } else {
+        map.stopLocate();
+        document.querySelector(".imgcontrGrupGeolocation").style["background-image"] = "url(../icons/location-crosshairs-solid.svg)";
+    }
+})
 
 /*
+//Определяем координаты
+var popup = L.popup();
+function onMapClick(e) {
+popup
+    .setLatLng(e.latlng)
+    .setContent("You clicked the map at " + e.latlng.toString())
+    .openOn(map);
+}
+map.on('click', onMapClick);
+
+
+
 var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
 denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
 aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
