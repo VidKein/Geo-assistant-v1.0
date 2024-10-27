@@ -5,9 +5,41 @@ L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=328W3i5
 maxZoom: 19,
 attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> '
 }).addTo(map);
-//Подключение маркера
-var marker = L.marker([50.051407558040246, 14.442352440062974]).addTo(map);
-marker.bindPopup("<b>9102</b><br>vycka:266.4284");
+/*------------------------------------------*/
+//Извлекаем информацию о точках
+let xhr = new XMLHttpRequest();
+//запрос на извлечение
+xhr.open("GET","./koordinaty/niv-znaky.json");
+//Устанавливаем что будем возврашать
+xhr.responseType = "json";
+xhr.send();
+createСontent();
+//Считываем информацию для отображения информации на карте
+function createСontent() {
+    xhr.onload = ()=>{
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let respon = xhr.response;
+            for (const infoPoint of respon) {
+                createMarker(infoPoint.name, infoPoint.position, infoPoint.systemCoordinates, infoPoint.vycka);
+            }
+        }    
+    }
+}
+//Формируем наполнение на карте
+function createMarker(name, position, systemCoordinates, vycka) {
+    if (systemCoordinates == "JTSK") {
+        var conv = new JTSK_Converter();
+        var wgs = conv.JTSKtoWGS84(position[0], position[1]);
+        //Подключение маркера с конвертацией JTSKtoWGS84
+        var marker = L.marker([wgs.lat,wgs.lon]).addTo(map);
+        marker.bindPopup("<b>"+name+"</b><br>vycka: "+vycka+" m.");
+        console.log(name, wgs, systemCoordinates, vycka); 
+    } else {
+        //Подключение маркера с WGS84
+        console.log(name, position, systemCoordinates, vycka);  
+    }
+}
+
 //Определяем координаты
 var popup = L.popup();
 function onMapClick(e) {
@@ -19,8 +51,6 @@ popup
 map.on('click', onMapClick);
 
 //Моя геолокация
-
-
 function onLocationFound(e) {
 var radius = e.accuracy;
 
@@ -36,6 +66,7 @@ alert(e.message);
 map.on('locationerror', onLocationError);
 let track = document.getElementById("track");
 track.addEventListener("change",function(){map.locate({setView: true, maxZoom: 19});})
+
 /*
 var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
 denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
