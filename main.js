@@ -57,14 +57,13 @@ function onLocationError(e) {alert(e.message);}
 map.on('locationerror', onLocationError);
 let clickContrGrupGeolocation = document.querySelector(".clickContrGrupGeolocation");
 clickContrGrupGeolocation.addEventListener("click",function(){
-    
     clickContrGrupGeolocation.classList.toggle("activ");
     if (clickContrGrupGeolocation.className == "clickContrGrupGeolocation activ") {
         map.locate({setView: true, maxZoom: 19});
-        document.querySelector(".imgcontrGrupGeolocation").style["background-image"] = "url(../icons/location-crosshairs-solid-active.svg)";
+        document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid-active.svg)");
     } else {
         map.stopLocate();
-        document.querySelector(".imgcontrGrupGeolocation").style["background-image"] = "url(../icons/location-crosshairs-solid.svg)";
+        document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid.svg)");
     }
 })
 
