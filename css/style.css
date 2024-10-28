@@ -4,15 +4,14 @@
     z-index: 0;
      }
 .Geolocation{
-    right: 0;
-    top: 0; 
+    top: 95px;
+    left: 20px; 
     position: absolute;
     z-index: 2;
 }
 .contrGrupGeolocation{
     box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
     float: right;
-    margin: 10px 10px 0 0;
     background: #fff;
     border-radius: 4px;
 }

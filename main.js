@@ -1,12 +1,22 @@
-let satelitMap = ["https://tile.openstreetmap.org/{z}/{x}/{y}.png","&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"];
-let stritMap = ["https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=328W3i5uAdhtTMZr8hrV","<a href='https://www.maptiler.com/copyright/' target='_blank'>&copy; MapTiler</a>"];
 //Карта
-var map = L.map('map').setView([50.051407558040246, 14.442352440062974],15);
-//Подключение типа карты
-L.tileLayer(satelitMap[0], {
-maxZoom: 19,
-attribution: satelitMap[1]
-}).addTo(map);
+//Спутник
+let key = "328W3i5uAdhtTMZr8hrV";
+let OSMsatelitMap = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key='+key, {attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>'});
+//Растр
+let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+//Определие слоя
+var map = L.map('map', {
+  center: [50.051407558040246, 14.442352440062974],
+  zoom: 14,
+  layers: [OSMstritMap]});
+//Наполнение слоя
+var baseMaps = {
+  "Satelit Map": OSMsatelitMap,
+  "Strit Map": OSMstritMap
+};
+
+var layerControl = L.control.layers(baseMaps).addTo(map);
+
 /*------------------------------------------*/
 //Извлекаем информацию о точках
 let xhr = new XMLHttpRequest();
