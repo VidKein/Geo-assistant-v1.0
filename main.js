@@ -1,9 +1,11 @@
+let satelitMap = ["https://tile.openstreetmap.org/{z}/{x}/{y}.png","&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"];
+let stritMap = ["https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=328W3i5uAdhtTMZr8hrV","<a href='https://www.maptiler.com/copyright/' target='_blank'>&copy; MapTiler</a>"];
 //Карта
 var map = L.map('map').setView([50.051407558040246, 14.442352440062974],15);
 //Подключение типа карты
-L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=328W3i5uAdhtTMZr8hrV', {
+L.tileLayer(satelitMap[0], {
 maxZoom: 19,
-attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> '
+attribution: satelitMap[1]
 }).addTo(map);
 /*------------------------------------------*/
 //Извлекаем информацию о точках
@@ -45,13 +47,11 @@ function createMarker(name, position, systemCoordinates, vycka) {
 //Моя геолокация
 function onLocationFound(e) {
 var radius = e.accuracy;
-
 L.marker(e.latlng).addTo(map)
     .bindPopup("You are within " + radius + " meters from this point " + e.latlng );
-
 L.circle(e.latlng, radius).addTo(map);
 }
-map.on('locationfound', onLocationFound);
+
 //Выводит ошибки
 function onLocationError(e) {alert(e.message);}
 map.on('locationerror', onLocationError);
@@ -61,11 +61,13 @@ clickContrGrupGeolocation.addEventListener("click",function(){
     if (clickContrGrupGeolocation.className == "clickContrGrupGeolocation activ") {
         map.locate({setView: true, maxZoom: 19});
         document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid-active.svg)");
+        map.on('locationfound', onLocationFound);
     } else {
         map.stopLocate();
         document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid.svg)");
     }
 })
+
 
 /*
 //Определяем координаты
@@ -125,3 +127,43 @@ attribution: 'Map data: © OpenStreetMap contributors, SRTM | Map style: © Open
 layerControl.addBaseLayer(openTopoMap, "OpenTopoMap");
 layerControl.addOverlay(parks, "Parks");
 */
+if (!navigator.geolocation) {
+    console.log("Your browser doesn't support geolocation feature!");
+  } else {
+    setInterval(() => {
+      navigator.geolocation.getCurrentPosition(getPosition);
+    }, 5000);
+  } 
+
+var marker, circle, lat, long, accuracy;
+
+function getPosition(position) {
+  console.log(position)
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+  accuracy = position.coords.accuracy;
+
+  if (marker) {
+    map.removeLayer(marker);
+  }
+
+  if (circle) {
+    map.removeLayer(circle);
+  }
+
+  marker = L.marker([lat, long]);
+  circle = L.circle([lat, long], { radius: accuracy });
+
+  var featureGroup = L.featureGroup([marker, circle]).addTo(map);
+
+  map.fitBounds(featureGroup.getBounds());
+
+  console.log(
+    "Your coordinate is: Lat: " +
+      lat +
+      " Long: " +
+      long +
+      " Accuracy: " +
+      accuracy
+  );
+}
