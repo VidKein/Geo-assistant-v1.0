@@ -42,6 +42,39 @@ function createMarker(name, position, systemCoordinates, vycka) {
     }
 }
 /*------------------------------------------*/
+//Real time location tracker
+var marker, circle, lat, long, accuracy;
+
+function getPosition(position) {
+  //console.log(position)
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+  accuracy = position.coords.accuracy;
+
+  if (marker) {
+    map.removeLayer(marker);
+  }
+
+  if (circle) {
+    map.removeLayer(circle);
+  }
+
+  marker = L.marker([lat, long]);
+  circle = L.circle([lat, long], { radius: accuracy });
+
+  var featureGroup = L.featureGroup([marker, circle]).addTo(map);
+
+  map.fitBounds(featureGroup.getBounds());
+
+  console.log(
+    "Your coordinate is: Lat: " +
+      lat +
+      " Long: " +
+      long +
+      " Accuracy: " +
+      accuracy
+  );
+}
 
 
 //Моя геолокация
@@ -62,6 +95,13 @@ clickContrGrupGeolocation.addEventListener("click",function(){
         map.locate({setView: true, maxZoom: 19});
         document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid-active.svg)");
         map.on('locationfound', onLocationFound);
+        if (!navigator.geolocation) {
+            console.log("Your browser doesn't support geolocation feature!");
+          } else {
+            setInterval(() => {
+              navigator.geolocation.getCurrentPosition(getPosition);
+            }, 5000);
+          } 
     } else {
         map.stopLocate();
         document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid.svg)");
@@ -127,43 +167,3 @@ attribution: 'Map data: © OpenStreetMap contributors, SRTM | Map style: © Open
 layerControl.addBaseLayer(openTopoMap, "OpenTopoMap");
 layerControl.addOverlay(parks, "Parks");
 */
-if (!navigator.geolocation) {
-    console.log("Your browser doesn't support geolocation feature!");
-  } else {
-    setInterval(() => {
-      navigator.geolocation.getCurrentPosition(getPosition);
-    }, 5000);
-  } 
-
-var marker, circle, lat, long, accuracy;
-
-function getPosition(position) {
-  console.log(position)
-  lat = position.coords.latitude;
-  long = position.coords.longitude;
-  accuracy = position.coords.accuracy;
-
-  if (marker) {
-    map.removeLayer(marker);
-  }
-
-  if (circle) {
-    map.removeLayer(circle);
-  }
-
-  marker = L.marker([lat, long]);
-  circle = L.circle([lat, long], { radius: accuracy });
-
-  var featureGroup = L.featureGroup([marker, circle]).addTo(map);
-
-  map.fitBounds(featureGroup.getBounds());
-
-  console.log(
-    "Your coordinate is: Lat: " +
-      lat +
-      " Long: " +
-      long +
-      " Accuracy: " +
-      accuracy
-  );
-}
