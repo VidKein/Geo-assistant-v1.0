@@ -100,18 +100,11 @@ L.circle(e.latlng, radius).addTo(map);
 }
 let clickContrGrupGeolocation = document.querySelector(".clickContrGrupGeolocation");
 clickContrGrupGeolocation.addEventListener("click",function(){
+    map.on('locationfound', onLocationFound);
     clickContrGrupGeolocation.classList.toggle("activ");
     if (clickContrGrupGeolocation.className == "clickContrGrupGeolocation activ") {
         map.locate({setView: true, maxZoom: 16});
         document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid-active.svg)");
-        map.on('locationfound', onLocationFound);
-        if (!navigator.geolocation) {
-            console.log("Your browser doesn't support geolocation feature!");
-          } else {
-            setInterval(() => {
-              navigator.geolocation.getCurrentPosition(getPosition);
-            }, 5000);
-          } 
     } else {
         map.stopLocate();
         document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid.svg)");
