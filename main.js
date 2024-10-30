@@ -55,41 +55,18 @@ function createMarker(name, position, systemCoordinates, vycka) {
         console.log(name, position, systemCoordinates, vycka);  
     }
 }
+
+// add location control to global name space for testing only
+// on a production site, omit the "lc = "!
+let lc = L.control
+  .locate({
+    strings: {
+      title: "Show me where I am, yo!"
+    },
+    maxZoom: 16
+  })
+  .addTo(map);
 /*------------------------------------------*/
-//Real time location tracker
-var marker, circle, lat, long, accuracy;
-
-function getPosition(position) {
-  //console.log(position)
-  lat = position.coords.latitude;
-  long = position.coords.longitude;
-  accuracy = position.coords.accuracy;
-
-  if (marker) {
-    map.removeLayer(marker);
-  }
-
-  if (circle) {
-    map.removeLayer(circle);
-  }
-
-  marker = L.marker([lat, long]);
-  circle = L.circle([lat, long], { radius: accuracy });
-
-  var featureGroup = L.featureGroup([marker, circle]).addTo(map);
-
-  map.fitBounds(featureGroup.getBounds());
-
-  console.log(
-    "Your coordinate is: Lat: " +
-      lat +
-      " Long: " +
-      long +
-      " Accuracy: " +
-      accuracy
-  );
-}
-
 
 //Моя геолокация
 function onLocationFound(e) {
@@ -116,8 +93,8 @@ function onLocationError(e) {alert(e.message);}
 map.on('locationerror', onLocationError);
 
 
-
 /*
+
 //Определяем координаты
 var popup = L.popup();
 function onMapClick(e) {
