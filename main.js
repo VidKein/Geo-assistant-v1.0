@@ -60,7 +60,7 @@ function createMarker(name, position, systemCoordinates, vycka) {
 // on a production site, omit the "lc = "!
 let lc = L.control.locate({
     locateOptions: {
-        maxZoom: 10,//масштабиролвание
+        maxZoom: 18,//масштабиролвание
         enableHighAccuracy: true//высокая точность
       },
         strings: {
