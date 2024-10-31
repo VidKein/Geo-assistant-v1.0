@@ -58,14 +58,21 @@ function createMarker(name, position, systemCoordinates, vycka) {
 
 // add location control to global name space for testing only
 // on a production site, omit the "lc = "!
-let lc = L.control
-  .locate({
-    strings: {
-      title: "Show me where I am, yo!"
-    },
-    maxZoom: 16
-  })
-  .addTo(map);
+let lc = L.control.locate({
+    locateOptions: {
+        maxZoom: 10,//масштабиролвание
+        enableHighAccuracy: true//высокая точность
+      },
+        strings: {
+            title: "Find my location"
+          },
+        enableHighAccuracy: true,
+        flyTo: true,//Плавное увеличение
+        returnToPrevBounds: true//Возврат назат
+
+  }).addTo(map);
+
+
 /*------------------------------------------*/
 
 //Моя геолокация
@@ -80,7 +87,8 @@ clickContrGrupGeolocation.addEventListener("click",function(){
     map.on('locationfound', onLocationFound);
     clickContrGrupGeolocation.classList.toggle("activ");
     if (clickContrGrupGeolocation.className == "clickContrGrupGeolocation activ") {
-        map.locate({setView: true, maxZoom: 16});
+        map.locate({setView: true,
+                     maxZoom: 19});
         document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid-active.svg)");
     } else {
         map.stopLocate();
