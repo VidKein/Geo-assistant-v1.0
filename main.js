@@ -10,16 +10,46 @@ let map = L.map('map', {
   zoom: 14,
   layers: [OSMstritMap]});
 //Наполнение слоя
+//Виды карт
 let baseMaps = {
   "Satelit Map": OSMsatelitMap,
   "Strit Map": OSMstritMap
 };
-
 let layerControl = L.control.layers(baseMaps).addTo(map);
 
+//Нивелирная съемка
+//Базовые точки
+let basePointsNiv = L.marker([39.75, -105.09]).bindPopup('Base points Niv');
+//Рабочие точки
+let operatingPointsNiv = L.marker([39.75, -105.09]).bindPopup('Operating points Niv .');
+//Тахеометрическая съемка
+//Базовые точки
+let basePointsTax = L.marker([39.75, -105.09]).bindPopup('Base points Tax.');
+//Рабочие точки
+let operatingPointsTax = L.marker([39.75, -105.09]).bindPopup('Operating points Tax.');
+
+layerControl.addOverlay(basePointsNiv, "<span style='color: red'>Base points Niv.</span>");
+layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");
+layerControl.addOverlay(basePointsTax, "<span style='color: red'>Base points Tax.</span>");
+layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
 
 
-
+//Моя геолокация
+let lc = L.control.locate({
+    locateOptions: {
+        maxZoom: 18,//масштабиролвание
+        enableHighAccuracy: true//высокая точность
+      },
+        strings: {
+            title: "Find my location"
+          },
+        enableHighAccuracy: true,
+        flyTo: true,//Плавное увеличение
+        returnToPrevBounds: true//Возврат назат
+  }).addTo(map);
+//Выводит ошибки геолокации
+function onLocationError(e) {alert(e.message);}
+map.on('locationerror', onLocationError);
 
 /*------------------------------------------*/
 //Извлекаем информацию о точках
@@ -55,51 +85,6 @@ function createMarker(name, position, systemCoordinates, vycka) {
         console.log(name, position, systemCoordinates, vycka);  
     }
 }
-
-// add location control to global name space for testing only
-// on a production site, omit the "lc = "!
-let lc = L.control.locate({
-    locateOptions: {
-        maxZoom: 18,//масштабиролвание
-        enableHighAccuracy: true//высокая точность
-      },
-        strings: {
-            title: "Find my location"
-          },
-        enableHighAccuracy: true,
-        flyTo: true,//Плавное увеличение
-        returnToPrevBounds: true//Возврат назат
-
-  }).addTo(map);
-
-
-/*------------------------------------------*/
-
-//Моя геолокация
-function onLocationFound(e) {
-var radius = e.accuracy;
-L.marker(e.latlng).addTo(map)
-    .bindPopup("You are within " + radius + " meters from this point " + e.latlng );
-L.circle(e.latlng, radius).addTo(map);
-}
-let clickContrGrupGeolocation = document.querySelector(".clickContrGrupGeolocation");
-clickContrGrupGeolocation.addEventListener("click",function(){
-    map.on('locationfound', onLocationFound);
-    clickContrGrupGeolocation.classList.toggle("activ");
-    if (clickContrGrupGeolocation.className == "clickContrGrupGeolocation activ") {
-        map.locate({setView: true,
-                     maxZoom: 19});
-        document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid-active.svg)");
-    } else {
-        map.stopLocate();
-        document.querySelector(".imgcontrGrupGeolocation").style.setProperty("background-image", "url(../icons/location-crosshairs-solid.svg)");
-    }
-})
-
-//Выводит ошибки геолокации
-function onLocationError(e) {alert(e.message);}
-map.on('locationerror', onLocationError);
-
 
 /*
 
