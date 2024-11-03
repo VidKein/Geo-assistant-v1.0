@@ -4,11 +4,7 @@ body {
   margin: 0;
   height: 100%;
   /*Шрифт*/
-  font-size: 100%;
-  line-height: 1.5;
   font-family: sans-serif;
-  background: #28283b;
-  color: #444;
 }
 /*Карта*/
 #map {
