@@ -2,9 +2,201 @@ html,
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
+  /*Шрифт*/
+  font-size: 100%;
+  line-height: 1.5;
+  font-family: sans-serif;
+  background: #28283b;
+  color: #444;
 }
+/*Карта*/
 #map {
     position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
-     }
+    z-index: 0;
+}
+/*Календарь*/
+.calendarg{
+    position: absolute;
+    z-index: 1000;
+    top: 130px;
+    left: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.calendargRun{
+  display: block;
+  background-color: #ffff;
+  width: 30px;
+  height: 30px;
+}
+.calendargIkon{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 7px;
+  background-image: url(/icons/calendar-check-regular.svg);
+}
+/*Месяцы*/
+.calendar-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  width: 360px;
+  padding: 1em;
+  border: 1px solid #dcdcff;
+  border-radius: 5px;
+  background: #fff;
+}
+table {
+  clear: both;
+  width: 100%;
+  border: 1px solid #dcdcff;
+  border-radius: 3px;
+  border-collapse: collapse;
+  color: #444;
+}
+td {
+  height: 48px;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #dcdcff;
+  border-top: 1px solid #dcdcff;
+  width: 14.28571429%;
+}
+thead td {
+  border: none;
+  color: #28283b;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+td.not-current {
+  color: #c0c0c0;
+}
+#btnPrev {
+  float: left;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+#btnNext {
+  float: right;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+#btnPrev,
+#btnNext {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #c0c0c0;
+  cursor: pointer;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+#btnPrev:hover,
+#btnNext:hover {
+  color: #28283b;
+  font-weight: bold;
+}
+td.not-current {
+  color: #c0c0c0;
+}
+td.today {
+  font-weight: 700;
+  color: red;
+  font-size: 1.5em;
+  background-color: #dcdcff;
+}
+@media screen and (max-width: 400px) {
+  .calendar-wrapper{
+    width: 100%
+  }
+}
+/*Настройки*/
+.setting{
+  position: absolute;
+  z-index: 1000;
+  bottom: 40px;
+  left: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.settingRun{
+display: block;
+background-color: #ffff;
+width: 30px;
+height: 30px;
+}
+.settingIkon{
+display: inline-block;
+width: 16px;
+height: 16px;
+margin: 7px;
+background-image: url(/icons/settings.svg);
+}
+/*Условные обозначения*/
+.designations{
+  z-index: 1000;
+  margin: 0 40px -1px 10px;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  background-color: #fff;
+  border: 1px solid #c3c4c7;
+  border-top: none;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 4px 8px 8px #646970;
+}
+.contextualColumns{
+  display: none;
+  font-size: 13px;
+  padding: 0 20px;
+  overflow: auto;
+}
+.contextualColumns p{
+  padding: 5px 0;
+  margin: 0;
+}
+/*Кнопка условных обозначений*/
+.buttonDesing{
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  z-index: 1000;
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px 6px 0 0;
+
+}
+.showDesing{
+  border: 1px solid #c3c4c7;
+  border-top: none;
+  width: 30px;
+  height: auto;
+  margin-bottom: 0;
+  padding: 3px 2px;
+  background: #fff;
+  color: black;
+  line-height: 1.7;
+  box-shadow: 0px 8px 8px #646970;
+  transition: box-shadow .1s linear;
+  cursor: pointer;
+}
+.showDesing::after{
+  content: "\25BC";
+  display: inline-block;
+  padding: 0 5px 0 5px;
+  position: relative;
+  vertical-align: bottom;
+}

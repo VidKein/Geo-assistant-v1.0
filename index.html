@@ -4,15 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>leafletjs Map</title>
-    <link rel="stylesheet" href="./patc/leaflet.css" /><!--leaflet-->
+    <link rel="stylesheet" href="./API/Leaflet/leaflet.css" /><!--leaflet-->
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./dist/L.Control.Locate.min.css" /><!--L.Control-->
-    <script src="./patc/leaflet-src.js"></script><!--leaflet-->
-    <script src="./JTSKtoWGS84/Converter.js"></script><!--Converter-->
+    <link rel="stylesheet" href="./API/LControl/L.Control.Locate.min.css" /><!--L.Control-->
+    <script src="./API/Leaflet/leaflet-src.js"></script><!--leaflet-->
+    <script src="./script/JTSKtoWGS84/Converter.js"></script><!--Converter-->
 </head>
 <body>
+<!--Карта-->
     <div id="map"></div>
+<!--Календарь-->
+    <div class="calendarg" title="Work calendar">
+        <div class="calendargRun">
+            <span class="calendargIkon"></span>
+        </div>
+    </div>
+    <div class="calendar-wrapper">
+        <button id="btnPrev" type="button">Предыдущий</button>
+        <button id="btnNext" type="button">Следующий</button>
+    <div id="divCal"></div>
+    </div>
+<!--Настройки-->
+    <div class="setting" title="Setting maps">
+        <div class="settingRun">
+            <span class="settingIkon"></span>
+        </div>
+    </div>
+<!--Условные обозначения-->
+<!--Кнопка условных обозначений-->
+<div class="buttonDesing"title="Designations maps">
+        <button class="showDesing"></button>
+</div>
+<!--Обозначения-->
+<div class="designations">
+    <div class="contextualColumns">
+        <p>Designations maps:</p>
+        <p><span>o</span>- base points;</p>
+        <p><span>o</span>- operating points;</p>
+    </div>
+</div>
 </body>
-<script src="./dist/L.Control.Locate.min.js"></script><!--L.Control-->
-<script type="module" src="main.js"></script>
+<script src="./API/LControl/L.Control.Locate.min.js"></script><!--L.Control-->
+<script type="module" src="./script/main.js"></script>
 </html>
