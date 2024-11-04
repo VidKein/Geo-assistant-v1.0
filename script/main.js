@@ -186,6 +186,18 @@ class Cal {
   function getId(id) {
     return document.getElementById(id);
   }
+  //Анимация календаря
+  let calendarg = document.querySelector("#calendarg");
+  let calendarWrapper = document.querySelector(".calendar-wrapper");
+  calendarg.addEventListener("click", ()=>{
+   calendarg.classList.toggle("activ"); 
+   if (calendarg.className == "calendarg activ") {
+    calendarWrapper.style.display = "block";
+   } else {
+    calendarWrapper.style.display = "none";
+   }
+  })
+  
 /*------------------------------------------*/
 //Извлекаем информацию о точках
 let xhr = new XMLHttpRequest();
