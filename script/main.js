@@ -230,7 +230,13 @@ function createMarker(name, position, systemCoordinates, vycka) {
         //Подключение маркера с WGS84
     }
 }
-
+/*------------------------------------------*/
+//Подключаем камеру
+let constraints = { audio: false, video: { width: 1280, height: 720 } };
+let setting = document.querySelector(".setting");
+setting.addEventListener("click",()=>{
+    promise = navigator.mediaDevices.getUserMedia(constraints);
+})
 /*
 
 //Определяем координаты
