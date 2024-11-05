@@ -114,9 +114,16 @@ td.today {
   font-size: 1.5em;
   background-color: #dcdcff;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .calendar-wrapper{
-    width: 100%
+    width: 195px;
+    height: auto;
+  }
+  #btnPrev, #btnNext {
+    font-size: 0.7em;
+  }
+  td{
+    height: 30px;
   }
 }
 /*Настройки*/
