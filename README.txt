@@ -57,3 +57,27 @@ V1.0
 - Одображение на карте всех базовых точек (необходимых для работы).
 - Одображение рабочик всех точек.
 - Возможность отображения месторасположения устройства на карте, с целью ореинтации на рабочии точки.
+
+GeoJson
+{   "poligon":{"name": "sod11","position":[50.086841966723284 , 14.420575996839851], "systemCoordinates" : "WGS84"},
+    "trig":{
+        "base":{
+            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
+            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+        },
+        "operating":{
+            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
+            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+        }
+    },
+    "niv":{
+        "base":{
+            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
+            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+        },
+        "operating":{
+            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
+            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+        }
+    }
+}

@@ -202,7 +202,7 @@ class Cal {
 //Извлекаем информацию о точках
 let xhr = new XMLHttpRequest();
 //запрос на извлечение
-xhr.open("GET","./koordinaty/niv/niv-znaky.json");
+xhr.open("GET","./koordinaty/sod11/sod11.json");
 //Устанавливаем что будем возврашать
 xhr.responseType = "json";
 xhr.send();
@@ -212,8 +212,19 @@ function createСontent() {
     xhr.onload = ()=>{
         if (xhr.readyState === 4 && xhr.status === 200) {
             let respon = xhr.response;
-            for (const infoPoint of respon) {
-                createMarker(infoPoint.name, infoPoint.position, infoPoint.systemCoordinates, infoPoint.vycka);
+            for (const infoPoint of Object.entries(respon)) {
+                switch (infoPoint[0]) {
+                    case "poligon":
+                        console.log(infoPoint[1].name, infoPoint[1].position,infoPoint[1].systemCoordinates);
+                        break;
+                        case "trig":
+                        console.log(infoPoint[1].base, infoPoint[1].operating);
+                        break
+                        case "niv":
+                                for (const info of Object.entries(infoPoint[1].base)){createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka);}
+                                for (const info of Object.entries(infoPoint[1].operating)){createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka);}
+                        break
+                }
             }
         }    
     }
