@@ -230,12 +230,20 @@ function createСontent() {
     }
 }
 //Формируем наполнение на карте
+let mainNiv = L.icon({
+    iconUrl: './icons/mainNiv.png',
+    //shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [10, 10], // size of the icon
+    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    popupAnchor:  [5, -3] // point from which the popup should open relative to the iconAnchor
+});
 function createMarker(name, position, systemCoordinates, vycka) {
     if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[0], position[1]);
         //Подключение маркера с конвертацией JTSKtoWGS84
-        var marker = L.marker([wgs.lat,wgs.lon]).addTo(map);
+        var marker = L.marker([wgs.lat,wgs.lon],{icon: mainNiv}).addTo(map);
         marker.bindPopup("<b>"+name+"</b><br>vycka: "+vycka+" m.");
     } else {
         //Подключение маркера с WGS84
