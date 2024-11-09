@@ -231,12 +231,13 @@ function createСontent() {
 }
 //Формируем наполнение на карте
 let mainNiv = L.icon({
-    iconUrl: './icons/mainNiv.png',
-    //shadowUrl: 'leaf-shadow.png',
+    iconUrl: './icons/main-niv.png',
+    iconRetinaUrl: './icons/main-niv-2x.png',
+    shadowUrl: './icons/main-niv-shadow.png',
 
-    iconSize:     [10, 10], // size of the icon
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
-    popupAnchor:  [5, -3] // point from which the popup should open relative to the iconAnchor
+    iconSize:     [20, 20], // size of the icon
+    iconAnchor:   [0,0], // point of the icon which will correspond to marker's location
+    popupAnchor:  [8, -1] // point from which the popup should open relative to the iconAnchor
 });
 function createMarker(name, position, systemCoordinates, vycka) {
     if (systemCoordinates == "JTSK") {
