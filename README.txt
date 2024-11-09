@@ -38,8 +38,8 @@ V1.0
 *Условные обозначения:
     ТОЧКИ
     1.Базовые:
-        а. нивелирование - зеленый квадрат;
-        б. тахеометрические - синий квадрат;
+        а. нивелирование - зеленый треугольник;
+        б. тахеометрические - синий перечеркнутый круг;
     2.Рабочие:
         а. нивелирование - зеленый круг;
         б. тахеометрические - синий круг;
@@ -62,22 +62,22 @@ GeoJson
 {   "poligon":{"name": "sod11","position":[50.086841966723284 , 14.420575996839851], "systemCoordinates" : "WGS84"},
     "trig":{
         "base":{
-            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
-            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK","position type":"wall"},
+            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK","position type":"wall"}
         },
         "operating":{
-            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
-            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+            "1":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK", "position type":"asphalt"},
+            "2":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK", "position type":"asphalt"}
         }
     },
     "niv":{
         "base":{
-            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
-            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK","position type":"wall"},
+            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK","position type":"wall"}
         },
         "operating":{
-            "9102":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK"},
-            "12002":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK"}
+            "3":{"position":[0000000, 0000000], "vycka": 000.0000,"date": "27.10.2024", "systemCoordinates" : "JTSK", "position type":"asphalt"},
+            "4":{"position":[0000000, 0000000], "vycka": 000.0000,  "date": "27.10.2024", "systemCoordinates" : "JTSK", "position type":"asphalt"}
         }
     }
 }
