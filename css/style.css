@@ -144,6 +144,7 @@ td.today {
     height: auto;
   }
   #btnPrev, #btnNext {
+    float: none;
     font-size: 0.6em;
     margin: 5px 5px;
   }
