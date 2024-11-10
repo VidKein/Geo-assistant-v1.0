@@ -169,37 +169,51 @@ class Cal {
         document.getElementById(this.divId).innerHTML = html;
     }
 }
-  // При загрузке окна
-  window.onload = function() {
-    // Начать календарь
-    var c = new Cal("divCal");			
-    c.showcurr();
-    // Привязываем кнопки «Следующий» и «Предыдущий»
-    getId('btnNext').onclick = function() {
-      c.nextMonth();
-    };
-    getId('btnPrev').onclick = function() {
-      c.previousMonth();
-    };
+// При загрузке окна
+window.onload = function() {
+  // Начать календарь
+  var c = new Cal("divCal");			
+  c.showcurr();
+  // Привязываем кнопки «Следующий» и «Предыдущий»
+  getId('btnNext').onclick = function() {
+    c.nextMonth();
+  };
+  getId('btnPrev').onclick = function() {
+    c.previousMonth();
+  };
+}
+// Получить элемент по id
+function getId(id) {
+  return document.getElementById(id);
+}
+//Анимация календаря
+let calendarg = document.querySelector("#calendarg");
+let calendargBlock = document.querySelector("#calendargBlock");
+let closeCalendar = document.querySelector(".close-calendarg");
+calendarg.addEventListener("click",closeCalendarShou);
+closeCalendar.addEventListener("click",closeCalendarShou);
+function closeCalendarShou(){
+  calendarg.classList.toggle("activ"); 
+  if (calendarg.className == "calendarg activ") {
+      calendargBlock.style.display = "block";
+  } else {
+      calendargBlock.style.display = "none";
   }
-  // Получить элемент по id
-  function getId(id) {
-    return document.getElementById(id);
-  }
-  //Анимация календаря
-  let calendarg = document.querySelector("#calendarg");
-  let calendargBlock = document.querySelector("#calendargBlock");
-  let closeCalendar = document.querySelector(".close-calendarg");
-  calendarg.addEventListener("click",closeCalendarShou);
-  closeCalendar.addEventListener("click",closeCalendarShou);
-  function closeCalendarShou(){
-    calendarg.classList.toggle("activ"); 
-    if (calendarg.className == "calendarg activ") {
-        calendargBlock.style.display = "block";
+ }
+ //Анимация нaстроек
+ let setting = document.querySelector(".setting");
+ let settingBlock = document.querySelector("#settingBlock");
+ let closeSetting = document.querySelector(".close-setting");
+ setting.addEventListener("click",closeSettingShou);
+ closeSetting.addEventListener("click",closeSettingShou);
+function closeSettingShou() {
+    setting.classList.toggle("activ"); 
+    if (setting.className == "setting activ") {
+        settingBlock.style.display = "block";
     } else {
-        calendargBlock.style.display = "none";
+        settingBlock.style.display = "none";
     }
-   }
+}
   
 /*------------------------------------------*/
 //Извлекаем информацию о точках
@@ -285,7 +299,6 @@ function createMarker(name, position, systemCoordinates, vycka, positionType) {
 }
 /*------------------------------------------*/
 //Условные обозначения
-let setting = document.querySelector(".setting");
 let buttonDesing = document.querySelector(".buttonDesing");
 let showDesing = document.querySelector(".showDesing");
 let designations = document.querySelector(".designations");
