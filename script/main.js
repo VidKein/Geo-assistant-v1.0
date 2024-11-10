@@ -188,16 +188,16 @@ class Cal {
   }
   //Анимация календаря
   let calendarg = document.querySelector("#calendarg");
-  let calendarWrapper = document.querySelector(".calendar-wrapper");
+  let calendargBlock = document.querySelector("#calendargBlock");
   let closeCalendar = document.querySelector(".close-calendarg");
   calendarg.addEventListener("click",closeCalendarShou);
   closeCalendar.addEventListener("click",closeCalendarShou);
   function closeCalendarShou(){
     calendarg.classList.toggle("activ"); 
     if (calendarg.className == "calendarg activ") {
-     calendarWrapper.style.display = "block";
+        calendargBlock.style.display = "block";
     } else {
-     calendarWrapper.style.display = "none";
+        calendargBlock.style.display = "none";
     }
    }
   

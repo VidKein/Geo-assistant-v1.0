@@ -18,6 +18,18 @@ body {
     z-index: 0;
 }
 /*Календарь*/
+#calendargBlock{
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1001;
+}
 .calendarg{
     position: absolute;
     z-index: 1000;
@@ -41,7 +53,6 @@ body {
 }
 /*Месяцы*/
 .calendar-wrapper {
-  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -134,7 +145,7 @@ td.today {
   }
   #btnPrev, #btnNext {
     font-size: 0.6em;
-    margin: 5px 8px;
+    margin: 5px 5px;
   }
   td{
     height: 30px;
