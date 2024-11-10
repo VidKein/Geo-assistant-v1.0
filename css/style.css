@@ -88,6 +88,18 @@ td.not-current {
   margin-bottom: 20px;
   cursor: pointer;
 }
+.close-calendarg{
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 35px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
 #btnPrev,
 #btnNext {
   background: transparent;
@@ -99,6 +111,7 @@ td.not-current {
   font-family: sans-serif;
   text-transform: uppercase;
   transition: all 0.3s ease;
+  margin: 5px 15px;
 }
 #btnPrev:hover,
 #btnNext:hover {
@@ -121,6 +134,7 @@ td.today {
   }
   #btnPrev, #btnNext {
     font-size: 0.6em;
+    margin: 5px 8px;
   }
   td{
     height: 30px;
