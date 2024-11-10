@@ -130,7 +130,7 @@ td.today {
 .setting{
   position: absolute;
   z-index: 1000;
-  bottom: 165px;
+  bottom: 45px;
   left: 10px;
   border: 2px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -150,6 +150,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
 }
 /*Условные обозначения*/
 .designations{
+  display: none;
   z-index: 1000;
   position: absolute;
   bottom: 0;
@@ -175,7 +176,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
 /*Кнопка условных обозначений*/
 .buttonDesing{
   position: absolute;
-  bottom: 125px;
+  bottom: 0px;
   left: 10px;
   z-index: 1000;
   border-top: 2px solid rgba(0, 0, 0, 0.2);

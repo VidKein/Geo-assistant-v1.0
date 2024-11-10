@@ -281,14 +281,29 @@ function createMarker(name, position, systemCoordinates, vycka, positionType) {
     }
 }
 /*------------------------------------------*/
+//Условные обозначения
+let setting = document.querySelector(".setting");
+let buttonDesing = document.querySelector(".buttonDesing");
+let designations = document.querySelector(".designations")
+buttonDesing.addEventListener("click",()=>{
+    buttonDesing.classList.toggle("activ"); 
+    if (buttonDesing.className == "buttonDesing activ") {
+        designations.style.display = "block";
+        buttonDesing.style.bottom = "125px";
+        setting.style.bottom = "165px";
+    } else {
+        designations.style.display = "none";
+        buttonDesing.style.bottom = "0px";
+        setting.style.bottom = "45px";
+    }
+})
+/*
 //Подключаем камеру
 let constraints = { audio: false, video: { width: 1280, height: 720 } };
 let setting = document.querySelector(".setting");
 setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
-/*
-
 //Определяем координаты
 var popup = L.popup();
 function onMapClick(e) {
