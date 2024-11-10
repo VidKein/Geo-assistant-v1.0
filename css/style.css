@@ -130,7 +130,7 @@ td.today {
 .setting{
   position: absolute;
   z-index: 1000;
-  bottom: 40px;
+  bottom: 160px;
   left: 10px;
   border: 2px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -151,10 +151,9 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
 /*Условные обозначения*/
 .designations{
   z-index: 1000;
-  margin: 0 40px -1px 10px;
   position: absolute;
   bottom: 0;
-  left: 10px;
+  left: 5px;
   background-color: #fff;
   border: 1px solid #c3c4c7;
   border-top: none;
@@ -162,19 +161,21 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   box-shadow: 4px 8px 8px #646970;
 }
 .contextualColumns{
-  display: none;
   font-size: 13px;
   padding: 0 20px;
-  overflow: auto;
 }
 .contextualColumns p{
   padding: 5px 0;
   margin: 0;
 }
+ .point{
+  width: 10px;
+  height: auto;
+}
 /*Кнопка условных обозначений*/
 .buttonDesing{
   position: absolute;
-  bottom: 0;
+  bottom: 120px;
   left: 10px;
   z-index: 1000;
   border-top: 2px solid rgba(0, 0, 0, 0.2);

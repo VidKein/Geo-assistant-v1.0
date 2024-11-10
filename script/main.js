@@ -221,8 +221,8 @@ function createСontent() {
                         console.log(infoPoint[1].base, infoPoint[1].operating);
                         break
                         case "niv":
-                                for (const info of Object.entries(infoPoint[1].base)){createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka);}
-                                for (const info of Object.entries(infoPoint[1].operating)){createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka);}
+                                for (const info of Object.entries(infoPoint[1].base)){createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);}
+                                for (const info of Object.entries(infoPoint[1].operating)){createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);}
                         break
                 }
             }
@@ -269,13 +269,13 @@ let jobsTrig = L.icon({
     popupAnchor:  [8, -1]
 });
 
-function createMarker(name, position, systemCoordinates, vycka) {
+function createMarker(name, position, systemCoordinates, vycka, positionType) {
     if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[0], position[1]);
         //Подключение маркера с конвертацией JTSKtoWGS84
         var marker = L.marker([wgs.lat,wgs.lon],{icon: jobsTrig}).addTo(map);
-        marker.bindPopup("<b>"+name+"</b><br>vycka: "+vycka+" m.");
+        marker.bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);
     } else {
         //Подключение маркера с WGS84
     }
