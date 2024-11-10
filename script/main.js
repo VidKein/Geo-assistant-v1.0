@@ -284,10 +284,11 @@ function createMarker(name, position, systemCoordinates, vycka, positionType) {
 //Условные обозначения
 let setting = document.querySelector(".setting");
 let buttonDesing = document.querySelector(".buttonDesing");
-let designations = document.querySelector(".designations")
+let showDesing = document.querySelector(".showDesing");
+let designations = document.querySelector(".designations");
 buttonDesing.addEventListener("click",()=>{
-    buttonDesing.classList.toggle("activ"); 
-    if (buttonDesing.className == "buttonDesing activ") {
+    showDesing.classList.toggle("activ"); 
+    if (showDesing.className == "showDesing activ") {
         designations.style.display = "block";
         buttonDesing.style.bottom = "125px";
         setting.style.bottom = "165px";

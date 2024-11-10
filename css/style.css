@@ -199,8 +199,15 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   transition: box-shadow .1s linear;
   cursor: pointer;
 }
-.showDesing::after{
+.buttonDesing .showDesing::after{
   content: "\25BC";
+  display: inline-block;
+  padding: 0 5px 0 5px;
+  position: relative;
+  vertical-align: bottom;
+}
+.buttonDesing .activ::after{
+  content: "\25B2";
   display: inline-block;
   padding: 0 5px 0 5px;
   position: relative;
