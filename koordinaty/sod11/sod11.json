@@ -137,7 +137,7 @@
     "niv":{
         "base":{
             "9102":{"position":[1047192, 741860], "vycka": 266.4284,"date": "27.10.2024", "systemCoordinates" : "JTSK", "positionType":"wall"},
-            "9103":{"position":[1048070, 742218], "vycka": 269.063,"date": "27.10.2024", "systemCoordinates" : "JTSK","positionType":"wall"},
+            "9302":{"position":[1048070, 742218], "vycka": 269.063,"date": "27.10.2024", "systemCoordinates" : "JTSK","positionType":"wall"},
             "9199":{"position":[1047040, 742235], "vycka": 264.4287,"date": "27.10.2024", "systemCoordinates" : "JTSK","positionType":"wall"},
             "9181":{"position":[1048136, 742086], "vycka": 269.25265,"date": "27.10.2024", "systemCoordinates" : "JTSK","positionType":"fence" },
             "9182":{"position":[1048137, 742101], "vycka": 269.27935,"date": "27.10.2024", "systemCoordinates" : "JTSK","positionType":"fence"},
