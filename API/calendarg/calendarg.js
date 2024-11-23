@@ -146,6 +146,11 @@ function closeCalendarShou(){
   }
  }
  //Анимация информации по работе
+ let data = document.querySelector(".todayDate");
+ //Дата
+let todayDate = new Date();
+data.innerText = todayDate.getDate()+"."+(todayDate.getMonth()+1)+"."+todayDate.getFullYear();
+
  let dataBlock = document.querySelector("#dataBlock");
  let infiPointkBlock = document.querySelector("#infoPointkBlock ");
  let closePoints = document.querySelector(".close-points");

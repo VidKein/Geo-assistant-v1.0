@@ -10,8 +10,46 @@ let map = L.map('map', {
   zoom: 15,
   layers: [OSMstritMap]});
 //Наполнение слоя
-//Виды карт
+//Формируем наполнение на карте
+//Базовые точки
+let mainNiv = L.icon({
+    iconUrl: './icons/main-niv.png',
+    iconRetinaUrl: './icons/main-niv-2x.png',
+    shadowUrl: './icons/main-niv-shadow.png',
 
+    iconSize:     [20, 20],
+    iconAnchor:   [0,0], 
+    popupAnchor:  [8, -1]
+});
+let mainTrig = L.icon({
+    iconUrl: './icons/main-trig.png',
+    iconRetinaUrl: './icons/main-trig-2x.png',
+    shadowUrl: './icons/main-trig-shadow.png',
+
+    iconSize:     [20, 20],
+    iconAnchor:   [0,0],
+    popupAnchor:  [8, -1]
+});
+//Рабочие точки
+let jobsNiv = L.icon({
+    iconUrl: './icons/jobs-niv.png',
+    iconRetinaUrl: './icons/jobs-niv-2x.png',
+    shadowUrl: './icons/jobs-niv-shadow.png',
+
+    iconSize:     [20, 20],
+    iconAnchor:   [0,0], 
+    popupAnchor:  [8, -1]
+});
+let jobsTrig = L.icon({
+    iconUrl: './icons/jobs-trig.png',
+    iconRetinaUrl: './icons/jobs-trig-2x.png',
+    shadowUrl: './icons/jobs-trig-shadow.png',
+
+    iconSize:     [20, 20],
+    iconAnchor:   [0,0],
+    popupAnchor:  [8, -1]
+});
+//Виды карт
 let baseMaps = {
   "Satelit Map": OSMsatelitMap,
   "Strit Map": OSMstritMap
@@ -96,45 +134,6 @@ function createСontent() {
         }    
     }
 }
-//Формируем наполнение на карте
-//Базовые точки
-let mainNiv = L.icon({
-    iconUrl: './icons/main-niv.png',
-    iconRetinaUrl: './icons/main-niv-2x.png',
-    shadowUrl: './icons/main-niv-shadow.png',
-
-    iconSize:     [20, 20],
-    iconAnchor:   [0,0], 
-    popupAnchor:  [8, -1]
-});
-let mainTrig = L.icon({
-    iconUrl: './icons/main-trig.png',
-    iconRetinaUrl: './icons/main-trig-2x.png',
-    shadowUrl: './icons/main-trig-shadow.png',
-
-    iconSize:     [20, 20],
-    iconAnchor:   [0,0],
-    popupAnchor:  [8, -1]
-});
-//Рабочие точки
-let jobsNiv = L.icon({
-    iconUrl: './icons/jobs-niv.png',
-    iconRetinaUrl: './icons/jobs-niv-2x.png',
-    shadowUrl: './icons/jobs-niv-shadow.png',
-
-    iconSize:     [20, 20],
-    iconAnchor:   [0,0], 
-    popupAnchor:  [8, -1]
-});
-let jobsTrig = L.icon({
-    iconUrl: './icons/jobs-trig.png',
-    iconRetinaUrl: './icons/jobs-trig-2x.png',
-    shadowUrl: './icons/jobs-trig-shadow.png',
-
-    iconSize:     [20, 20],
-    iconAnchor:   [0,0],
-    popupAnchor:  [8, -1]
-});
 
 function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
  if (systemCoordinates == "JTSK") {
@@ -148,9 +147,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
     }
 }
 
-
-
-
+        
 /*------------------------------------------*/
 /*
 //Определяем координаты
