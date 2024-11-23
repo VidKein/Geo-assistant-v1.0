@@ -20,7 +20,7 @@ body {
 /*Дата/Информация поработе*/
 #dataBlock{
   position: absolute;
-  top: 5%;
+  top: 8%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
@@ -151,10 +151,24 @@ td.not-current {
   margin-bottom: 20px;
   cursor: pointer;
 }
+.prev{
+  display: inline-block;
+  width: 14px;
+  height: 16px;
+  margin: 7px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>');
+}
 #btnNext {
   float: right;
   margin-bottom: 20px;
   cursor: pointer;
+}
+.next{
+  display: inline-block;
+  width: 14px;
+  height: 16px;
+  margin: 7px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>');
 }
 .close-calendarg{
   cursor: pointer;
@@ -179,7 +193,7 @@ td.not-current {
   font-family: sans-serif;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  margin: 5px 15px;
+  margin: 0px 35px;
 }
 #btnPrev:hover,
 #btnNext:hover {
@@ -201,9 +215,8 @@ td.today {
     height: auto;
   }
   #btnPrev, #btnNext {
-    float: none;
     font-size: 0.6em;
-    margin: 5px 5px;
+    margin: 0px 25px;
   }
   td{
     height: 30px;
