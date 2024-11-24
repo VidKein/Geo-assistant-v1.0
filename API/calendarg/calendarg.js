@@ -200,9 +200,6 @@ let importPoint = document.querySelector(".fullEdit");
 for (let i = 0; i < importPoint.children.length; i++) {
     let childrenElement = importPoint.children[i];
     childrenElement.addEventListener("click",()=>{
-        if (childrenElement.id ==="dataBlock") {
-            pointDataBlock();
-        }
         if (childrenElement.id ==="infoPointkBlock") {
             let infoPointkBlock = document.querySelector(".points-wrapper");
             let blockPoint = infoPointkBlock.children;
@@ -223,20 +220,19 @@ for (let i = 0; i < importPoint.children.length; i++) {
         }
     })
 }
-function pointDataBlock() {
-    //Effects анимация accordion
-    let acc = document.getElementsByClassName("accordion");
-    for (let i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-      //Toggle between adding and removing the "active" class to highlight the option that controls the panel
-      this.classList.toggle("activeAccord");
-      //Switch between hiding and showing the active panel
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-          panel.style.display = "none";
-        } else {
-          panel.style.display = "block";
-        }
-      });
-    }      
-}
+
+//Effects анимация accordion
+let acc = document.getElementsByClassName("accordion");
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+  //Toggle between adding and removing the "active" class to highlight the option that controls the panel
+  this.classList.toggle("activeAccord");
+  //Switch between hiding and showing the active panel
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}      
