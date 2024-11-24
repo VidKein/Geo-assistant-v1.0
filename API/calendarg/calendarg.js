@@ -149,8 +149,7 @@ function closeCalendarShou(){
  let data = document.querySelector(".todayDate");
  //Дата
 let todayDate = new Date();
-data.innerText = todayDate.getDate()+"."+(todayDate.getMonth()+1)+"."+todayDate.getFullYear();
-
+data.innerText = todayDate.getFullYear()+"-"+(todayDate.getMonth()+1)+"-"+todayDate.getDate();
  let dataBlock = document.querySelector("#dataBlock");
  let infiPointkBlock = document.querySelector("#infoPointkBlock ");
  let closePoints = document.querySelector(".close-points");
@@ -194,3 +193,18 @@ buttonDesing.addEventListener("click",()=>{
         setting.style.bottom = "45px";
     }
 })
+//Effects анимация accordion
+let acc = document.getElementsByClassName("accordion");
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+    //Toggle between adding and removing the "active" class to highlight the option that controls the panel
+    this.classList.toggle("activeAccord");
+    //Switch between hiding and showing the active panel
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }

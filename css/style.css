@@ -57,10 +57,11 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
-  padding: 1em;
+  padding: 1.5em;
   border: 1px solid #dcdcff;
   border-radius: 5px;
   background: #fff;
+  width: 80%;
 }
 .close-points{
   cursor: pointer;
@@ -73,6 +74,65 @@ body {
   border: none;
   outline: none;
   background: transparent;
+}
+/*Информационный блок*/
+.accordion{
+  background-color: rgb(242, 242, 242);
+  color: #444;
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+  height: 30px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 13px;
+  transition: 0.4s;
+  font-weight: 600;
+  border-top: 2px solid white;
+}
+.accordion::after{
+  content: '\02795';
+  font-size: 9px;
+  color: #777;
+  float: right;
+  margin-right: 5px;
+}
+.activeAccord:after {
+  content: "\2796";
+}
+/*Блок*/
+.points-wrapper > .links{
+  display: none;
+  background-color: white;
+  overflow: hidden;
+  width: auto;
+  margin: 3px 0;
+}
+/*Точки*/
+.pointJobs{
+  font-size: 0.7em;
+  display: inline;
+  background-color: #45e650;
+  padding: 3px;
+  margin: 3px 0;
+}
+.pointJobsError{
+  font-size: 0.7em;
+  display: inline;
+  background-color: #de2a21;
+  padding: 3px;
+  margin: 3px 0;
+  cursor: pointer;
+}
+/*Точка с ошибкой*/
+.pointError{
+  display: inline-block;
+  width: 10px;
+  height: 11px;
+  margin: 1px 5px -1px 5px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>');
+  background-color: #de2a21;
 }
 /*Календарь*/
 #calendargBlock{

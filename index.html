@@ -18,7 +18,36 @@
 <div id="infoPointkBlock">
     <div class="points-wrapper">
         <button class="close-points" title="Exit the infoblock">X</button>
-        <p style="text-align: center;">Sorry but this block is under development</p>
+          <!--Базовые точки-нивелирование-->
+          <button type="button" class="accordion" name="levelingBasic">Basic leveling points - <span>5</span></button>
+          <div class="links" id="levelingBasic" name="point">
+            <div class="pointJobs">131905</div>
+            <div class="pointJobs">131906</div>
+            <div class="pointJobs">130704</div>
+            <div class="pointJobs">130706</div>
+            <div class="pointJobs">131107</div>
+          </div>
+          <!--Базовые точки--тахеометрия-->
+          <button type="button" class="accordion" name="tacheometryBasic">Base points of tacheometry - <span>5</span></button>
+          <div class="links" id="tacheometryBasic" name="point">
+            <div class="pointJobs">131905</div>
+            <div class="pointJobs">131906</div>
+            <div class="pointJobs">130704</div>
+            <div class="pointJobs">130706</div>
+            <div class="pointJobs">131107</div>
+          </div>
+          <!--Рабочии точки-нивелирование-->
+          <button type="button" class="accordion" name="levelingJobs">Operating leveling points - <span>3</span></button>
+          <div class="links" id="levelingJobs" name="point">
+            <div class="pointJobs">131905</div>
+            <div class="pointJobsError">131906<span class="pointError"></span></div>
+            <div class="pointJobs">130704</div>
+          </div>
+          <!--Рабочии точки-тахеометрии-->
+          <button type="button" class="accordion" name="tacheometryJobs">Operating points of tacheometry - <span>0</span></button>
+          <div class="links" id="tacheometryJobs" name="point">
+            <div class="pointJobs">Nou point</div>
+          </div>
     </div>
 </div>
 <!--Карта-->
