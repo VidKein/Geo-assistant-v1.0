@@ -11,80 +11,99 @@
     <script src="./API/JTSKtoWGS84/Converter.js"></script><!--Converter-->
 </head>
 <body>
-<!--Дата/Информация по работе-->
-<div id="dataBlock" class="dataBlock" title="Data">
-    <div class="data"><span class="todayDate"></span><span class="dataIkom"></span></div>
-</div>
-<div id="infoPointkBlock">
-    <div class="points-wrapper">
-        <button class="close-points" title="Exit the infoblock">X</button>
-          <!--Базовые точки-нивелирование-->
-          <button type="button" class="accordion" name="levelingBasic">Basic leveling points - <span>5</span></button>
-          <div class="links" id="levelingBasic" name="point">
-            <div class="pointJobs">131905</div>
-            <div class="pointJobs">131906</div>
-            <div class="pointJobs">130704</div>
-            <div class="pointJobs">130706</div>
-            <div class="pointJobs">131107</div>
-          </div>
-          <!--Базовые точки--тахеометрия-->
-          <button type="button" class="accordion" name="tacheometryBasic">Base points of tacheometry - <span>5</span></button>
-          <div class="links" id="tacheometryBasic" name="point">
-            <div class="pointJobs">131905</div>
-            <div class="pointJobs">131906</div>
-            <div class="pointJobs">130704</div>
-            <div class="pointJobs">130706</div>
-            <div class="pointJobs">131107</div>
-          </div>
-          <!--Рабочии точки-нивелирование-->
-          <button type="button" class="accordion" name="levelingJobs">Operating leveling points - <span>3</span></button>
-          <div class="links" id="levelingJobs" name="point">
-            <div class="pointJobs">131905</div>
-            <div class="pointJobsError">131906<span class="pointError"></span></div>
-            <div class="pointJobs">130704</div>
-          </div>
-          <!--Рабочии точки-тахеометрии-->
-          <button type="button" class="accordion" name="tacheometryJobs">Operating points of tacheometry - <span>0</span></button>
-          <div class="links" id="tacheometryJobs" name="point">
-            <div class="pointJobs">Nou point</div>
-          </div>
-    </div>
-</div>
-<!--Карта-->
+    <!--Карта-->
     <div id="map"></div>
-<!--Календарь-->
-<div id="calendarg" class="calendarg" title="Work calendar">
-    <div class="calendargRun">
-        <span class="calendargIkon"></span>
+    <div class="fullEdit">
+            <!--Дата/Информация по работе-->
+            <div id="dataBlock" class="dataBlock" title="Data">
+                <div class="data"><span class="todayDate"></span><span class="dataIkom"></span></div>
+            </div>
+            <div id="infoPointkBlock" class="infoPointkBlock">
+                <div class="points-wrapper">
+                <button class="close-points" title="Exit the infoblock">X</button>
+                  <!--Базовые точки-нивелирование-->
+                  <button type="button" class="accordion" name="levelingBasic">Basic leveling points - <span>5</span></button>
+                  <div class="links" id="levelingBasic" name="point">
+                    <div class="pointJobs">131905</div>
+                    <div class="pointJobs">131906</div>
+                    <div class="pointJobs">130704</div>
+                    <div class="pointJobs">130706</div>
+                    <div class="pointJobs">131107</div>
+                  </div>
+                  <!--Базовые точки--тахеометрия-->
+                  <button type="button" class="accordion" name="tacheometryBasic">Base points of tacheometry - <span>5</span></button>
+                  <div class="links" id="tacheometryBasic" name="point">
+                    <div class="pointJobs">131905</div>
+                    <div class="pointJobs">131906</div>
+                    <div class="pointJobs">130704</div>
+                    <div class="pointJobs">130706</div>
+                    <div class="pointJobs">131107</div>
+                  </div>
+                  <!--Рабочии точки-нивелирование-->
+                  <button type="button" class="accordion" name="levelingJobs">Operating leveling points - <span>3</span></button>
+                  <div class="links" id="levelingJobs" name="point">
+                    <div class="pointJobs">131905</div>
+                    <div class="pointJobsError">131906<span class="pointError"></span></div>
+                    <div class="pointJobs">130704</div>
+                    <div class="pointJobsError">130704<span class="pointError"></span></div>
+                  </div>
+                  <!--Рабочии точки-тахеометрии-->
+                  <button type="button" class="accordion" name="tacheometryJobs">Operating points of tacheometry - <span>0</span></button>
+                  <div class="links" id="tacheometryJobs" name="point">
+                    <div class="pointJobs">Nou point</div>
+                  </div>
+                </div>
+            </div>
+            <div id="import" class="import">
+                <div class="import-wraper">
+                    <button class="close-import" title="Exit Imports">X</button>
+                    <div class="importBlock">
+                        <span class="namePoint" style="font-size: 10px;"></span>    
+                        <label id="importInfo">
+                            position: <input type="text" name="position" id="X" value="700000"> x <input type="text" name="position" id="Y" value="1000000">
+                            vycka: <input type="text" name="vycka" id="X" value="100.0000">
+                            date: <input type="date" name="date" id="X">
+                            coordinate system: <input type="text" name="coordinateSystem" id="X" value="JTSK">
+                            position type: <input type="text" name="positionType" id="X" value="asphalt">
+                        </label>  
+                        <input type="button" value="OK">
+                    </div>
+                </div>
+            </div>
+            <!--Календарь-->
+            <div id="calendarg" class="calendarg" title="Work calendar">
+                <div class="calendargRun">
+                    <span class="calendargIkon"></span>
+                </div>
+            </div>
+            <div id="calendargBlock" class="calendargBlock">
+                <div class="calendar-wrapper">
+                    <button id="btnPrev" type="button"><span class="prev"></span></button>
+                    <button id="btnNext" type="button"><span class="next"></span></button>
+                    <button class="close-calendarg" title="Выйти из календаря">X</button>
+                    <div id="divCal"></div>
+                </div>
+            </div>
+            <!--Настройки-->
+            <div id="setting" class="setting" title="Setting maps">
+                <div class="settingRun">
+                    <span class="settingIkon"></span>
+                </div>
+            </div>
+            <div id="settingBlock" class="settingBlock">
+                <div class="setting-wrapper">
+                    <button class="close-setting" title="Exit Settings">X</button>
+                    <p style="text-align: center;">Sorry but this block is under development</p>
+                </div>
+            </div>
     </div>
-</div>
-<div id="calendargBlock">
-    <div class="calendar-wrapper">
-        <button id="btnPrev" type="button"><span class="prev"></span></button>
-        <button id="btnNext" type="button"><span class="next"></span></button>
-        <button class="close-calendarg" title="Выйти из календаря">X</button>
-    <div id="divCal"></div>
-    </div>
-</div>
-<!--Настройки-->
-<div class="setting" title="Setting maps">
-    <div class="settingRun">
-        <span class="settingIkon"></span>
-    </div>
-</div>
-<div id="settingBlock">
-    <div class="setting-wrapper">
-        <button class="close-setting" title="Exit Settings">X</button>
-        <p style="text-align: center;">Sorry but this block is under development</p>
-    </div>
-</div>
-<!--Условные обозначения-->
-<!--Кнопка условных обозначений-->
-<div class="buttonDesing" title="Designations maps">
+    <!--Условные обозначения-->
+    <!--Кнопка условных обозначений-->
+    <div class="buttonDesing" title="Designations maps">
         <button class="showDesing"></button>
-</div>
-<!--Обозначения-->
-<div class="designations">
+    </div>
+    <!--Обозначения-->
+    <div class="designations">
     <div class="contextualColumns">
         <p>Designations maps:</p>
         <p><img class="point" src="./icons/main-niv.png" alt="base points leveling"> - base points leveling;</p>
@@ -92,7 +111,7 @@
         <p><img class="point" src="./icons/jobs-niv.png" alt="operating points leveling"> - operating points leveling;</p>
         <p><img class="point" src="./icons/jobs-trig.png" alt="operating points tacheometry"> - operating points tacheometry.</p>
     </div>
-</div>
+    </div>
 </body>
 <script src="./API/locate/L.Control.Locate.min.js"></script><!--L.Control-->
 <script src="./API/calendarg/calendarg.js"></script><!--calendarg-->
