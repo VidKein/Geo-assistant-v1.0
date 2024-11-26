@@ -86,7 +86,7 @@ body {
   border: none;
   text-align: left;
   outline: none;
-  font-size: 13px;
+  font-size: 12px;
   transition: 0.4s;
   font-weight: 600;
   border-top: 2px solid white;
@@ -157,7 +157,7 @@ body {
   border: 1px solid #dcdcff;
   border-radius: 5px;
   background: #fff;
-  width: auto;
+  width:215px;
 }
 .close-import{
   cursor: pointer;
@@ -171,12 +171,11 @@ body {
   outline: none;
   background: transparent;
 }
-#importInfo{
-  font-size: 10px;
-}
 #importInfo input[type="text"], input[type="date"], input[type="button"] {
  width: 55px;
- font-size: 10px;
+}
+#importInfo p{
+  margin: 6px 0;
 }
 
 /*Календарь*/
