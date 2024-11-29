@@ -120,6 +120,7 @@ function createСontent() {
                         case "poligons":
                         for (const info of Object.entries(infoPoint[1])){
                             for (const  value of Object.entries(info)) {
+                                console.log(value);
                                 if (value[0] == 1) {
                                     for (const  bot of Object.entries(value[1])) {
                                         createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
