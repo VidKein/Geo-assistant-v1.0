@@ -60,11 +60,22 @@
                     <div class="importBlock">
                         <span class="namePoint" style="color: red;"></span>    
                         <div id="importInfo">
-                            <p>position: <input type="text" name="position" id="X" value="700000"> x <input type="text" name="position" id="Y" value="1000000"></p>
-                            <p>vycka: <input type="text" name="vycka" id="X" value="100.0000"></p>
-                            <p>date: <input type="date" name="date" id="X"></p>
-                            <p>coordinate system: <input type="text" name="coordinateSystem" id="X" value="JTSK"></p>
-                            <p>position type: <input type="text" name="positionType" id="X" value="asphalt"></p>
+                            <p>position: <input type="number" name="position X" value="700000"> x <input type="text" name="position Y" value="1000000"></p>
+                            <p>vycka: <input type="number" name="vycka" value="100.0000"></p>
+                            <p>date: <input type="date" name="date"></p>
+                            <p>coordinate system: <input type="text" name="coordinateSystem" list="coordinateSystem"></p>
+                            <datalist id="coordinateSystem">
+                                <option value="JTSK">
+                                <option value="WGS84">
+                            </datalist>
+                            <p>position type: <input type="text" name="positionType" list="positionType"></p>
+                            <datalist id="positionType">
+                                <option value="wall">
+                                <option value="target cross">
+                                <option value="fence">
+                                <option value="asphalt"></option>
+                            </datalist>
+
                         </div>  
                         <input type="button" value="OK">
                     </div>
