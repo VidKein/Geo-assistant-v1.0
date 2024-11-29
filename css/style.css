@@ -171,9 +171,17 @@ body {
   outline: none;
   background: transparent;
 }
-#importInfo input[type="text"], input[type="date"], input[type="button"] {
- width: 55px;
+#importInfo input[type="text"] {
+  padding: 3px 6px;
+  width: 55px;
 }
+
+#importInfo input[type="date"] {
+ width: 96px;
+}
+#importInfo input[type="button"] {
+  width: 55px;
+ }
 #importInfo p{
   margin: 6px 0;
 }

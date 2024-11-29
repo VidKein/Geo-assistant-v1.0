@@ -120,7 +120,7 @@ function createСontent() {
                         case "poligons":
                         for (const info of Object.entries(infoPoint[1])){
                             for (const  value of Object.entries(info)) {
-                                if (value[0] == 1) {
+                                if (value[0] == 0) {
                                     console.log(value[1]);
                                 }
                                 if (value[0] == 1) {
