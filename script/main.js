@@ -147,7 +147,6 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
     }
 }
 
-        
 /*------------------------------------------*/
 /*
 //Определяем координаты
