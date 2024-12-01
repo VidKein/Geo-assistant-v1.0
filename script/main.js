@@ -1,4 +1,4 @@
-alert("00000")
+alert("00000");
 window.addEventListener("planningWork", (planning) => {
     parsinWork(planning.detail.planningNiv, jobsNiv);
     parsinWork(planning.detail.planningTrig, jobsTrig);
