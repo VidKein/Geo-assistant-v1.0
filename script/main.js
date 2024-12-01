@@ -1,3 +1,4 @@
+/*
 import { planingWork } from './modules/planning-work.js';
 const resultsNiv = planingWork.resultsNiv;
 const resultsTrig = planingWork.resultsTrig;
@@ -23,7 +24,7 @@ function parsinWorkNiv(planingWork) {
         }         
     });
 }
-
+*/
 //Карта
 //Спутник
 let key = "328W3i5uAdhtTMZr8hrV";
