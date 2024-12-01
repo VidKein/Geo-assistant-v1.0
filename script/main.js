@@ -1,9 +1,9 @@
 window.addEventListener("planningWork", (planning) => {
-    parsinWorkNiv(planning.detail.planningNiv, jobsNiv);
-    parsinWorkNiv(planning.detail.planningTrig, jobsTrig);
+    parsinWork(planning.detail.planningNiv, jobsNiv);
+    parsinWork(planning.detail.planningTrig, jobsTrig);
 });
 
-function parsinWorkNiv(planingWork, markerPoimt) {    
+function parsinWork(planingWork, markerPoimt) {    
     planingWork.forEach(point => {
         const parsedData = {};
         const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
