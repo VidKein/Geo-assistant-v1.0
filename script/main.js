@@ -1,10 +1,9 @@
 import { planingWork } from './modules/planning-work.js';
-
-
-/*
 const resultsNiv = planingWork.resultsNiv;
 const resultsTrig = planingWork.resultsTrig;
+console.log(planingWork.resultsNiv);
 
+/*
 function parsinWorkNiv(planingWork) {    
     planingWork.resultsNiv.forEach(point => {
         const parsedData = {};
@@ -139,11 +138,11 @@ function createСontent() {
                         case "base":
                         for (const info of Object.entries(infoPoint[1].niv)){
                             createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
-                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
+                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
                         }
                         for (const info of Object.entries(infoPoint[1].trig)){
                             createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainTrig);
-                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);
+                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);
                         }       
                         break;
                         case "poligons":
@@ -155,7 +154,7 @@ function createСontent() {
                                 if (value[0] == 1) {
                                     for (const  bot of Object.entries(value[1])) {
                                         createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
-                                        console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
+                                        //console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
                                     }
                                 }
                             }

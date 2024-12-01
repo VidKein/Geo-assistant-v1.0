@@ -98,5 +98,5 @@
     //Для контроля
     console.log(results.join('\n\n\n'));
     
-    export const planingWork = { massenger : "Ahoji"};
+    export const planingWork = { resultsNiv : resultsTip.niv, resultsTrig: resultsTip.trig};
     
