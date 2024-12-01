@@ -76,7 +76,6 @@ let jobsTrig = L.icon({
     iconAnchor:   [0,0],
     popupAnchor:  [8, -1]
 });
-parsinWorkNiv(planingWork);
 //Виды карт
 let baseMaps = {
   "Satelit Map": OSMsatelitMap,
