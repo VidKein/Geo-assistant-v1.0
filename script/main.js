@@ -1,5 +1,7 @@
-/*
 import { planingWork } from './modules/planning-work.js';
+alert(planingWork.massenger);
+
+/*
 const resultsNiv = planingWork.resultsNiv;
 const resultsTrig = planingWork.resultsTrig;
 
