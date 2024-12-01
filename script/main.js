@@ -1,4 +1,6 @@
 window.addEventListener("planningWork", (planning) => {
+    console.log(planning.detail.planningNiv);
+    
     parsinWorkNiv(planning.detail.planningNiv, jobsNiv);
     parsinWorkNiv(planning.detail.planningTrig, jobsTrig);
 });
@@ -14,7 +16,7 @@ function parsinWorkNiv(planingWork, markerPoimt) {
                 .split(/[,\s]+/) // Разделяем по запятым и пробелам
                 .filter(num => num.trim() !== "") // Убираем пустые строки
                 .map(Number); // Преобразуем в числа
-            if (match[3]) parsedData["vycka"] = match[3];
+            if (match[3]) parsedData["vycka"] = parseFloat(match[3].replace(',', '.'));;
             if (match[4]) parsedData["date"] = match[4];
             if (match[5]) parsedData["JTSK"] = match[5].trim();
             if (match[6]) parsedData["positionType"] = match[6];
