@@ -1,7 +1,6 @@
-const resultsNiv = localStorage.getItem("resultsNiv");
-const resultsTrig = localStorage.getItem("resultsTrig");
-alert(resultsNiv+"/"+resultsTrig);
-
+window.addEventListener("dataShared", (event) => {
+    console.log(event.detail.message); // "Привет из скрипта 1!"
+});
 /*
 function parsinWorkNiv(planingWork) {    
     planingWork.resultsNiv.forEach(point => {

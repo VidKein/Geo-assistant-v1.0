@@ -97,6 +97,6 @@
     }
     //Для контроля
     console.log(results.join('\n\n\n'));
-    
-    localStorage.setItem( "resultsNiv" , resultsTip.niv); 
-    localStorage.setItem( "resultsTrig" , resultsTip.trig); 
+
+    const event = new CustomEvent("dataShared", { detail: { message: resultsTip.niv } });
+window.dispatchEvent(event);
