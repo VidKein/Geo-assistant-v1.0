@@ -137,23 +137,23 @@ function createСontent() {
                         case "base":
                         for (const info of Object.entries(infoPoint[1].niv)){
                             createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
-                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
+                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
                         }
                         for (const info of Object.entries(infoPoint[1].trig)){
                             createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainTrig);
-                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);
+                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);
                         }       
                         break;
                         case "poligons":
                         for (const info of Object.entries(infoPoint[1])){
                             for (const  value of Object.entries(info)) {
                                 if (value[0] == 0) {
-                                    //console.log(value[1]);
+                                    console.log(value[1]);
                                 }
                                 if (value[0] == 1) {
                                     for (const  bot of Object.entries(value[1])) {
                                         createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
-                                        //console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
+                                        console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
                                     }
                                 }
                             }
@@ -170,7 +170,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
     
  if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
-        var wgs = conv.JTSKtoWGS84(position[1], position[0]);
+        var wgs = conv.JTSKtoWGS84(position[0], position[1]);
         //Подключение маркера с конвертацией JTSKtoWGS84
         var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).addTo(map);
         marker.bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);

@@ -98,5 +98,5 @@
     //Для контроля
     console.log(results.join('\n\n\n'));
     
-    export const planingWork = { resultsNiv : resultsTip.niv, resultsTrig : resultsTip.trig};
+    //export const planingWork = { resultsNiv : resultsTip.niv, resultsTrig : resultsTip.trig};
     
