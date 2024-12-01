@@ -1,11 +1,12 @@
-window.addEventListener("dataShared", (event) => {
-    console.log(event.detail.message); // "Привет из скрипта 1!"
+window.addEventListener("planningWork", (planning) => {
+    parsinWorkNiv(planning.detail.planningNiv, jobsNiv);
+    parsinWorkNiv(planning.detail.planningTrig, jobsTrig);
 });
-/*
-function parsinWorkNiv(planingWork) {    
-    planingWork.resultsNiv.forEach(point => {
+
+function parsinWorkNiv(planingWork, markerPoimt) {    
+    planingWork.forEach(point => {
         const parsedData = {};
-        const regex = /namber:\s*([\d,.]+)|position:\s*([\d,.\s]+)|vycka:\s*([\d,. ]+)|date:\s*([\d.]+)|JTSK:\s*(\w+)|positionType:\s*(\w+)/g;
+        const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
         let match;
         while ((match = regex.exec(point)) !== null) {            
             if (match[1]) parsedData["namber"] = match[1];
@@ -15,15 +16,14 @@ function parsinWorkNiv(planingWork) {
                 .map(Number); // Преобразуем в числа
             if (match[3]) parsedData["vycka"] = match[3];
             if (match[4]) parsedData["date"] = match[4];
-            if (match[5]) parsedData["JTSK"] = match[5];
+            if (match[5]) parsedData["JTSK"] = match[5].trim();
             if (match[6]) parsedData["positionType"] = match[6];
         }
-        if (parsedData["namber"] !== undefined) {
-            createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], jobsNiv) 
+        if (parsedData["position"] !== undefined) {
+            createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt); 
         }         
     });
 }
-*/
 //Карта
 //Спутник
 let key = "328W3i5uAdhtTMZr8hrV";
@@ -151,7 +151,7 @@ function createСontent() {
                                 }
                                 if (value[0] == 1) {
                                     for (const  bot of Object.entries(value[1])) {
-                                        createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
+                                        //createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
                                         //console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
                                     }
                                 }

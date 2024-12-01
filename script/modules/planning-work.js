@@ -96,7 +96,7 @@
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
     }
     //Для контроля
-    console.log(results.join('\n\n\n'));
+    //console.log(results.join('\n\n\n'));
 
-    const event = new CustomEvent("dataShared", { detail: { message: resultsTip.niv } });
-window.dispatchEvent(event);
+    const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
+    window.dispatchEvent(planning);
