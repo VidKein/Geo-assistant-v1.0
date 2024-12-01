@@ -18,7 +18,7 @@ function parsinWorkNiv(planingWork) {
             if (match[5]) parsedData["JTSK"] = match[5];
             if (match[6]) parsedData["positionType"] = match[6];
         }
-        if (parsedData["position"] !== undefined) {
+        if (parsedData["namber"] !== undefined) {
             createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], jobsNiv) 
         }         
     });
