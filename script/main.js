@@ -1,3 +1,29 @@
+import { planingWork } from './modules/planning-work.js';
+const resultsNiv = planingWork.resultsNiv;
+const resultsTrig = planingWork.resultsTrig;
+
+function parsinWorkNiv(planingWork) {    
+    planingWork.resultsNiv.forEach(point => {
+        const parsedData = {};
+        const regex = /namber:\s*([\d,.]+)|position:\s*([\d,.\s]+)|vycka:\s*([\d,. ]+)|date:\s*([\d.]+)|JTSK:\s*(\w+)|positionType:\s*(\w+)/g;
+        let match;
+        while ((match = regex.exec(point)) !== null) {            
+            if (match[1]) parsedData["namber"] = match[1];
+            if (match[2]) parsedData["position"] = match[2]
+                .split(/[,\s]+/) // Разделяем по запятым и пробелам
+                .filter(num => num.trim() !== "") // Убираем пустые строки
+                .map(Number); // Преобразуем в числа
+            if (match[3]) parsedData["vycka"] = match[3];
+            if (match[4]) parsedData["date"] = match[4];
+            if (match[5]) parsedData["JTSK"] = match[5];
+            if (match[6]) parsedData["positionType"] = match[6];
+        }
+        if (parsedData["position"] !== undefined) {
+            createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], jobsNiv) 
+        }         
+    });
+}
+
 //Карта
 //Спутник
 let key = "328W3i5uAdhtTMZr8hrV";
@@ -49,6 +75,7 @@ let jobsTrig = L.icon({
     iconAnchor:   [0,0],
     popupAnchor:  [8, -1]
 });
+parsinWorkNiv(planingWork);
 //Виды карт
 let baseMaps = {
   "Satelit Map": OSMsatelitMap,
@@ -109,24 +136,24 @@ function createСontent() {
                 switch (infoPoint[0]) {
                         case "base":
                         for (const info of Object.entries(infoPoint[1].niv)){
-                            createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
-                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
+                            //createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
+                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
                         }
                         for (const info of Object.entries(infoPoint[1].trig)){
-                            createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainTrig);
-                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);
+                            //createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainTrig);
+                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);
                         }       
                         break;
                         case "poligons":
                         for (const info of Object.entries(infoPoint[1])){
                             for (const  value of Object.entries(info)) {
                                 if (value[0] == 0) {
-                                    console.log(value[1]);
+                                    //console.log(value[1]);
                                 }
                                 if (value[0] == 1) {
                                     for (const  bot of Object.entries(value[1])) {
-                                        createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
-                                        console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
+                                        //createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
+                                        //console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
                                     }
                                 }
                             }
@@ -139,9 +166,11 @@ function createСontent() {
 }
 
 function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
+    console.log(name, position, systemCoordinates, vycka, positionType, iconPoint);
+    
  if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
-        var wgs = conv.JTSKtoWGS84(position[0], position[1]);
+        var wgs = conv.JTSKtoWGS84(position[1], position[0]);
         //Подключение маркера с конвертацией JTSKtoWGS84
         var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).addTo(map);
         marker.bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);
