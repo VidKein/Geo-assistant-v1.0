@@ -90,6 +90,9 @@
             } else {
                     results.push(`${sheetName}: В столбце нет значения "1".`);
             }
+            
+    const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
+    window.dispatchEvent(planning);
         }
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
@@ -97,6 +100,3 @@
     }
     //Для контроля
     //console.log(results.join('\n\n\n'));
-
-    const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
-    window.dispatchEvent(planning);
