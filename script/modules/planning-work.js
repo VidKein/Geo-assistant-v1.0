@@ -98,5 +98,5 @@
     //Для контроля
     console.log(results.join('\n\n\n'));
     
-    export const planingWork = { resultsNiv : resultsTip.niv, resultsTrig: resultsTip.trig};
-    
+    localStorage.setItem( "resultsNiv" , resultsTip.niv); 
+    localStorage.setItem( "resultsTrig" , resultsTip.trig); 

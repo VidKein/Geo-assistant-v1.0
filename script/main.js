@@ -1,7 +1,6 @@
-import { planingWork } from './modules/planning-work.js';
-const resultsNiv = planingWork.resultsNiv;
-const resultsTrig = planingWork.resultsTrig;
-console.log(planingWork.resultsNiv);
+const resultsNiv = localStorage.getItem("resultsNiv");
+const resultsTrig = localStorage.getItem("resultsTrig");
+console.log(resultsNiv+"/"+resultsTrig);
 
 /*
 function parsinWorkNiv(planingWork) {    
@@ -149,7 +148,7 @@ function createСontent() {
                         for (const info of Object.entries(infoPoint[1])){
                             for (const  value of Object.entries(info)) {
                                 if (value[0] == 0) {
-                                    console.log(value[1]);
+                                    //console.log(value[1]);
                                 }
                                 if (value[0] == 1) {
                                     for (const  bot of Object.entries(value[1])) {
@@ -167,7 +166,7 @@ function createСontent() {
 }
 
 function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
-    console.log(name, position, systemCoordinates, vycka, positionType, iconPoint);
+    //console.log(name, position, systemCoordinates, vycka, positionType, iconPoint);
     
  if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
