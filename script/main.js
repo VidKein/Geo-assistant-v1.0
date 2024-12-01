@@ -1,6 +1,6 @@
 const resultsNiv = localStorage.getItem("resultsNiv");
 const resultsTrig = localStorage.getItem("resultsTrig");
-console.log(resultsNiv+"/"+resultsTrig);
+alert(resultsNiv+"/"+resultsTrig);
 
 /*
 function parsinWorkNiv(planingWork) {    
