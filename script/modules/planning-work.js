@@ -93,8 +93,10 @@
             }
         }
         /// Создаем и отправляем пользовательское событие с данными
-        const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
-        document.dispatchEvent(planning);
+        setTimeout(() => {
+            const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
+            document.dispatchEvent(planning);
+        }, 0);
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
