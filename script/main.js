@@ -1,4 +1,4 @@
-window.addEventListener("planningWork", (planning) => {
+document.addEventListener("planningWork", (planning) => {
     parsinWork(planning.detail.planningNiv, jobsNiv);
     parsinWork(planning.detail.planningTrig, jobsTrig);
 });
