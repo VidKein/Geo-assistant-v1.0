@@ -6,7 +6,7 @@
     const searchDateInput = `${year}-${month}-${day}`;
     const fileUrl = './xlsx/Jobs_kalendar.xlsx'; // Укажите URL-адрес Excel файла
     const jsonFileUrl = './koordinaty/koordinats.json'; // Укажите URL-адрес json файла
-    console.log(searchDateInput);
+    console.log('Дата:', searchDateInput);
     
     // Функция преобразования даты в формат Excel
     function dateToExcelDate(date) {
@@ -81,12 +81,12 @@
                     columnData.forEach(row => {
                             if (row.C == 'n') { 
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
-                                    resultsTip.niv.push(`namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[1]} , ${jsonData.poligons[sheetName][row.B].position[0]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, JTSK: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
+                                    resultsTip.niv.push(`namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, JTSK: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
                                 }
                                 else{resultsTip.niv.push(`namber: ${row.B} : Data not found in database`);}
                             } else {
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
-                                    resultsTip.trig.push(`namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[1]} , ${jsonData.poligons[sheetName][row.B].position[0]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, JTSK: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
+                                    resultsTip.trig.push(`namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, JTSK: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
                                 }
                                 else{resultsTip.trig.push(`namber: ${row.B} : Data not found in database`);}
                             }
@@ -97,7 +97,7 @@
             }
         }
         //Для контроля
-        console.log(results.join('\n\n\n'));
+        //console.log(results.join('\n\n\n'));
         /// Создаем и отправляем пользовательское событие с данными
         const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
         document.dispatchEvent(planning);

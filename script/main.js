@@ -20,8 +20,6 @@ function parsinWork(planingWork, markerPoimt) {
             if (match[6]) parsedData["positionType"] = match[6];
         }
         if (parsedData["position"] !== undefined) {
-            console.log(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt);
-            
             createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt); 
         }         
     });
@@ -139,7 +137,7 @@ function createСontent() {
                 switch (infoPoint[0]) {
                         case "base":
                         for (const info of Object.entries(infoPoint[1].niv)){
-                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
+                            //console.log(info);
                             createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
                             //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
                         }
@@ -170,11 +168,9 @@ function createСontent() {
 }
 
 function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
-    //console.log(name, position, systemCoordinates, vycka, positionType, iconPoint);
-    
  if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
-        var wgs = conv.JTSKtoWGS84(position[0], position[1]);
+        var wgs = conv.JTSKtoWGS84(position[1], position[0]);
         //Подключение маркера с конвертацией JTSKtoWGS84
         var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).addTo(map);
         marker.bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);
