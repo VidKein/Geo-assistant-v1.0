@@ -20,10 +20,14 @@ function parsinWork(planingWork, markerPoimt) {
             if (match[6]) parsedData["positionType"] = match[6];
         }
         if (parsedData["position"] !== undefined) {
+            console.log(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt);
+            
             createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt); 
         }         
     });
 }
+
+
 //Карта
 //Спутник
 let key = "328W3i5uAdhtTMZr8hrV";
@@ -135,6 +139,7 @@ function createСontent() {
                 switch (infoPoint[0]) {
                         case "base":
                         for (const info of Object.entries(infoPoint[1].niv)){
+                            console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
                             createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
                             //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
                         }

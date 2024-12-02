@@ -1,8 +1,13 @@
     //Дата сегодня
     const todayDate = new Date();
-    const searchDateInput = todayDate.getFullYear()+"-"+(todayDate.getMonth()+1)+"-"+todayDate.getDate();
+    const year = todayDate.getFullYear();
+    const month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
+    const day = String(todayDate.getDate()).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
+    const searchDateInput = `${year}-${month}-${day}`;
     const fileUrl = './xlsx/Jobs_kalendar.xlsx'; // Укажите URL-адрес Excel файла
     const jsonFileUrl = './koordinaty/koordinats.json'; // Укажите URL-адрес json файла
+    console.log(searchDateInput);
+    
     // Функция преобразования даты в формат Excel
     function dateToExcelDate(date) {
         const excelEpoch = new Date(Date.UTC(1899, 11, 30)); // Excel "нулевой день"
@@ -44,10 +49,9 @@
             }
 
             let columnIndex = -1;
-
             // Ищем дату в первой строке (заголовке)
             const targetRow = sheetData[0];
-            targetRow.forEach((cell, index) => {
+            targetRow.forEach((cell, index) => {              
                 if (cell === searchDate) {
                     columnIndex = index;
                 }
@@ -92,14 +96,15 @@
                     results.push(`${sheetName}: В столбце нет значения "1".`);
             }
         }
+        //Для контроля
+        console.log(results.join('\n\n\n'));
         /// Создаем и отправляем пользовательское событие с данными
-        setTimeout(() => {
-            const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
-            document.dispatchEvent(planning);
-        }, 0);
+        const planning = new CustomEvent("planningWork", { detail: {planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
+        document.dispatchEvent(planning);
+
+        
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
     }
-    //Для контроля
-    //console.log(results.join('\n\n\n'));
+    
