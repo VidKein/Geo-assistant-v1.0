@@ -2,7 +2,6 @@ document.addEventListener("planningWork", (planning) => {
     parsinWork(planning.detail.planningNiv, jobsNiv);
     parsinWork(planning.detail.planningTrig, jobsTrig);
 });
-
 function parsinWork(planingWork, markerPoimt) {    
     planingWork.forEach(point => {
         const parsedData = {};
@@ -82,6 +81,8 @@ let baseMaps = {
   "Satelit Map": OSMsatelitMap,
   "Strit Map": OSMstritMap
 };
+
+
 let layerControl = L.control.layers(baseMaps).addTo(map);
 
 //Нивелирная съемка
@@ -180,31 +181,27 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
 }
 
 /*------------------------------------------*/
-/*
+
 //Определяем координаты
 var popup = L.popup();
 function onMapClick(e) {
+    //JTSK
+    var conv = new JTSK_Converter();
+    var wgs = conv.WGS84toJTSK(e.latlng.lat, e.latlng.lng);
 popup
     .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.toString())
-    .openOn(map);
+    .setContent("You clicked the map at: WGS84 -" + e.latlng.toString()+" JTSK - "+wgs.x+" ,"+wgs.y )
+    .openOn(map);  
 }
 map.on('click', onMapClick);
+/*
 //Подключаем камеру
 let constraints = { audio: false, video: { width: 1280, height: 720 } };
 let setting = document.querySelector(".setting");
 setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
-//Определяем координаты
-var popup = L.popup();
-function onMapClick(e) {
-popup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.toString())
-    .openOn(map);
-}
-map.on('click', onMapClick);
+
 
 
 

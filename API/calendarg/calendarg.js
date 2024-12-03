@@ -30,6 +30,7 @@ class Cal {
             this.currMonth = this.currMonth + 1;
         }
         this.showcurr();
+        dateClick()
     }
     // Переход к предыдущему месяцу
     previousMonth() {
@@ -41,12 +42,13 @@ class Cal {
             this.currMonth = this.currMonth - 1;
         }
         this.showcurr();
+        dateClick()
     }
     // Показать текущий месяц
     showcurr() {
         this.showMonth(this.currYear, this.currMonth);
     }
-    // Показать месяц (год, месяц)
+    // Показать месяц (год, месяц)`
     showMonth(y, m) {
         var d = new Date()
             // Первый день недели в выбранном месяце 
@@ -57,8 +59,8 @@ class Cal {
             , lastDayOfLastMonth = m == 0 ? new Date(y - 1, 11, 0).getDate() : new Date(y, m, 0).getDate();
         var html = '<table>';
         // Запись выбранного месяца и года
-        html += '<thead><tr>';
-        html += '<td colspan="7">' + this.Months[m] + ' ' + y + '</td>';
+        html += '<thead"><tr>';
+        html += '<td colspan="7" id="montYers">' + this.Months[m] + ' ' + y + '</td>';
         html += '</tr></thead>';
         // заголовок дней недели
         html += '<tr class="days">';
@@ -126,6 +128,7 @@ window.onload = function() {
   getId('btnPrev').onclick = function() {
     c.previousMonth();
   };
+  dateClick();
 }
 // Получить элемент по id
 function getId(id) {
@@ -236,3 +239,15 @@ for (let i = 0; i < acc.length; i++) {
     }
   });
 }            
+function dateClick() {
+//Date
+const dateCalendar = document.getElementsByTagName("table");
+dateCalendar[0].addEventListener("click",(e)=>{            
+    const montYers = document.querySelector("#montYers").textContent;
+    if (e.target.tagName === "TD") {
+        if (e.target.className == "normal" || e.target.className == "not-current") {
+            console.log(e.target.textContent.padStart(2, '0')+" "+montYers);
+        }
+    }
+})
+}
