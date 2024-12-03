@@ -188,9 +188,11 @@ function onMapClick(e) {
     //JTSK
     var conv = new JTSK_Converter();
     var wgs = conv.WGS84toJTSK(e.latlng.lat, e.latlng.lng);
+    console.log(e.latlng);
+    
 popup
     .setLatLng(e.latlng)
-    .setContent("You clicked the map at: WGS84 -" + e.latlng.toString()+" JTSK - "+wgs.x+" ,"+wgs.y )
+    .setContent("You clicked the map at:  <br>WGS84 - <br>" + e.latlng.lat+","+e.latlng.lng+"<br> JTSK - <br>"+wgs.x+","+wgs.y )
     .openOn(map);  
 }
 map.on('click', onMapClick);
