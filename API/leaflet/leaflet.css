@@ -156,6 +156,8 @@
 .leaflet-control {
 	float: left;
 	clear: both;
+	margin-right: 25px;
+    margin-bottom: 15px;
 	}
 .leaflet-right .leaflet-control {
 	float: right;
@@ -163,13 +165,13 @@
 .leaflet-top .leaflet-control {
 	margin-top: 10px;
 	}
-.leaflet-bottom .leaflet-control {
+.leaflet-bottom  {
 	margin-bottom: 10px;
 	}
 .leaflet-left .leaflet-control {
 	margin-left: 10px;
 	}
-.leaflet-right .leaflet-control {
+.leaflet-right {
 	margin-right: 10px;
 	}
 

@@ -18,6 +18,7 @@ function parsinWork(planingWork, markerPoimt) {
             if (match[5]) parsedData["JTSK"] = match[5].trim();
             if (match[6]) parsedData["positionType"] = match[6];
         }
+        console.log(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt);
         if (parsedData["position"] !== undefined) {
             createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt); 
         }         
@@ -84,6 +85,7 @@ let baseMaps = {
 
 
 let layerControl = L.control.layers(baseMaps).addTo(map);
+
 
 //Нивелирная съемка
 //Базовые точки
@@ -179,24 +181,25 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         //Подключение маркера с WGS84
     }
 }
-
+//Масштабная линейка
+L.control.betterscale().addTo(map);
 /*------------------------------------------*/
-
+/*
 //Определяем координаты
 var popup = L.popup();
 function onMapClick(e) {
     //JTSK
     var conv = new JTSK_Converter();
     var wgs = conv.WGS84toJTSK(e.latlng.lat, e.latlng.lng);
-    console.log(e.latlng);
+    console.log(typeof(e.latlng.lat));
     
 popup
     .setLatLng(e.latlng)
-    .setContent("You clicked the map at:  <br>WGS84 - <br>" + e.latlng.lat+","+e.latlng.lng+"<br> JTSK - <br>"+wgs.x+","+wgs.y )
+    .setContent("You clicked the map at:  <br><b>WGS84 -</b> <br>" + (e.latlng.lat).toFixed(8)+","+(e.latlng.lng).toFixed(8)+"<br> <b>JTSK - </b><br>"+(wgs.x).toFixed(0)+","+(wgs.y).toFixed(0) )
     .openOn(map);  
 }
 map.on('click', onMapClick);
-/*
+
 //Подключаем камеру
 let constraints = { audio: false, video: { width: 1280, height: 720 } };
 let setting = document.querySelector(".setting");
