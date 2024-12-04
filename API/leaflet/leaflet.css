@@ -155,8 +155,6 @@
 	}
 .leaflet-control {
 	clear: both;
-	margin-right: 25px;
-    margin-bottom: 15px;
 	}
 .leaflet-right .leaflet-control {
 	float: right;
@@ -165,15 +163,18 @@
 	margin-top: 10px;
 	}
 .leaflet-bottom  {
-	margin-bottom: 10px;
+	margin-bottom: 0;
 	}
 .leaflet-left .leaflet-control {
 	margin-left: 10px;
 	}
-.leaflet-right {
+.leaflet-right .leaflet-control{
 	margin-right: 10px;
 	}
-
+.leaflet-control-better-scale.leaflet-control {
+	margin-bottom: 10px;
+    margin-right: 37px;
+}
 
 /* zoom and fade animations */
 

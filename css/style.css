@@ -17,6 +17,24 @@ body {
     height: 100%;
     z-index: 0;
 }
+/*Компас*/
+.kompas{
+  position: absolute;
+  z-index: 1000;
+  top: 10px;
+  left: 55px;
+  width: 29px;
+  height: 29px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: #ffff;
+}
+.pointer{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-image:  url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M10.5 14l4-8 4 8h-8z'/%3E%3Cpath d='M10.5 16l4 8 4-8h-8z' fill='%23ccc'/%3E%3C/svg%3E");
+  
+}
 /*Дата/Информация поработе*/
 #dataBlock{
   position: absolute;

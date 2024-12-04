@@ -22,6 +22,7 @@ L.Control.BetterScale = L.Control.extend({
         this._iScale = L.DomUtil.create("div", e + "-label-div", i), this._iScaleLabel = L.DomUtil.create("div", e + "-label", this._iScale), this._iScaleFirstNumber = L.DomUtil.create("div", e + "-label " + e + "-first-number", this._iScale), this._iScaleSecondNumber = L.DomUtil.create("div", e + "-label " + e + "-second-number", this._iScale)
     },
     _update: function () {
+        
         var t = this._map.getBounds(),
             e = t.getCenter().lat,
             i = (6378137 * Math.PI * Math.cos(e * Math.PI / 180))*1.8519953968539999423,//km
