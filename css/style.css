@@ -21,11 +21,11 @@ body {
 .kompas{
   position: absolute;
   z-index: 1000;
-  top: 10px;
+  top: 13px;
   left: 55px;
-  width: 29px;
-  height: 29px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  width: 30px;
+  height: 30px;
+  border: 4px solid rgb(255, 0, 0);
   background-color: #ffff;
 }
 .pointer{
@@ -33,6 +33,7 @@ body {
   width: 100%;
   height: 100%;
   background-image:  url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M10.5 14l4-8 4 8h-8z'/%3E%3Cpath d='M10.5 16l4 8 4-8h-8z' fill='%23ccc'/%3E%3C/svg%3E");
+  line-height: 30px;
   
 }
 /*Дата/Информация поработе*/
