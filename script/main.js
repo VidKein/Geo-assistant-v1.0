@@ -36,14 +36,16 @@ let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
 let map = L.map('map', {
   center: [50.047266, 14.440722],
   zoom: 15,
-  rotate: true,//вращение карты
+  //вращение карты
+  rotate: true,
   rotateControl: {
     closeOnZeroBearing: false,
     position: 'topleft',
     },
-  bearing: 30, 
+  bearing: 0, 
   compassBearing: true, 
-  touchRotate: true,//сенсорное взаимодействие вращало карту
+  //сенсорное взаимодействие вращало карту
+  touchRotate: true,
   layers: [OSMstritMap]});
 //Наполнение слоя
 //Формируем наполнение на карте
