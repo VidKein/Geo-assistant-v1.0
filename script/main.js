@@ -43,7 +43,7 @@ let map = L.map('map', {
     position: 'topleft',
     },
   bearing: 0, 
-  compassBearing: true, 
+  compassBearing: false, 
   //сенсорное взаимодействие вращало карту
   touchRotate: true,
   layers: [OSMstritMap]});
