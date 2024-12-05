@@ -25,7 +25,7 @@ body {
   left: 55px;
   width: 30px;
   height: 30px;
-  border: 4px solid rgb(255, 0, 0);
+  border: 4px solid rgb(0, 0, 0, 0.2);
   background-color: #ffff;
 }
 .pointer{
@@ -221,7 +221,7 @@ body {
 .calendarg{
     position: absolute;
     z-index: 1000;
-    top: 130px;
+    top: 170px;
     left: 10px;
     border: 2px solid rgba(0, 0, 0, 0.2);
     cursor: pointer;
