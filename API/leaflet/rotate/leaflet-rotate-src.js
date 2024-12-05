@@ -1816,9 +1816,9 @@
             this._follow = false;
             this._canFollow = false;
 
-           /* if (this.options.closeOnZeroBearing && map.getBearing() === 0) {
+            if (this.options.closeOnZeroBearing && map.getBearing() === 0) {
                 container.style.display = 'none';
-            }*/
+            }
 
             return container;
         },
