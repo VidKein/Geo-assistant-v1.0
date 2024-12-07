@@ -1,33 +1,4 @@
-//Импорт информации с таблицы с планом работы
-document.addEventListener("planningWork", (planning) => {
-    parsinWork(planning.detail.planningNiv, jobsNiv);
-    parsinWork(planning.detail.planningTrig, jobsTrig);
-});
-
-function parsinWork(planingWork, markerPoimt) {    
-    planingWork.forEach(point => {
-        const parsedData = {};
-        const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
-        let match;
-        while ((match = regex.exec(point)) !== null) {            
-            if (match[1]) parsedData["namber"] = match[1];
-            if (match[2]) parsedData["position"] = match[2]
-                .split(/[,\s]+/) // Разделяем по запятым и пробелам
-                .filter(num => num.trim() !== "") // Убираем пустые строки
-                .map(Number); // Преобразуем в числа
-            if (match[3]) parsedData["vycka"] = parseFloat(match[3].replace(',', '.'));;
-            if (match[4]) parsedData["date"] = match[4];
-            if (match[5]) parsedData["JTSK"] = match[5].trim();
-            if (match[6]) parsedData["positionType"] = match[6];
-        }
-        if (parsedData["position"] !== undefined) {
-            createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPoimt); 
-        }         
-    });
-}
-
-
-//Карта
+/*Карта*/
 //СЛОИ КАРТЫ
 //Спутник
 let key = "328W3i5uAdhtTMZr8hrV";
@@ -101,17 +72,16 @@ let baseMaps = {
 //ТОЧЕК
 //Бызовые точки
 //Нивилирования
-let pointLayerNiv =[];
+let pointBaseLayerNiv =[];
 //Тахеометрии
-let pointLayerTax =[];
+let pointBaseLayerTax =[];
 
 //Рабочии точки
 //Нивилирования
-let operatingPointsNiv = L.marker([39.75, -110.09],{icon: jobsNiv}).bindPopup('Operating points Niv .');
+let pointOperatingLayerNiv =[];
 //Тахеометпии
-let operatingPointsTax = L.marker([39.75, -109.09],{icon: jobsTrig}).bindPopup('Operating points Tax.');
-
-//Меню отображения слоев Базовая
+let pointOperatingLayerTax =[];
+//Меню отображения слоев Карт
 let layerControl = L.control.layers(baseMaps).addTo(map);
 //Виды слоев точек Дополнительная
 //Нивелирование
@@ -139,36 +109,18 @@ function createСontent() {
             for (const infoPoint of Object.entries(respon)) {
                 switch (infoPoint[0]) {
                         case "base":
-                        for (const info of Object.entries(infoPoint[1].niv)){
-                            //createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv);
-                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);   
-                            pointLayerNiv.push(createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv));
+                        //Нивелирование - базовые 
+                        for (const info of Object.entries(infoPoint[1].niv)){ 
+                            pointBaseLayerNiv.push(createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainNiv));
                         }
-                        let basePointsNiv = L.layerGroup(pointLayerNiv);
+                        let basePointsNiv = L.layerGroup(pointBaseLayerNiv);
                         layerControl.addOverlay(basePointsNiv, "<span style='color: red'>Base points Niv.</span>");
-                        
+                        //Тахеометрия - базовые 
                         for (const info of Object.entries(infoPoint[1].trig)){
-                            //createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainTrig);
-                            //console.log(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType);
-                            pointLayerTax.push(createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainTrig));
+                            pointBaseLayerTax.push(createMarker(info[0], info[1].position, info[1].systemCoordinates, info[1].vycka, info[1].positionType, mainTrig));
                         }
-                        let basePointsTax = L.layerGroup(pointLayerTax);
+                        let basePointsTax = L.layerGroup(pointBaseLayerTax);
                         layerControl.addOverlay(basePointsTax, "<span style='color: red'>Base points Tax.</span>");
-                        break;
-                        case "poligons":
-                        for (const info of Object.entries(infoPoint[1])){
-                            for (const  value of Object.entries(info)) {
-                                if (value[0] == 0) {
-                                    //console.log(value[1]);
-                                }
-                                if (value[0] == 1) {
-                                    for (const  bot of Object.entries(value[1])) {
-                                        //createMarker(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType, jobsNiv)
-                                        //console.log(bot[0], bot[1].position, bot[1].systemCoordinates, bot[1].vycka, bot[1].positionType);   
-                                    }
-                                }
-                            }
-                        }
                         break;
                 }
             }
@@ -176,9 +128,78 @@ function createСontent() {
     }
 }
 
-function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
-    console.log(name, position, systemCoordinates, vycka, positionType, iconPoint);
+//Импорт информации с таблицы с планом работы
+document.addEventListener("planningWork", (planning) => {
+    console.log(planning);
     
+    parsinWork(planning.detail.planningNiv, jobsNiv, planning.detail.planningTrig, jobsTrig);
+});
+
+function parsinWork(planingWorkNiv, markerPointNiv, planingWorkTax, markerPointTax) {
+    //Нивелирование - рабочие 
+    if (planingWorkNiv.length > 0) {
+        planingWorkNiv.forEach(point => {
+        const parsedData = {};
+        const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
+        let match;
+        while ((match = regex.exec(point)) !== null) {            
+            if (match[1]) parsedData["namber"] = match[1];
+            if (match[2]) parsedData["position"] = match[2]
+                .split(/[,\s]+/) // Разделяем по запятым и пробелам
+                .filter(num => num.trim() !== "") // Убираем пустые строки
+                .map(Number); // Преобразуем в числа
+            if (match[3]) parsedData["vycka"] = parseFloat(match[3].replace(',', '.'));;
+            if (match[4]) parsedData["date"] = match[4];
+            if (match[5]) parsedData["JTSK"] = match[5].trim();
+            if (match[6]) parsedData["positionType"] = match[6];
+        }
+        
+        if (parsedData["position"] !== undefined) {
+            pointOperatingLayerNiv.push(createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPointNiv)); 
+        }else{
+            
+        }   
+        });
+        let operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
+        layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");    
+    }else{
+        console.log("Работы по невилированию нет");
+    }
+    //Тахеометрия - рабочие 
+    if (planingWorkTax.length > 0) {
+        planingWorkTax.forEach(point => {
+            const parsedData = {};
+            const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
+            let match;
+            while ((match = regex.exec(point)) !== null) {            
+                if (match[1]) parsedData["namber"] = match[1];
+                if (match[2]) parsedData["position"] = match[2]
+                    .split(/[,\s]+/) // Разделяем по запятым и пробелам
+                    .filter(num => num.trim() !== "") // Убираем пустые строки
+                    .map(Number); // Преобразуем в числа
+                if (match[3]) parsedData["vycka"] = parseFloat(match[3].replace(',', '.'));;
+                if (match[4]) parsedData["date"] = match[4];
+                if (match[5]) parsedData["JTSK"] = match[5].trim();
+                if (match[6]) parsedData["positionType"] = match[6];
+            }
+    
+            if (parsedData["position"] !== undefined) {
+                pointOperatingLayerTax.push(createMarker(parsedData["namber"], parsedData["position"], parsedData["JTSK"], parsedData["vycka"], parsedData["positionType"], markerPointTax)); 
+            }else{
+                
+            }       
+            });
+            let operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
+            layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
+    }else{
+        console.log("Работы по тахелметрии нет");
+    }    
+
+}
+
+
+
+function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {   
  if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
