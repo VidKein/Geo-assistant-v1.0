@@ -32,7 +32,7 @@
         const jsonResponse = await fetch(jsonFileUrl);
         if (!jsonResponse.ok) {throw new Error('Не удалось загрузить JSON файл');}
         const jsonData = await jsonResponse.json();
-        console.log('JSON данные:', jsonData.poligons);
+        console.log('JSON данные Базовые:', jsonData.base, 'JSON данные Рабочие:', jsonData.poligons);
         
         const results = [];
         const resultsTip = {niv: [],trig: []};
