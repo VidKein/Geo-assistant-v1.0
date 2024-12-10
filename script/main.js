@@ -128,34 +128,84 @@ document.addEventListener("planningWork", (planning) => {
 
 function layerControlPoint(planingWorkNiv, markerPointNiv, planingWorkTax, markerPointTax) {
     //Нивелирование - рабочие 
+    //Информацинный блок Нивелирования
+    let pointJobsNiv = document.querySelector("#levelingJobs"); 
+    let levelingJobsLeng = document.querySelector("#levelingJobsLength");//количество
     if (planingWorkNiv.length > 0) { 
-        let parsedData =  parsinWork(planingWorkNiv); 
+        levelingJobsLeng.textContent = planingWorkNiv.length-1;
+        let parsedData =  parsinWork(planingWorkNiv);
         parsedData.forEach(row => {
-           if (row["position"] !== undefined) {
+           if (row["position"] !== undefined) { 
             pointOperatingLayerNiv.push(createMarker(row["namber"], row["position"], row["JTSK"], row["vycka"], row["positionType"], markerPointNiv)); 
+            //Создаем новый div
+            const jobDivNiv = document.createElement('div');
+            jobDivNiv.className = 'pointJobs'; // Добавляем класс
+            jobDivNiv.textContent = row["namber"]; // Устанавливаем текст внутри div
+            //Добавляем div в контейнер
+            pointJobsNiv.appendChild(jobDivNiv);
             }else{
-
+            // Создаем новый div
+            const jobDivNivError = document.createElement('div');
+            jobDivNivError.className = 'pointJobsError'; // Добавляем класс
+            jobDivNivError.textContent = row["namber"]; // Устанавливаем текст внутри div
+            //Добавляем div в контейнер
+            pointJobsNiv.appendChild(jobDivNivError);
+            //Добавляем span с финкцией изменения 
+            let pointError = document.createElement('div');
+            pointError.className = 'pointError';
+            jobDivNivError.appendChild(pointError);
+            console.log("Точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
+        //Выводим точки на карту и привязываем к переключателю
         let operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
         layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");    
     }else{
+        let nouWork = document.createElement('div');
+        nouWork.className = "pointJobs";
+        nouWork.textContent = "No work leveling points"
+        pointJobsNiv.appendChild(nouWork);
         console.log("Работы по невилированию нет");
     }
     //Тахеометрия - рабочие 
+    //Информацинный блок Нивелирования
+    let pointJobsTax = document.querySelector("#tacheometryJobs"); 
+    let tacheometryJobsLength = document.querySelector("#tacheometryJobsLength");//количество
     if (planingWorkTax.length > 0) {
+        tacheometryJobsLength.textContent = planingWorkTax.length-1;
         let parsedData =  parsinWork(planingWorkTax); 
         parsedData.forEach(row => {
            if (row["position"] !== undefined) {
             pointOperatingLayerTax.push(createMarker(row["namber"], row["position"], row["JTSK"], row["vycka"], row["positionType"], markerPointTax)); 
+            //Создаем новый div
+            const jobDivTax = document.createElement('div');
+            jobDivTax.className = 'pointJobs'; // Добавляем класс
+            jobDivTax.textContent = row["namber"]; // Устанавливаем текст внутри div
+            //Добавляем div в контейнер
+            pointJobsTax.appendChild(jobDivTax);
             }else{
-
+            // Создаем новый div
+            const jobDivTaxError = document.createElement('div');
+            jobDivTaxError.className = 'pointJobsError'; // Добавляем класс
+            jobDivTaxError.textContent = row["namber"]; // Устанавливаем текст внутри div
+            //Добавляем div в контейнер
+            pointJobsTax.appendChild(jobDivTaxError);
+            //Добавляем span с финкцией изменения 
+            let pointError = document.createElement('div');
+            pointError.className = 'pointError';
+            jobDivTaxError.appendChild(pointError);
+            console.log("Точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
+                //Выводим точки на карту и привязываем к переключателю
         let operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
         layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
     }else{
-        console.log("Работы по тахелметрии нет");
+        let nouWork = document.createElement('div');
+        nouWork.className = "pointJobs";
+        nouWork.textContent = "No work tacheometry points"
+        pointJobsTax.appendChild(nouWork);
+        console.log("Работы по тахеoметрии нет");
     }    
 }
 //Функция парсига информации переданной из planing-work.js

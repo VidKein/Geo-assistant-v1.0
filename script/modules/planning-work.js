@@ -3,7 +3,7 @@
     const year = todayDate.getFullYear();
     const month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
     const day = String(todayDate.getDate()).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
-    const searchDateInput = `2024-11-11`;//${year}-${month}-${day}
+    const searchDateInput = `2024-11-18`;//${year}-${month}-${day}
     const fileUrl = './xlsx/Jobs_kalendar.xlsx'; // Укажите URL-адрес Excel файла
     const jsonFileUrl = './koordinaty/koordinats.json'; // Укажите URL-адрес json файла
     console.log('Дата:', searchDateInput);
@@ -68,6 +68,8 @@
                 .map(row => row[columnIndex]); // Значения из найденного столбца
             const hasOne = colData.some(value => value === 1);
             console.log(`Количество найденных точек на листе "${sheetName}":`, colData[0]);
+            console.log(hasOne);
+            
             if (hasOne) {
                 // Выводим значения из столбца B и C
                 const columnData = sheetData

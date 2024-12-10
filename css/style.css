@@ -112,17 +112,17 @@ body {
 /*Точки*/
 .pointJobs{
   font-size: 0.7em;
-  display: inline;
+  display: inline-block;
   background-color: #45e650;
-  padding: 3px;
-  margin: 3px 0;
+  padding: 1px 1px;
+  margin: 2px 3px;
 }
 .pointJobsError{
   font-size: 0.7em;
-  display: inline;
+  display: inline-block;
   background-color: #de2a21;
-  padding: 3px;
-  margin: 3px 0;
+  padding: 1px 1px;
+  margin: 2px 3px;
   cursor: pointer;
 }
 /*Точка с ошибкой*/
