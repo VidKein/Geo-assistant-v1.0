@@ -113,9 +113,10 @@ body {
 .pointJobs{
   font-size: 0.7em;
   display: inline-block;
-  background-color: #45e650;
+  background-color: black;
   padding: 1px 1px;
   margin: 2px 3px;
+  color: aliceblue;
 }
 .pointJobsError{
   font-size: 0.7em;
@@ -124,6 +125,7 @@ body {
   padding: 1px 1px;
   margin: 2px 3px;
   cursor: pointer;
+  color: aliceblue;
 }
 /*Точка с ошибкой*/
 .pointError{
