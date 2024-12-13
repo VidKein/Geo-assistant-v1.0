@@ -1,7 +1,7 @@
 L.Control.BetterScale = L.Control.extend({
     options: {
         position: "bottomright",
-        maxWidth: 90,
+        maxWidth: 82,
         metric: !1,
         imperial: !0,
         updateWhenIdle: !1
