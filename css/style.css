@@ -113,10 +113,10 @@ body {
 .pointJobs{
   font-size: 0.7em;
   display: inline-block;
-  background-color: black;
+  background-color: #cdc4c4;
   padding: 1px 1px;
   margin: 2px 3px;
-  color: aliceblue;
+  color: black;
 }
 .pointJobsError{
   font-size: 0.7em;
