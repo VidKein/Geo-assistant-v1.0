@@ -15,8 +15,9 @@ let map = L.map('map', {
     closeOnZeroBearing: false,
     position: 'topleft',
     },
-  bearing: 0, 
-  compassBearing: false, 
+  bearing: 30, 
+  compassBearing: false,
+  enableCompass : false,
   //сенсорное взаимодействие вращало карту
   touchRotate: true,
   layers: [OSMstritMap]});
