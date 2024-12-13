@@ -309,6 +309,11 @@ map.on('locationerror', onLocationError);
 
 /*Масштабная линейка*/
 L.control.betterscale().addTo(map);
+
+
+window.addEventListener('deviceorientation', function(e) {
+    e.preventDefault(); // Отключаем реакцию карты
+}, { passive: false });
 /*------------------------------------------*/
 /*
 //Определяем координаты
