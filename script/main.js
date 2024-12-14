@@ -15,9 +15,8 @@ let map = L.map('map', {
     closeOnZeroBearing: false,
     position: 'topleft',
     },
-  bearing: 30, 
+  bearing: 0, 
   compassBearing: false,
-  enableCompass : false,
   //сенсорное взаимодействие вращало карту
   touchRotate: true,
   layers: [OSMstritMap]});
@@ -302,7 +301,8 @@ let lc = L.control.locate({
           },
         enableHighAccuracy: true,
         flyTo: true,//Плавное увеличение
-        returnToPrevBounds: true//Возврат назат
+        returnToPrevBounds: true,//Возврат назат
+        position: 'topleft'
   }).addTo(map);
 //Выводит ошибки геолокации
 function onLocationError(e) {alert(e.message);}
@@ -311,10 +311,6 @@ map.on('locationerror', onLocationError);
 /*Масштабная линейка*/
 L.control.betterscale().addTo(map);
 
-
-window.addEventListener('deviceorientation', function(e) {
-    e.preventDefault(); // Отключаем реакцию карты
-}, { passive: false });
 /*------------------------------------------*/
 /*
 //Определяем координаты
