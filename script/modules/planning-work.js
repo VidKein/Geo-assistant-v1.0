@@ -125,7 +125,6 @@
         /// Создаем и отправляем пользовательское событие с данными
         const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTip.nivBase, baseTrig: resultsTip.trigBase ,planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
         document.dispatchEvent(planning);
-      
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
