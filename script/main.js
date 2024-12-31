@@ -312,7 +312,7 @@ map.on('locationerror', onLocationError);
 L.control.betterscale().addTo(map);
 
 /*------------------------------------------*/
-/*
+
 //Определяем координаты
 var popup = L.popup();
 function onMapClick(e) {
@@ -334,4 +334,3 @@ let setting = document.querySelector(".setting");
 setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
-*/
