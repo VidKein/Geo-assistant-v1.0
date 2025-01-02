@@ -203,6 +203,7 @@ let importPoint = document.querySelector(".fullEdit");
 for (let i = 0; i < importPoint.children.length; i++) {
     let childrenElement = importPoint.children[i];
     childrenElement.addEventListener("click",()=>{
+       //информация по точкам
         if (childrenElement.id ==="infoPointkBlock") {
             let infoPointkBlock = document.querySelector(".points-wrapper");
             let blockPoint = infoPointkBlock.children;
@@ -221,6 +222,19 @@ for (let i = 0; i < importPoint.children.length; i++) {
                 }
             }
         }
+                  //Отображение настроек
+                  if (childrenElement.id === "settingBlock") {
+                    let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
+                    let blockSetting = leftSettingFunctional.children;
+                    for (let i = 0; i < blockSetting.length; i++) {
+                        let setting = blockSetting[i];
+                        console.log(setting.length);
+                        
+                        setting.addEventListener("click",(e)=>{
+                            console.log("000");
+                        })   
+                    }
+                  }  
     })
 }
 
