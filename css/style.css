@@ -376,7 +376,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
-  padding: 1em;
+  padding: 0.5em;
   border: 1px solid #dcdcff;
   border-radius: 5px;
   background: #fff;
@@ -387,7 +387,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   align-items: center;
   justify-content: space-between;
   height: 2rem;
-  padding: 0.3rem;
+  padding: 0rem 0.3rem 0.5rem 0.3rem;
   border-bottom: 1px solid #dcdcff;
 }
 .close-setting{

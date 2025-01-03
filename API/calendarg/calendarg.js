@@ -222,20 +222,21 @@ for (let i = 0; i < importPoint.children.length; i++) {
                 }
             }
         }
-                  //Отображение настроек
-                  if (childrenElement.id === "settingBlock") {
-                    let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
-                    let blockSetting = leftSettingFunctional.children;
-                    for (let i = 0; i < blockSetting.length; i++) {
-                        let setting = blockSetting[i];
-                        console.log(setting.length);
-                        
-                        setting.addEventListener("click",(e)=>{
-                            console.log("000");
-                        })   
-                    }
-                  }  
     })
+    //Отображение настроек
+    if (childrenElement.id === "settingBlock") {
+      let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
+      let blockSetting = leftSettingFunctional.children; 
+      for (let i = 0; i < blockSetting.length; i++) {
+          blockSetting[i].addEventListener("click", ()=> {
+              let rightSettingFunctional = document.querySelector(".rightSettingFunctional").children;
+              for (let i = 0; i < rightSettingFunctional.length; i++) {
+                rightSettingFunctional[i].style.display = "none";
+              }
+              rightSettingFunctional[i].style.display = "block";
+          }); 
+      }
+    }  
 }
 
 //Effects анимация accordion
