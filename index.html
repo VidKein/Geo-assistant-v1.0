@@ -63,7 +63,7 @@
                                 <option value="wall">
                                 <option value="target cross">
                                 <option value="fence">
-                                <option value="asphalt"></option>
+                                <option value="asphalt">
                             </datalist>
 
                         </div>  
@@ -103,27 +103,37 @@
                     <!--Функционал-->
                     <div class="settingFunctional">
                         <div class="leftSettingFunctional">
-                            <button type="button" class="settingButton" id="Language" title="Language">Language</button>
+                            <button type="button" class="settingButton" id="Language" title="Language" style="background-color: rgb(195, 196, 199);">Language</button>
                             <button type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
                             <button type="button" class="settingButton" id="Points" title="Points">Points</button>
                             <button type="button" class="settingButton" id="Print" title="Print">Print</button>
-                            <button type="button" class="settingButton" id="Pictures" title="Pictures">Pictures</button>
                         </div>
                         <div class="rightSettingFunctional">
                             <div class="links" id="Language" name="setting" style="display: block;">
-                                <p style="text-align: center;">Sorry but this block is under development Language</p>
+                            <p style="text-align: left;">Language:
+                            <input type="text" name="langAplikac" list="langAplikac">
+                                <datalist id="langAplikac">
+                                    <option value="English">
+                                    <option value="Ukrainian">
+                                    <option value="Czech">
+                                </datalist>
+                            </p>
+                                <button type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
                             </div>
                             <div class="links" id="Сalendar" name="setting" style="display: none;">
-                                <p style="text-align: center;">Sorry but this block is under development Сalendar</p>
+                                <p style="text-align: left;">Please specify the file with the work plan.</p>
+                                <button type="submit" id="runCalendAplikac" title="Submit fail">Submit</button>
                             </div>
                             <div class="links" id="Points" name="setting" style="display: none;">
-                                <p style="text-align: center;">Sorry but this block is under development Points</p>
+                                <p style="text-align: left;">Point name:
+                                <input type="text" name="namePoint" id="point">
+                                </p>
+                                <button type="submit" id="runPointAdd" title="Add point">Add point</button>
+                                <button type="submit" id="runPointEdit" title="Edit point">Edit point</button>
+                                <button type="submit" id="runPointDelat" title="Delaet point">Delaet point</button>
                             </div>
                             <div class="links" id="Print" name="setting" style="display: none;">
                                 <p style="text-align: center;">Sorry but this block is under development Print</p>
-                            </div>
-                            <div class="links" id="Pictures" name="setting">
-                                <p style="text-align: center;">Sorry but this block is under development Pictures</p>
                             </div>
                         </div>
                     </div>

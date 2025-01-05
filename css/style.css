@@ -428,8 +428,17 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   font-weight: 600;
   border-top: 5px solid white;
 }
-.rightSettingFunctional .links{
-  display: none;
+.links{
+  margin: 1rem;
+}
+.links p{
+  margin: 0.3rem;
+}
+.links button{
+  margin-left: 0.3rem;
+  padding-top: 0.3rem;
+  float: right;
+  cursor: pointer;
 }
 /*Условные обозначения*/
 .designations{

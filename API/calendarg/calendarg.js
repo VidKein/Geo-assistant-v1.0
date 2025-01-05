@@ -4,16 +4,16 @@ class Cal {
         this.divId = divId;
         // Дни недели с понедельника
         this.DaysOfWeek = [
-            'Пн',
-            'Вт',
-            'Ср',
-            'Чтв',
-            'Птн',
-            'Суб',
-            'Вск'
+            'Mon',
+            'Tue',
+            'Wed',
+            'Thu',
+            'Eri',
+            'Sat',
+            'Sun'
         ];
         // Месяцы начиная с января
-        this.Months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+        this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         //Устанавливаем текущий месяц, год
         var d = new Date();
         this.currMonth = d.getMonth();
