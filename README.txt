@@ -1,5 +1,6 @@
 В этом проекте используется онлайн-карты - MapLibre(https://https://leafletjs.com/).
-В этом проекте используется скрипт определения местоположения - MapLibre(https://github.com/domoritz/leaflet-locatecontrol).
+В этом проекте используется скрипт определения местоположения - Leaflet.Locate(https://github.com/domoritz/leaflet-locatecontrol).
+В этом проекте используется скрипт поворота карты - leaflet-rotate(https://github.com/Raruto/leaflet-rotate).
 
 Целью проекта является оптимизация работы при геодезичечких изысканиях.
 
