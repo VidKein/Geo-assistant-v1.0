@@ -9,16 +9,6 @@ let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
 let map = L.map('map', {
   center: [50.047266, 14.440722],
   zoom: 15,
-  //вращение карты
-  rotate: true,
-  rotateControl: {
-    closeOnZeroBearing: false,
-    position: 'topleft',
-    },
-  bearing: 0, 
-  compassBearing: false,
-  //сенсорное взаимодействие вращало карту
-  touchRotate: true,
   layers: [OSMstritMap]});
 
 //Наполнение слоя
@@ -310,6 +300,17 @@ map.on('locationerror', onLocationError);
 
 /*Масштабная линейка*/
 L.control.betterscale().addTo(map);
+/*добавление кнопки*/
+const buttonDesing = L.control({position: "topleft"});
+buttonDesing.onAdd = ()=>{
+    const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+    div.innerHTML = '<button style="background: white; border: none; cursor: pointer;">⟳</button>';
+    div.onclick = () => {
+        alert("Сбрасываем поворот");
+    };
+    return div;
+}
+buttonDesing.addTo(map);
 
 /*------------------------------------------*/
 /*
