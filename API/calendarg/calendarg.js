@@ -182,6 +182,7 @@ function closeSettingShou() {
     }
 }
 //Анимация условных обозначений
+/*
 let buttonDesing = document.querySelector(".buttonDesing");
 let showDesing = document.querySelector(".showDesing");
 let designations = document.querySelector(".designations");
@@ -197,7 +198,7 @@ buttonDesing.addEventListener("click",()=>{
         setting.style.bottom = "45px";
     }
 })
-
+*/
 ///Действия при нажатии на РАБОЧИИ кнопки 
 let importPoint = document.querySelector(".fullEdit");
 for (let i = 0; i < importPoint.children.length; i++) {

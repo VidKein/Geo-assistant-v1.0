@@ -148,7 +148,7 @@
 	right: 0;
 	}
 .leaflet-bottom {
-	bottom: 0;
+	bottom: -2px;
 	}
 .leaflet-left {
 	left: 0;
@@ -340,7 +340,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* zoom control */
 
 .leaflet-control-zoom-in,
-.leaflet-control-zoom-out {
+.-out {
 	font: bold 18px 'Lucida Console', Monaco, monospace;
 	text-indent: 1px;
 	}

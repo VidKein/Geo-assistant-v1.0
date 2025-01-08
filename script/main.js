@@ -300,18 +300,30 @@ map.on('locationerror', onLocationError);
 
 /*Масштабная линейка*/
 L.control.betterscale().addTo(map);
-/*добавление кнопки*/
-const buttonDesing = L.control({position: "topleft"});
+
+//Анимация условных обозначений
+const buttonDesing = L.control({position: "bottomleft"});
 buttonDesing.onAdd = ()=>{
-    const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-    div.innerHTML = '<button style="background: white; border: none; cursor: pointer;">⟳</button>';
-    div.onclick = () => {
-        alert("Сбрасываем поворот");
-    };
+    const div = L.DomUtil.create('div', 'leaflet-control-setting-map leaflet-bar leaflet-control');
+    div.innerHTML = '<div class="buttonDesing" title="Designations maps"><button class="showDesing"></button></div>';
+    div.addEventListener("click",() => {
+        let buttonDesing = document.querySelector(".buttonDesing");
+        let showDesing = document.querySelector(".showDesing");
+        let designations = document.querySelector(".designations");
+        showDesing.classList.toggle("activ"); 
+        if (showDesing.className == "showDesing activ") {
+            designations.style.display = "block";
+            buttonDesing.style.marginBottom = "123px";
+            setting.style.bottom = "165px";
+        } else {
+            designations.style.display = "none";
+            buttonDesing.style.marginBottom = "-2px";
+            setting.style.bottom = "45px";
+        }
+    })
     return div;
 }
 buttonDesing.addTo(map);
-
 /*------------------------------------------*/
 /*
 //Определяем координаты

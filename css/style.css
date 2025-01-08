@@ -204,7 +204,7 @@ body {
 .calendarg{
     position: absolute;
     z-index: 1000;
-    top: 170px;
+    top: 130px;
     left: 10px;
     border: 2px solid rgba(0, 0, 0, 0.2);
     cursor: pointer;
@@ -466,17 +466,6 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   height: auto;
 }
 /*Кнопка условных обозначений*/
-.buttonDesing{
-  position: absolute;
-  bottom: 0px;
-  left: 10px;
-  z-index: 1000;
-  border-top: 2px solid rgba(0, 0, 0, 0.2);
-  border-left: 2px solid rgba(0, 0, 0, 0.2);
-  border-right: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px 6px 0 0;
-
-}
 .showDesing{
   border: 1px solid #c3c4c7;
   border-top: none;
