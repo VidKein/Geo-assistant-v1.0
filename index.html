@@ -70,12 +70,7 @@
                     </div>
                 </div>
             </div>
-            <!--Календарь-->
-            <div id="calendarg" class="calendarg" title="Work calendar">
-                <div class="calendargRun">
-                    <span class="calendargIkon"></span>
-                </div>
-            </div>
+            <!--Календарь - кнопка календаря подключена main.js через leaflet-->
             <div id="calendargBlock" class="calendargBlock">
                 <div class="calendar-wrapper">
                     <button id="btnPrev" type="button"><span class="prev"></span></button>
@@ -84,12 +79,7 @@
                     <div id="divCal"></div>
                 </div>
             </div>
-            <!--Настройки
-            <div id="setting" class="setting" title="Setting maps">
-                <div class="settingRun">
-                    <span class="settingIkon"></span>
-                </div>
-            </div>-->
+            <!--Настройки  - кнопка настройки подключена main.js через leaflet-->
             <div id="settingBlock" class="settingBlock">
                 <div class="setting-wrapper">
                     <!--Шапка-->
@@ -140,11 +130,7 @@
                 </div>
             </div>
     </div>
-    <!--Условные обозначения-->
-    <!--Кнопка условных обозначений
-    <div class="buttonDesing" title="Designations maps">
-        <button class="showDesing"></button>
-    </div>-->
+    <!--Условные обозначения - кнопка условных обозначений подключена main.js через leaflet-->
     <!--Обозначения-->
     <div class="designations">
         <div class="contextualColumns">
@@ -156,8 +142,8 @@
         </div>
     </div>
     <script src="./API/locate/L.Control.Locate.min.js"></script><!--L.Control-->
-    <script src="./API/calendarg/calendarg.js"></script><!--calendarg-->
     <script src="./API/xlsx-import/xlsx.full.min.js"></script><!--xlsx-import-->
+    <script type="module"  src="./script/modules/calendarg.js"></script><!--calendarg-->
     <script type="module" src="./script/modules/planning-work.js"></script><!--planning-work-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
 </body>

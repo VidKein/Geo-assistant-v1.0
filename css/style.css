@@ -202,18 +202,10 @@ body {
   z-index: 1001;
 }
 .calendarg{
-    position: absolute;
-    z-index: 1000;
-    top: 130px;
-    left: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-.calendargRun{
-  display: block;
   background-color: #ffff;
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 .calendargIkon{
   display: inline-block;

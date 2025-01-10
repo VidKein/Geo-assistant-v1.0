@@ -4,7 +4,7 @@
 let key = "328W3i5uAdhtTMZr8hrV";
 let OSMsatelitMap = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key='+key, {maxZoom: 22,attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>'});
 //Растр
-let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 22, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
 //Определие слоя КАРТЫ
 let map = L.map('map', {
   center: [50.047266, 14.440722],
@@ -269,7 +269,7 @@ function parsinWork(planing) {
 
 //Функция формированм маркеров
 function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {   
- if (systemCoordinates == "JTSK") {
+  if (systemCoordinates == "JTSK") {
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
         //Подключение маркера с конвертацией JTSKtoWGS84
@@ -277,7 +277,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         return marker;
     } else {
         //Подключение маркера с WGS84
-    }
+  }
 }
 
 /*Моя геолокация*/
@@ -298,62 +298,98 @@ let lc = L.control.locate({
 function onLocationError(e) {alert(e.message);}
 map.on('locationerror', onLocationError);
 
-/*Масштабная линейка*/
-L.control.betterscale().addTo(map);
-
 //Анимация условных обозначений
+//Календарь
+const buttonCalendarg = L.Control.extend({
+    options: { position: 'topleft' },
+    onAdd: function () {
+        const calendarg = L.DomUtil.create('div', 'leaflet-control-calendarg-work leaflet-bar leaflet-control');
+        const divCalendargButton = document.createElement('div');//calendarg
+        divCalendargButton.className = "calendarg";
+        divCalendargButton.id = "calendarg";
+        divCalendargButton.title = "Work calendar";
+        calendarg.appendChild(divCalendargButton);
+        const calendargIkon = document.createElement('span');//settingIkon
+        calendargIkon.className = 'calendargIkon';
+        divCalendargButton.appendChild(calendargIkon);
+
+        let calendargBlock = document.querySelector("#calendargBlock");
+        let closeCalendar = document.querySelector(".close-calendarg");
+        calendarg.addEventListener("click",closeCalendarShou);
+        closeCalendar.addEventListener("click",closeCalendarShou);
+        function closeCalendarShou(){
+            divCalendargButton.classList.toggle("activ"); 
+          if (divCalendargButton.className == "calendarg activ") {
+              calendargBlock.style.display = "block";
+          } else {
+              calendargBlock.style.display = "none";
+          }
+         }
+        return calendarg;
+    }
+});
+map.addControl(new buttonCalendarg());
 //Условные обозначения
-const buttonDesing = L.control({
-    position: "bottomleft",
+const buttonDesing = L.Control.extend({
+    options: { position: 'bottomleft' },
+    onAdd: function () {
+        const desing = L.DomUtil.create('div', 'leaflet-control-desing-map leaflet-bar leaflet-control');
+        const divDesingButton = document.createElement('div');//buttonDesing
+        divDesingButton.className = 'buttonDesing';
+        divDesingButton.title = 'Designations maps';
+        desing.appendChild(divDesingButton);
+        const buttonDesing = document.createElement('button');//showDesing
+        buttonDesing.className = 'showDesing';
+        divDesingButton.appendChild(buttonDesing);
+        desing.addEventListener("click",() => {
+            let buttonDesing = document.querySelector(".buttonDesing");
+            let showDesing = document.querySelector(".showDesing");
+            let designations = document.querySelector(".designations");
+            showDesing.classList.toggle("activ"); 
+            if (showDesing.className == "showDesing activ") {
+                designations.style.display = "block";
+                buttonDesing.style.marginBottom = "123px";
+            } else {
+                designations.style.display = "none";
+                buttonDesing.style.marginBottom = "-2px";
+            }
+        })
+        return desing;
+    }
 });
-buttonDesing.onAdd = ()=>{
-    const desing = L.DomUtil.create('div', 'leaflet-control-desing-map leaflet-bar leaflet-control');
-    const divDesingButton = document.createElement('div');//buttonDesing
-    divDesingButton.className = 'buttonDesing';
-    divDesingButton.title = 'Designations maps';
-    desing.appendChild(divDesingButton);
-    const buttonDesing = document.createElement('button');//showDesing
-    buttonDesing.className = 'showDesing';
-    divDesingButton.appendChild(buttonDesing);
-
-    desing.addEventListener("click",() => {
-        let buttonDesing = document.querySelector(".buttonDesing");
-        let showDesing = document.querySelector(".showDesing");
-        let designations = document.querySelector(".designations");
-        showDesing.classList.toggle("activ"); 
-        if (showDesing.className == "showDesing activ") {
-            designations.style.display = "block";
-            buttonDesing.style.marginBottom = "123px";
-        } else {
-            designations.style.display = "none";
-            buttonDesing.style.marginBottom = "-2px";
-        }
-    })
-    return desing;
-}
-buttonDesing.addTo(map);
+map.addControl(new buttonDesing());
 //Настройки
-const buttonSetting = L.control({
-    position: "bottomleft",
-});
-buttonSetting.onAdd = ()=>{
-    const setting = L.DomUtil.create('div', 'leaflet-control-setting-map leaflet-bar leaflet-control');
-    const divSettingButton = document.createElement('div');//setting
-    divSettingButton.className = 'setting';
-    divSettingButton.id = 'setting';
-    divSettingButton.title = 'Setting maps';
-    setting.appendChild(divSettingButton);
-    const settingIkon = document.createElement('span');//settingIkon
-    settingIkon.className = 'settingIkon';
-    divSettingButton.appendChild(settingIkon);
+const buttonSetting = L.Control.extend({
+    options: { position: 'bottomleft' },
+    onAdd: function () {
+        const setting = L.DomUtil.create('div', 'leaflet-control-setting-map leaflet-bar leaflet-control');
+        const divSettingButton = document.createElement('div');//setting
+        divSettingButton.className = 'setting';
+        divSettingButton.id = 'setting';
+        divSettingButton.title = 'Setting maps';
+        setting.appendChild(divSettingButton);
+        const settingIkon = document.createElement('span');//settingIkon
+        settingIkon.className = 'settingIkon';
+        divSettingButton.appendChild(settingIkon);
 
-    let settingBlock = document.querySelector("#settingBlock");
-    let closeSetting = document.querySelector(".close-setting");
-    setting.addEventListener("click",() => {settingBlock.style.display = "block";})
-    closeSetting.addEventListener("click",() => {settingBlock.style.display = "none";})
-    return setting;
-}
-buttonSetting.addTo(map);
+        let settingBlock = document.querySelector("#settingBlock");
+        let closeSetting = document.querySelector(".close-setting");
+        setting.addEventListener("click",closeSettingShou);
+        closeSetting.addEventListener("click",closeSettingShou);
+        function closeSettingShou(){
+            divSettingButton.classList.toggle("activ"); 
+          if (divSettingButton.className == "setting activ") {
+            settingBlock.style.display = "block";
+          } else {
+            settingBlock.style.display = "none";
+          }
+         }
+        return setting;
+    }
+});
+map.addControl(new buttonSetting());
+//Масштабная линейка*
+L.control.betterscale().addTo(map);
 /*------------------------------------------*/
 /*
 //Определяем координаты

@@ -42,7 +42,7 @@ class Cal {
             this.currMonth = this.currMonth - 1;
         }
         this.showcurr();
-        dateClick()
+        dateClick();
     }
     // Показать текущий месяц
     showcurr() {
@@ -134,20 +134,6 @@ window.onload = function() {
 function getId(id) {
   return document.getElementById(id);
 }
-//Анимация календаря
-let calendarg = document.querySelector("#calendarg");
-let calendargBlock = document.querySelector("#calendargBlock");
-let closeCalendar = document.querySelector(".close-calendarg");
-calendarg.addEventListener("click",closeCalendarShou);
-closeCalendar.addEventListener("click",closeCalendarShou);
-function closeCalendarShou(){
-  calendarg.classList.toggle("activ"); 
-  if (calendarg.className == "calendarg activ") {
-      calendargBlock.style.display = "block";
-  } else {
-      calendargBlock.style.display = "none";
-  }
- }
 /*--------------------------------------------------------*/
 //Дата
 let data = document.querySelector(".todayDate");
@@ -167,22 +153,6 @@ function closeSettingInfo() {
         infiPointkBlock.style.display = "none";
     }
 }
- //Анимация нaстроек
- /*
- let setting = document.querySelector(".setting");
- let settingBlock = document.querySelector("#settingBlock");
- let closeSetting = document.querySelector(".close-setting");
- setting.addEventListener("click",closeSettingShou);
- closeSetting.addEventListener("click",closeSettingShou);
-function closeSettingShou() {
-    setting.classList.toggle("activ"); 
-    if (setting.className == "setting activ") {
-        settingBlock.style.display = "block";
-    } else {
-        settingBlock.style.display = "none";
-    }
-}
-    */
 
 ///Действия при нажатии на РАБОЧИИ кнопки 
 let importPoint = document.querySelector(".fullEdit");
