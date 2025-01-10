@@ -302,11 +302,21 @@ map.on('locationerror', onLocationError);
 L.control.betterscale().addTo(map);
 
 //Анимация условных обозначений
-const buttonDesing = L.control({position: "bottomleft"});
+//Условные обозначения
+const buttonDesing = L.control({
+    position: "bottomleft",
+});
 buttonDesing.onAdd = ()=>{
-    const div = L.DomUtil.create('div', 'leaflet-control-setting-map leaflet-bar leaflet-control');
-    div.innerHTML = '<div class="buttonDesing" title="Designations maps"><button class="showDesing"></button></div>';
-    div.addEventListener("click",() => {
+    const desing = L.DomUtil.create('div', 'leaflet-control-desing-map leaflet-bar leaflet-control');
+    const divDesingButton = document.createElement('div');//buttonDesing
+    divDesingButton.className = 'buttonDesing';
+    divDesingButton.title = 'Designations maps';
+    desing.appendChild(divDesingButton);
+    const buttonDesing = document.createElement('button');//showDesing
+    buttonDesing.className = 'showDesing';
+    divDesingButton.appendChild(buttonDesing);
+
+    desing.addEventListener("click",() => {
         let buttonDesing = document.querySelector(".buttonDesing");
         let showDesing = document.querySelector(".showDesing");
         let designations = document.querySelector(".designations");
@@ -314,16 +324,36 @@ buttonDesing.onAdd = ()=>{
         if (showDesing.className == "showDesing activ") {
             designations.style.display = "block";
             buttonDesing.style.marginBottom = "123px";
-            setting.style.bottom = "165px";
         } else {
             designations.style.display = "none";
             buttonDesing.style.marginBottom = "-2px";
-            setting.style.bottom = "45px";
         }
     })
-    return div;
+    return desing;
 }
 buttonDesing.addTo(map);
+//Настройки
+const buttonSetting = L.control({
+    position: "bottomleft",
+});
+buttonSetting.onAdd = ()=>{
+    const setting = L.DomUtil.create('div', 'leaflet-control-setting-map leaflet-bar leaflet-control');
+    const divSettingButton = document.createElement('div');//setting
+    divSettingButton.className = 'setting';
+    divSettingButton.id = 'setting';
+    divSettingButton.title = 'Setting maps';
+    setting.appendChild(divSettingButton);
+    const settingIkon = document.createElement('span');//settingIkon
+    settingIkon.className = 'settingIkon';
+    divSettingButton.appendChild(settingIkon);
+
+    let settingBlock = document.querySelector("#settingBlock");
+    let closeSetting = document.querySelector(".close-setting");
+    setting.addEventListener("click",() => {settingBlock.style.display = "block";})
+    closeSetting.addEventListener("click",() => {settingBlock.style.display = "none";})
+    return setting;
+}
+buttonSetting.addTo(map);
 /*------------------------------------------*/
 /*
 //Определяем координаты

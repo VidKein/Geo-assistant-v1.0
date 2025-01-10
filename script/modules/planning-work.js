@@ -83,7 +83,7 @@
                         C: row[2], // Столбец C
                     }));
                     //Для контроля
-                    //console.log(columnData);
+                   //console.log(columnData);
                     if (sheetName == "Base") {
                         //Base
                         columnData.forEach(row => {  

@@ -168,6 +168,7 @@ function closeSettingInfo() {
     }
 }
  //Анимация нaстроек
+ /*
  let setting = document.querySelector(".setting");
  let settingBlock = document.querySelector("#settingBlock");
  let closeSetting = document.querySelector(".close-setting");
@@ -181,24 +182,8 @@ function closeSettingShou() {
         settingBlock.style.display = "none";
     }
 }
-//Анимация условных обозначений
-/*
-let buttonDesing = document.querySelector(".buttonDesing");
-let showDesing = document.querySelector(".showDesing");
-let designations = document.querySelector(".designations");
-buttonDesing.addEventListener("click",()=>{
-    showDesing.classList.toggle("activ"); 
-    if (showDesing.className == "showDesing activ") {
-        designations.style.display = "block";
-        buttonDesing.style.bottom = "125px";
-        setting.style.bottom = "165px";
-    } else {
-        designations.style.display = "none";
-        buttonDesing.style.bottom = "0px";
-        setting.style.bottom = "45px";
-    }
-})
-*/
+    */
+
 ///Действия при нажатии на РАБОЧИИ кнопки 
 let importPoint = document.querySelector(".fullEdit");
 for (let i = 0; i < importPoint.children.length; i++) {
@@ -256,9 +241,9 @@ for (let i = 0; i < acc.length; i++) {
       panel.style.display = "block";
     }
   });
-}            
+}  
+//Функция отображения даты     
 function dateClick() {
-//Date
 const dateCalendar = document.getElementsByTagName("table");
 dateCalendar[0].addEventListener("click",(e)=>{            
     const montYers = document.querySelector("#montYers").textContent;
