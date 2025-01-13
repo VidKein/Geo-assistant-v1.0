@@ -389,7 +389,7 @@ const buttonSetting = L.Control.extend({
 });
 map.addControl(new buttonSetting());
 //Масштабная линейка*
-L.control.betterscale({position: "bottomright"}).addTo(map);
+L.control.scalebar({ position: 'bottomright' }).addTo(map);
 /*------------------------------------------*/
 /*
 //Определяем координаты
@@ -414,70 +414,3 @@ setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
 */
-
-// Функция расчета расстояния с использованием формулы гаверсинов
-function haversineDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371000; // Радиус Земли в метрах
-
-    const toRadians = (degrees) => (degrees * Math.PI) / 180;
-
-    const φ1 = toRadians(lat1);
-    const φ2 = toRadians(lat2);
-    const Δφ = toRadians(lat2 - lat1);
-    const Δλ = toRadians(lon2 - lon1);
-
-    const a =
-      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c; // Результат в метрах
-  }
-
- // Функция округления длины линейки до кратных 1, 2, 3, 4, 5, 15, 20, 25, 35 и т.д.
- function calculateRoundedLength(distance) {
-    const scales = [1, 2, 3, 4, 5, 15, 20, 25, 35, 50, 75, 100, 150, 200, 250, 350, 500, 1000, 2000];
-    for (let scale of scales) {
-      if (distance <= scale) {
-        return scale;
-      }
-    }
-    return Math.ceil(distance / 1000) * 1000; // Для больших расстояний
-  }
-
-  // Функция для обновления линейки
-  function updateScaleBar() {
-    const scaleBar = document.getElementById('scaleBar');
-    const scaleText = document.getElementById('scaleText');
-
-    // Координаты для расчета расстояния
-    const mapSize = map.getSize();
-    const point1 = map.containerPointToLatLng([0, mapSize.y / 2]); // Левый край
-    const point2 = map.containerPointToLatLng([50, mapSize.y / 2]); // Точка через 50 пикселей
-
-    // Расчет расстояния с использованием формулы гаверсинов
-    const distance = haversineDistance(
-      point1.lat, point1.lng,
-      point2.lat, point2.lng
-    );
-
-    // Округленное значение длины линейки
-    const roundedLength = calculateRoundedLength(distance);
-
-    // Расчет ширины линейки в пикселях
-    const barWidth = (50 / distance) * roundedLength;
-
-    // Устанавливаем ширину линейки и обновляем текст
-    scaleBar.style.width = `${barWidth}px`;
-    if (roundedLength < 1000) {
-      scaleText.innerHTML = `${roundedLength} м`;
-    } else {
-      scaleText.innerHTML = `${(roundedLength / 1000).toFixed(1)} км`;
-    }
-  }
-
-  // Инициализация линейки
-  updateScaleBar();
-
-  // Обновление линейки при изменении масштаба или перемещении карты
-  map.on('zoomend moveend', updateScaleBar);

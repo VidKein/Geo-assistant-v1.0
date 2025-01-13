@@ -7,44 +7,13 @@
     <link rel="stylesheet" href="./API/leaflet/leaflet.css" /><!--leaflet-->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./API/locate/L.Control.Locate.min.css" /><!--L.Control-->
-    <link rel="stylesheet" href="./API/scale-ruler/L.Control.BetterScale.css" /><!--scale ruler-->
     <script src="./API/leaflet/leaflet-src.js"></script><!--leaflet-->
     <script src="./API/JTSKtoWGS84/Converter.js"></script><!--Converter-->
-    <script src="./API/scale-ruler/L.Control.BetterScale.js"></script><!--scale ruler-->
-
-
-    <style>
-        .scale-bar-container {
-          position: absolute;
-          bottom: 10px;
-          left: 50px;
-          display: flex;
-          align-items: flex-end;
-          gap: 2px;
-          padding: 5px;
-        }
-        .scale-bar {
-          display: inline-block;
-          height: 4px;
-          border: 3px solid #202124;
-          border-top: none;
-        }
-        .scale-text {
-          font-weight: bold;
-          color: #fff;
-          font-size: 12px;
-          text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-
-        }
-      </style>
+    <script src="./script/modules/scale-bar.js"></script><!--scale ruler-->
 </head>
 <body>
     <!--Карта-->
     <div id="map"></div>
-    <div id="scaleBarContainer" class="scale-bar-container">
-        <div id="scaleText" class="scale-text"></div>
-        <div id="scaleBar" class="scale-bar"></div>
-      </div>
     <div class="fullEdit">
             <!--Дата/Информация по работе-->
             <div id="dataBlock" class="dataBlock" title="Data">
@@ -109,7 +78,7 @@
                     <div id="divCal"></div>
                 </div>
             </div>
-            <!--Настройки  - кнопка настройки подключена main.js через leaflet-->
+            <!--Настройки - кнопка настройки подключена main.js через leaflet-->
             <div id="settingBlock" class="settingBlock">
                 <div class="setting-wrapper">
                     <!--Шапка-->
