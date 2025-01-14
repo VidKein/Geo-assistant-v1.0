@@ -76,7 +76,6 @@ L.Control.scaleBar = L.Control.extend({
         map.on('zoomend moveend', updateScaleBar);
         map.on('baselayerchange', function(e) {
           if (e.name == 'Satelit Map') {
-            console.log('0000');
             scaleBar.style.border = '3px solid rgb(255, 255, 255)';
             scaleBar.style.borderTop = 'none';
           }else{

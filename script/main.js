@@ -51,14 +51,12 @@ let jobsTrig = L.icon({
     iconAnchor:   [0,0],
     popupAnchor:  [8, -1]
 });
-
 /*СЛОИ*/
 //КАРТ
 let baseMaps = {
     "Satelit Map": OSMsatelitMap,
     "Strit Map": OSMstritMap
   };
-
 //ТОЧЕК
 //Бызовые точки
 //Нивилирования
@@ -273,12 +271,30 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
         //Подключение маркера с конвертацией JTSKtoWGS84
-        var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);
+        /*var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);*/
+        var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("Vycka: "+vycka+" m.<br>Type: "+positionType).bindTooltip(name, { 
+            permanent: true, // Постоянное отображение
+            direction: "bottom", // Направление отображения
+            opacity :1,// прозрачность
+            offset: L.point(10,15),// Смещение popup относительно маркера
+            className: 'no-arrow' // Убираем стандартные стили
+        });
         return marker;
     } else {
         //Подключение маркера с WGS84
   }
 }
+//Изменять цвет номера точки
+map.on('baselayerchange', function(e) {    
+  let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");   
+    if (e.name == 'Satelit Map') {
+        // Изменяем цвет текста у всех tooltip
+        leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
+    }else{
+        // Изменяем цвет текста у всех tooltip
+        leafletTooltip.forEach(tooltip => {tooltip.style.color = ' #202124';});
+    }       
+  });
 
 /*Моя геолокация*/
 let lc = L.control.locate({
@@ -388,8 +404,9 @@ const buttonSetting = L.Control.extend({
     }
 });
 map.addControl(new buttonSetting());
-//Масштабная линейка*
+//Масштабная линейка
 L.control.scalebar({ position: 'bottomright' }).addTo(map);
+
 /*------------------------------------------*/
 /*
 //Определяем координаты
