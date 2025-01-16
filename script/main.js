@@ -244,7 +244,12 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work tacheometry points"
         pointJobsTax.appendChild(nouWork);
         console.log("Работы по тахеoметрии нет");
-    }   
+    } 
+    //Присваеваем имена слоям
+    operatingBasePointsNiv.layerName = 'operatingBasePointsNiv';
+    operatingPointsNiv.layerName = 'operatingPointsNiv';
+    operatingBaseTax.layerName = 'operatingBaseTax';
+    operatingPointsTax.layerName = 'operatingPointsTax';
     onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
 }
 //Функция парсинга информации переданной из planing-work.js
@@ -463,7 +468,7 @@ function changeMarkers() {
 const checkIcon = L.icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/190/190411.png', // URL для иконки галочки
     iconSize: [10, 10], // Размер иконки
-    iconAnchor: [0, 0], // Точка привязки
+    iconAnchor: [-15, -15], // Точка привязки
 });
 // Маркер галочки
 let checkMarker;
@@ -539,17 +544,6 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
 
 
 
-// Получаем имя активного слоя при загрузке
-let activeLayerName = null;
-for (const name in baseMaps) {
-    if (map.hasLayer(baseMaps[name])) {
-        activeLayerName = name;
-        break;
-    }
-};
-console.log('Активный слой при загрузке:', activeLayerName);
-
-
 // Функция для определения текущего активного слоя
 function getActiveLayer() {
     let activeLayerName = null;
@@ -565,7 +559,6 @@ function getActiveLayer() {
 // Выводим имя активного слоя при загрузке карты
 console.log('Активный слой при загрузке:', getActiveLayer());
 
-// Также можно отслеживать изменения активного слоя
-map.on('baselayerchange', function(e) {
-    console.log('Активный слой изменен на:', e.name);
-});
+map.on('overlayadd', function(e) {console.log("+"+e.layer.layerName);});
+map.on('overlayremove', function(e) {console.log("-"+e.layer.layerName);});
+  
