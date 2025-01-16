@@ -299,17 +299,44 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
   }
 }
 
-//Изменять цвет номера точки
-map.on('baselayerchange', function(e) {    
-  let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");  
-  if (e.name == 'Satelit Map' && leafletTooltip.length !== 0) {
-        // Изменяем цвет текста у всех tooltip
-        leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
-    }else{
-        // Изменяем цвет текста у всех tooltip
-        leafletTooltip.forEach(tooltip => {tooltip.style.color = ' #202124';});
-    }       
-  });
+//Изменять цвет номера точки при переключении между слоями
+//Контролируем переключатель карты
+map.on('baselayerchange', function(e) {   
+    let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");   
+    if (e.name == 'Satelit Map' && leafletTooltip.length !== 0) {
+          // Изменяем цвет текста у всех tooltip
+          leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
+      }else{
+          // Изменяем цвет текста у всех tooltip
+          leafletTooltip.forEach(tooltip => {tooltip.style.color = ' #202124';});
+      }  
+    });
+//Контролируем переключатель рабочих слоев
+map.on('overlayadd', function(e) {
+    let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");  
+    if (e.layer.layerName == "operatingBasePointsNiv" || e.layer.layerName == "operatingPointsNiv" || e.layer.layerName == "operatingBaseTax" || e.layer.layerName == "operatingPointsTax") {
+        if (getActiveLayer() == "Satelit Map") {
+            // Изменяем цвет текста у всех tooltip
+            leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
+        } else {
+            // Изменяем цвет текста у всех tooltip
+            leafletTooltip.forEach(tooltip => {tooltip.style.color = ' #202124';});
+        }
+    }     
+});
+// Функция для определения текущего активного слоя
+function getActiveLayer() {
+    let activeLayerName = null;
+    // Перебираем базовые слои и проверяем, какой слой добавлен на карту
+    for (const name in baseMaps) {
+        if (map.hasLayer(baseMaps[name])) {
+            activeLayerName = name;
+            break;
+        }
+    }
+    return activeLayerName;
+}
+
 /*Моя геолокация*/
 let lc = L.control.locate({
     locateOptions: {
@@ -466,7 +493,7 @@ function changeMarkers() {
 */
 // Иконка галочки
 const checkIcon = L.icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/190/190411.png', // URL для иконки галочки
+    iconUrl: './icons/check.png', // URL для иконки галочки
     iconSize: [10, 10], // Размер иконки
     iconAnchor: [-15, -15], // Точка привязки
 });
@@ -541,24 +568,3 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
 
 
 }
-
-
-
-// Функция для определения текущего активного слоя
-function getActiveLayer() {
-    let activeLayerName = null;
-    // Перебираем базовые слои и проверяем, какой слой добавлен на карту
-    for (const name in baseMaps) {
-        if (map.hasLayer(baseMaps[name])) {
-            activeLayerName = name;
-            break;
-        }
-    }
-    return activeLayerName;
-}
-// Выводим имя активного слоя при загрузке карты
-console.log('Активный слой при загрузке:', getActiveLayer());
-
-map.on('overlayadd', function(e) {console.log("+"+e.layer.layerName);});
-map.on('overlayremove', function(e) {console.log("-"+e.layer.layerName);});
-  
