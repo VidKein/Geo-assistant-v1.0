@@ -71,6 +71,10 @@ var pointOperatingLayerNiv = [];
 var pointOperatingLayerTax = [];
 //Меню отображения слоев Карт
 let layerControl = L.control.layers(baseMaps).addTo(map);
+let operatingBasePointsNiv;
+let operatingPointsNiv;
+let operatingBaseTax;
+let operatingPointsTax;
 
 //Импорт информации с таблицы с планом работы planning-work.js
 document.addEventListener("planningWork", (planning) => {
@@ -109,8 +113,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
-        let operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
-        layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");   
+        operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
+        layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");
     } else {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -150,7 +154,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
-        let operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
+        operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
         layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");    
     }else{
         let nouWork = document.createElement('div');
@@ -191,7 +195,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
-        let operatingBaseTax = L.layerGroup(pointBaseLayerTax);
+        operatingBaseTax = L.layerGroup(pointBaseLayerTax);
         layerControl.addOverlay(operatingBaseTax, "<span style='color: red'>Base points Tax.</span>");
     }else{
         let nouWork = document.createElement('div');
@@ -232,7 +236,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
-        let operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
+        operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
         layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
     }else{
         let nouWork = document.createElement('div');
@@ -240,7 +244,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work tacheometry points"
         pointJobsTax.appendChild(nouWork);
         console.log("Работы по тахеoметрии нет");
-    }    
+    }   
+    onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
 }
 //Функция парсинга информации переданной из planing-work.js
 function parsinWork(planing) {
@@ -272,7 +277,11 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
         //Подключение маркера с конвертацией JTSKtoWGS84
         /*var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);*/
-        var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("Vycka: "+vycka+" m.<br>Type: "+positionType).bindTooltip(name, { 
+        // Создаем всплывающее меню с радиокнопкой
+        const popupContent = `
+            <input type="checkbox" id="checkbox"> completed
+        `;
+        var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent).bindTooltip(name, { 
             permanent: true, // Постоянное отображение
             direction: "bottom", // Направление отображения
             opacity :1,// прозрачность
@@ -284,10 +293,11 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         //Подключение маркера с WGS84
   }
 }
+
 //Изменять цвет номера точки
 map.on('baselayerchange', function(e) {    
-  let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");   
-    if (e.name == 'Satelit Map') {
+  let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");  
+  if (e.name == 'Satelit Map' && leafletTooltip.length !== 0) {
         // Изменяем цвет текста у всех tooltip
         leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
     }else{
@@ -295,7 +305,6 @@ map.on('baselayerchange', function(e) {
         leafletTooltip.forEach(tooltip => {tooltip.style.color = ' #202124';});
     }       
   });
-
 /*Моя геолокация*/
 let lc = L.control.locate({
     locateOptions: {
@@ -431,3 +440,132 @@ setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
 */
+
+/*
+// Функция для изменения маркеров
+function changeMarkers() {
+    markerGroup.eachLayer(function (layer) {
+        if (layer instanceof L.Marker) {
+            // Изменяем иконку маркера
+            layer.setIcon(L.divIcon({
+                className: 'custom-icon',
+                html: '<div style="background: red; width: 24px; height: 24px; border-radius: 50%;"></div>',
+                iconSize: [24, 24]
+            }));
+
+            // Добавляем новый popup
+            layer.bindPopup('Измененный маркер!');
+        }
+    });
+}
+*/
+// Иконка галочки
+const checkIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/190/190411.png', // URL для иконки галочки
+    iconSize: [10, 10], // Размер иконки
+    iconAnchor: [0, 0], // Точка привязки
+});
+// Маркер галочки
+let checkMarker;
+function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax) {     
+    const basePointsNiv = operatingBasePointsNiv.getLayers();
+        for (let i = 0; i < basePointsNiv.length; i++) {
+            basePointsNiv[i].on('click', function(event) {
+                const checkbox = document.getElementById('checkbox');
+                checkbox.addEventListener('change', () => {
+                    console.log(basePointsNiv[i]);
+                    console.log(checkbox.checked);
+                    
+                    if (checkbox.checked) {
+                    checkMarker = L.marker([event.latlng.lat,event.latlng.lng], { icon: checkIcon }).addTo(map);
+                    basePointsNiv[i].bindPopup("defined");
+                        // Если включена, добавляем маркер галочки
+                        if (!checkMarker) {
+                            checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon:checkIcon }).addTo(map);
+                        }
+                    } else {
+                        // Если выключена, удаляем маркер галочки
+                        if (checkMarker) {
+                            map.removeLayer(checkMarker);
+                            checkMarker = null;
+                        }
+                    }
+                });
+            });
+        }
+
+        const pointsNiv = operatingPointsNiv.getLayers();
+        for (let i = 0; i < pointsNiv.length; i++) {
+            pointsNiv[i].on('click', function(event) {
+                console.log(event.latlng);
+            });
+        }
+
+        const basePointTax = operatingBaseTax.getLayers();
+        for (let i = 0; i < basePointTax.length; i++) {
+            basePointTax[i].on('click', function(event) {
+                const checkbox = document.getElementById('checkbox');
+                checkbox.addEventListener('change', () => {
+                    console.log(basePointTax[i]);
+                    console.log(checkbox.checked);
+                    
+                    if (checkbox.checked) {
+                    checkMarker = L.marker([event.latlng.lat,event.latlng.lng], { icon: checkIcon }).addTo(map);
+                    basePointTax[i].bindPopup("defined");
+                        // Если включена, добавляем маркер галочки
+                        if (!checkMarker) {
+                            checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon:checkIcon }).addTo(map);
+                        }
+                    } else {
+                        // Если выключена, удаляем маркер галочки
+                        if (checkMarker) {
+                            map.removeLayer(checkMarker);
+                            checkMarker = null;
+                        }
+                    }
+                });
+            });
+        }
+
+        const pointTax = operatingPointsTax.getLayers();
+        for (let i = 0; i < pointTax.length; i++) {
+            pointTax[i].on('click', function(event) {
+                console.log(event.latlng);
+            });
+        }
+
+
+}
+
+
+
+// Получаем имя активного слоя при загрузке
+let activeLayerName = null;
+for (const name in baseMaps) {
+    if (map.hasLayer(baseMaps[name])) {
+        activeLayerName = name;
+        break;
+    }
+};
+console.log('Активный слой при загрузке:', activeLayerName);
+
+
+// Функция для определения текущего активного слоя
+function getActiveLayer() {
+    let activeLayerName = null;
+    // Перебираем базовые слои и проверяем, какой слой добавлен на карту
+    for (const name in baseMaps) {
+        if (map.hasLayer(baseMaps[name])) {
+            activeLayerName = name;
+            break;
+        }
+    }
+    return activeLayerName;
+}
+// Выводим имя активного слоя при загрузке карты
+console.log('Активный слой при загрузке:', getActiveLayer());
+
+// Также можно отслеживать изменения активного слоя
+map.on('baselayerchange', function(e) {
+    console.log('Активный слой изменен на:', e.name);
+});
