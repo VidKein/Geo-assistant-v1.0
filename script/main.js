@@ -293,6 +293,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
             offset: L.point(10,15),// Смещение popup относительно маркера
             className: 'no-arrow' // Убираем стандартные стили
         });
+        marker.id = name;
         return marker;
     } else {
         //Подключение маркера с WGS84
@@ -503,6 +504,11 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
     const basePointsNiv = operatingBasePointsNiv.getLayers();
         for (let i = 0; i < basePointsNiv.length; i++) {
             basePointsNiv[i].on('click', function(event) {
+            //счтываем информацию
+            //содержание подсказки
+            console.log(basePointsNiv[i]._popup._content);
+            //id markera - options
+            console.log(basePointsNiv[i].id);
                 const checkbox = document.getElementById('checkbox');
                 checkbox.addEventListener('change', () => {
                     console.log(basePointsNiv[i]);
@@ -510,7 +516,7 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
                     
                     if (checkbox.checked) {
                     checkMarker = L.marker([event.latlng.lat,event.latlng.lng], { icon: checkIcon }).addTo(map);
-                    basePointsNiv[i].bindPopup("defined");
+                    //basePointsNiv[i].bindPopup("defined");
                         // Если включена, добавляем маркер галочки
                         if (!checkMarker) {
                             checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon:checkIcon }).addTo(map);
@@ -536,26 +542,7 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
         const basePointTax = operatingBaseTax.getLayers();
         for (let i = 0; i < basePointTax.length; i++) {
             basePointTax[i].on('click', function(event) {
-                const checkbox = document.getElementById('checkbox');
-                checkbox.addEventListener('change', () => {
-                    console.log(basePointTax[i]);
-                    console.log(checkbox.checked);
-                    
-                    if (checkbox.checked) {
-                    checkMarker = L.marker([event.latlng.lat,event.latlng.lng], { icon: checkIcon }).addTo(map);
-                    basePointTax[i].bindPopup("defined");
-                        // Если включена, добавляем маркер галочки
-                        if (!checkMarker) {
-                            checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon:checkIcon }).addTo(map);
-                        }
-                    } else {
-                        // Если выключена, удаляем маркер галочки
-                        if (checkMarker) {
-                            map.removeLayer(checkMarker);
-                            checkMarker = null;
-                        }
-                    }
-                });
+                console.log(event.latlng);    
             });
         }
 
@@ -565,6 +552,24 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
                 console.log(event.latlng);
             });
         }
-
-
 }
+
+/*
+// Функция для определения текущего активного слоя
+function getActiveLayer() {
+    let activeLayerName = null;
+    // Перебираем базовые слои и проверяем, какой слой добавлен на карту
+    for (const name in baseMaps) {
+        if (map.hasLayer(baseMaps[name])) {
+            activeLayerName = name;
+            break;
+        }
+    }
+    return activeLayerName;
+}
+// Выводим имя активного слоя при загрузке карты
+console.log('Активный слой при загрузке:', getActiveLayer());
+
+map.on('overlayadd', function(e) {console.log("+"+e.layer.layerName);});
+map.on('overlayremove', function(e) {console.log("-"+e.layer.layerName);});
+  */
