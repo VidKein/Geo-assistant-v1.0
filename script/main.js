@@ -449,54 +449,11 @@ map.addControl(new buttonSetting());
 //Масштабная линейка
 L.control.scalebar({ position: 'bottomright' }).addTo(map);
 
-/*------------------------------------------*/
-/*
-//Определяем координаты
-var popup = L.popup();
-function onMapClick(e) {
-    //JTSK
-    var conv = new JTSK_Converter();
-    var wgs = conv.WGS84toJTSK(e.latlng.lat, e.latlng.lng);
-    console.log(typeof(e.latlng.lat));
-    
-popup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at:  <br><b>WGS84 -</b> <br>" + (e.latlng.lat).toFixed(8)+","+(e.latlng.lng).toFixed(8)+"<br> <b>JTSK - </b><br>"+(wgs.x).toFixed(0)+","+(wgs.y).toFixed(0) )
-    .openOn(map);  
-}
-map.on('click', onMapClick);
-
-//Подключаем камеру
-let constraints = { audio: false, video: { width: 1280, height: 720 } };
-let setting = document.querySelector(".setting");
-setting.addEventListener("click",()=>{
-    promise = navigator.mediaDevices.getUserMedia(constraints);
-})
-*/
-
-/*
-// Функция для изменения маркеров
-function changeMarkers() {
-    markerGroup.eachLayer(function (layer) {
-        if (layer instanceof L.Marker) {
-            // Изменяем иконку маркера
-            layer.setIcon(L.divIcon({
-                className: 'custom-icon',
-                html: '<div style="background: red; width: 24px; height: 24px; border-radius: 50%;"></div>',
-                iconSize: [24, 24]
-            }));
-
-            // Добавляем новый popup
-            layer.bindPopup('Измененный маркер!');
-        }
-    });
-}
-*/
 // Иконка галочки
 const checkIcon = L.icon({
     iconUrl: './icons/check.png', // URL для иконки галочки
     iconSize: [10, 10], // Размер иконки
-    iconAnchor: [-15, -15], // Точка привязки
+    iconAnchor: [-17, -15], // Точка привязки
 });
 // Маркер галочки
 let checkMarker;
@@ -554,22 +511,31 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
         }
 }
 
-/*
-// Функция для определения текущего активного слоя
-function getActiveLayer() {
-    let activeLayerName = null;
-    // Перебираем базовые слои и проверяем, какой слой добавлен на карту
-    for (const name in baseMaps) {
-        if (map.hasLayer(baseMaps[name])) {
-            activeLayerName = name;
-            break;
-        }
-    }
-    return activeLayerName;
-}
-// Выводим имя активного слоя при загрузке карты
-console.log('Активный слой при загрузке:', getActiveLayer());
+map.on('overlayadd', function(e) {console.log("open - "+e.layer.layerName);});
+map.on('overlayremove', function(e) {console.log("close - "+e.layer.layerName);});
 
-map.on('overlayadd', function(e) {console.log("+"+e.layer.layerName);});
-map.on('overlayremove', function(e) {console.log("-"+e.layer.layerName);});
-  */
+
+/*------------------------------------------*/
+/*
+//Определяем координаты
+var popup = L.popup();
+function onMapClick(e) {
+    //JTSK
+    var conv = new JTSK_Converter();
+    var wgs = conv.WGS84toJTSK(e.latlng.lat, e.latlng.lng);
+    console.log(typeof(e.latlng.lat));
+    
+popup
+    .setLatLng(e.latlng)
+    .setContent("You clicked the map at:  <br><b>WGS84 -</b> <br>" + (e.latlng.lat).toFixed(8)+","+(e.latlng.lng).toFixed(8)+"<br> <b>JTSK - </b><br>"+(wgs.x).toFixed(0)+","+(wgs.y).toFixed(0) )
+    .openOn(map);  
+}
+map.on('click', onMapClick);
+
+//Подключаем камеру
+let constraints = { audio: false, video: { width: 1280, height: 720 } };
+let setting = document.querySelector(".setting");
+setting.addEventListener("click",()=>{
+    promise = navigator.mediaDevices.getUserMedia(constraints);
+})
+*/
