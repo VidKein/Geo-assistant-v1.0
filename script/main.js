@@ -453,34 +453,43 @@ const checkIcon = L.icon({
     iconSize: [10, 10], // Размер иконки
     iconAnchor: [-17, -15], // Точка привязки
 });
+let markers = {};
 let checkMarker;
 function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax) {     
     const basePointsNiv = operatingBasePointsNiv.getLayers();
         for (let i = 0; i < basePointsNiv.length; i++) {
             basePointsNiv[i].on('click', function(event) {   
-            //счтываем информацию
-            //содержание подсказки
-            //console.log(basePointsNiv[i]._popup._content);
-            //id markera
-            //console.log(basePointsNiv[i].id);
-                const checkbox = document.getElementById('checkbox');
-                checkbox.addEventListener('change', () => {
-                    console.log(basePointsNiv[i]);
+/*
+            //СЧИТЫВАЕМ ИНФОРМАЦИЮ!!!!!
+            //Содержание подсказки popup
+            console.log(basePointsNiv[i]._popup._content);
+            //Показываем id markera
+            console.log(basePointsNiv[i].id);
+            //Какая карта открыта
+            console.log(getActiveLayer());
+            
+*/
+
+
+                const checkbox = document.getElementById("checkbox");
+                checkbox.addEventListener('change', () => { 
                     if (checkbox.checked) {
-                    checkMarker = L.marker([event.latlng.lat,event.latlng.lng], { icon: checkIcon }).addTo(map);
-                    //basePointsNiv[i].bindPopup("defined");
-                        // Если включена, добавляем маркер галочки
-                        if (!checkMarker) {
-                            checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon:checkIcon }).addTo(map);
-                            //Выводим точки на карту и привязываем к переключателю
-                            operatingBasePointsNiv = L.layerGroup(checkMarker);
-                        }
-                    } else {
-                        // Если выключена, удаляем маркер галочки
-                        if (checkMarker) {
-                            map.removeLayer(checkMarker);
-                            checkMarker = null;
-                        }
+                        console.log("000");
+                        
+                    //Выводим точки на карту и привязываем к переключателю
+                    let checkboxChecked = basePointsNiv[i]._popup._content.replace(/id="checkbox"/, 'id="checkbox" checked');
+                    basePointsNiv[i].bindPopup(checkboxChecked);
+                    checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon: checkIcon }).addTo(map);
+                    checkMarker.name = basePointsNiv[i].id;
+                    markers[basePointsNiv[i].id]= checkMarker;
+                    operatingBasePointsNiv.addLayer(checkMarker);
+                    } else {    
+                        console.log("111");
+
+                    let checkboxChecked = basePointsNiv[i]._popup._content.replace(/id="checkbox" checked/, 'id="checkbox" ');
+                    basePointsNiv[i].bindPopup(checkboxChecked);         
+                    operatingBasePointsNiv.removeLayer(markers[basePointsNiv[i].id]);
+                    delete markers[basePointsNiv[i].id];
                     }
                 });
             });
@@ -506,12 +515,15 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
                 console.log(event.latlng);
             });
         }
-}
+};
 
-map.on('overlayadd', function(e) {console.log("open - "+e.layer.layerName);});
-map.on('overlayremove', function(e) {console.log("close - "+e.layer.layerName);});
-
-
+//Показываем какой РАБОЧИЙ слой открыт/закрыт
+map.on('overlayadd', function(e) {
+    console.log("open - "+e.layer.layerName);
+});
+map.on('overlayremove', function(e) {
+    console.log("close - "+e.layer.layerName);
+});
 /*------------------------------------------*/
 /*
 //Определяем координаты
