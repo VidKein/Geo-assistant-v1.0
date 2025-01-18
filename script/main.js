@@ -283,9 +283,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         //Подключение маркера с конвертацией JTSKtoWGS84
         /*var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);*/
         // Создаем всплывающее меню с радиокнопкой
-        const popupContent = `
-            <input type="checkbox" id="checkbox"> completed
-        `;
+        const popupContent = `<input type="checkbox" id="checkbox"> completed`;
         var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent).bindTooltip(name, { 
             permanent: true, // Постоянное отображение
             direction: "bottom", // Направление отображения
@@ -455,28 +453,27 @@ const checkIcon = L.icon({
     iconSize: [10, 10], // Размер иконки
     iconAnchor: [-17, -15], // Точка привязки
 });
-// Маркер галочки
 let checkMarker;
 function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax) {     
     const basePointsNiv = operatingBasePointsNiv.getLayers();
         for (let i = 0; i < basePointsNiv.length; i++) {
-            basePointsNiv[i].on('click', function(event) {
+            basePointsNiv[i].on('click', function(event) {   
             //счтываем информацию
             //содержание подсказки
-            console.log(basePointsNiv[i]._popup._content);
-            //id markera - options
-            console.log(basePointsNiv[i].id);
+            //console.log(basePointsNiv[i]._popup._content);
+            //id markera
+            //console.log(basePointsNiv[i].id);
                 const checkbox = document.getElementById('checkbox');
                 checkbox.addEventListener('change', () => {
                     console.log(basePointsNiv[i]);
-                    console.log(checkbox.checked);
-                    
                     if (checkbox.checked) {
                     checkMarker = L.marker([event.latlng.lat,event.latlng.lng], { icon: checkIcon }).addTo(map);
                     //basePointsNiv[i].bindPopup("defined");
                         // Если включена, добавляем маркер галочки
                         if (!checkMarker) {
                             checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon:checkIcon }).addTo(map);
+                            //Выводим точки на карту и привязываем к переключателю
+                            operatingBasePointsNiv = L.layerGroup(checkMarker);
                         }
                     } else {
                         // Если выключена, удаляем маркер галочки
