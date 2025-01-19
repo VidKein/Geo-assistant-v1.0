@@ -51,6 +51,12 @@ let jobsTrig = L.icon({
     iconAnchor:   [0,0],
     popupAnchor:  [8, -1]
 });
+// Иконка галочки
+const checkIcon = L.icon({
+    iconUrl: './icons/check_red.png', // URL для иконки галочки
+    iconSize: [10, 10], // Размер иконки
+    iconAnchor: [-17, -15], // Точка привязки
+});
 /*СЛОИ*/
 //КАРТ
 let baseMaps = {
@@ -404,7 +410,7 @@ const buttonDesing = L.Control.extend({
             showDesing.classList.toggle("activ"); 
             if (showDesing.className == "showDesing activ") {
                 designations.style.display = "block";
-                buttonDesing.style.marginBottom = "152px";
+                buttonDesing.style.marginBottom = "150px";
             } else {
                 designations.style.display = "none";
                 buttonDesing.style.marginBottom = "-2px";
@@ -446,13 +452,6 @@ const buttonSetting = L.Control.extend({
 map.addControl(new buttonSetting());
 //Масштабная линейка
 L.control.scalebar({ position: 'bottomright' }).addTo(map);
-
-// Иконка галочки
-const checkIcon = L.icon({
-    iconUrl: './icons/check.png', // URL для иконки галочки
-    iconSize: [10, 10], // Размер иконки
-    iconAnchor: [-17, -15], // Точка привязки
-});
 
 function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax) {
      let markers = {};//Создаем обьект для хранения маркеров
