@@ -453,8 +453,8 @@ const checkIcon = L.icon({
     iconSize: [10, 10], // Размер иконки
     iconAnchor: [-17, -15], // Точка привязки
 });
-let markers = {};
-let checkMarker;
+let markers = {};//Создаем обьект для хранения маркеров
+let checkMarker;//Маркер
 function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax) {     
     const basePointsNiv = operatingBasePointsNiv.getLayers();
         for (let i = 0; i < basePointsNiv.length; i++) {
@@ -469,30 +469,28 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
             console.log(getActiveLayer());
             
 */
-
-
-                const checkbox = document.getElementById("checkbox");
-                checkbox.addEventListener('change', () => { 
+            const checkbox = document.getElementById("checkbox");
+            checkbox.addEventListener('click', () => { 
                     if (checkbox.checked) {
-                        console.log("000");
-                        
-                    //Выводим точки на карту и привязываем к переключателю
+                    checkbox.checked = !checkbox.checked;// Переключение состояния
+                    //При нажатии на checkbox изменяем чекбокс на активный переписывая Popup
                     let checkboxChecked = basePointsNiv[i]._popup._content.replace(/id="checkbox"/, 'id="checkbox" checked');
                     basePointsNiv[i].bindPopup(checkboxChecked);
+                    //Создаем маркер галочку
                     checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon: checkIcon }).addTo(map);
-                    checkMarker.name = basePointsNiv[i].id;
-                    markers[basePointsNiv[i].id]= checkMarker;
-                    operatingBasePointsNiv.addLayer(checkMarker);
+                    checkMarker.name = basePointsNiv[i].id;//присваеваваем ему номер ДЛЯ ПОИСКА
+                    markers[basePointsNiv[i].id]= checkMarker;//добавляем в обьект
+                    operatingBasePointsNiv.addLayer(checkMarker);//добавляем к слою
                     } else {    
-                        console.log("111");
-
+                    //При нажатии на checkbox изменяем чекбокс на не активный Popup   
                     let checkboxChecked = basePointsNiv[i]._popup._content.replace(/id="checkbox" checked/, 'id="checkbox" ');
                     basePointsNiv[i].bindPopup(checkboxChecked);         
-                    operatingBasePointsNiv.removeLayer(markers[basePointsNiv[i].id]);
-                    delete markers[basePointsNiv[i].id];
+                    //Удаляем маркер галочку
+                    operatingBasePointsNiv.removeLayer(markers[basePointsNiv[i].id]);//из слоя
+                    delete markers[basePointsNiv[i].id];//из масива
                     }
                 });
-            });
+        });
         }
 
         const pointsNiv = operatingPointsNiv.getLayers();
