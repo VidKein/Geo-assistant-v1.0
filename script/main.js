@@ -457,23 +457,6 @@ const checkIcon = L.icon({
 function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax) {
      let markers = {};//Создаем обьект для хранения маркеров
      let checkMarker;//Маркер
-/*    
-       //Показываем какой РАБОЧИЙ слой открыт/закрыт
-        map.on('overlayadd', function(e) {
-            if (e.layer.layerName == "operatingBasePointsNiv") {
-               checkedMarkers(operatingBasePointsNiv);
-            };
-            if (e.layer.layerName == "operatingPointsNiv") {
-                checkedMarkers(operatingPointsNiv);
-             };
-             if (e.layer.layerName == "operatingBaseTax") {
-                checkedMarkers(operatingBaseTax);
-             };
-             if (e.layer.layerName == "operatingPointsTax") {
-                checkedMarkers(operatingPointsTax);
-             };     
-
-        });
     //Функция изменения состояния галочки 
     function checkedMarkers(layerName) {
         const pointCheckedMarkers = layerName.getLayers();
@@ -503,9 +486,13 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
             });    
         }
     }
-*/
+    //Запускаем функцию создания маркера
+    checkedMarkers(operatingBasePointsNiv);
+    checkedMarkers(operatingPointsNiv);
+    checkedMarkers(operatingBaseTax);
+    checkedMarkers(operatingPointsTax);
 
-   
+ /*  
             const basePointsNiv = operatingBasePointsNiv.getLayers();
             for (let i = 0; i < basePointsNiv.length; i++) {
                 basePointsNiv[i].on('click', function(event) {   
@@ -625,7 +612,7 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
                     });
             });
         }
-       
+      */ 
         
 };
 
