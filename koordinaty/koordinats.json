@@ -1717,6 +1717,46 @@
         "systemCoordinates": "JTSK",
         "positionType": "target cross"
       },
+      "141501": {
+        "position": [
+          742296,
+          1048081
+        ],
+        "date": "2025-01-26",
+        "vyska": 268.3339,
+        "systemCoordinates": "JTSK",
+        "positionType": "earth"
+      },
+      "141502": {
+        "position": [
+          742296,
+          1048087
+        ],
+        "date": "2025-01-26",
+        "vyska": 268.3232,
+        "systemCoordinates": "JTSK",
+        "positionType": "earth"
+      },
+      "141506": {
+        "position": [
+          742296,
+          1048111
+        ],
+        "date": "2025-01-26",
+        "vyska": 268.3938,
+        "systemCoordinates": "JTSK",
+        "positionType": "earth"
+      },
+      "141507": {
+        "position": [
+          742296,
+          1048117
+        ],
+        "date": "2025-01-26",
+        "vyska": 268.3774,
+        "systemCoordinates": "JTSK",
+        "positionType": "earth"
+      },
       "141701": {
         "position": [
           742147,
@@ -2039,6 +2079,16 @@
       }
     },
     "SOD-12": {
+      "100421": {
+        "position": [
+          742004,
+          1047455
+        ],
+        "date": "2025-01-26",
+        "vyska": 267.2181,
+        "systemCoordinates": "JTSK",
+        "positionType": "asphalt"
+      },
       "102101": {
         "position": [
           742113,
@@ -2368,6 +2418,26 @@
         "date": "27.10.2024",
         "systemCoordinates": "JTSK",
         "positionType": "asphalt"
+      },
+      "EXT-333(550201)": {
+        "position": [
+          742168,
+          1047787
+        ],
+        "date": "2025-01-26",
+        "vyska": 268.7373,
+        "systemCoordinates": "JTSK",
+        "positionType": "pit"
+      },
+      "EXT-334(550301)": {
+        "position": [
+          742161,
+          1047790
+        ],
+        "date": "2025-01-26",
+        "vyska": 269.7029,
+        "systemCoordinates": "JTSK",
+        "positionType": "pit"
       }
     },
     "SOD-13": {
