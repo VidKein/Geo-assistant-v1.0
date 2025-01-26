@@ -23,23 +23,23 @@
             <!--Информация о точках-->
             <div id="infoPointkBlock" class="infoPointkBlock">
                 <div class="points-wrapper">
-                <button class="close-points" title="Exit the infoblock">X</button>
-                  <!--Базовые точки-нивелирование-->
-                  <button type="button" class="accordion" name="levelingBasic">Basic leveling points - <span id="levelingBasicLength">0</span></button>
-                  <div class="links" id="levelingBasic" name="point">
-                  </div>
-                  <!--Базовые точки--тахеометрия-->
-                  <button type="button" class="accordion" name="tacheometryBasic">Base points of tacheometry - <span id="tacheometryBasicLength">0</span></button>
-                  <div class="links" id="tacheometryBasic" name="point">
-                  </div>
-                  <!--Рабочии точки-нивелирование-->
-                  <button type="button" class="accordion" name="levelingJobs">Operating leveling points - <span id="levelingJobsLength">0</span></button>
-                  <div class="links" id="levelingJobs" name="point">
-                  </div>
-                  <!--Рабочии точки-тахеометрии-->
-                  <button type="button" class="accordion" name="tacheometryJobs">Operating points of tacheometry - <span id="tacheometryJobsLength">0</span></button>
-                  <div class="links" id="tacheometryJobs" name="point">
-                  </div>
+                    <button class="close-points" title="Exit the infoblock">X</button>
+                    <!--Базовые точки-нивелирование-->
+                    <button type="button" class="accordion" name="levelingBasic">Basic leveling points - <span id="levelingBasicLength">0</span></button>
+                    <div class="links" id="levelingBasic" name="point">
+                    </div>
+                    <!--Базовые точки--тахеометрия-->
+                    <button type="button" class="accordion" name="tacheometryBasic">Base points of tacheometry - <span id="tacheometryBasicLength">0</span></button>
+                    <div class="links" id="tacheometryBasic" name="point">
+                    </div>
+                    <!--Рабочии точки-нивелирование-->
+                    <button type="button" class="accordion" name="levelingJobs">Operating leveling points - <span id="levelingJobsLength">0</span></button>
+                    <div class="links" id="levelingJobs" name="point">
+                    </div>
+                    <!--Рабочии точки-тахеометрии-->
+                    <button type="button" class="accordion" name="tacheometryJobs">Operating points of tacheometry - <span id="tacheometryJobsLength">0</span></button>
+                    <div class="links" id="tacheometryJobs" name="point">
+                    </div>
                 </div>
             </div>
             <!--Импорт точки-->
@@ -49,24 +49,23 @@
                     <div class="importBlock">
                         <span class="namePoint" style="color: red; font-weight: 600;"></span>    
                         <div id="importInfo">
-                            <p>position: <input type="text" name="position X" value="700000"> x <input type="text" name="position Y" value="1000000"></p>
-                            <p>vycka: <input type="text" name="vycka" value="100.0000"></p>
-                            <p>date: <input type="date" name="date"></p>
-                            <p>coordinate system: <input type="text" name="coordinateSystem" list="coordinateSystem"></p>
+                            <p>position: <input type="number" id="position X" value=700000 required> x <input type="text" id="position Y" value=1000000 required></p>
+                            <p>vycka: <input type="number" id="vyska" value=100.0000 required></p>
+                            <p>date: <input type="date" id="date" required></p>
+                            <p>coordinate system: <input type="text" id="coordinate" list="coordinateSystem" required></p>
                             <datalist id="coordinateSystem">
                                 <option value="JTSK">
                                 <option value="WGS84">
                             </datalist>
-                            <p>position type: <input type="text" name="positionType" list="positionType"></p>
+                            <p>position type: <input type="text" id="position" list="positionType" required></p>
                             <datalist id="positionType">
                                 <option value="wall">
                                 <option value="target cross">
                                 <option value="fence">
                                 <option value="asphalt">
                             </datalist>
-
-                        </div>  
-                        <input type="button" value="OK">
+                        </div> 
+                        <input id="funktionalAddEdit" type="button" value="OK">
                     </div>
                 </div>
             </div>
@@ -146,6 +145,7 @@
     <script src="./API/xlsx-import/xlsx.full.min.js"></script><!--xlsx-import-->
     <script type="module"  src="./script/modules/calendarg.js"></script><!--calendarg-->
     <script type="module" src="./script/modules/planning-work.js"></script><!--planning-work-->
+    <script type="module" src="./script/modules/working-with-files/add.js"></script><!--working-with-files+ADD-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
 </body>
 </html>

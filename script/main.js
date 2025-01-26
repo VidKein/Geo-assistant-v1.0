@@ -97,10 +97,14 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let parsedData =  parsinWork(planingBaseNiv);
         parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
-            pointBaseLayerNiv.push(createMarker(row["namber"], row["position"], row["JTSK"], row["vycka"], row["positionType"], markerBasePointNiv)); 
+            pointBaseLayerNiv.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerBasePointNiv)); 
             //Создаем новый div
             const jobDivNiv = document.createElement('div');
             jobDivNiv.className = 'pointJobs'; // Добавляем класс
+            //Создаем доплнительные атрибуты
+            jobDivNiv.setAttribute("place", row["place"]);
+            jobDivNiv.setAttribute("data-name", "Base");
+            jobDivNiv.setAttribute("data-jobs", "niv");
             jobDivNiv.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointBaseNiv.appendChild(jobDivNiv);
@@ -114,6 +118,10 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             //Добавляем span с финкцией изменения 
             let pointError = document.createElement('div');
             pointError.className = 'pointError';
+            //Создаем доплнительные атрибуты
+            jobDivNivError.setAttribute("place", row["place"]);
+            jobDivNivError.setAttribute("data-name", "Base");
+            jobDivNivError.setAttribute("data-jobs", "niv");
             jobDivNivError.appendChild(pointError);
             console.log("Базовые точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -121,7 +129,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         //Выводим точки на карту и привязываем к переключателю
         operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
         layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");
-    } else {
+    }else {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work leveling points"
@@ -138,10 +146,14 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let parsedData =  parsinWork(planingWorkNiv);
         parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
-            pointOperatingLayerNiv.push(createMarker(row["namber"], row["position"], row["JTSK"], row["vycka"], row["positionType"], markerPointNiv)); 
+            pointOperatingLayerNiv.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerPointNiv)); 
             //Создаем новый div
             const jobDivNiv = document.createElement('div');
             jobDivNiv.className = 'pointJobs'; // Добавляем класс
+            //Создаем доплнительные атрибуты
+            jobDivNiv.setAttribute("place", row["place"]);
+            jobDivNiv.setAttribute("data-name", "poligons");
+            jobDivNiv.setAttribute("data-jobs", "niv");
             jobDivNiv.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointJobsNiv.appendChild(jobDivNiv);
@@ -155,6 +167,10 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             //Добавляем span с финкцией изменения 
             let pointError = document.createElement('div');
             pointError.className = 'pointError';
+            //Создаем доплнительные атрибуты
+            jobDivNivError.setAttribute("place", row["place"]);
+            jobDivNivError.setAttribute("data-name", "poligons");
+            jobDivNivError.setAttribute("data-jobs", "niv");
             jobDivNivError.appendChild(pointError);
             console.log("Точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -179,10 +195,14 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let parsedData =  parsinWork(planingBaseTrig); 
         parsedData.forEach(row => {
            if (row["position"] !== undefined) {
-            pointBaseLayerTax.push(createMarker(row["namber"], row["position"], row["JTSK"], row["vycka"], row["positionType"], markerBasePointTrig)); 
+            pointBaseLayerTax.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerBasePointTrig)); 
             //Создаем новый div
             const jobDivTax = document.createElement('div');
             jobDivTax.className = 'pointJobs'; // Добавляем класс
+            //Создаем доплнительные атрибуты
+            jobDivTax.setAttribute("place", row["place"]);
+            jobDivTax.setAttribute("data-name", "Base");
+            jobDivTax.setAttribute("data-jobs", "trig");
             jobDivTax.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointBaseTax.appendChild(jobDivTax);
@@ -196,6 +216,10 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             //Добавляем span с финкцией изменения 
             let pointError = document.createElement('div');
             pointError.className = 'pointError';
+            //Создаем доплнительные атрибуты
+            jobDivTaxError.setAttribute("place", row["place"]);
+            jobDivTaxError.setAttribute("data-name", "Base");
+            jobDivTaxError.setAttribute("data-jobs", "trig");
             jobDivTaxError.appendChild(pointError);
             console.log("Базовые точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -220,10 +244,14 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let parsedData =  parsinWork(planingWorkTax); 
         parsedData.forEach(row => {
            if (row["position"] !== undefined) {
-            pointOperatingLayerTax.push(createMarker(row["namber"], row["position"], row["JTSK"], row["vycka"], row["positionType"], markerPointTax)); 
+            pointOperatingLayerTax.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerPointTax)); 
             //Создаем новый div
             const jobDivTax = document.createElement('div');
             jobDivTax.className = 'pointJobs'; // Добавляем класс
+            //Создаем доплнительные атрибуты
+            jobDivTax.setAttribute("place", row["place"]);
+            jobDivTax.setAttribute("data-name", "poligons");
+            jobDivTax.setAttribute("data-jobs", "trig");
             jobDivTax.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointJobsTax.appendChild(jobDivTax);
@@ -237,6 +265,10 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             //Добавляем span с финкцией изменения 
             let pointError = document.createElement('div');
             pointError.className = 'pointError';
+            //Создаем доплнительные атрибуты
+            jobDivTaxError.setAttribute("place", row["place"]);
+            jobDivTaxError.setAttribute("data-name", "poligons");
+            jobDivTaxError.setAttribute("data-jobs", "trig");
             jobDivTaxError.appendChild(pointError);
             console.log("Точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -260,23 +292,27 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
 }
 //Функция парсинга информации переданной из planing-work.js
 function parsinWork(planing) {
-    let arrayPoint = [];
+    if (!Array.isArray(planing)) {
+        throw new Error("Input must be an array of strings");
+    }
+    const arrayPoint = [];
+    const regex = /place:\s*([\w-]+)|namber:\s*([\w-]+(?:\([\d]+\))?)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|systemCoordinates:\s*([\w]+)|positionType:\s*(\w+)/g;
     planing.forEach(point => {
         const parsedData = {};
-        const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
         let match;
-        while ((match = regex.exec(point)) !== null) {            
-            if (match[1]) parsedData["namber"] = match[1];
-            if (match[2]) parsedData["position"] = match[2]
-                .split(/[,\s]+/) // Разделяем по запятым и пробелам
-                .filter(num => num.trim() !== "") // Убираем пустые строки
-                .map(Number); // Преобразуем в числа
-            if (match[3]) parsedData["vycka"] = parseFloat(match[3].replace(',', '.'));;
-            if (match[4]) parsedData["date"] = match[4];
-            if (match[5]) parsedData["JTSK"] = match[5].trim();
-            if (match[6]) parsedData["positionType"] = match[6];
+        while ((match = regex.exec(point)) !== null) {
+            if (match[1]) parsedData["place"] = match[1];
+            if (match[2]) parsedData["namber"] = match[2];
+            if (match[3]) parsedData["position"] = match[3]
+                .split(/[,\s]+/)
+                .filter(num => num.trim() !== "")
+                .map(Number);
+            if (match[4]) parsedData["vycka"] = parseFloat(match[4].replace(',', '.'));
+            if (match[5]) parsedData["date"] = match[5];
+            if (match[6]) parsedData["systemCoordinates"] = match[6].trim();
+            if (match[7]) parsedData["positionType"] = match[7];
         }
-        arrayPoint.push(parsedData); 
+        arrayPoint.push(parsedData);
     });
     return arrayPoint;
 }
@@ -452,7 +488,7 @@ const buttonSetting = L.Control.extend({
 map.addControl(new buttonSetting());
 //Масштабная линейка
 L.control.scalebar({ position: 'bottomright' }).addTo(map);
-
+//Функция создания маркера состояния
 function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax) {
      let markers = {};//Создаем обьект для хранения маркеров
      let checkMarker;//Маркер
@@ -491,127 +527,6 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
     checkedMarkers(operatingBaseTax);
     checkedMarkers(operatingPointsTax);
 
- /*  
-            const basePointsNiv = operatingBasePointsNiv.getLayers();
-            for (let i = 0; i < basePointsNiv.length; i++) {
-                basePointsNiv[i].on('click', function(event) {   
-               
-                            //СЧИТЫВАЕМ ИНФОРМАЦИЮ!!!!!
-                            //Содержание подсказки popup
-                            console.log(basePointsNiv[i]._popup._content);
-                            //Показываем id markera
-                            console.log(basePointsNiv[i].id);
-                            //Какая карта открыта
-                            console.log(getActiveLayer());
-
-                
-                const checkbox = document.getElementById("checkbox");
-                checkbox.addEventListener('click', () => { 
-                        if (checkbox.checked) {
-                        checkbox.checked = !checkbox.checked;// Переключение состояния
-                        //При нажатии на checkbox изменяем чекбокс на активный переписывая Popup
-                        let checkboxChecked = basePointsNiv[i]._popup._content.replace(/id="checkbox"/, 'id="checkbox" checked');
-                        basePointsNiv[i].bindPopup(checkboxChecked);
-                        //Создаем маркер галочку
-                        checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon: checkIcon }).addTo(map);
-                        checkMarker.name = basePointsNiv[i].id;//присваеваваем ему номер ДЛЯ ПОИСКА
-                        markers[basePointsNiv[i].id]= checkMarker;//добавляем в обьект
-                        operatingBasePointsNiv.addLayer(checkMarker);//добавляем к слою
-                        } else {    
-                        //При нажатии на checkbox изменяем чекбокс на не активный Popup   
-                        let checkboxChecked = basePointsNiv[i]._popup._content.replace(/id="checkbox" checked/, 'id="checkbox" ');
-                        basePointsNiv[i].bindPopup(checkboxChecked);         
-                        //Удаляем маркер галочку
-                        operatingBasePointsNiv.removeLayer(markers[basePointsNiv[i].id]);//из слоя
-                        delete markers[basePointsNiv[i].id];//из масива
-                        }
-                });
-
-            
-            });
-        }
-
-        const pointsNiv = operatingPointsNiv.getLayers();
-        for (let i = 0; i < pointsNiv.length; i++) {
-            pointsNiv[i].on('click', function(event) {
-                const checkbox = document.getElementById("checkbox");
-                checkbox.addEventListener('click', () => { 
-                        if (checkbox.checked) {
-                        checkbox.checked = !checkbox.checked;// Переключение состояния
-                        //При нажатии на checkbox изменяем чекбокс на активный переписывая Popup
-                        let checkboxChecked = pointsNiv[i]._popup._content.replace(/id="checkbox"/, 'id="checkbox" checked');
-                        pointsNiv[i].bindPopup(checkboxChecked);
-                        //Создаем маркер галочку
-                        checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon: checkIcon }).addTo(map);
-                        checkMarker.name = pointsNiv[i].id;//присваеваваем ему номер ДЛЯ ПОИСКА
-                        markers[pointsNiv[i].id]= checkMarker;//добавляем в обьект
-                        operatingPointsNiv.addLayer(checkMarker);//добавляем к слою
-                        } else {    
-                        //При нажатии на checkbox изменяем чекбокс на не активный Popup   
-                        let checkboxChecked = pointsNiv[i]._popup._content.replace(/id="checkbox" checked/, 'id="checkbox" ');
-                        pointsNiv[i].bindPopup(checkboxChecked);         
-                        //Удаляем маркер галочку
-                        operatingPointsNiv.removeLayer(markers[pointsNiv[i].id]);//из слоя
-                        delete markers[pointsNiv[i].id];//из масива
-                        }
-                    });
-            });
-        }
-
-        const basePointTax = operatingBaseTax.getLayers();
-        for (let i = 0; i < basePointTax.length; i++) {
-            basePointTax[i].on('click', function(event) {
-                const checkbox = document.getElementById("checkbox");
-                checkbox.addEventListener('click', () => { 
-                        if (checkbox.checked) {
-                        checkbox.checked = !checkbox.checked;// Переключение состояния
-                        //При нажатии на checkbox изменяем чекбокс на активный переписывая Popup
-                        let checkboxChecked = basePointTax[i]._popup._content.replace(/id="checkbox"/, 'id="checkbox" checked');
-                        basePointTax[i].bindPopup(checkboxChecked);
-                        //Создаем маркер галочку
-                        checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon: checkIcon }).addTo(map);
-                        checkMarker.name = basePointTax[i].id;//присваеваваем ему номер ДЛЯ ПОИСКА
-                        markers[basePointTax[i].id]= checkMarker;//добавляем в обьект
-                        operatingBaseTax.addLayer(checkMarker);//добавляем к слою
-                        } else {    
-                        //При нажатии на checkbox изменяем чекбокс на не активный Popup   
-                        let checkboxChecked = basePointTax[i]._popup._content.replace(/id="checkbox" checked/, 'id="checkbox" ');
-                        basePointTax[i].bindPopup(checkboxChecked);         
-                        //Удаляем маркер галочку
-                        operatingBaseTax.removeLayer(markers[basePointTax[i].id]);//из слоя
-                        delete markers[basePointTax[i].id];//из масива
-                        }
-                    });
-            });
-        }
-
-        const pointTax = operatingPointsTax.getLayers();
-        for (let i = 0; i < pointTax.length; i++) {
-            pointTax[i].on('click', function(event) {
-                const checkbox = document.getElementById("checkbox");
-                checkbox.addEventListener('click', () => { 
-                        if (checkbox.checked) {
-                        checkbox.checked = !checkbox.checked;// Переключение состояния
-                        //При нажатии на checkbox изменяем чекбокс на активный переписывая Popup
-                        let checkboxChecked = pointTax[i]._popup._content.replace(/id="checkbox"/, 'id="checkbox" checked');
-                        pointTax[i].bindPopup(checkboxChecked);
-                        //Создаем маркер галочку
-                        checkMarker = L.marker([event.latlng.lat,event.latlng.lng], {icon: checkIcon }).addTo(map);
-                        checkMarker.name = pointTax[i].id;//присваеваваем ему номер ДЛЯ ПОИСКА
-                        markers[pointTax[i].id]= checkMarker;//добавляем в обьект
-                        operatingPointsTax.addLayer(checkMarker);//добавляем к слою
-                        } else {    
-                        //При нажатии на checkbox изменяем чекбокс на не активный Popup   
-                        let checkboxChecked = pointTax[i]._popup._content.replace(/id="checkbox" checked/, 'id="checkbox" ');
-                        pointTax[i].bindPopup(checkboxChecked);         
-                        //Удаляем маркер галочку
-                        operatingPointsTax.removeLayer(markers[pointTax[i].id]);//из слоя
-                        delete markers[pointTax[i].id];//из масива
-                        }
-                    });
-            });
-        }
-      */ 
         
 };
 

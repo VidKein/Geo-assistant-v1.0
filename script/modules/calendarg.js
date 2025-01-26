@@ -169,13 +169,22 @@ for (let i = 0; i < importPoint.children.length; i++) {
                     if (point[i].className === "pointJobsError") {
                         point[i].addEventListener("click",()=>{
                             let namePointError = point[i].textContent;
+                            let place = point[i].getAttribute('place');
+                            let dataName = point[i].getAttribute('data-name');
+                            let dataJobs = point[i].getAttribute('data-jobs');
+                            let naminfoData = document.querySelector(".namePoint");
+                            //Создаем новые атрибуты
+                            naminfoData.setAttribute("place", place);
+                            naminfoData.setAttribute("data-name", dataName);
+                            naminfoData.setAttribute("data-jobs", dataJobs);
+                            naminfoData.innerText = namePointError;   
                             document.querySelector("#import").style.display = "block";
-                            document.querySelector(".namePoint").innerText = namePointError;   
-                        document.querySelector(".close-import").addEventListener("click", ()=>{document.querySelector("#import").style.display = "none";;
+                            document.querySelector(".close-import").addEventListener("click", ()=>{document.querySelector("#import").style.display = "none";;
                         })
                         })
                     }
                 }
+
             }
         }
     })

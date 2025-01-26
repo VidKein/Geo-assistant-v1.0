@@ -1,55 +1,63 @@
-let add = [];
-let systemCoordinates = [];
-let positionType= [];
-let funktionalAddEdit = document.querySelector("#funktionalAddEdit");
-// Получаем элементы input и datalist - systemCoordinates
-const coordinateInput = document.getElementById('coordinate');
-const validOptions = Array.from(document.querySelectorAll('#coordinateSystem option')).map(option => option.value);
-// Получаем элементы input и datalist - systemCoordinates
-const typeInput = document.getElementById('position');
-const validOptionsType = Array.from(document.querySelectorAll('#positionType option')).map(option => option.value);
-funktionalAddEdit.addEventListener("click",funktionalAdd);
-async function funktionalAdd() {
-    let dataName = document.querySelector(".namePoint").getAttribute('data-name');
-    let dataJobs = document.querySelector(".namePoint").getAttribute('data-jobs');
-    let id = document.querySelector(".namePoint").textContent;
-    let positionX = document.getElementById("position X").value;
-    let positionY = document.getElementById("position Y").value;
-    let vyska = document.getElementById("vyska").value;
-    let date = document.getElementById("date").value;
-    //add.push(`${id}:{position:[${positionX},${positionY}], vycka: ${vyska}, date: ${date}, systemCoordinates : ${systemCoordinates}, positionType: ${positionType}}`);    
-    //console.log(add);
-    const API_URL = 'http://localhost:4000/data';
-    const response = await fetch(API_URL, {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({dataName, dataJobs, id, positionX, positionY, vyska, date, systemCoordinates, positionType})
+/*Установите зависимости:
+npm install express
+npm install express cors*/
+const express = require('express');
+const fs = require('fs');
+const cors = require('cors'); // Для поддержки запросов с других доменов
+const path = require('path');// Абсолютный путь к файлу
+
+const app = express();
+const PORT = process.env.PORT || 4000; // Используется переменная окружения или 4000 по умолчанию
+//
+app.use(express.json());
+app.use(cors()); // Разрешаем CORS для всех источников
+
+// Путь к файлу
+const DATA_FILE = path.join(__dirname,  '..','koordinaty', 'koordinats.json');
+
+// Редоктирование/чтение данных
+
+// Добавление данных
+app.post('/addDat', (req, res) => {
+    const {dataPlace, dataName, dataJobs, id, positionX, positionY, vyska, date, systemCoordinates, positionType } = req.body;     
+    fs.readFile(DATA_FILE, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Ошибка чтения данных' });
+        } else {
+            const jsonData = JSON.parse(data);
+            if (jsonData[id]) {return res.status(400).json({ error: 'Элемент с таким ID уже существует' });}
+            //Собираем в массив 
+            if (dataName == "poligons") { 
+                jsonData[dataName][dataPlace][id] = {
+                    position: [Number(positionX),Number(positionY)],
+                    date:date,
+                    vyska: Number(vyska),
+                    systemCoordinates: systemCoordinates[0],
+                    positionType: positionType[0]
+                  };
+            }else {
+                jsonData[dataName][dataJobs][id] = {
+                    position: [Number(positionX),Number(positionY)],
+                    date:date,
+                    vyska: Number(vyska),
+                    systemCoordinates: systemCoordinates[0],
+                    positionType: positionType[0]
+                  };
+            }
+            //Вносим иформацию в файл
+            fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2), (err) => {
+                if (err) {
+                  console.error('Ошибка записи JSON:', err);
+                  return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+                }
+                res.json({ success: true, message: `Данные точки ${id} добавлены.` });
+            });
+        }
     });
-    const result = await response.json();
-    alert(result.message || result.error);
-    // Перезагрузка страницы
-    location.reload();
-    //обнуление
-    document.querySelector("#import").style.display = "none"; 
-    add =[];
-    coordinateInput.value=[];
-    typeInput.value=[];
-    systemCoordinates = [];
-}
+});
+// Удаление данных
 
-
- // Обработчик изменения ввода
- coordinateInput.addEventListener('input', () => {
-   const currentValue = coordinateInput.value;
-   // Проверяем, соответствует ли введённое значение одному из доступных вариантов
-   if (validOptions.includes(currentValue)) {systemCoordinates.push(currentValue);} 
- });  
- 
-
- // Обработчик изменения ввода
- typeInput.addEventListener('input', () => {
-   const currentValue = typeInput.value;
-   // Проверяем, соответствует ли введённое значение одному из доступных вариантов
-   if (validOptionsType.includes(currentValue)) {positionType.push(currentValue);} 
- });  
- 
+// Запуск сервера
+app.listen(PORT, () => {
+    console.log(`Сервер запущен: http://localhost:${PORT}`);
+});

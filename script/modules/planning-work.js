@@ -89,14 +89,14 @@
                         columnData.forEach(row => {  
                             if (row.C == 'n') {    
                                 if (jsonData.Base.niv[row.B] !== undefined) {
-                                    resultsTip.nivBase.push(`namber: ${row.B} , position: ${jsonData.Base.niv[row.B].position[0]} , ${jsonData.Base.niv[row.B].position[1]}, vycka: ${jsonData.Base.niv[row.B].vycka}, date: ${jsonData.Base.niv[row.B].date}, JTSK: ${jsonData.Base.niv[row.B].systemCoordinates}, positionType: ${jsonData.Base.niv[row.B].positionType}`);
+                                    resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.niv[row.B].position[0]} , ${jsonData.Base.niv[row.B].position[1]}, vycka: ${jsonData.Base.niv[row.B].vycka}, date: ${jsonData.Base.niv[row.B].date}, systemCoordinates: ${jsonData.Base.niv[row.B].systemCoordinates}, positionType: ${jsonData.Base.niv[row.B].positionType}`);
                                 }
-                                else{resultsTip.nivBase.push(`namber: ${row.B} : Data not found in database`);}
+                                else{resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             } else {
                                 if (jsonData.Base.trig[row.B] !== undefined) {
-                                    resultsTip.trigBase.push(`namber: ${row.B} , position: ${jsonData.Base.trig[row.B].position[0]} , ${jsonData.Base.trig[row.B].position[1]}, vycka: ${jsonData.Base.trig[row.B].vycka}, date: ${jsonData.Base.trig[row.B].date}, JTSK: ${jsonData.Base.trig[row.B].systemCoordinates}, positionType: ${jsonData.Base.trig[row.B].positionType}`);
+                                    resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.trig[row.B].position[0]} , ${jsonData.Base.trig[row.B].position[1]}, vycka: ${jsonData.Base.trig[row.B].vycka}, date: ${jsonData.Base.trig[row.B].date}, systemCoordinates: ${jsonData.Base.trig[row.B].systemCoordinates}, positionType: ${jsonData.Base.trig[row.B].positionType}`);
                                 }
-                                else{resultsTip.trigBase.push(`namber: ${row.B} : Data not found in database`);}
+                                else{resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             }
                         });
                         results.push(`${sheetName} (leng ${colData[0]}):\n` + resultsTip.nivBase.join('\n') + resultsTip.trigBase.join('\n'));  
@@ -104,14 +104,14 @@
                         columnData.forEach(row => {  
                             if (row.C == 'n') { 
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
-                                    resultsTip.niv.push(`namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, JTSK: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
+                                    resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
                                 }
-                                else{resultsTip.niv.push(`namber: ${row.B} : Data not found in database`);}
+                                else{resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             } else {
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
-                                    resultsTip.trig.push(`namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, JTSK: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
+                                    resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
                                 }
-                                else{resultsTip.trig.push(`namber: ${row.B} : Data not found in database`);}
+                                else{resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             }
                         });
                         results.push(`${sheetName} (leng ${colData[0]}):\n` + resultsTip.niv.join('\n') + resultsTip.trig.join('\n')); 
