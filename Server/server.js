@@ -30,16 +30,16 @@ app.post('/addDat', (req, res) => {
             if (dataName == "poligons") { 
                 jsonData[dataName][dataPlace][id] = {
                     position: [Number(positionX),Number(positionY)],
+                    vyсka: Number(vyska),
                     date:date,
-                    vyska: Number(vyska),
                     systemCoordinates: systemCoordinates[0],
                     positionType: positionType[0]
                   };
             }else {
                 jsonData[dataName][dataJobs][id] = {
                     position: [Number(positionX),Number(positionY)],
+                    vyсka: Number(vyska),
                     date:date,
-                    vyska: Number(vyska),
                     systemCoordinates: systemCoordinates[0],
                     positionType: positionType[0]
                   };

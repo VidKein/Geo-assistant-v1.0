@@ -326,7 +326,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         /*var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);*/
         // Создаем всплывающее меню с радиокнопкой
         const popupContent = `<input type="checkbox" id="checkbox"> completed`;
-        var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent).bindTooltip(name, { 
+        var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent).bindTooltip(name, { 
             permanent: true, // Постоянное отображение
             direction: "bottom", // Направление отображения
             opacity :1,// прозрачность
