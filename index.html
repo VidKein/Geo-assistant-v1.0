@@ -50,12 +50,12 @@
                         <span class="namePoint" style="color: red; font-weight: 600;"></span>    
                         <div id="importInfo">
                             <p>position: <input type="number" id="position X" value=700000 required> x <input type="text" id="position Y" value=1000000 required></p>
-                            <p>vycka: <input type="number" id="vyska" value=100.0000 required></p>
+                            <p>vycka: <input type="number" id="vycka" value=100.0000 required></p>
                             <p>date: <input type="date" id="date" required></p>
                             <p>coordinate system: <input type="text" id="coordinate" list="coordinateSystem" required></p>
                             <datalist id="coordinateSystem">
                                 <option value="JTSK">
-                                <option value="WGS84">
+                                <!--Добавим когда будет необходимость--><option value="WGS84" disabled>
                             </datalist>
                             <p>position type: <input type="text" id="position" list="positionType" required></p>
                             <datalist id="positionType">
@@ -116,7 +116,7 @@
                             </div>
                             <div class="links" id="Points" name="setting" style="display: none;">
                                 <p style="text-align: left;">Point name:
-                                <input type="text" id="point">
+                                <input type="namber" id="point">
                                 </p>
                                 <button type="submit" id="runPointAdd" title="Add point">Add point</button>
                                 <button type="submit" id="runPointEdit" title="Edit point">Edit point</button>

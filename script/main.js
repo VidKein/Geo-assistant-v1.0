@@ -87,6 +87,7 @@ document.addEventListener("planningWork", (planning) => {
     layerControlPoint(planning.detail.baseNiv, mainNiv, planning.detail.baseTrig, mainTrig, planning.detail.planningNiv, jobsNiv, planning.detail.planningTrig, jobsTrig);
 });
 
+
 function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, markerBasePointTrig, planingWorkNiv, markerPointNiv, planingWorkTax, markerPointTax) {
     //Нивелирование - начальные точки(базовые)
     //Информацинный блок Нивелирования    
@@ -337,6 +338,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         return marker;
     } else {
         //Подключение маркера с WGS84
+        
   }
 }
 

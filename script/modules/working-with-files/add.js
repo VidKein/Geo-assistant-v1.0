@@ -16,14 +16,14 @@ async function funktionalAdd(e) {
     let id = document.querySelector(".namePoint").textContent;
     let positionX = document.getElementById("position X").value.trim();
     let positionY = document.getElementById("position Y").value.trim();
-    let vyska = document.getElementById("vyska").value.trim();
+    let vyckaPoint = document.getElementById("vycka").value.trim();
     let date = document.getElementById("date").value.trim();
     /* Контроль
-    add.push(`dataName: ${dataName}, dataJobs: ${dataJobs} / ${id}:{position:[${positionX},${positionY}], vycka: ${vyska}, date: ${date}, systemCoordinates : ${systemCoordinates}, positionType: ${positionType}}`);    
+    add.push(`dataName: ${dataName}, dataJobs: ${dataJobs} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${systemCoordinates}, positionType: ${positionType}}`);    
     console.log(add);
     */
   
-   if (!positionX || !positionY || !vyska || !date || positionType.length == 0 || systemCoordinates.length == 0) {
+   if (!positionX || !positionY || !vyckaPoint || !date || positionType.length == 0 || systemCoordinates.length == 0) {
    alert("You have not filled in all the fields or the fields were filled in incorrectly.");
     e.preventDefault(); // Останавливаем отправку формы
    } else {
@@ -31,7 +31,7 @@ async function funktionalAdd(e) {
     const response = await fetch(API_URL, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({dataPlace, dataName, dataJobs, id, positionX, positionY, vyska, date, systemCoordinates, positionType})
+         body: JSON.stringify({dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, systemCoordinates, positionType})
     });
     const result = await response.json();
     alert(result.message || result.error);

@@ -187,11 +187,41 @@ for (let i = 0; i < importPoint.children.length; i++) {
 
             }
         }
-    })
+        //Функционал настроек
+        if (childrenElement.id ==="settingBlock") {
+            let functionSettingBlock = document.querySelector(".rightSettingFunctional");
+            let settingBlockPoint = functionSettingBlock.children;
+            for (let i = 0; i < settingBlockPoint.length; i++) {    
+                    settingBlockPoint[i].addEventListener("click",(e)=>{      
+                        console.log(e.target.id);
+                        //Language
+                        if (e.target.id == "runLangAplikac") {
+                            console.log(settingBlockPoint[i].children);
+                        }
+                        //Calendarg
+                        if (e.target.id == "runCalendAplikac") {console.log(settingBlockPoint[i].children);}
+                        //Add,Edit,Delat
+                        if (e.target.id == "runPointEdit") {
+                            console.log(settingBlockPoint[i].children);
+                        }
+                        if (e.target.id == "runPointAdd") {
+                            console.log(settingBlockPoint[i].children);
+                        }
+                        if (e.target.id == "calendarg.js:196 runPointDelat") {
+                            console.log(settingBlockPoint[i].children);
+                        }
+                        //Print
+                        if (e.target.id == "nameDisplay") {
+                            console.log(settingBlockPoint[i].children);
+                        }
+                        })   
+            }
+        }
+    })  
     //Отображение настроек
     if (childrenElement.id === "settingBlock") {
       let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
-      let blockSetting = leftSettingFunctional.children; 
+      let blockSetting = leftSettingFunctional.children;     
       for (let i = 0; i < blockSetting.length; i++) {
           blockSetting[i].addEventListener("click", ()=> {
               let rightSettingFunctional = document.querySelector(".rightSettingFunctional").children;
@@ -204,6 +234,7 @@ for (let i = 0; i < importPoint.children.length; i++) {
           }); 
       }
     }  
+    
 }
 
 //Effects анимация accordion

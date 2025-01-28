@@ -34,7 +34,7 @@
         if (!jsonResponse.ok) {throw new Error('Не удалось загрузить JSON файл');}
         const jsonData = await jsonResponse.json();
         //Для контроля
-        console.log('JSON данные Базовые:', jsonData.Base, 'JSON данные Рабочие:', jsonData.poligons);
+        //console.log('JSON данные Базовые:', jsonData.Base, 'JSON данные Рабочие:', jsonData.poligons);
         
         const results = [];
         const resultsTip = {niv: [], trig: [], nivBase: [], trigBase: []};
@@ -121,7 +121,7 @@
             }
         }
         //Для контроля
-        console.log(results.join('\n\n\n'));
+        //console.log(results.join('\n\n\n'));
         /// Создаем и отправляем пользовательское событие с данными
         const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTip.nivBase, baseTrig: resultsTip.trigBase ,planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
         document.dispatchEvent(planning);
