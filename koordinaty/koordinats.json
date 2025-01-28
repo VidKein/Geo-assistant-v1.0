@@ -1,6 +1,76 @@
 {
 	"Base": {
 		"trig": {
+			"809": {
+				"position": [
+					742238,
+					1047899
+				],
+				"vycka": 271.9921,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"810": {
+				"position": [
+					742262,
+					1047901
+				],
+				"vycka": 271.9906,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"811": {
+				"position": [
+					742297,
+					1047904
+				],
+				"vycka": 272.002,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"812": {
+				"position": [
+					742286,
+					1047964
+				],
+				"vycka": 270.9084,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"814": {
+				"position": [
+					742262,
+					1047968
+				],
+				"vycka": 271.4083,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"815": {
+				"position": [
+					742262,
+					1047980
+				],
+				"vycka": 271.8525,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"816": {
+				"position": [
+					742261,
+					1047992
+				],
+				"vycka": 271.8058,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
 			"11005": {
 				"position": [
 					741917,
@@ -20,6 +90,16 @@
 				"date": "2025-01-26",
 				"systemCoordinates": "JTSK",
 				"positionType": "pillar-target cross"
+			},
+			"11007": {
+				"position": [
+					741910,
+					1047393
+				],
+				"vycka": 269.9913,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
 			},
 			"11009": {
 				"position": [
@@ -83,10 +163,10 @@
 			},
 			"11020": {
 				"position": [
-					742003,
-					1047184
+					741955,
+					1047305
 				],
-				"vycka": 267.739,
+				"vycka": 268.5644,
 				"date": "2025-01-26",
 				"systemCoordinates": "JTSK",
 				"positionType": "pillar-target cross"
@@ -331,6 +411,426 @@
 				"systemCoordinates": "JTSK",
 				"positionType": "target cross"
 			},
+			"12103": {
+				"position": [
+					742246,
+					1048002
+				],
+				"vycka": 284.1495,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12106": {
+				"position": [
+					742282,
+					1048047
+				],
+				"vycka": 269.4304,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12107": {
+				"position": [
+					742290,
+					1048023
+				],
+				"vycka": 268.8097,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12108": {
+				"position": [
+					742315,
+					1048016
+				],
+				"vycka": 268.1231,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12109": {
+				"position": [
+					742289,
+					1047973
+				],
+				"vycka": 268.8161,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12110": {
+				"position": [
+					742218,
+					1048008
+				],
+				"vycka": 270.7648,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12111": {
+				"position": [
+					742210,
+					1048043
+				],
+				"vycka": 270.5145,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12112": {
+				"position": [
+					742195,
+					1047922
+				],
+				"vycka": 271.7226,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12113": {
+				"position": [
+					742209,
+					1047895
+				],
+				"vycka": 270.7289,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12114": {
+				"position": [
+					742254,
+					1047880
+				],
+				"vycka": 270.1244,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12115": {
+				"position": [
+					742284,
+					1047897
+				],
+				"vycka": 269.9243,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"12118": {
+				"position": [
+					742197,
+					1048072
+				],
+				"vycka": 271.1022,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "target cross"
+			},
+			"330201": {
+				"position": [
+					741976,
+					1047497
+				],
+				"vycka": 268.1006,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330202": {
+				"position": [
+					741989,
+					1047481
+				],
+				"vycka": 268.1355,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330203": {
+				"position": [
+					742006,
+					1047458
+				],
+				"vycka": 268.0833,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330204": {
+				"position": [
+					741995,
+					1047449
+				],
+				"vycka": 268.0481,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330205": {
+				"position": [
+					741978,
+					1047471
+				],
+				"vycka": 268.0413,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330206": {
+				"position": [
+					741964,
+					1047488
+				],
+				"vycka": 268.1054,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330207": {
+				"position": [
+					741963,
+					1047487
+				],
+				"vycka": 267.9923,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330208": {
+				"position": [
+					741977,
+					1047470
+				],
+				"vycka": 268.3124,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330209": {
+				"position": [
+					741994,
+					1047448
+				],
+				"vycka": 267.9992,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330210": {
+				"position": [
+					741982,
+					1047439
+				],
+				"vycka": 268.1618,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330211": {
+				"position": [
+					741965,
+					1047461
+				],
+				"vycka": 267.998,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330212": {
+				"position": [
+					741952,
+					1047478
+				],
+				"vycka": 268.0713,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330213": {
+				"position": [
+					741985,
+					1047468
+				],
+				"vycka": 268.0696,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330214": {
+				"position": [
+					741989,
+					1047463
+				],
+				"vycka": 268.0818,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330215": {
+				"position": [
+					741982,
+					1047457
+				],
+				"vycka": 268.1099,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330216": {
+				"position": [
+					741977,
+					1047463
+				],
+				"vycka": 268.052,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330901": {
+				"position": [
+					741993,
+					1047475
+				],
+				"vycka": 268.116,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330902": {
+				"position": [
+					741990,
+					1047473
+				],
+				"vycka": 268.1383,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330903": {
+				"position": [
+					741998,
+					1047470
+				],
+				"vycka": 268.1106,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330904": {
+				"position": [
+					741994,
+					1047467
+				],
+				"vycka": 268.0946,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330905": {
+				"position": [
+					741986,
+					1047460
+				],
+				"vycka": 267.7481,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330906": {
+				"position": [
+					742002,
+					1047464
+				],
+				"vycka": 268.135,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330907": {
+				"position": [
+					741999,
+					1047462
+				],
+				"vycka": 268.1223,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330908": {
+				"position": [
+					741994,
+					1047458
+				],
+				"vycka": 268.1323,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330909": {
+				"position": [
+					741990,
+					1047455
+				],
+				"vycka": 268.1616,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330910": {
+				"position": [
+					741955,
+					1047480
+				],
+				"vycka": 268.1585,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330911": {
+				"position": [
+					741960,
+					1047466
+				],
+				"vycka": 268.379,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330912": {
+				"position": [
+					741986,
+					1047452
+				],
+				"vycka": 268.1043,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330913": {
+				"position": [
+					741981,
+					1047448
+				],
+				"vycka": 268.1231,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
+			"330914": {
+				"position": [
+					741985,
+					1047442
+				],
+				"vycka": 268.1418,
+				"date": "2025-01-28",
+				"systemCoordinates": "JTSK",
+				"positionType": "facade-target cross"
+			},
 			"1190101": {
 				"position": [
 					741965,
@@ -343,8 +843,8 @@
 			},
 			"1190102": {
 				"position": [
-					741965,
-					1047277
+					741964.5,
+					1047277.5
 				],
 				"vycka": 268.6558,
 				"date": "2025-01-26",
@@ -353,8 +853,8 @@
 			},
 			"14040502": {
 				"position": [
-					741965,
-					1047277
+					741963.5,
+					1047276
 				],
 				"vycka": 268.7804,
 				"date": "2025-01-26",
@@ -2454,7 +2954,7 @@
 					742167,
 					1047787
 				],
-				"vyсka": 268.7373,
+				"vycka": 268.7373,
 				"date": "2025-01-26",
 				"systemCoordinates": "JTSK",
 				"positionType": "pit"
@@ -2464,7 +2964,7 @@
 					742162,
 					1047790
 				],
-				"vyсka": 269.7029,
+				"vycka": 269.7029,
 				"date": "2025-01-26",
 				"systemCoordinates": "JTSK",
 				"positionType": "pit"
