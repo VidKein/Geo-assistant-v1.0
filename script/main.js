@@ -87,7 +87,7 @@ document.addEventListener("planningWork", (planning) => {
     layerControlPoint(planning.detail.baseNiv, mainNiv, planning.detail.baseTrig, mainTrig, planning.detail.planningNiv, jobsNiv, planning.detail.planningTrig, jobsTrig);
 });
 
-
+//Функция обработки данных переданных из planing-work.js и формирует слои с маркерами
 function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, markerBasePointTrig, planingWorkNiv, markerPointNiv, planingWorkTax, markerPointTax) {
     //Нивелирование - начальные точки(базовые)
     //Информацинный блок Нивелирования    
@@ -123,6 +123,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivNivError.setAttribute("place", row["place"]);
             jobDivNivError.setAttribute("data-name", "Base");
             jobDivNivError.setAttribute("data-jobs", "niv");
+            jobDivNivError.setAttribute("title", "Base/niv "+row["place"]);
             jobDivNivError.appendChild(pointError);
             console.log("Базовые точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -172,6 +173,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivNivError.setAttribute("place", row["place"]);
             jobDivNivError.setAttribute("data-name", "poligons");
             jobDivNivError.setAttribute("data-jobs", "niv");
+            jobDivNivError.setAttribute("title", "Poligons/niv "+row["place"]);
             jobDivNivError.appendChild(pointError);
             console.log("Точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -221,6 +223,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivTaxError.setAttribute("place", row["place"]);
             jobDivTaxError.setAttribute("data-name", "Base");
             jobDivTaxError.setAttribute("data-jobs", "trig");
+            jobDivTaxError.setAttribute("title", "Base/trig "+row["place"]);
             jobDivTaxError.appendChild(pointError);
             console.log("Базовые точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -270,6 +273,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivTaxError.setAttribute("place", row["place"]);
             jobDivTaxError.setAttribute("data-name", "poligons");
             jobDivTaxError.setAttribute("data-jobs", "trig");
+            jobDivTaxError.setAttribute("title", "Poligons/trig "+row["place"]);
             jobDivTaxError.appendChild(pointError);
             console.log("Точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
@@ -291,6 +295,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     operatingPointsTax.layerName = 'operatingPointsTax';
     onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
 }
+
 //Функция парсинга информации переданной из planing-work.js
 function parsinWork(planing) {
     if (!Array.isArray(planing)) {
