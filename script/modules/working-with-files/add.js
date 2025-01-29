@@ -47,7 +47,7 @@ async function funktionalAdd(e) {
 }
 
  // Обработчик изменения ввода
- coordinateInput.addEventListener('input', (e) => {
+ coordinateInput.addEventListener('input', () => {
    const currentValue = coordinateInput.value.trim();
    // Проверяем, соответствует ли введённое значение одному из доступных вариантов
    if (validOptions.includes(currentValue)) {systemCoordinates.push(currentValue);}
@@ -55,7 +55,7 @@ async function funktionalAdd(e) {
  
 
  // Обработчик изменения ввода
- typeInput.addEventListener('input', (e) => {
+ typeInput.addEventListener('input', () => {
    const currentValue = typeInput.value.trim();
    // Проверяем, соответствует ли введённое значение одному из доступных вариантов
    if (validOptionsType.includes(currentValue)) {positionType.push(currentValue);}

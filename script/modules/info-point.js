@@ -17,7 +17,6 @@ function start_stopInfoBloka() {
     }
 }
 //Действия при нажатии на РАБОЧИИ кнопки внутри блок
-// //Действия при нажатии errorPoin
 let infoPoint= document.querySelector(".points-wrapper").children;
 for (let i = 0; i < infoPoint.length; i++) {
     if (infoPoint[i].localName == "div") {

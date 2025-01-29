@@ -487,6 +487,7 @@ const buttonSetting = L.Control.extend({
             settingBlock.style.display = "block";
           } else {
             settingBlock.style.display = "none";
+            document.querySelector("#point").value = "";
           }
          }
         return setting;
