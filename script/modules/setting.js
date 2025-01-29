@@ -14,6 +14,7 @@
         }
 //Действия при нажатии на РАБОЧИИ кнопки внутри блок
 let settingBlock = document.querySelector(".rightSettingFunctional").children;
+let settingBlockFull = document.querySelector("#settingBlock");
 for (let i = 0; i < settingBlock.length; i++) {
     settingBlock[i].addEventListener("click",(e)=>{
         if (settingBlock[i].style.display == "block") { 
@@ -28,12 +29,12 @@ for (let i = 0; i < settingBlock.length; i++) {
             //Работаем с загрузкой выгрузкой файла
             if (e.target.id == "runCalendAplikac") {console.log("runCalendAplikac");}
             //Работаем с загрузкой, редоктированием и удалением информации о точки
+            let namePoint = document.querySelector(".namePoint");
                 //Edit
                 let point = document.querySelector("#point").value.trim();
                 if (e.target.id == "runPointEdit") {
                     if (Number(point)) {
                       console.log(point);  
-                      document.querySelector("#point").value = "";
                     } else {
                         console.log(alert("Enter point number"));  
                     }
@@ -41,8 +42,15 @@ for (let i = 0; i < settingBlock.length; i++) {
                 //Add
                 if (e.target.id == "runPointAdd") {
                     if (Number(point)) {
-                        console.log(point);
-                        document.querySelector("#point").value = "";
+                        
+                        settingBlockFull.style.display = "none";
+                        document.querySelector("#import").style.display = "block";
+                        namePoint.innerText = point;
+                        //Закрытие изменений
+                        document.querySelector(".close-import").addEventListener("click", ()=>{
+                            settingBlockFull.style.display = "block";
+                            document.querySelector("#import").style.display = "none";
+                        });
                       } else {
                           console.log(alert("Enter point number"));  
                       }
