@@ -1,3 +1,7 @@
+/*
+import {typeJobsArray} from './planning-work.js';//Импортируем информаци по точкам
+console.log(typeJobsArray.Base.niv["9102"]);
+*/
 //Дата - выводим информацию о сегоднешей дате
 let data = document.querySelector(".todayDate");
 let todayDate = new Date();

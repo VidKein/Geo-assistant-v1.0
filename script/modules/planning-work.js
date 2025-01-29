@@ -1,3 +1,4 @@
+    export let typeJobsArray;//Экспортируем информаци по типу и типу роботы
     //Дата сегодня
     const todayDate = new Date();
     const year = todayDate.getFullYear();
@@ -33,6 +34,14 @@
         const jsonResponse = await fetch(jsonFileUrl);
         if (!jsonResponse.ok) {throw new Error('Не удалось загрузить JSON файл');}
         const jsonData = await jsonResponse.json();
+
+        // Преобразуем JSON в многомерный массив
+        typeJobsArray = Object.fromEntries(
+            Object.entries(jsonData).map(([key, value]) => 
+              [key, (typeof value === "object" && value !== null) ? {...value} : value]
+            )
+          );
+    
         //Для контроля
         //console.log('JSON данные Базовые:', jsonData.Base, 'JSON данные Рабочие:', jsonData.poligons);
         

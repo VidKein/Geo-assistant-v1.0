@@ -1,3 +1,4 @@
+import {typeJobsArray} from './planning-work.js';//Импортируем информаци по типу и типу роботы
 //Отображение настроек при нажатии на левые кнопки выбора настроек
         let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
         let blockSetting = leftSettingFunctional.children;     
@@ -42,10 +43,48 @@ for (let i = 0; i < settingBlock.length; i++) {
                 //Add
                 if (e.target.id == "runPointAdd") {
                     if (Number(point)) {
-                        
+                        console.log(typeJobsArray);
+                        //Тип и Вид работы
+                        let typeAndJobsPoint = document.querySelector(".typeAndJobsPoint");
+                        let firstSelectHtml = `
+                            <select id="firstSelect" style="background-color: #cdc4c4;">
+                                <option value="">Type</option>
+                            </select>
+                        `;
+                        typeAndJobsPoint.innerHTML = firstSelectHtml;
+                        //Название Участка работы
+                        let plasePoint = document.querySelector(".plasePoint");
+                        let secondSelectHtml =`
+                        <select id="secondSelect"  style="background-color: cornflowerblue;">
+                            <option value="">Select type</option>
+                        </select>
+                        `;
+                        plasePoint.innerHTML = secondSelectHtml;
                         settingBlockFull.style.display = "none";
                         document.querySelector("#import").style.display = "block";
                         namePoint.innerText = point;
+
+                        // Заполняем первый select (Base, poligons)
+                        Object.keys(typeJobsArray).forEach(key => {
+                            const option = document.createElement("option");
+                            option.value = key;
+                            option.textContent = key;
+                            firstSelect.appendChild(option);
+                        });
+                        // Обработчик изменения первого select
+                        firstSelect.addEventListener("change", function () {
+                            secondSelect.innerHTML = '<option value="">Select</option>'; // Очищаем второй select
+                        
+                            const selectedCategory = this.value;
+                            if (selectedCategory) {
+                                Object.keys(typeJobsArray[selectedCategory]).forEach(subKey => {
+                                    const option = document.createElement("option");
+                                    option.value = subKey;
+                                    option.textContent = subKey;
+                                    secondSelect.appendChild(option);
+                                });
+                            }
+                        });
                         //Закрытие изменений
                         document.querySelector(".close-import").addEventListener("click", ()=>{
                             settingBlockFull.style.display = "block";
