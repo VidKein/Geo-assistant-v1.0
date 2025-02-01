@@ -32,6 +32,7 @@ for (let i = 0; i < infoPoint.length; i++) {
                 let place = point.getAttribute('place');
                 let dataName = point.getAttribute('data-name');
                 let dataJobs = point.getAttribute('data-jobs');
+                document.querySelector(".close-import").id ='infoPoint';
                 //Номер точки
                 let naminfoData = document.querySelector(".namePoint");
                 //Тип и Вид работы
@@ -46,7 +47,11 @@ for (let i = 0; i < infoPoint.length; i++) {
                 typeAndJobsPoint.innerText = dataName+"/"+dataJobs;
                 plasePoint.innerText = place;
                 document.querySelector("#import").style.display = "block";
-                document.querySelector(".close-import").addEventListener("click", ()=>{document.querySelector("#import").style.display = "none";});
+                document.querySelector("#infoPoint").addEventListener("click", ()=>{
+                  document.querySelector("#settingBlock").style.display = "none";
+                  document.querySelector("#import").style.display = "none";
+                  document.querySelector(".close-import").removeAttribute("id");
+                });
             }   
         })  
     }

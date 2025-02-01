@@ -183,6 +183,28 @@ body {
   background-color: cornflowerblue;
   padding: 2px 2px;
 }
+.runTypeAndJobsPoint{
+  display: inline-block;
+  background-color: #cdc4c4;
+  padding: 2px 2px;
+}
+.runPlasePoint{
+  display: inline-block;
+  background-color: cornflowerblue;
+  padding: 2px 2px;
+  margin: 0 5px;
+}
+.typeAndJobsPointDelat{
+  display: inline-block;
+  background-color: #cdc4c4;
+  padding: 2px 2px;
+}
+.plasePointDelat{
+  display: inline-block;
+  background-color: cornflowerblue;
+  padding: 2px 2px;
+  margin: 0 5px;
+}
 #importInfo input[type="text"] {
   padding: 3px 6px;
   width: 55px;
@@ -464,6 +486,43 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
  .point{
   width: 10px;
   height: auto;
+}
+/*Информационное окно*/
+.infoWindows{
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1001;
+}
+.infoWindows-wraper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  padding: 1em;
+  border: 1px solid #dcdcff;
+  border-radius: 5px;
+  background: #fff;
+  width: 45%;
+}
+.close-infoWindows{
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 35px;
+  border: none;
+  outline: none;
+  background: transparent;
 }
 /*Кнопка условных обозначений*/
 .showDesing{

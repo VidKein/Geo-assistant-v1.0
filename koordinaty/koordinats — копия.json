@@ -3,11 +3,11 @@
 		"trig": {
 			"1": {
 				"position": [
-					700000,
-					1000000
+					700010,
+					1000020
 				],
 				"vycka": 100,
-				"date": "2025-02-01",
+				"date": "2025-01-31",
 				"systemCoordinates": "JTSK",
 				"positionType": "pit"
 			},
@@ -80,6 +80,16 @@
 				"date": "2025-01-28",
 				"systemCoordinates": "JTSK",
 				"positionType": "target cross"
+			},
+			"1234": {
+				"position": [
+					700000,
+					1000000
+				],
+				"vycka": 100,
+				"date": "2025-01-30",
+				"systemCoordinates": "JTSK",
+				"positionType": "pit"
 			},
 			"11005": {
 				"position": [
@@ -893,16 +903,6 @@
 			}
 		},
 		"niv": {
-			"2": {
-				"position": [
-					700010,
-					1000010
-				],
-				"vycka": 100,
-				"date": "2025-02-01",
-				"systemCoordinates": "JTSK",
-				"positionType": "pit"
-			},
 			"9102": {
 				"position": [
 					741860,
@@ -1067,16 +1067,6 @@
 	},
 	"poligons": {
 		"SOD-11": {
-			"3": {
-				"position": [
-					700030,
-					1000030
-				],
-				"vycka": 100,
-				"date": "2025-02-01",
-				"systemCoordinates": "JTSK",
-				"positionType": "pit"
-			},
 			"100801": {
 				"position": [
 					742015,

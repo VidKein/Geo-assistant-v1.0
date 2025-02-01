@@ -117,8 +117,10 @@
                                 <button type="submit" id="runCalendAplikac" title="Submit fail">Submit</button>
                             </div>
                             <div class="links" id="Points" style="display: none;">
-                                <p style="text-align: left;">Point name:
-                                <input type="namber" id="point">
+                                <p style="text-align: left;">Type, jops/plase, name point:
+                                <div class="runTypeAndJobsPoint"></div>
+                                <div class="runPlasePoint"></div> 
+                                <input type="namber" id="namePointAddEditDelat">
                                 </p>
                                 <button type="submit" id="runPointAdd" title="Add point">Add point</button>
                                 <button type="submit" id="runPointEdit" title="Edit point">Edit point</button>
@@ -132,6 +134,15 @@
                     
                 </div>
             </div>
+            <!--Информационное окно которое используется для: Удаления,-->
+            <div id="infoWindows" class="infoWindows">
+                <div class="infoWindows-wraper">
+                    <button class="close-infoWindows" title="Exit button">X</button>
+                    <div class="textWindows"></div>
+                    <input id="funktionalDelat" type="button" value="OK">
+                </div>
+            </div>       
+        
     </div>
     <!--Условные обозначения - кнопка условных обозначений подключена main.js через leaflet-->
     <!--Обозначения-->
@@ -152,6 +163,7 @@
     <script type="module"  src="./script/modules/setting.js"></script><!--setting-->
     <script type="module"  src="./script/modules/info-point.js"></script><!--info-point-->
     <script type="module" src="./script/modules/working-with-files/add.js"></script><!--working-with-files+ADD-->
+    <script type="module" src="./script/modules/working-with-files/delat.js"></script><!--working-with-files+DELAT-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
 </body>
 </html>

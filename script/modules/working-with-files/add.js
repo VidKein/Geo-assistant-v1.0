@@ -18,7 +18,8 @@ async function funktionalAdd(e) {
     let positionY = document.getElementById("position Y").value.trim();
     let vyckaPoint = document.getElementById("vycka").value.trim();
     let date = document.getElementById("date").value.trim();
-    /* Контроль
+    // Контроль
+    /*
     add.push(`dataName: ${dataName}, dataJobs: ${dataJobs} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${systemCoordinates}, positionType: ${positionType}}`);    
     console.log(add);
     */
