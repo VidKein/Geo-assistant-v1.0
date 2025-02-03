@@ -44,7 +44,75 @@ for (let i = 0; i < settingBlock.length; i++) {
                 //Edit
                 if (e.target.id == "runPointEdit") {
                     if (Number(namePointAddEditDelat)) {
-                      console.log(namePointAddEditDelat);  
+                        //Запoлняем дополнительную информацию по точкам
+                        //Создаем новые атрибуты
+                        let type = document.querySelector("#firstSelect");
+                        let place = document.querySelector("#secondSelect");
+                        let dataName = type.value;//имя тип точек Рабочии Базовые
+                        let dataJobsPlase = place.value;//имя участка работы SOD-11/Нив Тах 
+                        typeAndJobsPoint.innerText = type.value;
+                        plasePoint.innerText = place.value;
+                        infoPoint(dataName ,dataJobsPlase, namePointAddEditDelat);
+                        //Передача информации для получения информации
+                        async function infoPoint(dataName ,dataJobsPlase, id) {
+                            // Контроль
+                            console.log(dataName ,dataJobsPlase, id);
+                            if (!id || !dataName) {
+                            alert("You have not filled in all the fields or the fields were filled in incorrectly.");
+                            e.preventDefault(); // Останавливаем отправку формы
+                            } else {
+                                try {    
+                                     const API_URL = `http://localhost:4000/pointDat/${dataName}/${dataJobsPlase}/${id}`;
+                                     const response = await fetch(API_URL);
+                                     const data = await response.json();
+                                     if (response.ok) {
+                                        //Открываем окно для внесения информации
+                                        settingBlockFull.style.display = "none";
+                                        document.querySelector("#import").style.display = "block";
+                                        namePointInfo.innerText = namePointAddEditDelat;
+                                        document.querySelector(".close-import").id ='editPoint';
+                                        //Запoлняем дополнительную информацию по точкам
+                                        //Создаем новые атрибуты
+                                        let type = document.querySelector("#firstSelect");
+                                        let place = document.querySelector("#secondSelect");
+                                        if (type.value =="Base") {
+                                            namePointInfo.setAttribute("data-name", type.value);//имя тип точек Базовые
+                                            namePointInfo.setAttribute("data-jobs", place.value);//Тип сьемки Нив Тах
+                                            namePointInfo.removeAttribute("place");
+                                            typeAndJobsPoint.innerText = type.value;
+                                            plasePoint.innerText = place.value;
+                                        }else{
+                                            namePointInfo.setAttribute("data-name", type.value);//имя тип точек Рабочии...
+                                            namePointInfo.setAttribute("place", place.value);//имя участка работы SOD-11
+                                            namePointInfo.removeAttribute("data-jobs");
+                                            typeAndJobsPoint.innerText = type.value;
+                                            plasePoint.innerText = place.value;
+                                        }
+                                        //Выводим информацию
+                                         document.getElementById("position X").value = data.position[0];
+                                         document.getElementById("position Y").value = data.position[1];
+                                         document.getElementById("vycka").value = data.vycka;
+                                         document.getElementById("date").value = data.date; 
+                                         document.getElementById("coordinate").value = data.systemCoordinates;
+                                         document.getElementById("position").value = data.positionType;
+                                   
+                                         //Закрытие изменений
+                                        document.querySelector("#editPoint").addEventListener("click", ()=>{
+                                            settingBlockFull.style.display = "block";
+                                            document.querySelector("#import").style.display = "none";
+                                            document.querySelector(".close-import").removeAttribute("id");
+                                        });
+                                         
+                                     } else {
+                                         alert(data.error);
+                                     }
+                                }catch(error) {
+                                    console.error("Ошибка загрузки:", error);
+                                    alert("Ошибка при загрузке данных.");
+                                }
+                           }
+                         }
+
                     } else {
                       console.log(alert("Enter point number"));  
                     }
@@ -146,14 +214,14 @@ for (let i = 0; i < settingBlock.length; i++) {
 function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint) {
                         //Название Участка работы
                         let firstSelectHtml = `
-                            <select id="firstSelect" style="background-color: #cdc4c4;">
+                            <select id="firstSelect" style="background-color: #cdc4c4; cursor: pointer;">
                                 <option value="">Type</option>
                             </select>
                         `;
                         runTypeAndJobsPoint.innerHTML = firstSelectHtml;
                         //Название Участка работы
                         let secondSelectHtml =`
-                        <select id="secondSelect"  style="background-color: cornflowerblue;">
+                        <select id="secondSelect"  style="background-color: cornflowerblue; cursor: pointer;">
                             <option value="">Select type</option>
                         </select>
                         `;
@@ -168,7 +236,6 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint) {
                         });
                         //Обработчик изменения первого select
                         firstSelect.addEventListener("change", function () {
-                            console.log(this.value);
                             secondSelect.innerHTML = '<option value="">Select</option>'; // Очищаем второй select
                             const selectedCategory = this.value;
                             if (selectedCategory) {
