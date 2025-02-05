@@ -569,3 +569,40 @@ setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
 */
+//Наполнение селекта для coordinateSystem и positionType
+const jsonFileKod = './koordinaty/kod.json'; // Укажите URL-адрес json файла
+  // Функция загрузки JSON и заполнения select
+  async function loadOptions() {
+    try {
+      const response = await fetch(jsonFileKod); // Загружаем JSON
+      const jsonData = await response.json(); // Преобразуем в объект
+      
+      // Получаем элементы select
+      const coordinateSelect = document.getElementById('coordinateSystem');
+      const positionSelect = document.getElementById('positionType');
+
+      // Заполняем select для coordinateSystem
+      jsonData.kod.coordinateSystem.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.id;
+        option.textContent = item.value;
+        coordinateSelect.appendChild(option);
+      });
+
+      // Заполняем select для positionType
+      jsonData.kod.positionType.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.id;
+        option.textContent = item.value;
+        positionSelect.appendChild(option);
+      });
+
+    } catch (error) {
+      console.error('Ошибка загрузки JSON:', error);
+    }
+  }
+
+  // Загружаем данные при загрузке страницы
+  document.addEventListener('DOMContentLoaded', loadOptions);
+
+

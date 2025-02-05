@@ -205,7 +205,10 @@ body {
   padding: 2px 2px;
   margin: 0 5px;
 }
-#importInfo input[type="text"] {
+select {
+  padding: 3px 6px;
+}
+#importInfo input[type="text"]{
   padding: 3px 6px;
   width: 55px;
 }

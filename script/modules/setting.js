@@ -55,16 +55,31 @@ for (let i = 0; i < settingBlock.length; i++) {
                         infoPoint(dataName ,dataJobsPlase, namePointAddEditDelat);
                         //Передача информации для получения информации
                         async function infoPoint(dataName ,dataJobsPlase, id) {
-                            // Контроль
-                            console.log(dataName ,dataJobsPlase, id);
                             if (!id || !dataName) {
                             alert("You have not filled in all the fields or the fields were filled in incorrectly.");
                             e.preventDefault(); // Останавливаем отправку формы
                             } else {
-                                try {    
+                                try {
+                                    async function loadOptionSelekt(nameSelekt, value) {
+                                        console.log(nameSelekt, value);
+                                        
+                                        const jsonFileKod = './koordinaty/kod.json'; // Укажите URL-адрес json файла
+                                        const response = await fetch(jsonFileKod); // Загружаем JSON
+                                        const jsonData = await response.json(); // Преобразуем в объект
+                                            for (const item of jsonData.kod[nameSelekt]) {
+                                                if (item.value === value) {
+                                                    console.log(item.id);
+                                                    document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
+                                                }
+                                            }
+                                    }   
+                                    
+                                    
+                                    
                                      const API_URL = `http://localhost:4000/pointDat/${dataName}/${dataJobsPlase}/${id}`;
                                      const response = await fetch(API_URL);
                                      const data = await response.json();
+                                     console.log(data);
                                      if (response.ok) {
                                         //Открываем окно для внесения информации
                                         settingBlockFull.style.display = "none";
@@ -93,8 +108,10 @@ for (let i = 0; i < settingBlock.length; i++) {
                                          document.getElementById("position Y").value = data.position[1];
                                          document.getElementById("vycka").value = data.vycka;
                                          document.getElementById("date").value = data.date; 
-                                         document.getElementById("coordinate").value = data.systemCoordinates;
-                                         document.getElementById("position").value = data.positionType;
+                                         loadOptionSelekt("coordinateSystem" , data.systemCoordinates);
+                                         loadOptionSelekt("positionType" , data.positionType);
+                        
+                                   
                                    
                                          //Закрытие изменений
                                         document.querySelector("#editPoint").addEventListener("click", ()=>{

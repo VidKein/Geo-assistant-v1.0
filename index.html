@@ -54,20 +54,16 @@
                             <p>position: <input type="text" id="position X" value=700000 required> x <input type="text" id="position Y" value=1000000 required></p>
                             <p>vycka: <input type="number" id="vycka" value=100.0000 required></p>
                             <p>date: <input type="date" id="date" required></p>
-                            <p>coordinate system: <input type="text" id="coordinate" list="coordinateSystem" required></p>
-                            <datalist id="coordinateSystem">
-                                <option value="JTSK">
-                                <!--Добавим когда будет необходимость--><option value="WGS84" disabled>
-                            </datalist>
-                            <p>position type: <input type="text" id="position" list="positionType" required></p>
-                            <datalist id="positionType">
-                                <option value="wall">
-                                <option value="target cross">
-                                <option value="fence">
-                                <option value="asphalt">
-                                <option value="earth">
-                                <option value="pit">   
-                            </datalist>
+                            <p>coordinate system: 
+                            <select id="coordinateSystem">
+                              <option value="">Select</option>
+                            </select>
+                            </p>
+                            <p>position type: 
+                            <select id="positionType">
+                              <option value="">Select</option>
+                            </select>
+                            </p>
                         </div> 
                         <input id="funktionalAddEdit" type="button" value="OK">
                     </div>

@@ -1,12 +1,4 @@
 let add = [];
-let systemCoordinates = [];
-let positionType= [];
-// Получаем элементы input и datalist - systemCoordinates
-const coordinateInput = document.getElementById('coordinate');
-const validOptions = Array.from(document.querySelectorAll('#coordinateSystem option')).map(option => option.value);
-// Получаем элементы input и datalist - systemCoordinates
-const typeInput = document.getElementById('position');
-const validOptionsType = Array.from(document.querySelectorAll('#positionType option')).map(option => option.value);
 let funktionalAddEdit = document.querySelector("#funktionalAddEdit");
 funktionalAddEdit.addEventListener("click",funktionalEdit)
 async function funktionalEdit(e) {
@@ -18,15 +10,19 @@ async function funktionalEdit(e) {
     let positionY = document.getElementById("position Y").value.trim();
     let vyckaPoint = document.getElementById("vycka").value.trim();
     let date = document.getElementById("date").value.trim();
-    console.log(dataName,dataName,id,vyckaPoint,positionX,positionY,vyckaPoint, date,systemCoordinates,positionType);
-    
+    // Получаем элементы systemCoordinates
+    let selektCoordinateSystem = document.getElementById("coordinateSystem");
+    let coordinateSystem = selektCoordinateSystem.options[selektCoordinateSystem.selectedIndex].text;
+    // Получаем элементы systemCoordinates
+    let selektPositionType = document.getElementById("positionType");
+    let positionType = selektPositionType.options[selektPositionType.selectedIndex].text;
     // Контроль
-    /*
-    add.push(`dataName: ${dataName}, dataJobs: ${dataName} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${systemCoordinates}, positionType: ${positionType}}`);    
+    
+    add.push(`dataName: ${dataName}, dataJobs: ${dataName} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${coordinateSystem}, positionType: ${positionType}}`);    
     console.log(add);
-    */
+    
   
-   if (!positionX || !positionY || !vyckaPoint || !date || positionType.length == 0 || systemCoordinates.length == 0) {
+   if (!positionX || !positionY || !vyckaPoint || !date || positionType == "Select" || coordinateSystem == "Select") {
    alert("You have not filled in all the fields or the fields were filled in incorrectly.");
     e.preventDefault(); // Останавливаем отправку формы
    } else {
@@ -34,7 +30,7 @@ async function funktionalEdit(e) {
     const response = await fetch(API_URL, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, systemCoordinates, positionType})
+         body: JSON.stringify({dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, coordinateSystem, positionType})
     });
     const result = await response.json();
     alert(result.message || result.error);
@@ -43,22 +39,5 @@ async function funktionalEdit(e) {
     //обнуление
     document.querySelector("#import").style.display = "none"; 
     add =[];
-    coordinateInput.value=[];
-    typeInput.value=[];
-    systemCoordinates = [];
    }
 }
-// Обработчик изменения ввода
-coordinateInput.addEventListener('input', () => {
-    const currentValue = coordinateInput.value.trim();
-    // Проверяем, соответствует ли введённое значение одному из доступных вариантов
-    if (validOptions.includes(currentValue)) {systemCoordinates.push(currentValue);}
-  });  
-  
- 
-  // Обработчик изменения ввода
-  typeInput.addEventListener('input', () => {
-    const currentValue = typeInput.value.trim();
-    // Проверяем, соответствует ли введённое значение одному из доступных вариантов
-    if (validOptionsType.includes(currentValue)) {positionType.push(currentValue);}
-  });  

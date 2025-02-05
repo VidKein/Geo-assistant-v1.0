@@ -5,7 +5,6 @@ const express = require('express');
 const fs = require('fs');
 const cors = require('cors'); // Для поддержки запросов с других доменов
 const path = require('path');// Абсолютный путь к файлу
-const { log } = require('util');
 
 const app = express();
 const PORT = process.env.PORT || 4000; // Используется переменная окружения или 4000 по умолчанию
@@ -35,7 +34,7 @@ app.get('/pointDat/:dataName/:dataJobsPlase/:id', (req, res) => {
 });
 //Редоктирование
 app.post('/editDat', (req, res) => { 
-  const {dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, systemCoordinates, positionType } = req.body;     
+  const {dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, coordinateSystem, positionType } = req.body;     
   fs.readFile(DATA_FILE, 'utf8', (err, data) => {
       if (err) {
           return res.status(500).json({ error: 'Ошибка чтения данных' });
@@ -48,8 +47,8 @@ app.post('/editDat', (req, res) => {
                   position: [Number(positionX),Number(positionY)],
                   vycka: Number(vyckaPoint),
                   date:date,
-                  systemCoordinates: systemCoordinates[0],
-                  positionType: positionType[0]
+                  systemCoordinates: coordinateSystem,
+                  positionType: positionType
                 };
           }
           if (dataName == "Base")  {
@@ -57,8 +56,8 @@ app.post('/editDat', (req, res) => {
                   position: [Number(positionX),Number(positionY)],
                   vycka: Number(vyckaPoint),
                   date:date,
-                  systemCoordinates: systemCoordinates[0],
-                  positionType: positionType[0]
+                  systemCoordinates: coordinateSystem,
+                  positionType: positionType
                 };
           }
           //Вносим иформацию в файл
@@ -75,7 +74,7 @@ app.post('/editDat', (req, res) => {
 
 // Добавление данных
 app.post('/addDat', (req, res) => { 
-    const {dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, systemCoordinates, positionType } = req.body;     
+    const {dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, coordinateSystem, positionType } = req.body;     
     fs.readFile(DATA_FILE, 'utf8', (err, data) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка чтения данных' });
@@ -88,8 +87,8 @@ app.post('/addDat', (req, res) => {
                     position: [Number(positionX),Number(positionY)],
                     vycka: Number(vyckaPoint),
                     date:date,
-                    systemCoordinates: systemCoordinates[0],
-                    positionType: positionType[0]
+                    systemCoordinates: coordinateSystem,
+                    positionType: positionType
                   };
             }
             if (dataName == "Base")  {
@@ -97,8 +96,8 @@ app.post('/addDat', (req, res) => {
                     position: [Number(positionX),Number(positionY)],
                     vycka: Number(vyckaPoint),
                     date:date,
-                    systemCoordinates: systemCoordinates[0],
-                    positionType: positionType[0]
+                    systemCoordinates: coordinateSystem,
+                    positionType: positionType
                   };
             }
             //Вносим иформацию в файл
