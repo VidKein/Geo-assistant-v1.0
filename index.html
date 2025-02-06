@@ -65,7 +65,8 @@
                             </select>
                             </p>
                         </div> 
-                        <input id="funktionalAddEdit" type="button" value="OK">
+                        <input id="funktionalAdd" type="button" value="OK">
+                        <input id="funktionalEdit" type="button" value="OK">
                     </div>
                 </div>
             </div>
@@ -99,12 +100,12 @@
                         <div class="rightSettingFunctional">
                             <div class="links" id="Language" style="display: block;">
                             <p style="text-align: left;">Language:
-                            <input type="text" id="lang" name="lang" list="langAplikac">
-                                <datalist id="langAplikac">
-                                    <option value="English">
-                                    <option value="Ukrainian">
-                                    <option value="Czech">
-                                </datalist>
+                                <select name="lang" id="lang">
+                                    <option value="">Select</option>
+                                    <option value="eng">English</option>
+                                    <option value="ua">Ukrainian</option>
+                                    <option value="cz">Czech</option>
+                                </select>
                             </p>
                                 <button type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
                             </div>

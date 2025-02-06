@@ -47,9 +47,11 @@ for (let i = 0; i < infoPoint.length; i++) {
                 typeAndJobsPoint.innerText = dataName+"/"+dataJobs;
                 plasePoint.innerText = place;
                 document.querySelector("#import").style.display = "block";
+                document.querySelector("#funktionalEdit").style.display = "none";
                 document.querySelector("#infoPoint").addEventListener("click", ()=>{
                   document.querySelector("#settingBlock").style.display = "none";
                   document.querySelector("#import").style.display = "none";
+                  document.querySelector("#funktionalEdit").style.display = "block";
                   document.querySelector(".close-import").removeAttribute("id");
                 });
             }   

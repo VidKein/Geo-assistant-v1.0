@@ -1,5 +1,5 @@
 let add = [];
-let funktionalAddEdit = document.querySelector("#funktionalAddEdit");
+let funktionalAddEdit = document.querySelector("#funktionalAdd");
 funktionalAddEdit.addEventListener("click",funktionalAdd);
 async function funktionalAdd(e) {   
     let dataPlace = document.querySelector(".namePoint").getAttribute('place'); //имя участка работы SOD-11

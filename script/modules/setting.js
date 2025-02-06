@@ -28,10 +28,9 @@ for (let i = 0; i < settingBlock.length; i++) {
             //Работаем с языком
             if (e.target.id == "runLangAplikac") {
                     let lang = document.querySelector("#lang");
-                    const validOptions = Array.from(document.querySelectorAll('#langAplikac option')).map(option => option.value);
-                    const currentValue = lang.value.trim();
+                    const currentValue = lang.options[lang.selectedIndex].text;
                     // Проверяем, соответствует ли введённое значение одному из доступных вариантов
-                    if(validOptions.includes(currentValue)) {console.log("Выбран язык "+currentValue);}else{alert("You haven't selected a language")} 
+                    if(currentValue !== "Select") {console.log("Выбран язык "+currentValue);}else{alert("You haven't selected a language")} 
             }
             //Работаем с загрузкой выгрузкой файла
             if (e.target.id == "runCalendAplikac") {console.log("runCalendAplikac");}
@@ -61,8 +60,6 @@ for (let i = 0; i < settingBlock.length; i++) {
                             } else {
                                 try {
                                     async function loadOptionSelekt(nameSelekt, value) {
-                                        console.log(nameSelekt, value);
-                                        
                                         const jsonFileKod = './koordinaty/kod.json'; // Укажите URL-адрес json файла
                                         const response = await fetch(jsonFileKod); // Загружаем JSON
                                         const jsonData = await response.json(); // Преобразуем в объект
@@ -74,16 +71,14 @@ for (let i = 0; i < settingBlock.length; i++) {
                                             }
                                     }   
                                     
-                                    
-                                    
                                      const API_URL = `http://localhost:4000/pointDat/${dataName}/${dataJobsPlase}/${id}`;
                                      const response = await fetch(API_URL);
                                      const data = await response.json();
-                                     console.log(data);
                                      if (response.ok) {
                                         //Открываем окно для внесения информации
                                         settingBlockFull.style.display = "none";
                                         document.querySelector("#import").style.display = "block";
+                                        document.querySelector("#funktionalAdd").style.display = "none";
                                         namePointInfo.innerText = namePointAddEditDelat;
                                         document.querySelector(".close-import").id ='editPoint';
                                         //Запoлняем дополнительную информацию по точкам
@@ -110,14 +105,13 @@ for (let i = 0; i < settingBlock.length; i++) {
                                          document.getElementById("date").value = data.date; 
                                          loadOptionSelekt("coordinateSystem" , data.systemCoordinates);
                                          loadOptionSelekt("positionType" , data.positionType);
-                        
-                                   
-                                   
+                
                                          //Закрытие изменений
                                         document.querySelector("#editPoint").addEventListener("click", ()=>{
                                             settingBlockFull.style.display = "block";
                                             document.querySelector("#import").style.display = "none";
                                             document.querySelector(".close-import").removeAttribute("id");
+                                            document.querySelector("#funktionalAdd").style.display = "block";
                                         });
                                          
                                      } else {
@@ -140,6 +134,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                         //Открываем окно для внесения информации
                         settingBlockFull.style.display = "none";
                         document.querySelector("#import").style.display = "block";
+                        document.querySelector("#funktionalEdit").style.display = "none";
                         namePointInfo.innerText = namePointAddEditDelat;
                         document.querySelector(".close-import").id ='addPoint';
                         //Запoлняем дополнительную информацию по точкам
@@ -164,6 +159,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                             settingBlockFull.style.display = "block";
                             document.querySelector("#import").style.display = "none";
                             document.querySelector(".close-import").removeAttribute("id");
+                            document.querySelector("#funktionalEdit").style.display = "block";
                         });
                       } else {
                           console.log(alert("Enter point number and type, jops/plase"));  

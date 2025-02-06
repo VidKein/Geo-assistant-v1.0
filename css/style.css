@@ -116,6 +116,7 @@ body {
   background-color: #cdc4c4;
   padding: 1px 1px;
   margin: 2px 3px;
+  cursor: pointer;
   color: black;
 }
 .pointJobsError{

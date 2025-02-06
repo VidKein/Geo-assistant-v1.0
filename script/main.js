@@ -106,6 +106,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivNiv.setAttribute("place", row["place"]);
             jobDivNiv.setAttribute("data-name", "Base");
             jobDivNiv.setAttribute("data-jobs", "niv");
+            jobDivNiv.setAttribute("title", "Base/niv "+row["place"]);
             jobDivNiv.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointBaseNiv.appendChild(jobDivNiv);
@@ -156,6 +157,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivNiv.setAttribute("place", row["place"]);
             jobDivNiv.setAttribute("data-name", "poligons");
             jobDivNiv.setAttribute("data-jobs", "niv");
+            jobDivNiv.setAttribute("title", "Poligons/niv "+row["place"]);
             jobDivNiv.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointJobsNiv.appendChild(jobDivNiv);
@@ -206,6 +208,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivTax.setAttribute("place", row["place"]);
             jobDivTax.setAttribute("data-name", "Base");
             jobDivTax.setAttribute("data-jobs", "trig");
+            jobDivTax.setAttribute("title", "Base/trig "+row["place"]);
             jobDivTax.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointBaseTax.appendChild(jobDivTax);
@@ -256,6 +259,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivTax.setAttribute("place", row["place"]);
             jobDivTax.setAttribute("data-name", "poligons");
             jobDivTax.setAttribute("data-jobs", "trig");
+            jobDivTax.setAttribute("title", "Poligons/trig "+row["place"]);
             jobDivTax.textContent = row["namber"]; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointJobsTax.appendChild(jobDivTax);

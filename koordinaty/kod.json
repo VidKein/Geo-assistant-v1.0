@@ -9,7 +9,8 @@
         {"id": 3, "value": "fence"},
         {"id": 4, "value": "asphalt"},
         {"id": 5, "value": "earth"},
-        {"id": 6, "value": "pit"}
+        {"id": 6, "value": "pit"},
+        {"id": 7, "value": "pillar-target cross"}
     ]
     }
 }  
