@@ -1,4 +1,3 @@
-import {typeJobsArray} from './planning-work.js';//Импортируем информаци по типу и типу роботы
 //Отображение настроек при нажатии на левые кнопки выбора настроек
         let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
         let blockSetting = leftSettingFunctional.children;     
@@ -19,7 +18,11 @@ let settingBlockFull = document.querySelector("#settingBlock");
 //Тип и Вид работы при Создании, Редоктировании и Удаления точки
 let runTypeAndJobsPoint = document.querySelector(".runTypeAndJobsPoint");
 let runPlasePoint = document.querySelector(".runPlasePoint");
-preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint);
+// Слушаем сообщение от другого скрипта о тип работы
+document.addEventListener("typeJobsArray", (e) => {
+    let typeJobsArray = e.detail;
+    preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray);
+});
 for (let i = 0; i < settingBlock.length; i++) {
     settingBlock[i].addEventListener("click",(e)=>{
         if (settingBlock[i].style.display == "block") { 
@@ -65,7 +68,6 @@ for (let i = 0; i < settingBlock.length; i++) {
                                         const jsonData = await response.json(); // Преобразуем в объект
                                             for (const item of jsonData.kod[nameSelekt]) {
                                                 if (item.value === value) {
-                                                    console.log(item.id);
                                                     document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
                                                 }
                                             }
@@ -224,7 +226,7 @@ for (let i = 0; i < settingBlock.length; i++) {
     })
 }
 //Функция подготовки для информаци в результате работы с точками
-function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint) {
+function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray) {
                         //Название Участка работы
                         let firstSelectHtml = `
                             <select id="firstSelect" style="background-color: #cdc4c4; cursor: pointer;">
@@ -247,12 +249,13 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint) {
                             option.textContent = key;
                             firstSelect.appendChild(option);
                         });
+
                         //Обработчик изменения первого select
                         firstSelect.addEventListener("change", function () {
                             secondSelect.innerHTML = '<option value="">Select</option>'; // Очищаем второй select
                             const selectedCategory = this.value;
                             if (selectedCategory) {
-                                Object.keys(typeJobsArray[selectedCategory]).forEach(subKey => {
+                                typeJobsArray[selectedCategory].forEach(subKey => {
                                     const option = document.createElement("option");
                                     option.value = subKey;
                                     option.textContent = subKey;
