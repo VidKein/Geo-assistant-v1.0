@@ -574,7 +574,7 @@ setting.addEventListener("click",()=>{
 })
 */
 //Наполнение селекта для coordinateSystem и positionType
-const jsonFileKod = './koordinaty/kod.json'; // Укажите URL-адрес json файла
+const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
   // Функция загрузки JSON и заполнения select
   async function loadOptions() {
     try {

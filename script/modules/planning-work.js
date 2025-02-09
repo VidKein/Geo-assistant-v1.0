@@ -40,22 +40,33 @@
             acc[key] = Object.keys(jsonData[key]); // Берём только ключи второго уровня
             return acc;
         }, {});
-        
-        //Передача данных в другой скрипт
-        document.dispatchEvent(new CustomEvent("typeJobsArray", { detail: typeJobs }));    
-
         //Для контроля
         //console.log('JSON данные Базовые:', jsonData.Base, 'JSON данные Рабочие:', jsonData.poligons);
         
         const results = [];
         const resultsTip = {niv: [], trig: [], nivBase: [], trigBase: []};
+        const infoJobsPoint = {};
 
         // Обрабатываем каждый лист
         for (const sheetName of workbook.SheetNames) {
             const sheet = workbook.Sheets[sheetName];
-            const sheetData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            // Определяем диапазон данных (!ref)
+            const range = XLSX.utils.decode_range(sheet['!ref']);
             //Для контроля
-            //console.log(`Обрабатываем лист: ${sheetName}`); // Лог текущего листа
+            console.log(`Диапазон данных на листе "${sheetName}":`, range);
+
+            // Ограничиваем обработку только диапазоном с данными
+            const sheetData = [];
+            for (let row = range.s.r; row <= range.e.r; row++) {
+                const rowData = [];
+                for (let col = range.s.c; col <= range.e.c; col++) {
+                    const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
+                    const cell = sheet[cellAddress];
+                    rowData.push(cell ? cell.v : undefined);
+                }
+                sheetData.push(rowData);
+            }
+
             
             if (sheetData.length === 0) {
                 results.push(`${sheetName}: Лист пустой`);                
@@ -83,6 +94,10 @@
             const hasOne = colData.some(value => value === 1);
             //Для контроля
             //console.log(`Количество найденных точек на листе "${sheetName}":`, colData[0]);
+            //Передаем информацию о количестве рабочих точек в календарь  calendarg.js
+            if (sheetName !=="Base") {
+            infoJobsPoint[sheetName] = colData[0];    
+            }
             
             if (hasOne) {
                 // Выводим значения из столбца B и C
@@ -134,8 +149,15 @@
         //Для контроля
         //console.log(results.join('\n\n\n'));
         /// Создаем и отправляем пользовательское событие с данными
+        //План работы
         const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTip.nivBase, baseTrig: resultsTip.trigBase ,planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
         document.dispatchEvent(planning);
+        //Передача данных по типк и виде работ в другой скрипт setting.js
+        const type = new CustomEvent("typeJobsArray", { detail: typeJobs });
+        document.dispatchEvent(type);
+        //Название участка и количество точек
+        const infoJobs = new CustomEvent("infoJobsPoint", { detail: infoJobsPoint });
+        document.dispatchEvent(infoJobs);
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');

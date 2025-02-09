@@ -19,8 +19,8 @@ let settingBlockFull = document.querySelector("#settingBlock");
 let runTypeAndJobsPoint = document.querySelector(".runTypeAndJobsPoint");
 let runPlasePoint = document.querySelector(".runPlasePoint");
 // Слушаем сообщение от другого скрипта о тип работы
-document.addEventListener("typeJobsArray", (e) => {
-    let typeJobsArray = e.detail;
+document.addEventListener("typeJobsArray", (type) => {
+    let typeJobsArray = type.detail;
     preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray);
 });
 for (let i = 0; i < settingBlock.length; i++) {
@@ -63,7 +63,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                             } else {
                                 try {
                                     async function loadOptionSelekt(nameSelekt, value) {
-                                        const jsonFileKod = './koordinaty/kod.json'; // Укажите URL-адрес json файла
+                                        const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
                                         const response = await fetch(jsonFileKod); // Загружаем JSON
                                         const jsonData = await response.json(); // Преобразуем в объект
                                             for (const item of jsonData.kod[nameSelekt]) {

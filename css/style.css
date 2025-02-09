@@ -75,6 +75,7 @@ body {
   outline: none;
   background: transparent;
 }
+
 /*Информационный блок*/
 .accordion{
   background-color: rgb(242, 242, 242);
@@ -227,146 +228,7 @@ select {
   margin: 6px 0;
 }
 
-/*Календарь*/
-#calendargBlock{
-  display: none;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.95);
-  z-index: 1001;
-}
-.calendarg{
-  background-color: #ffff;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-.calendargIkon{
-  display: inline-block;
-  width: 14px;
-  height: 16px;
-  margin: 7px;
-  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M128 0c13.3 0 24 10.7 24 24l0 40 144 0 0-40c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40 40 0c35.3 0 64 28.7 64 64l0 16 0 48 0 256c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 192l0-48 0-16C0 92.7 28.7 64 64 64l40 0 0-40c0-13.3 10.7-24 24-24zM400 192L48 192l0 256c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-256zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>');
-}
-/*Месяцы*/
-.calendar-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1001;
-  width: 360px;
-  padding: 1em;
-  border: 1px solid #dcdcff;
-  border-radius: 5px;
-  background: #fff;
-}
-table {
-  clear: both;
-  width: 100%;
-  border: 1px solid #dcdcff;
-  border-radius: 3px;
-  border-collapse: collapse;
-  color: #444;
-}
-td {
-  height: 48px;
-  text-align: center;
-  vertical-align: middle;
-  border-right: 1px solid #dcdcff;
-  border-top: 1px solid #dcdcff;
-  width: 14.28571429%;
-}
-thead td {
-  border: none;
-  color: #28283b;
-  text-transform: uppercase;
-  font-size: 1.5em;
-}
-td.not-current {
-  color: #c0c0c0;
-}
-#btnPrev {
-  float: left;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-.prev{
-  display: inline-block;
-  width: 14px;
-  height: 16px;
-  margin: 7px;
-  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>');
-}
-#btnNext {
-  float: right;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-.next{
-  display: inline-block;
-  width: 14px;
-  height: 16px;
-  margin: 7px;
-  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>');
-}
-.close-calendarg{
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  line-height: 35px;
-  border: none;
-  outline: none;
-  background: transparent;
-}
-#btnPrev,
-#btnNext {
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 1em;
-  color: #c0c0c0;
-  cursor: pointer;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  margin: 0px 35px;
-}
-#btnPrev:hover,
-#btnNext:hover {
-  color: #28283b;
-  font-weight: bold;
-}
-td.not-current {
-  color: #c0c0c0;
-}
-td.today {
-  font-weight: 700;
-  color: red;
-  font-size: 1.5em;
-  background-color: #dcdcff;
-}
-@media screen and (max-width: 600px) {
-  .calendar-wrapper{
-    width: 220px;
-    height: auto;
-  }
-  #btnPrev, #btnNext {
-    font-size: 0.6em;
-    margin: 0px 25px;
-  }
-  td{
-    height: 30px;
-  }
-}
+
 /*Настройки*/
 .setting{
   background-color: #ffff;
@@ -466,6 +328,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   float: right;
   cursor: pointer;
 }
+
 /*Условные обозначения*/
 .designations{
   display: none;
@@ -491,6 +354,36 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   width: 10px;
   height: auto;
 }
+/*Кнопка условных обозначений*/
+.showDesing{
+  border: 1px solid #c3c4c7;
+  border-top: none;
+  width: 30px;
+  height: auto;
+  margin-bottom: 0;
+  padding: 3px 2px;
+  background: #fff;
+  color: black;
+  line-height: 1.7;
+  box-shadow: 0px 8px 8px #646970;
+  transition: box-shadow .1s linear;
+  cursor: pointer;
+}
+.buttonDesing .showDesing::after{
+  content: "\25BC";
+  display: inline-block;
+  padding: 0 5px 0 5px;
+  position: relative;
+  vertical-align: bottom;
+}
+.buttonDesing .activ::after{
+  content: "\25B2";
+  display: inline-block;
+  padding: 0 5px 0 5px;
+  position: relative;
+  vertical-align: bottom;
+}
+
 /*Информационное окно*/
 .infoWindows{
   display: none;
@@ -527,55 +420,4 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   border: none;
   outline: none;
   background: transparent;
-}
-/*Кнопка условных обозначений*/
-.showDesing{
-  border: 1px solid #c3c4c7;
-  border-top: none;
-  width: 30px;
-  height: auto;
-  margin-bottom: 0;
-  padding: 3px 2px;
-  background: #fff;
-  color: black;
-  line-height: 1.7;
-  box-shadow: 0px 8px 8px #646970;
-  transition: box-shadow .1s linear;
-  cursor: pointer;
-}
-.buttonDesing .showDesing::after{
-  content: "\25BC";
-  display: inline-block;
-  padding: 0 5px 0 5px;
-  position: relative;
-  vertical-align: bottom;
-}
-.buttonDesing .activ::after{
-  content: "\25B2";
-  display: inline-block;
-  padding: 0 5px 0 5px;
-  position: relative;
-  vertical-align: bottom;
-}
-/*Масштабная линейка*/
-.leaflet-control-scaleBar-map{
-  border: 0 solid rgba(255, 255, 255, 0);
-}
-.scale-bar-container {
-display: flex;
-align-items: flex-end;
-gap: 2px;
-padding: 5px;
-}
-.scale-bar {
-display: inline-block;
-height: 4px;
-border: 3px solid #202124;
-border-top: none;
-}
-.scale-text {
-font-weight: bold;
-color: #fff;
-font-size: 12px;
-text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }

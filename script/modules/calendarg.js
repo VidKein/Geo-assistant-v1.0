@@ -57,10 +57,13 @@ class Cal {
             , lastDateOfMonth = new Date(y, m + 1, 0).getDate()
             // Последний день предыдущего месяца
             , lastDayOfLastMonth = m == 0 ? new Date(y - 1, 11, 0).getDate() : new Date(y, m, 0).getDate();
-        var html = '<table>';
+            
+        // Отображаем месец год
+        document.querySelector("#montYers").innerHTML = this.Months[m] + ' ' + y;
         // Запись выбранного месяца и года
+        var html = '<table>';
         html += '<thead"><tr>';
-        html += '<td colspan="7" id="montYers">' + this.Months[m] + ' ' + y + '</td>';
+        html += '<td colspan="7" id="infoJobs"></td>';
         html += '</tr></thead>';
         // заголовок дней недели
         html += '<tr class="days">';
@@ -91,9 +94,9 @@ class Cal {
             var chkY = chk.getFullYear();
             var chkM = chk.getMonth();
             if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-                html += '<td class="today">' + i + '</td>';
+                html += '<td class="today" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '</td>';
             } else {
-                html += '<td class="normal">' + i + '</td>';
+                html += '<td class="normal" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'"   title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '</td>';
             }
             // закрыть строку в воскресенье
             if (dow == 0) {
@@ -131,19 +134,33 @@ window.onload = function() {
   dateClick();
 }
 // Получить элемент по id
-function getId(id) {
-  return document.getElementById(id);
+function getId(id) {return document.getElementById(id);
+    
 }
 
-//Функция отображения даты     
+//Функция передачи даты     
 function dateClick() {
 const dateCalendar = document.getElementsByTagName("table");
-dateCalendar[0].addEventListener("click",(e)=>{            
-    const montYers = document.querySelector("#montYers").textContent;
+dateCalendar[0].addEventListener("click",(e)=>{         
+    let date = e.target.getAttribute('date');   
     if (e.target.tagName === "TD") {
-        if (e.target.className == "normal" || e.target.className == "not-current") {
-            console.log(e.target.textContent.padStart(2, '0')+" "+montYers);
+        if (e.target.className == "normal" || e.target.className == "today") {
+            console.log(date);
         }
     }
 })
 }
+function infoJobsPointRun(infoJobsPoint){
+    for (const kej in infoJobsPoint) {
+        const infoJob = document.createElement('div');
+        infoJob.id = "infoJobsPoint";
+        infoJob.textContent = kej+" : "+infoJobsPoint[kej];
+        document.querySelector("#infoJobs").appendChild(infoJob);
+    }
+}
+
+// Слушаем сообщение от другого скрипта о название участка и количество точек
+document.addEventListener("infoJobsPoint", (infoJobs) => {
+    let infoJobsPoint = infoJobs.detail;
+    infoJobsPointRun(infoJobsPoint); 
+});
