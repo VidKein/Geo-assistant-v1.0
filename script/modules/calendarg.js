@@ -63,7 +63,7 @@ class Cal {
         // Запись выбранного месяца и года
         var html = '<table>';
         html += '<thead"><tr>';
-        html += '<td colspan="7" id="infoJobs"></td>';
+        html += '<td colspan="7" id="infoJobs">Select date</td>';
         html += '</tr></thead>';
         // заголовок дней недели
         html += '<tr class="days">';
@@ -151,6 +151,7 @@ dateCalendar[0].addEventListener("click",(e)=>{
 })
 }
 function infoJobsPointRun(infoJobsPoint){
+    document.querySelector("#infoJobs").textContent = "";
     for (const kej in infoJobsPoint) {
         const infoJob = document.createElement('div');
         infoJob.id = "infoJobsPoint";
