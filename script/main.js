@@ -549,30 +549,7 @@ map.on('overlayadd', function(e) {
 map.on('overlayremove', function(e) {
     console.log("close - "+e.layer.layerName);
 });
-/*------------------------------------------*/
-/*
-//Определяем координаты
-var popup = L.popup();
-function onMapClick(e) {
-    //JTSK
-    var conv = new JTSK_Converter();
-    var wgs = conv.WGS84toJTSK(e.latlng.lat, e.latlng.lng);
-    console.log(typeof(e.latlng.lat));
-    
-popup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at:  <br><b>WGS84 -</b> <br>" + (e.latlng.lat).toFixed(8)+","+(e.latlng.lng).toFixed(8)+"<br> <b>JTSK - </b><br>"+(wgs.x).toFixed(0)+","+(wgs.y).toFixed(0) )
-    .openOn(map);  
-}
-map.on('click', onMapClick);
 
-//Подключаем камеру
-let constraints = { audio: false, video: { width: 1280, height: 720 } };
-let setting = document.querySelector(".setting");
-setting.addEventListener("click",()=>{
-    promise = navigator.mediaDevices.getUserMedia(constraints);
-})
-*/
 //Наполнение селекта для coordinateSystem и positionType
 const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
   // Функция загрузки JSON и заполнения select
@@ -609,4 +586,83 @@ const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json фа
   // Загружаем данные при загрузке страницы
   document.addEventListener('DOMContentLoaded', loadOptions);
 
-
+  //Определяем координаты
+//Кнопка активизации функции определения координат
+let determinationСoordinates = document.querySelector(".determinationСoordinates");
+determinationСoordinates.addEventListener('click', determinationСoordinatesClick);
+//Отображение блока
+function determinationСoordinatesClick() {
+    if (document.querySelector(".close-import").id == "infoPoint") {
+        closeMarkerLabel.id = document.querySelector(".close-import").id;
+        document.querySelector(".import").style.display = "none"; 
+        document.querySelector(".infoPointkBlock").style.display = "none";
+        document.querySelector(".markerDeterminationСoordinates").style.display = "block";
+    } else {
+        closeMarkerLabel.id = document.querySelector(".close-import").id;
+        document.querySelector(".import").style.display = "none"; 
+        document.querySelector(".settingBlock").style.display = "none";
+        document.querySelector(".markerDeterminationСoordinates").style.display = "block";
+    } 
+}
+//Закрытие блока
+let closeMarkerLabel = document.querySelector(".closeMarkerLabel");
+closeMarkerLabel.addEventListener('click', determinationСoordinatesClose);
+function determinationСoordinatesClose() {
+    if (closeMarkerLabel.id == "infoPoint") {
+        closeMarkerLabel.removeAttribute("id");
+        document.querySelector(".import").style.display = "block"; 
+        document.querySelector(".infoPointkBlock").style.display = "block";
+        document.querySelector(".markerDeterminationСoordinates").style.display = "none";
+    } else {
+        closeMarkerLabel.removeAttribute("id");
+        document.querySelector(".import").style.display = "block"; 
+        document.querySelector(".settingBlock").style.display = "block";
+        document.querySelector(".markerDeterminationСoordinates").style.display = "none";
+    } 
+}
+//Получаем и передаем информацию координатами
+//Передача информации
+let coordSystem = document.querySelector("#coordSystem");
+let getCoordinates = document.querySelector("#getCoordinates");
+getCoordinates.addEventListener('click', getCoordinatesClick);
+function getCoordinatesClick() {
+    let center = map.getCenter();
+    let lat = center.lat;
+    let lng = center.lng;
+    if (coordSystem.value === "jtsk") {
+        //JTSK
+        let conv = new JTSK_Converter();
+        let wgs = conv.WGS84toJTSK(lat, lng);
+        //Выводим информацию
+        document.getElementById("position X").value = (wgs.y).toFixed(0);
+        document.getElementById("position Y").value = (wgs.x).toFixed(0);
+        console.log(`Координаты: X=${(wgs.y).toFixed(0)}, Y=${(wgs.x).toFixed(0)}`);
+    } else {
+        //WGS84
+        //Выводим информацию
+        document.getElementById("position X").value = lat.toFixed(8);
+        document.getElementById("position Y").value = lng.toFixed(8);
+        console.log(`Координаты: ${lat.toFixed(8)}, ${lng.toFixed(8)}`);
+    }
+    //Закрываем экран
+    if (closeMarkerLabel.id == "infoPoint") {
+        closeMarkerLabel.removeAttribute("id");
+        document.querySelector(".import").style.display = "block"; 
+        document.querySelector(".infoPointkBlock").style.display = "block";
+        document.querySelector(".markerDeterminationСoordinates").style.display = "none";
+    } else {
+        closeMarkerLabel.removeAttribute("id");
+        document.querySelector(".import").style.display = "block"; 
+        document.querySelector(".settingBlock").style.display = "block";
+        document.querySelector(".markerDeterminationСoordinates").style.display = "none";
+    } 
+}
+/*------------------------------------------*/
+/*
+//Подключаем камеру
+let constraints = { audio: false, video: { width: 1280, height: 720 } };
+let setting = document.querySelector(".setting");
+setting.addEventListener("click",()=>{
+    promise = navigator.mediaDevices.getUserMedia(constraints);
+})
+*/

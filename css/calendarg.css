@@ -131,6 +131,10 @@ td.today {
   background-color: #dcdcff;
   cursor: pointer;
 }
+.textTodaj{
+  color: red;
+  font-size: 7px;
+}
 /*Дни текушего месяца*/
 td.normal{
   cursor: pointer;

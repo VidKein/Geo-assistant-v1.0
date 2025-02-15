@@ -149,7 +149,7 @@ body {
   margin: 0;
   padding: 0;
   background: rgba(255, 255, 255, 0.95);
-  z-index: 1001;
+  z-index: 1002;
 }
 .import-wraper{
   position: absolute;
@@ -161,7 +161,7 @@ body {
   border: 1px solid #dcdcff;
   border-radius: 5px;
   background: #fff;
-  width:235px;
+  width:255px;
 }
 .close-import{
   cursor: pointer;
@@ -420,4 +420,88 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   border: none;
   outline: none;
   background: transparent;
+}
+
+/*кнопка определения координат*/
+.markerDeterminationСoordinates{display: none;}
+.determinationСoordinates{
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 0c17.7 0 32 14.3 32 32l0 34.7C368.4 80.1 431.9 143.6 445.3 224l34.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-34.7 0C431.9 368.4 368.4 431.9 288 445.3l0 34.7c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-34.7C143.6 431.9 80.1 368.4 66.7 288L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l34.7 0C80.1 143.6 143.6 80.1 224 66.7L224 32c0-17.7 14.3-32 32-32zM128 256a128 128 0 1 0 256 0 128 128 0 1 0 -256 0zm128-80a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/></svg>');
+  float: right;
+  cursor: pointer;
+
+}
+.markerLabel {
+  opacity: 0.6;
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 1000;
+  width: 121px;
+}
+#getCoordinates{
+cursor: pointer;
+}
+.closeMarkerLabel{
+  cursor: pointer;
+  position: absolute;
+  top: -25px;
+  right: 0;
+  width: 23px;
+  height: 23px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: white;
+}
+/* Стили для креста */
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.crosshair::before, .crosshair::after {
+  content: "";
+  position: absolute;
+  background: red;
+}
+.crosshair::before {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.crosshair::after {
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+@media screen and (max-height: 450px) {
+  .markerLabel {
+    top: 62%;
+    left: 50%;
+  }
 }

@@ -1,8 +1,23 @@
+    //Динамически изменяемая дата
+    let date;
     //Дата сегодня
     const todayDate = new Date();
     const year = todayDate.getFullYear();
     const month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
     const day = String(todayDate.getDate()).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
+
+    document.addEventListener("infoJDataClik", (dataCalendarg) => {
+    date = dataCalendarg.detail;
+    });
+    if (date == undefined) {
+        console.log(`${year}-${month}-${day}`); 
+    } else {
+      console.log(date);  
+      // Перезагрузка страницы
+    location.reload();
+    }
+
+
     const searchDateInput = `2024-11-14`;//${year}-${month}-${day}
     const fileUrl = './xlsx/Jobs_kalendar.xlsx'; // Укажите URL-адрес Excel файла
     const jsonFileUrl = './koordinaty/koordinats.json'; // Укажите URL-адрес json файла

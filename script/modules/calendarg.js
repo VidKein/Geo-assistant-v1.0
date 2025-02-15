@@ -94,7 +94,7 @@ class Cal {
             var chkY = chk.getFullYear();
             var chkM = chk.getMonth();
             if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-                html += '<td class="today" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '</td>';
+                html += '<td class="today" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '<div class="textTodaj">Today</div></td>';
             } else {
                 html += '<td class="normal" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'"   title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '</td>';
             }
@@ -138,18 +138,33 @@ function getId(id) {return document.getElementById(id);
     
 }
 
-//Функция передачи даты     
+//Функция передачи даты при нажатии на календарь   
 function dateClick() {
 const dateCalendar = document.getElementsByTagName("table");
 dateCalendar[0].addEventListener("click",(e)=>{         
     let date = e.target.getAttribute('date');   
     if (e.target.tagName === "TD") {
         if (e.target.className == "normal" || e.target.className == "today") {
+            console.log(e.target.style.backgroundColor = "green");
+            
             console.log(date);
+            let dataClick = document.querySelector(".todayDate");
+            dataClick.innerText = date;
+            const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
+            document.dispatchEvent(dataCalendarg);
         }
     }
 })
 }
+
+// Слушаем сообщение от другого скрипта о название участка и количество точек
+document.addEventListener("infoJobsPoint", (infoJobs) => {
+    let infoJobsPoint = infoJobs.detail;
+    console.log(infoJobsPoint);
+    
+    infoJobsPointRun(infoJobsPoint); 
+});
+//Создаем инфрмацию о работе
 function infoJobsPointRun(infoJobsPoint){
     document.querySelector("#infoJobs").textContent = "";
     for (const kej in infoJobsPoint) {
@@ -159,9 +174,3 @@ function infoJobsPointRun(infoJobsPoint){
         document.querySelector("#infoJobs").appendChild(infoJob);
     }
 }
-
-// Слушаем сообщение от другого скрипта о название участка и количество точек
-document.addEventListener("infoJobsPoint", (infoJobs) => {
-    let infoJobsPoint = infoJobs.detail;
-    infoJobsPointRun(infoJobsPoint); 
-});

@@ -53,7 +53,7 @@
                         <div class="plasePoint"></div>        
                         <span class="namePoint" style="color: red; font-weight: 600;"></span>    
                         <div id="importInfo">
-                            <p>position: <input type="text" id="position X" value=700000 required> x <input type="text" id="position Y" value=1000000 required></p>
+                            <p>position: <input type="text" id="position X" value=700000 required> x <input type="text" id="position Y" value=1000000 required><span class="determinationСoordinates" title="Determination coordinates"></span></p>
                             <p>vycka: <input type="number" id="vycka" value=100.0000 required></p>
                             <p>date: <input type="date" id="date" required></p>
                             <p>coordinate system: 
@@ -76,7 +76,7 @@
             <div id="calendargBlock" class="calendargBlock">
                 <div class="calendar-wrapper">
                     <button id="btnPrev" type="button"><span class="prev"></span></button>
-                    <span id="montYers">February 2025</span>
+                    <div id="montYers">February 2025</div>
                     <button id="btnNext" type="button"><span class="next"></span></button>
                     <button class="close-calendarg" title="Выйти из календаря">X</button>
                     <div id="divCal"></div>
@@ -156,12 +156,26 @@
             <p><img class="point" src="./icons/check_red.png" alt="operating points tacheometry"> - point usage designation.</p>
         </div>
     </div>
+    <!--Определение координат-->
+    <!-- Крест и точка в центре экрана -->
+    <div class="markerDeterminationСoordinates">
+        <div class="crosshair"></div>
+        <div class="dot"></div>
+        <div class="markerLabel">
+            <button class="closeMarkerLabel" title="Exit determination coordinates" style="border: 1px solid black;">X</button>
+            <select id="coordSystem">
+                <option value="jtsk">JTSK</option>
+                <option value="wgs84">WGS84</option>
+            </select>
+            <button id="getCoordinates" title="Getc oordinates">ОK</button>
+        </div>
+    </div>
     <script src="./API/locate/L.Control.Locate.min.js"></script><!--L.Control-->
     <script src="./API/xlsx-import/xlsx.full.min.js"></script><!--xlsx-import-->
-    <script type="module"  src="./script/modules/calendarg.js"></script><!--calendarg-->
+    <script type="module" src="./script/modules/calendarg.js"></script><!--calendarg-->
     <script type="module" src="./script/modules/planning-work.js"></script><!--planning-work-->
-    <script type="module"  src="./script/modules/setting.js"></script><!--setting-->
-    <script type="module"  src="./script/modules/info-point.js"></script><!--info-point-->
+    <script type="module" src="./script/modules/setting.js"></script><!--setting-->
+    <script type="module" src="./script/modules/info-point.js"></script><!--info-point-->
     <script type="module" src="./script/modules/working-with-files/add.js"></script><!--working-with-files+ADD-->
     <script type="module" src="./script/modules/working-with-files/delat.js"></script><!--working-with-files+DELAT-->
     <script type="module" src="./script/modules/working-with-files/edit.js"></script><!--working-with-files+EDIT-->
