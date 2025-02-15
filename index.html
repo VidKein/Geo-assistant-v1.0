@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/scale-bar.css"><!--CSS scale-bar-->
     <link rel="stylesheet" href="./API/locate/L.Control.Locate.min.css" /><!--L.Control-->
     <script src="./API/leaflet/leaflet-src.js"></script><!--leaflet-->
-    <script src="./API/JTSKtoWGS84/Converter.js"></script><!--Converter-->
+    <script src="./API/JTSKtoWGS84/Converter.js"></script><!--сonverter-->
     <script src="./script/modules/scale-bar.js"></script><!--scale ruler-->
 </head>
 <body>
@@ -163,10 +163,8 @@
         <div class="dot"></div>
         <div class="markerLabel">
             <button class="closeMarkerLabel" title="Exit determination coordinates" style="border: 1px solid black;">X</button>
-            <select id="coordSystem">
-                <option value="jtsk">JTSK</option>
-                <option value="wgs84">WGS84</option>
-            </select>
+            <!-- Заполняем список координат -->
+            <select id="coordSystem"></select>
             <button id="getCoordinates" title="Getc oordinates">ОK</button>
         </div>
     </div>

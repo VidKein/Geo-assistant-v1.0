@@ -561,6 +561,7 @@ const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json фа
       // Получаем элементы select
       const coordinateSelect = document.getElementById('coordinateSystem');
       const positionSelect = document.getElementById('positionType');
+      const coordSystem = document.getElementById('coordSystem');
 
       // Заполняем select для coordinateSystem
       jsonData.kod.coordinateSystem.forEach(item => {
@@ -568,6 +569,13 @@ const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json фа
         option.value = item.id;
         option.textContent = item.value;
         coordinateSelect.appendChild(option);
+      });
+      // Заполняем select для coordinateSystem
+      jsonData.kod.coordinateSystem.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.value;
+        option.textContent = item.value;
+        coordSystem.appendChild(option);
       });
 
       // Заполняем select для positionType
@@ -624,24 +632,36 @@ function determinationСoordinatesClose() {
 //Передача информации
 let coordSystem = document.querySelector("#coordSystem");
 let getCoordinates = document.querySelector("#getCoordinates");
+async function loadOptionSelekt(nameSelekt, value) {
+    const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
+    const response = await fetch(jsonFileKod); // Загружаем JSON
+    const jsonData = await response.json(); // Преобразуем в объект
+        for (const item of jsonData.kod[nameSelekt]) {
+            if (item.value === value) {
+                document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
+            }
+        }
+}   
 getCoordinates.addEventListener('click', getCoordinatesClick);
 function getCoordinatesClick() {
     let center = map.getCenter();
     let lat = center.lat;
     let lng = center.lng;
-    if (coordSystem.value === "jtsk") {
+    if (coordSystem.value === "JTSK") {
         //JTSK
         let conv = new JTSK_Converter();
         let wgs = conv.WGS84toJTSK(lat, lng);
         //Выводим информацию
         document.getElementById("position X").value = (wgs.y).toFixed(0);
         document.getElementById("position Y").value = (wgs.x).toFixed(0);
+        loadOptionSelekt("coordinateSystem" , coordSystem.value);
         console.log(`Координаты: X=${(wgs.y).toFixed(0)}, Y=${(wgs.x).toFixed(0)}`);
     } else {
         //WGS84
         //Выводим информацию
         document.getElementById("position X").value = lat.toFixed(8);
         document.getElementById("position Y").value = lng.toFixed(8);
+        loadOptionSelekt("coordinateSystem" , coordSystem.value);
         console.log(`Координаты: ${lat.toFixed(8)}, ${lng.toFixed(8)}`);
     }
     //Закрываем экран

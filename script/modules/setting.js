@@ -226,6 +226,7 @@ for (let i = 0; i < settingBlock.length; i++) {
     })
 }
 //Функция подготовки для информаци в результате работы с точками
+
 function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray) {
                         //Название Участка работы
                         let firstSelectHtml = `
