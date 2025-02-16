@@ -63,7 +63,7 @@ class Cal {
         // Запись выбранного месяца и года
         var html = '<table>';
         html += '<thead"><tr>';
-        html += '<td colspan="7" id="infoJobs">Select date</td>';
+        html += '<td colspan="7" id="infoJobs"></td>';
         html += '</tr></thead>';
         // заголовок дней недели
         html += '<tr class="days">';
@@ -127,9 +127,11 @@ window.onload = function() {
   // Привязываем кнопки «Следующий» и «Предыдущий»
   getId('btnNext').onclick = function() {
     c.nextMonth();
+    document.querySelector("#infoJobs").textContent = "Select date";
   };
   getId('btnPrev').onclick = function() {
     c.previousMonth();
+    document.querySelector("#infoJobs").textContent = "Select date";
   };
   dateClick();
 }
@@ -144,15 +146,16 @@ dateCalendar[0].addEventListener("click",(e)=>{
     let date = e.target.getAttribute('date');   
     if (e.target.tagName === "TD") {
         if (e.target.className == "normal" || e.target.className == "today") {
+            //Изменение при нажатии 
             let normal = document.getElementsByClassName("normal");
             for (let i = 0; i < normal.length; i++) {
                 normal[i].className = normal[i].className.replace(" active", "");
             }
             e.target.className += " active";
+            //Передача информации до planning-work.js
             console.log(date);
             let dataClick = document.querySelector(".todayDate");
             dataClick.innerText = date;
-
             const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
             document.dispatchEvent(dataCalendarg);
         }
@@ -169,7 +172,6 @@ document.addEventListener("infoJobsPoint", (infoJobs) => {
 });
 //Создаем инфрмацию о работе
 function infoJobsPointRun(infoJobsPoint){
-    document.querySelector("#infoJobs").textContent = "";
     for (const kej in infoJobsPoint) {
         const infoJob = document.createElement('div');
         infoJob.id = "infoJobsPoint";

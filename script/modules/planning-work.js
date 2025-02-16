@@ -6,6 +6,7 @@
     const month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
     const day = String(todayDate.getDate()).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
 
+    //Принятие информации c calendarg.js
     document.addEventListener("infoJDataClik", (dataCalendarg) => {
     date = dataCalendarg.detail;
     });

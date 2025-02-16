@@ -16,10 +16,9 @@ async function funktionalEdit(e) {
     // Получаем элементы systemCoordinates
     let selektPositionType = document.getElementById("positionType");
     let positionType = selektPositionType.options[selektPositionType.selectedIndex].text;
-    // Контроль
-    
-    add.push(`dataName: ${dataName}, dataJobs: ${dataName} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${coordinateSystem}, positionType: ${positionType}}`);    
-    console.log(add);
+    // Контроль 
+    /*add.push(`dataName: ${dataName}, dataJobs: ${dataName} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${coordinateSystem}, positionType: ${positionType}}`);    
+    console.log(add);*/
     
   
    if (!positionX || !positionY || !vyckaPoint || !date || positionType == "Select" || coordinateSystem == "Select") {
