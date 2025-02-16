@@ -134,8 +134,7 @@ window.onload = function() {
   dateClick();
 }
 // Получить элемент по id
-function getId(id) {return document.getElementById(id);
-    
+function getId(id) {return document.getElementById(id);    
 }
 
 //Функция передачи даты при нажатии на календарь   
@@ -145,11 +144,15 @@ dateCalendar[0].addEventListener("click",(e)=>{
     let date = e.target.getAttribute('date');   
     if (e.target.tagName === "TD") {
         if (e.target.className == "normal" || e.target.className == "today") {
-            console.log(e.target.style.backgroundColor = "green");
-            
+            let normal = document.getElementsByClassName("normal");
+            for (let i = 0; i < normal.length; i++) {
+                normal[i].className = normal[i].className.replace(" active", "");
+            }
+            e.target.className += " active";
             console.log(date);
             let dataClick = document.querySelector(".todayDate");
             dataClick.innerText = date;
+
             const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
             document.dispatchEvent(dataCalendarg);
         }

@@ -151,6 +151,7 @@ td.normal{
   margin: 3px 3px;
   color: black;
 }
+.active{background-color: burlywood;}
 
 @media screen and (max-width: 600px) {
   .calendar-wrapper{
