@@ -93,6 +93,15 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     //Информацинный блок Нивелирования    
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
+
+
+for (let i = 0; i < document.getElementsByName("point").length; i++) {
+    let childrenPoint = document.getElementsByName("point")[i].children;
+    for (let i = 0; i < childrenPoint.length; i++) {
+       childrenPoint[i].remove();
+    }
+}
+
     if (planingBaseNiv.length > 0) {
         levelingBaseLeng.textContent = planingBaseNiv.length+1;
         let parsedData =  parsinWork(planingBaseNiv);
@@ -130,8 +139,16 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
-        operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
-        layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");
+        if (operatingBasePointsNiv && layerControl) {
+            map.removeControl(layerControl);
+            map.removeLayer(operatingBasePointsNiv);
+            layerControl = L.control.layers(baseMaps).addTo(map);
+            operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
+            layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");
+        }else{
+            operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
+            layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");
+        }
     }else {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -181,8 +198,9 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
+ 
         operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
-        layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");    
+        layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -233,7 +251,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         }) 
         //Выводим точки на карту и привязываем к переключателю
         operatingBaseTax = L.layerGroup(pointBaseLayerTax);
-        layerControl.addOverlay(operatingBaseTax, "<span style='color: red'>Base points Tax.</span>");
+        layerControl.addOverlay(operatingBaseTax, "<span style='color: red'>Base points Tax.</span>"); 
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -282,7 +300,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             console.log("Точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
-        //Выводим точки на карту и привязываем к переключателю
+         //Выводим точки на карту и привязываем к переключателю
         operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
         layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
     }else{
@@ -293,11 +311,15 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         console.log("Работы по тахеoметрии нет");
     } 
     //Присваеваем имена слоям
-    operatingBasePointsNiv.layerName = 'operatingBasePointsNiv';
-    operatingPointsNiv.layerName = 'operatingPointsNiv';
-    operatingBaseTax.layerName = 'operatingBaseTax';
-    operatingPointsTax.layerName = 'operatingPointsTax';
-    onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
+    if (planingBaseNiv.length > 0 || planingWorkNiv.length > 0 || planingBaseTrig.length > 0 || planingWorkTax.length > 0) {
+        operatingBasePointsNiv.layerName = 'operatingBasePointsNiv';
+        operatingPointsNiv.layerName = 'operatingPointsNiv';
+        operatingBaseTax.layerName = 'operatingBaseTax';
+        operatingPointsTax.layerName = 'operatingPointsTax';
+        onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
+    } else {
+        console.log("Слоев по работе нет");  
+    } 
 }
 
 //Функция парсинга информации переданной из planing-work.js
@@ -552,49 +574,46 @@ map.on('overlayremove', function(e) {
 
 //Наполнение селекта для coordinateSystem и positionType
 const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
-  // Функция загрузки JSON и заполнения select
-  async function loadOptions() {
-    try {
-      const response = await fetch(jsonFileKod); // Загружаем JSON
-      const jsonData = await response.json(); // Преобразуем в объект
-      
-      // Получаем элементы select
-      const coordinateSelect = document.getElementById('coordinateSystem');
-      const positionSelect = document.getElementById('positionType');
-      const coordSystem = document.getElementById('coordSystem');
-
-      // Заполняем select для coordinateSystem
-      jsonData.kod.coordinateSystem.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item.id;
-        option.textContent = item.value;
-        coordinateSelect.appendChild(option);
-      });
-      // Заполняем select для coordinateSystem
-      jsonData.kod.coordinateSystem.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item.value;
-        option.textContent = item.value;
-        coordSystem.appendChild(option);
-      });
-
-      // Заполняем select для positionType
-      jsonData.kod.positionType.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item.id;
-        option.textContent = item.value;
-        positionSelect.appendChild(option);
-      });
-
-    } catch (error) {
-      console.error('Ошибка загрузки JSON:', error);
-    }
+// Функция загрузки JSON и заполнения select
+async function loadOptions() {
+  try {
+    const response = await fetch(jsonFileKod); // Загружаем JSON
+    const jsonData = await response.json(); // Преобразуем в объект
+    
+    // Получаем элементы select
+    const coordinateSelect = document.getElementById('coordinateSystem');
+    const positionSelect = document.getElementById('positionType');
+    const coordSystem = document.getElementById('coordSystem');
+    // Заполняем select для coordinateSystem
+    jsonData.kod.coordinateSystem.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.id;
+      option.textContent = item.value;
+      coordinateSelect.appendChild(option);
+    });
+    // Заполняем select для coordinateSystem
+    jsonData.kod.coordinateSystem.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.value;
+      option.textContent = item.value;
+      coordSystem.appendChild(option);
+    });
+    // Заполняем select для positionType
+    jsonData.kod.positionType.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.id;
+      option.textContent = item.value;
+      positionSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Ошибка загрузки JSON:', error);
   }
+}
 
-  // Загружаем данные при загрузке страницы
-  document.addEventListener('DOMContentLoaded', loadOptions);
+// Загружаем данные при загрузке страницы
+document.addEventListener('DOMContentLoaded', loadOptions);
 
-  //Определяем координаты
+//Определяем координаты
 //Кнопка активизации функции определения координат
 let determinationСoordinates = document.querySelector(".determinationСoordinates");
 determinationСoordinates.addEventListener('click', determinationСoordinatesClick);

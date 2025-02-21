@@ -1,29 +1,38 @@
-    //Динамически изменяемая дата
-    let date;
-    //Дата сегодня
-    const todayDate = new Date();
-    const year = todayDate.getFullYear();
-    const month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
-    const day = String(todayDate.getDate()).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
-
-    //Принятие информации c calendarg.js
-    document.addEventListener("infoJDataClik", (dataCalendarg) => {
-    date = dataCalendarg.detail;
-    });
-    if (date == undefined) {
-        console.log(`${year}-${month}-${day}`); 
-    } else {
-      console.log(date);  
-      // Перезагрузка страницы
-    location.reload();
+//Дата сегодня
+const todayDate = new Date();
+const year = todayDate.getFullYear();
+const month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
+const day = String(todayDate.getDate()).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
+/*
+//Принятие информации c calendarg.js sessionStorage
+const savedDate = sessionStorage.getItem("selectedDate");
+// Очищаем sessionStorage при ручной перезагрузке браузера (но не при location.reload())
+window.addEventListener("beforeunload", function () {
+    if (!sessionStorage.getItem("reloadFlag")) {
+        sessionStorage.clear(); // Полностью очищаем sessionStorage
     }
+});
+// После JS-перезагрузки убираем флаг
+if (sessionStorage.getItem("reloadFlag")) {
+    sessionStorage.removeItem("reloadFlag");
+}
+*/
+//Принятие информации c calendarg.js события
+//Сегоднешняя дата при загрузке
+planningWork(`${year}-${month}-${day}`);
+//Динамически изменяемая дата
+document.addEventListener("infoJDataClik", (dataCalendarg) => {
+    planningWork(dataCalendarg.detail);
+    document.querySelector(".todayDate").innerText = dataCalendarg.detail;
+});
 
 
-    const searchDateInput = `2024-11-14`;//${year}-${month}-${day}
+async function planningWork(dateWorld) {
+    const searchDateInput = dateWorld;//${year}-${month}-${day} `2024-11-14`
     const fileUrl = './xlsx/Jobs_kalendar.xlsx'; // Укажите URL-адрес Excel файла
     const jsonFileUrl = './koordinaty/koordinats.json'; // Укажите URL-адрес json файла
     //Для контроля
-    //console.log('Дата:', searchDateInput);
+    console.log('Дата:', searchDateInput);
     
     // Функция преобразования даты в формат Excel
     function dateToExcelDate(date) {
@@ -56,6 +65,7 @@
             acc[key] = Object.keys(jsonData[key]); // Берём только ключи второго уровня
             return acc;
         }, {});
+
         //Для контроля
         //console.log('JSON данные Базовые:', jsonData.Base, 'JSON данные Рабочие:', jsonData.poligons);
         
@@ -66,6 +76,7 @@
         // Обрабатываем каждый лист
         for (const sheetName of workbook.SheetNames) {
             const sheet = workbook.Sheets[sheetName];
+            
             // Определяем диапазон данных (!ref)
             const range = XLSX.utils.decode_range(sheet['!ref']);
             //Для контроля
@@ -83,7 +94,6 @@
                 sheetData.push(rowData);
             }
 
-            
             if (sheetData.length === 0) {
                 results.push(`${sheetName}: Лист пустой`);                
                 continue;
@@ -97,6 +107,10 @@
                     columnIndex = index;
                 }
             });
+            if (columnIndex == -1) {
+                if (sheetName !=="Base") {infoJobsPoint[targetRow[0]] = "0";};
+                targetRow[0]
+            }
 
             if (columnIndex === -1) {
                 results.push(`${sheetName}: Дата не найдена`);
@@ -108,13 +122,14 @@
                 .slice(2) // Пропускаем заголовок
                 .map(row => row[columnIndex]); // Значения из найденного столбца
             const hasOne = colData.some(value => value === 1);
+ 
+ 
+ 
             //Для контроля
             //console.log(`Количество найденных точек на листе "${sheetName}":`, colData[0]);
             //Передаем информацию о количестве рабочих точек в календарь  calendarg.js
-            if (sheetName !=="Base") {
-            infoJobsPoint[sheetName] = colData[0];    
-            }
-            
+            if (sheetName !=="Base") {infoJobsPoint[sheetName] = colData[0];};
+
             if (hasOne) {
                 // Выводим значения из столбца B и C
                 const columnData = sheetData
@@ -159,12 +174,12 @@
                         results.push(`${sheetName} (leng ${colData[0]}):\n` + resultsTip.niv.join('\n') + resultsTip.trig.join('\n')); 
                     }
             } else {
-                    results.push(`${sheetName}: В столбце нет значения "1".`);
+                    results.push(`${sheetName}: В столбце нет значения "1".`); 
             }
         }
         //Для контроля
         //console.log(results.join('\n\n\n'));
-        /// Создаем и отправляем пользовательское событие с данными
+        ///Создаем и отправляем пользовательское событие с данными
         //План работы
         const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTip.nivBase, baseTrig: resultsTip.trigBase ,planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
         document.dispatchEvent(planning);
@@ -177,5 +192,5 @@
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
-    }
-    
+    }  
+}

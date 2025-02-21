@@ -152,30 +152,34 @@ dateCalendar[0].addEventListener("click",(e)=>{
                 normal[i].className = normal[i].className.replace(" active", "");
             }
             e.target.className += " active";
-            //Передача информации до planning-work.js
-            console.log(date);
-            let dataClick = document.querySelector(".todayDate");
-            dataClick.innerText = date;
+            /*
+            //Передача информации до planning-work.js sessionStorage
+            sessionStorage.setItem("selectedDate", date); // Сохраняем дату
+            sessionStorage.setItem("reloadFlag", "true"); // Флаг для определения JS-перезагрузки
+            location.reload(); // Перезагружаем страницу
+            */
+            //Передача информации до planning-work.js события
             const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
             document.dispatchEvent(dataCalendarg);
         }
     }
+    if (document.querySelector(".pointJobs").textContent) {document.querySelector(".pointJobs").textContent = "";}
 })
 }
-
 // Слушаем сообщение от другого скрипта о название участка и количество точек
 document.addEventListener("infoJobsPoint", (infoJobs) => {
     let infoJobsPoint = infoJobs.detail;
-    console.log(infoJobsPoint);
-    
+    if (document.querySelector("#infoJobs")) {document.querySelector("#infoJobs").textContent = "";} 
     infoJobsPointRun(infoJobsPoint); 
 });
 //Создаем инфрмацию о работе
-function infoJobsPointRun(infoJobsPoint){
+function infoJobsPointRun(infoJobsPoint){ 
     for (const kej in infoJobsPoint) {
         const infoJob = document.createElement('div');
         infoJob.id = "infoJobsPoint";
-        infoJob.textContent = kej+" : "+infoJobsPoint[kej];
-        document.querySelector("#infoJobs").appendChild(infoJob);
+        infoJob.textContent = kej+" : "+infoJobsPoint[kej];  
+        if (document.querySelector("#infoJobs")) {
+          document.querySelector("#infoJobs").appendChild(infoJob);  
+        } 
     }
 }
