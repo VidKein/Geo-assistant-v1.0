@@ -115,8 +115,9 @@
   }
   #montYers{
     position: absolute;
-    display: inline;
-    margin: 8px 25px;
+    top: 29px;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 /*Дни*/
 /*Дни предыдушего месяца*/
@@ -160,7 +161,7 @@ td.normal{
   }
   #btnPrev, #btnNext {
     font-size: 0.6em;
-    margin: 0px 25px;
+    margin: 0px 0px;
   }
   td{
     height: 30px;

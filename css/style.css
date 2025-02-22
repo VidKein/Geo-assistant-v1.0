@@ -289,7 +289,6 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
 .settingFunctional{
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
 }
 .leftSettingFunctional{
   display: flex;
@@ -503,5 +502,13 @@ cursor: pointer;
   .markerLabel {
     top: 62%;
     left: 50%;
+  }
+  .setting-wrapper{
+    width: 85%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .setting-wrapper{
+    width: 85%;
   }
 }
