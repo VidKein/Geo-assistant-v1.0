@@ -93,17 +93,11 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     //Информацинный блок Нивелирования    
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
-
-
-for (let i = 0; i < document.getElementsByName("point").length; i++) {
-    let childrenPoint = document.getElementsByName("point")[i].children;
-    for (let i = 0; i < childrenPoint.length; i++) {
-       childrenPoint[i].remove();
-    }
-}
-
+    //Очишаем блок с информацией
+    pointBaseNiv.querySelectorAll(".pointJobs").forEach(el => el.remove());
+    if (pointBaseNiv.querySelectorAll(".pointJobsError")) {pointBaseNiv.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
     if (planingBaseNiv.length > 0) {
-        levelingBaseLeng.textContent = planingBaseNiv.length+1;
+        levelingBaseLeng.textContent = planingBaseNiv.length;
         let parsedData =  parsinWork(planingBaseNiv);
         parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
@@ -161,8 +155,11 @@ for (let i = 0; i < document.getElementsByName("point").length; i++) {
     //Информацинный блок Нивелирования
     let pointJobsNiv = document.querySelector("#levelingJobs"); 
     let levelingJobsLeng = document.querySelector("#levelingJobsLength");//количество
+    //Очишаем блок с информацией
+    pointJobsNiv.querySelectorAll(".pointJobs").forEach(el => el.remove());
+    if (pointJobsNiv.querySelectorAll(".pointJobsError")) {pointJobsNiv.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
     if (planingWorkNiv.length > 0) { 
-        levelingJobsLeng.textContent = planingWorkNiv.length+1;
+        levelingJobsLeng.textContent = planingWorkNiv.length;
         let parsedData =  parsinWork(planingWorkNiv);
         parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
@@ -213,8 +210,11 @@ for (let i = 0; i < document.getElementsByName("point").length; i++) {
     //Информацинный блок Нивелирования
     let pointBaseTax = document.querySelector("#tacheometryBasic"); 
     let tacheometryBaseLength = document.querySelector("#tacheometryBasicLength");//количество
+    //Очишаем блок с информацией
+    pointBaseTax.querySelectorAll(".pointJobs").forEach(el => el.remove());
+    if (pointBaseTax.querySelectorAll(".pointJobsError")) {pointBaseTax.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
     if (planingBaseTrig.length > 0) {
-        tacheometryBaseLength.textContent = planingBaseTrig.length+1;
+        tacheometryBaseLength.textContent = planingBaseTrig.length;
         let parsedData =  parsinWork(planingBaseTrig); 
         parsedData.forEach(row => {
            if (row["position"] !== undefined) {
@@ -264,8 +264,11 @@ for (let i = 0; i < document.getElementsByName("point").length; i++) {
     //Информацинный блок Нивелирования
     let pointJobsTax = document.querySelector("#tacheometryJobs"); 
     let tacheometryJobsLength = document.querySelector("#tacheometryJobsLength");//количество
+    //Очишаем блок с информацией
+    pointJobsTax.querySelectorAll(".pointJobs").forEach(el => el.remove());
+    if (pointJobsTax.querySelectorAll(".pointJobsError")) {pointJobsTax.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
     if (planingWorkTax.length > 0) {
-        tacheometryJobsLength.textContent = planingWorkTax.length+1;
+        tacheometryJobsLength.textContent = planingWorkTax.length;
         let parsedData =  parsinWork(planingWorkTax); 
         parsedData.forEach(row => {
            if (row["position"] !== undefined) {
