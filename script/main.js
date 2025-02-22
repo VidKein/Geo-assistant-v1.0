@@ -145,6 +145,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         }
     }else {
         let nouWork = document.createElement('div');
+        levelingBaseLeng.textContent = planingBaseNiv.length;
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work leveling points"
         pointBaseNiv.appendChild(nouWork);
@@ -201,6 +202,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
+        levelingJobsLeng.textContent = planingWorkNiv.length;
         nouWork.textContent = "No work leveling points"
         pointJobsNiv.appendChild(nouWork);
         console.log("Работы по невилированию нет");
@@ -255,6 +257,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
+        tacheometryBaseLength.textContent = planingBaseTrig.length;
         nouWork.textContent = "No work tacheometry points"
         pointBaseTax.appendChild(nouWork);
         console.log("Базовых точек для тахеoметрии нет");
@@ -309,6 +312,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
+        tacheometryJobsLength.textContent = planingWorkTax.length;
         nouWork.textContent = "No work tacheometry points"
         pointJobsTax.appendChild(nouWork);
         console.log("Работы по тахеoметрии нет");
@@ -392,7 +396,7 @@ map.on('baselayerchange', function(e) {
 map.on('overlayadd', function(e) {
     let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");  
     if (e.layer.layerName == "operatingBasePointsNiv" || e.layer.layerName == "operatingPointsNiv" || e.layer.layerName == "operatingBaseTax" || e.layer.layerName == "operatingPointsTax") {
-        if (getActiveLayer() == "Satelit Map") {
+        if (getActiveMapsLayer() == "Satelit Map") {
             // Изменяем цвет текста у всех tooltip
             leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
         } else {
@@ -402,7 +406,7 @@ map.on('overlayadd', function(e) {
     }     
 });
 // Функция для определения текущего активного слоя
-function getActiveLayer() {
+function getActiveMapsLayer() {
     let activeLayerName = null;
     // Перебираем базовые слои и проверяем, какой слой добавлен на карту
     for (const name in baseMaps) {
@@ -452,9 +456,14 @@ const buttonCalendarg = L.Control.extend({
         calendarg.addEventListener("click",closeCalendarShou);
         closeCalendar.addEventListener("click",closeCalendarShou);
         function closeCalendarShou(){
-            divCalendargButton.classList.toggle("activ"); 
+        divCalendargButton.classList.toggle("activ"); 
           if (divCalendargButton.className == "calendarg activ") {
               calendargBlock.style.display = "block";
+              // Не отобаржать слои
+              if (operatingBasePointsNiv !== undefined) {map.removeLayer(operatingBasePointsNiv);}
+              if (operatingPointsNiv !== undefined) {map.removeLayer(operatingPointsNiv);}
+              if (operatingBaseTax !== undefined) {map.removeLayer(operatingBaseTax);}
+              if (operatingPointsTax !== undefined) {map.removeLayer(operatingPointsTax);}            
           } else {
               calendargBlock.style.display = "none";
           }
@@ -562,9 +571,7 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
     checkedMarkers(operatingBasePointsNiv);
     checkedMarkers(operatingPointsNiv);
     checkedMarkers(operatingBaseTax);
-    checkedMarkers(operatingPointsTax);
-
-        
+    checkedMarkers(operatingPointsTax);    
 };
 
 //Показываем какой РАБОЧИЙ слой открыт/закрыт
