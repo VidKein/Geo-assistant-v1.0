@@ -66,17 +66,18 @@ let baseMaps = {
 //ТОЧЕК
 //Бызовые точки
 //Нивилирования
-var pointBaseLayerNiv = [];
+//var pointBaseLayerNiv = [];
 //Тахеометрии
-var pointBaseLayerTax = [];
+//var pointBaseLayerTax = [];
 
 //Рабочии точки
 //Нивилирования
-var pointOperatingLayerNiv = [];
+//var pointOperatingLayerNiv = [];
 //Тахеометпии
-var pointOperatingLayerTax = [];
+//var pointOperatingLayerTax = [];
 //Меню отображения слоев Карт
-let layerControl = L.control.layers(baseMaps).addTo(map);
+let overlayMaps = {};
+let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 let operatingBasePointsNiv;
 let operatingPointsNiv;
 let operatingBaseTax;
@@ -99,6 +100,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     if (planingBaseNiv.length > 0) {
         levelingBaseLeng.textContent = planingBaseNiv.length;
         let parsedData =  parsinWork(planingBaseNiv);
+        //Нивилирования базовые
+        var pointBaseLayerNiv = [];
         parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
             pointBaseLayerNiv.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerBasePointNiv)); 
@@ -132,17 +135,10 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             console.log("Базовые точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
-        //Выводим точки на карту и привязываем к переключателю
-        if (operatingBasePointsNiv && layerControl) {
-            map.removeControl(layerControl);
-            map.removeLayer(operatingBasePointsNiv);
-            layerControl = L.control.layers(baseMaps).addTo(map);
-            operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
-            layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");
-        }else{
-            operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
-            layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");
-        }
+       //Выводим точки на карту и привязываем к переключателю
+        operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
+        //layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");    
+        removeOverlayLayer("Base points Niv.",operatingBasePointsNiv);
     }else {
         let nouWork = document.createElement('div');
         levelingBaseLeng.textContent = planingBaseNiv.length;
@@ -150,10 +146,11 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work leveling points"
         pointBaseNiv.appendChild(nouWork);
         console.log("Базовых точек для невилированию нет");
+        removeOverlayLayer("pointBaseLayerNiv",null);
     }
 
     //Нивелирование - рабочие 
-    //Информацинный блок Нивелирования
+    //Информацинный блок Нивелирования (рабочие)
     let pointJobsNiv = document.querySelector("#levelingJobs"); 
     let levelingJobsLeng = document.querySelector("#levelingJobsLength");//количество
     //Очишаем блок с информацией
@@ -162,6 +159,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     if (planingWorkNiv.length > 0) { 
         levelingJobsLeng.textContent = planingWorkNiv.length;
         let parsedData =  parsinWork(planingWorkNiv);
+        //Нивелирования рабочие
+        var pointOperatingLayerNiv = [];
         parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
             pointOperatingLayerNiv.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerPointNiv)); 
@@ -196,9 +195,9 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
- 
         operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
-        layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");
+        //layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");
+        removeOverlayLayer("Operating points Niv.",operatingPointsNiv);
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -206,6 +205,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work leveling points"
         pointJobsNiv.appendChild(nouWork);
         console.log("Работы по невилированию нет");
+        removeOverlayLayer("pointOperatingLayerNiv",null);
     }
 
     //Тахеометрия - начальные точки(базовые)
@@ -218,6 +218,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     if (planingBaseTrig.length > 0) {
         tacheometryBaseLength.textContent = planingBaseTrig.length;
         let parsedData =  parsinWork(planingBaseTrig); 
+        //Тахеометрии базовые
+        var pointBaseLayerTax = [];
         parsedData.forEach(row => {
            if (row["position"] !== undefined) {
             pointBaseLayerTax.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerBasePointTrig)); 
@@ -253,7 +255,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         }) 
         //Выводим точки на карту и привязываем к переключателю
         operatingBaseTax = L.layerGroup(pointBaseLayerTax);
-        layerControl.addOverlay(operatingBaseTax, "<span style='color: red'>Base points Tax.</span>"); 
+        //layerControl.addOverlay(operatingBaseTax, "<span style='color: red'>Base points Tax.</span>"); 
+        removeOverlayLayer("Base points Tax.",operatingBaseTax);
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -261,6 +264,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work tacheometry points"
         pointBaseTax.appendChild(nouWork);
         console.log("Базовых точек для тахеoметрии нет");
+        removeOverlayLayer("pointBaseLayerTax",null);
     }
     
     //Тахеометрия - рабочие 
@@ -273,6 +277,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     if (planingWorkTax.length > 0) {
         tacheometryJobsLength.textContent = planingWorkTax.length;
         let parsedData =  parsinWork(planingWorkTax); 
+        //Тахеометпии рабочие
+        var pointOperatingLayerTax = [];
         parsedData.forEach(row => {
            if (row["position"] !== undefined) {
             pointOperatingLayerTax.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerPointTax)); 
@@ -308,7 +314,8 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         }) 
          //Выводим точки на карту и привязываем к переключателю
         operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
-        layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
+        //layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
+        removeOverlayLayer("Operating points Tax.",operatingPointsTax);
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -316,6 +323,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work tacheometry points"
         pointJobsTax.appendChild(nouWork);
         console.log("Работы по тахеoметрии нет");
+        removeOverlayLayer("pointOperatingLayerTax",null);
     } 
     //Присваеваем имена слоям
     if (planingBaseNiv.length > 0 || planingWorkNiv.length > 0 || planingBaseTrig.length > 0 || planingWorkTax.length > 0) {
@@ -327,8 +335,34 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     } else {
         console.log("Слоев по работе нет");  
     } 
+    //Изменяем базовый слой и входяший в него
+    layerControl = L.control.layers(baseMaps,overlayMaps).addTo(map);
+    console.log(layerControl._layers);
+    console.log(overlayMaps);
 }
+//Функция создаюшаяя слои
+function removeOverlayLayer(layerName, pointLayer) {      
+    if (pointLayer === null) {
+    console.log("delat");
+    Object.keys(overlayMaps).forEach(pointLayer => delete overlayMaps[pointLayer]);
+    } else {
+        if (layerName in overlayMaps) {
+            console.log("delat+value");  
+            Object.keys(overlayMaps).forEach(pointLayer => delete overlayMaps[pointLayer]);
+            overlayMaps[layerName] = pointLayer;
+        } else {
+            console.log("value");  
+            overlayMaps[layerName] = pointLayer;
+        }
+    }
+        //Удаляем базовый слой и входяший в него
+        map.removeControl(layerControl);
+        customizeLayerControl();
+}
+//Кастомизируем информационный текст переключателей слоев
+function customizeLayerControl() {
 
+}
 //Функция парсинга информации переданной из planing-work.js
 function parsinWork(planing) {
     if (!Array.isArray(planing)) {
