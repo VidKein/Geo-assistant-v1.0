@@ -337,9 +337,12 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     } 
     //Изменяем базовый слой и входяший в него
     layerControl = L.control.layers(baseMaps,overlayMaps).addTo(map);
+    //Меняем стиль названия слоев
+    customizeLayerControl();
+    map.on('overlayadd overlayremove', customizeLayerControl);
     console.log(layerControl._layers);
     console.log(overlayMaps);
-}
+};
 //Функция создаюшаяя слои
 function removeOverlayLayer(layerName, pointLayer) {      
     if (pointLayer === null) {
@@ -357,11 +360,24 @@ function removeOverlayLayer(layerName, pointLayer) {
     }
         //Удаляем базовый слой и входяший в него
         map.removeControl(layerControl);
-        customizeLayerControl();
 }
 //Кастомизируем информационный текст переключателей слоев
 function customizeLayerControl() {
-
+    let labels = document.querySelectorAll('.leaflet-control-layers-overlays label span span');
+    labels.forEach(label => {
+        if (label.textContent.trim() === "Base points Niv.") {
+            label.innerHTML = '<span style="color: red; font-weight: bold;"> - base points Niv;</span>';
+        }
+        if (label.textContent.trim() === "Operating points Niv.") {
+            label.innerHTML = '<span style="color: green; font-weight: bold;"> - operating points Niv;</span>';
+        }
+        if (label.textContent.trim() === "Base points Tax.") {
+            label.innerHTML = '<span style="color: red; font-weight: bold;"> - base points Tax;</span>';
+        }
+        if (label.textContent.trim() === "Operating points Tax.") {
+            label.innerHTML = '<span style="color: green; font-weight: bold;"> - operating points Tax;</span>';
+        }
+    });
 }
 //Функция парсинга информации переданной из planing-work.js
 function parsinWork(planing) {
