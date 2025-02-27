@@ -77,7 +77,7 @@ let baseMaps = {
 //var pointOperatingLayerTax = [];
 //Меню отображения слоев Карт
 let overlayMaps = {};
-let layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+let layerControl = L.control.layers(baseMaps).addTo(map);
 let operatingBasePointsNiv;
 let operatingPointsNiv;
 let operatingBaseTax;
@@ -146,7 +146,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work leveling points"
         pointBaseNiv.appendChild(nouWork);
         console.log("Базовых точек для невилированию нет");
-        removeOverlayLayer("pointBaseLayerNiv",null);
+        removeOverlayLayer("Base points Niv.",null);
     }
 
     //Нивелирование - рабочие 
@@ -205,7 +205,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work leveling points"
         pointJobsNiv.appendChild(nouWork);
         console.log("Работы по невилированию нет");
-        removeOverlayLayer("pointOperatingLayerNiv",null);
+        removeOverlayLayer("Operating points Niv.",null);
     }
 
     //Тахеометрия - начальные точки(базовые)
@@ -264,7 +264,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work tacheometry points"
         pointBaseTax.appendChild(nouWork);
         console.log("Базовых точек для тахеoметрии нет");
-        removeOverlayLayer("pointBaseLayerTax",null);
+        removeOverlayLayer("Base points Tax.",null);
     }
     
     //Тахеометрия - рабочие 
@@ -323,7 +323,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         nouWork.textContent = "No work tacheometry points"
         pointJobsTax.appendChild(nouWork);
         console.log("Работы по тахеoметрии нет");
-        removeOverlayLayer("pointOperatingLayerTax",null);
+        removeOverlayLayer("Operating points Tax.",null);
     } 
     //Присваеваем имена слоям
     if (planingBaseNiv.length > 0 || planingWorkNiv.length > 0 || planingBaseTrig.length > 0 || planingWorkTax.length > 0) {
@@ -339,43 +339,42 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     layerControl = L.control.layers(baseMaps,overlayMaps).addTo(map);
     //Меняем стиль названия слоев
     customizeLayerControl();
-    map.on('overlayadd overlayremove', customizeLayerControl);
     console.log(layerControl._layers);
     console.log(overlayMaps);
 };
 //Функция создаюшаяя слои
-function removeOverlayLayer(layerName, pointLayer) {      
+function removeOverlayLayer(layerName, pointLayer) {  
     if (pointLayer === null) {
-    console.log("delat");
-    Object.keys(overlayMaps).forEach(pointLayer => delete overlayMaps[pointLayer]);
+        console.log("delat");
+        Object.keys(overlayMaps).forEach(key => delete overlayMaps[key]);
     } else {
         if (layerName in overlayMaps) {
             console.log("delat+value");  
-            Object.keys(overlayMaps).forEach(pointLayer => delete overlayMaps[pointLayer]);
+            Object.keys(overlayMaps).forEach(key => delete overlayMaps[key]);
             overlayMaps[layerName] = pointLayer;
         } else {
             console.log("value");  
             overlayMaps[layerName] = pointLayer;
         }
     }
-        //Удаляем базовый слой и входяший в него
-        map.removeControl(layerControl);
+    //Удаляем базовый слой и входяший в него
+    map.removeControl(layerControl);
 }
 //Кастомизируем информационный текст переключателей слоев
 function customizeLayerControl() {
     let labels = document.querySelectorAll('.leaflet-control-layers-overlays label span span');
     labels.forEach(label => {
         if (label.textContent.trim() === "Base points Niv.") {
-            label.innerHTML = '<span style="color: red; font-weight: bold;"> - base points Niv;</span>';
+            label.innerHTML = '<span style="color: red;"> - base points Niv;</span>';
         }
         if (label.textContent.trim() === "Operating points Niv.") {
-            label.innerHTML = '<span style="color: green; font-weight: bold;"> - operating points Niv;</span>';
+            label.innerHTML = '<span style="color: green;"> - operating points Niv;</span>';
         }
         if (label.textContent.trim() === "Base points Tax.") {
-            label.innerHTML = '<span style="color: red; font-weight: bold;"> - base points Tax;</span>';
+            label.innerHTML = '<span style="color: red;"> - base points Tax;</span>';
         }
         if (label.textContent.trim() === "Operating points Tax.") {
-            label.innerHTML = '<span style="color: green; font-weight: bold;"> - operating points Tax;</span>';
+            label.innerHTML = '<span style="color: green;"> - operating points Tax;</span>';
         }
     });
 }
@@ -513,7 +512,9 @@ const buttonCalendarg = L.Control.extend({
               if (operatingBasePointsNiv !== undefined) {map.removeLayer(operatingBasePointsNiv);}
               if (operatingPointsNiv !== undefined) {map.removeLayer(operatingPointsNiv);}
               if (operatingBaseTax !== undefined) {map.removeLayer(operatingBaseTax);}
-              if (operatingPointsTax !== undefined) {map.removeLayer(operatingPointsTax);}            
+              if (operatingPointsTax !== undefined) {map.removeLayer(operatingPointsTax);}    
+              //Меняем стиль названия слоев
+              customizeLayerControl();        
           } else {
               calendargBlock.style.display = "none";
           }
@@ -721,6 +722,7 @@ async function loadOptionSelekt(nameSelekt, value) {
             }
         }
 }   
+//
 getCoordinates.addEventListener('click', getCoordinatesClick);
 function getCoordinatesClick() {
     let center = map.getCenter();
