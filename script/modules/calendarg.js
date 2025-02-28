@@ -162,9 +162,6 @@ dateCalendar[0].addEventListener("click",(e)=>{
             sessionStorage.setItem("reloadFlag", "true"); // Флаг для определения JS-перезагрузки
             location.reload(); // Перезагружаем страницу
             */
-            //Передача информации до planning-work.js события
-            const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
-            document.dispatchEvent(dataCalendarg);
         }
         if (e.target.className == "today") {
             //Изменение при нажатии 
@@ -173,10 +170,10 @@ dateCalendar[0].addEventListener("click",(e)=>{
                 normal[i].className = normal[i].className.replace(" active", "");
             };
             e.target.className += " active";
-            //Передача информации до planning-work.js события
-            const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
-            document.dispatchEvent(dataCalendarg);
         }
+        //Передача информации до planning-work.js события
+        const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
+        document.dispatchEvent(dataCalendarg);
     }
     if (document.querySelector(".pointJobs").textContent) {document.querySelector(".pointJobs").textContent = "";}
 })
