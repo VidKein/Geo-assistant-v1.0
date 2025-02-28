@@ -145,19 +145,34 @@ const dateCalendar = document.getElementsByTagName("table");
 dateCalendar[0].addEventListener("click",(e)=>{         
     let date = e.target.getAttribute('date');   
     if (e.target.tagName === "TD") {
-        if (e.target.className == "normal" || e.target.className == "today") {
+        if (e.target.className == "normal") {
             //Изменение при нажатии 
             let normal = document.getElementsByClassName("normal");
             for (let i = 0; i < normal.length; i++) {
                 normal[i].className = normal[i].className.replace(" active", "");
             };
             e.target.className += " active";
+            let today = document.getElementsByClassName("today");
+            if (today.length !== 0) {
+                today[0].className = today[0].className.replace(" active", "");
+            }
             /*
             //Передача информации до planning-work.js sessionStorage
             sessionStorage.setItem("selectedDate", date); // Сохраняем дату
             sessionStorage.setItem("reloadFlag", "true"); // Флаг для определения JS-перезагрузки
             location.reload(); // Перезагружаем страницу
             */
+            //Передача информации до planning-work.js события
+            const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
+            document.dispatchEvent(dataCalendarg);
+        }
+        if (e.target.className == "today") {
+            //Изменение при нажатии 
+            let normal = document.getElementsByClassName("normal");
+            for (let i = 0; i < normal.length; i++) {
+                normal[i].className = normal[i].className.replace(" active", "");
+            };
+            e.target.className += " active";
             //Передача информации до planning-work.js события
             const dataCalendarg = new CustomEvent("infoJDataClik", { detail: date });
             document.dispatchEvent(dataCalendarg);
