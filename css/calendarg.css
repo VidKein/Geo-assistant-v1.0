@@ -129,7 +129,6 @@ td.today {
   font-weight: 700;
   color: red;
   font-size: 1.5em;
-  background-color: #dcdcff;
   cursor: pointer;
 }
 .textTodaj{
@@ -157,7 +156,7 @@ td.normal{
 @media screen and (max-width: 600px) {
   .calendar-wrapper{
     width: 220px;
-    height: auto;
+    height: 260px;
   }
   #btnPrev, #btnNext {
     font-size: 0.6em;

@@ -346,11 +346,11 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
 function removeOverlayLayer(layerName, pointLayer) {  
     if (pointLayer === null) {
         console.log("delat");
-        Object.keys(overlayMaps).forEach(key => delete overlayMaps[key]);
+        delete overlayMaps[layerName];
     } else {
         if (layerName in overlayMaps) {
             console.log("delat+value");  
-            Object.keys(overlayMaps).forEach(key => delete overlayMaps[key]);
+            delete overlayMaps[layerName]
             overlayMaps[layerName] = pointLayer;
         } else {
             console.log("value");  

@@ -150,7 +150,10 @@ dateCalendar[0].addEventListener("click",(e)=>{
             let normal = document.getElementsByClassName("normal");
             for (let i = 0; i < normal.length; i++) {
                 normal[i].className = normal[i].className.replace(" active", "");
-            }
+            };
+            let today = document.getElementsByClassName("today");
+            today[0].className = today[0].className.replace(" active", "");
+     
             e.target.className += " active";
             /*
             //Передача информации до planning-work.js sessionStorage
