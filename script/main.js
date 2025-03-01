@@ -63,18 +63,6 @@ let baseMaps = {
     "Satelit Map": OSMsatelitMap,
     "Strit Map": OSMstritMap
   };
-//ТОЧЕК
-//Бызовые точки
-//Нивилирования
-//var pointBaseLayerNiv = [];
-//Тахеометрии
-//var pointBaseLayerTax = [];
-
-//Рабочии точки
-//Нивилирования
-//var pointOperatingLayerNiv = [];
-//Тахеометпии
-//var pointOperatingLayerTax = [];
 //Меню отображения слоев Карт
 let overlayMaps = {};
 let layerControl = L.control.layers(baseMaps).addTo(map);
@@ -136,8 +124,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             }  
         }) 
        //Выводим точки на карту и привязываем к переключателю
-        operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);
-        //layerControl.addOverlay(operatingBasePointsNiv, "<span style='color: red'>Base points Niv.</span>");    
+        operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);  
         removeOverlayLayer("Base points Niv.",operatingBasePointsNiv);
     }else {
         let nouWork = document.createElement('div');
@@ -196,7 +183,6 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         }) 
         //Выводим точки на карту и привязываем к переключателю
         operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
-        //layerControl.addOverlay(operatingPointsNiv, "<span style='color: green'>Operating points Niv.</span><hr>");
         removeOverlayLayer("Operating points Niv.",operatingPointsNiv);
     }else{
         let nouWork = document.createElement('div');
@@ -255,7 +241,6 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         }) 
         //Выводим точки на карту и привязываем к переключателю
         operatingBaseTax = L.layerGroup(pointBaseLayerTax);
-        //layerControl.addOverlay(operatingBaseTax, "<span style='color: red'>Base points Tax.</span>"); 
         removeOverlayLayer("Base points Tax.",operatingBaseTax);
     }else{
         let nouWork = document.createElement('div');
@@ -314,7 +299,6 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         }) 
          //Выводим точки на карту и привязываем к переключателю
         operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
-        //layerControl.addOverlay(operatingPointsTax, "<span style='color: green'>Operating points Tax.</span>");
         removeOverlayLayer("Operating points Tax.",operatingPointsTax);
     }else{
         let nouWork = document.createElement('div');
@@ -619,18 +603,10 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
         }
     }
     //Запускаем функцию создания маркера
-    if (operatingBasePointsNiv) {
-        checkedMarkers(operatingBasePointsNiv);
-    }
-    if (operatingPointsNiv) {
-        checkedMarkers(operatingPointsNiv);
-    }
-    if ( operatingBaseTax) {
-        checkedMarkers(operatingBaseTax);
-    }
-    if (operatingPointsTax) {
-        checkedMarkers(operatingPointsTax);  
-    }
+    if (operatingBasePointsNiv) {checkedMarkers(operatingBasePointsNiv);};
+    if (operatingPointsNiv) {checkedMarkers(operatingPointsNiv);};
+    if ( operatingBaseTax) {checkedMarkers(operatingBaseTax);};
+    if (operatingPointsTax) {checkedMarkers(operatingPointsTax);};
 };
 
 //Показываем какой РАБОЧИЙ слой открыт/закрыт
@@ -730,7 +706,7 @@ async function loadOptionSelekt(nameSelekt, value) {
             }
         }
 }   
-//
+//Определение координат по карте
 getCoordinates.addEventListener('click', getCoordinatesClick);
 function getCoordinatesClick() {
     let center = map.getCenter();
