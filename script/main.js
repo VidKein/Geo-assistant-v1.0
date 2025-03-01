@@ -327,10 +327,10 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     } 
     //Присваеваем имена слоям
     if (planingBaseNiv.length > 0 || planingWorkNiv.length > 0 || planingBaseTrig.length > 0 || planingWorkTax.length > 0) {
-        operatingBasePointsNiv.layerName = 'operatingBasePointsNiv';
-        operatingPointsNiv.layerName = 'operatingPointsNiv';
-        operatingBaseTax.layerName = 'operatingBaseTax';
-        operatingPointsTax.layerName = 'operatingPointsTax';
+        if (operatingBasePointsNiv !== undefined) {operatingBasePointsNiv.layerName = 'operatingBasePointsNiv';};
+        if (operatingPointsNiv !== undefined) {operatingPointsNiv.layerName = 'operatingPointsNiv';};
+        if (operatingBaseTax !== undefined) {operatingBaseTax.layerName = 'operatingBaseTax';};
+        if (operatingPointsTax !== undefined) {operatingPointsTax.layerName = 'operatingPointsTax';};
         onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
     } else {
         console.log("Слоев по работе нет");  
@@ -619,10 +619,18 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
         }
     }
     //Запускаем функцию создания маркера
-    checkedMarkers(operatingBasePointsNiv);
-    checkedMarkers(operatingPointsNiv);
-    checkedMarkers(operatingBaseTax);
-    checkedMarkers(operatingPointsTax);    
+    if (operatingBasePointsNiv) {
+        checkedMarkers(operatingBasePointsNiv);
+    }
+    if (operatingPointsNiv) {
+        checkedMarkers(operatingPointsNiv);
+    }
+    if ( operatingBaseTax) {
+        checkedMarkers(operatingBaseTax);
+    }
+    if (operatingPointsTax) {
+        checkedMarkers(operatingPointsTax);  
+    }
 };
 
 //Показываем какой РАБОЧИЙ слой открыт/закрыт
