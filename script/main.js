@@ -105,22 +105,28 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             //Добавляем div в контейнер
             pointBaseNiv.appendChild(jobDivNiv);
             }else{
-            // Создаем новый div
-            const jobDivNivError = document.createElement('div');
-            jobDivNivError.className = 'pointJobsError'; // Добавляем класс
-            jobDivNivError.textContent = row["namber"]; // Устанавливаем текст внутри div
-            //Добавляем div в контейнер
-            pointBaseNiv.appendChild(jobDivNivError);
-            //Добавляем span с финкцией изменения 
-            let pointError = document.createElement('div');
-            pointError.className = 'pointError';
-            //Создаем доплнительные атрибуты
-            jobDivNivError.setAttribute("place", row["place"]);
-            jobDivNivError.setAttribute("data-name", "Base");
-            jobDivNivError.setAttribute("data-jobs", "niv");
-            jobDivNivError.setAttribute("title", "Base/niv "+row["place"]);
-            jobDivNivError.appendChild(pointError);
-            console.log("Базовые точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
+                 // Создаем новый div
+                 const jobDivNivError = document.createElement('div');
+                 jobDivNivError.className = 'pointJobsError'; // Добавляем класс
+                 //Создаем доплнительные атрибуты
+                 jobDivNivError.setAttribute("place", row["place"]);
+                 jobDivNivError.setAttribute("data-name", "Base");
+                 jobDivNivError.setAttribute("data-jobs", "niv");
+                 jobDivNivError.setAttribute("title", "Base/niv "+row["place"]);
+                 if (row["namber"] == "undefined" || row["namber"] == "body") {
+                    jobDivNivError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
+                    //Добавляем div в контейнер
+                    pointBaseNiv.appendChild(jobDivNivError);
+                } else {
+                    jobDivNivError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                    //Добавляем div в контейнер
+                    pointBaseNiv.appendChild(jobDivNivError);
+                    //Добавляем span с финкцией изменения 
+                    let pointError = document.createElement('div');
+                    pointError.className = 'pointError';
+                    jobDivNivError.appendChild(pointError);
+                }
+                 console.log("Базовые точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
        //Выводим точки на карту и привязываем к переключателю
@@ -163,22 +169,28 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             //Добавляем div в контейнер
             pointJobsNiv.appendChild(jobDivNiv);
             }else{
-            // Создаем новый div
-            const jobDivNivError = document.createElement('div');
-            jobDivNivError.className = 'pointJobsError'; // Добавляем класс
-            jobDivNivError.textContent = row["namber"]; // Устанавливаем текст внутри div
-            //Добавляем div в контейнер
-            pointJobsNiv.appendChild(jobDivNivError);
-            //Добавляем span с финкцией изменения 
-            let pointError = document.createElement('div');
-            pointError.className = 'pointError';
-            //Создаем доплнительные атрибуты
-            jobDivNivError.setAttribute("place", row["place"]);
-            jobDivNivError.setAttribute("data-name", "poligons");
-            jobDivNivError.setAttribute("data-jobs", "niv");
-            jobDivNivError.setAttribute("title", "Poligons/niv "+row["place"]);
-            jobDivNivError.appendChild(pointError);
-            console.log("Точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
+                // Создаем новый div
+                const jobDivNivError = document.createElement('div');
+                jobDivNivError.className = 'pointJobsError'; // Добавляем класс
+                //Создаем доплнительные атрибуты
+                jobDivNivError.setAttribute("place", row["place"]);
+                jobDivNivError.setAttribute("data-name", "poligons");
+                jobDivNivError.setAttribute("data-jobs", "niv");
+                jobDivNivError.setAttribute("title", "Poligons/niv "+row["place"]);
+                if (row["namber"] == "undefined" || row["namber"] == "body") {
+                    jobDivNivError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
+                    //Добавляем div в контейнер
+                    pointJobsNiv.appendChild(jobDivNivError);
+                } else {
+                    jobDivNivError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                    //Добавляем div в контейнер
+                    pointJobsNiv.appendChild(jobDivNivError);
+                    //Добавляем span с финкцией изменения 
+                    let pointError = document.createElement('div');
+                    pointError.className = 'pointError';
+                    jobDivNivError.appendChild(pointError);
+                }
+                console.log("Точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
         //Выводим точки на карту и привязываем к переключателю
@@ -224,18 +236,24 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             // Создаем новый div
             const jobDivTaxError = document.createElement('div');
             jobDivTaxError.className = 'pointJobsError'; // Добавляем класс
-            jobDivTaxError.textContent = row["namber"]; // Устанавливаем текст внутри div
-            //Добавляем div в контейнер
-            pointBaseTax.appendChild(jobDivTaxError);
-            //Добавляем span с финкцией изменения 
-            let pointError = document.createElement('div');
-            pointError.className = 'pointError';
             //Создаем доплнительные атрибуты
             jobDivTaxError.setAttribute("place", row["place"]);
             jobDivTaxError.setAttribute("data-name", "Base");
             jobDivTaxError.setAttribute("data-jobs", "trig");
             jobDivTaxError.setAttribute("title", "Base/trig "+row["place"]);
-            jobDivTaxError.appendChild(pointError);
+            if (row["namber"] == "undefined" || row["namber"] == "body") {
+                jobDivTaxError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
+                //Добавляем div в контейнер
+                pointBaseTax.appendChild(jobDivTaxError);
+            } else {
+                jobDivTaxError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                //Добавляем div в контейнер
+                pointBaseTax.appendChild(jobDivTaxError);
+                //Добавляем span с финкцией изменения 
+                let pointError = document.createElement('div');
+                pointError.className = 'pointError';
+                jobDivTaxError.appendChild(pointError);
+            }
             console.log("Базовые точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
@@ -282,18 +300,24 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             // Создаем новый div
             const jobDivTaxError = document.createElement('div');
             jobDivTaxError.className = 'pointJobsError'; // Добавляем класс
-            jobDivTaxError.textContent = row["namber"]; // Устанавливаем текст внутри div
-            //Добавляем div в контейнер
-            pointJobsTax.appendChild(jobDivTaxError);
-            //Добавляем span с финкцией изменения 
-            let pointError = document.createElement('div');
-            pointError.className = 'pointError';
             //Создаем доплнительные атрибуты
             jobDivTaxError.setAttribute("place", row["place"]);
             jobDivTaxError.setAttribute("data-name", "poligons");
             jobDivTaxError.setAttribute("data-jobs", "trig");
             jobDivTaxError.setAttribute("title", "Poligons/trig "+row["place"]);
-            jobDivTaxError.appendChild(pointError);
+            if (row["namber"] == "undefined" || row["namber"] == "body") {
+                jobDivTaxError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
+                //Добавляем div в контейнер
+                pointJobsTax.appendChild(jobDivTaxError);
+            } else {
+                jobDivTaxError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                //Добавляем div в контейнер
+                pointJobsTax.appendChild(jobDivTaxError);
+                //Добавляем span с финкцией изменения 
+                let pointError = document.createElement('div');
+                pointError.className = 'pointError';
+                jobDivTaxError.appendChild(pointError);
+            }
             console.log("Точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
