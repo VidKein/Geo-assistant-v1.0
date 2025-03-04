@@ -3,15 +3,7 @@ class Cal {
         //Сохраняем идентификатор div
         this.divId = divId;
         // Дни недели с понедельника
-        this.DaysOfWeek = [
-            'Mon',
-            'Tue',
-            'Wed',
-            'Thu',
-            'Eri',
-            'Sat',
-            'Sun'
-        ];
+        this.DaysOfWeek = ['Mon','Tue','Wed','Thu','Eri','Sat','Sun'];
         // Месяцы начиная с января
         this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         //Устанавливаем текущий месяц, год
