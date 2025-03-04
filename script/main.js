@@ -353,15 +353,12 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
 //Функция создаюшаяя слои
 function removeOverlayLayer(layerName, pointLayer) {  
     if (pointLayer === null) {
-        console.log("delat");
         delete overlayMaps[layerName];
     } else {
         if (layerName in overlayMaps) {
-            console.log("delat+value");  
             delete overlayMaps[layerName]
             overlayMaps[layerName] = pointLayer;
-        } else {
-            console.log("value");  
+        } else { 
             overlayMaps[layerName] = pointLayer;
         }
     }
