@@ -148,12 +148,6 @@ dateCalendar[0].addEventListener("click",(e)=>{
             if (today.length !== 0) {
                 today[0].className = today[0].className.replace(" active", "");
             }
-            /*
-            //Передача информации до planning-work.js sessionStorage
-            sessionStorage.setItem("selectedDate", date); // Сохраняем дату
-            sessionStorage.setItem("reloadFlag", "true"); // Флаг для определения JS-перезагрузки
-            location.reload(); // Перезагружаем страницу
-            */
         }
         if (e.target.className == "today") {
             //Изменение при нажатии 

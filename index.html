@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/scale-bar.css"><!--CSS scale-bar-->
     <link rel="stylesheet" href="./API/locate/L.Control.Locate.min.css" /><!--L.Control-->
     <script src="./API/leaflet/leaflet-src.js"></script><!--leaflet-->
+    <script src="./script/ SiteLanguage/ site-language.js"></script><!--Site Language-->
     <script src="./API/JTSKtoWGS84/Converter.js"></script><!--сonverter-->
     <script src="./script/modules/scale-bar.js"></script><!--scale ruler-->
 </head>
@@ -99,6 +100,7 @@
                             <button type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
                             <button type="button" class="settingButton" id="Points" title="Points">Points</button>
                             <button type="button" class="settingButton" id="Print" title="Print">Print</button>
+                            <button type="button" class="settingButton" id="Reset" title="Reset">Reset</button>
                         </div>
                         <div class="rightSettingFunctional">
                             <div class="links" id="Language" style="display: block;">
@@ -110,7 +112,7 @@
                                     <option value="cz">Czech</option>
                                 </select>
                             </p>
-                                <button type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
+                            <button type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
                             </div>
                             <div class="links" id="Сalendar" style="display: none;">
                                 <p style="text-align: left;">Please specify the file with the work plan.</p>
@@ -128,6 +130,10 @@
                             </div>
                             <div class="links" id="Print"пглглг style="display: none;">
                                 <p style="text-align: center;">Display point number<input type="checkbox" id="nameDisplay"></p>
+                            </div>
+                            <div class="links" id="Reset" style="display: none;">
+                                <p style="text-align: left;">Reset all saved settings.</p>
+                                <button type="submit" id="clearSettings" title="Reset all saved settings">Submit</button>
                             </div>
                         </div>
                     </div>

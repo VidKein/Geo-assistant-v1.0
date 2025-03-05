@@ -3,20 +3,6 @@ const todayDate = new Date();
 const year = todayDate.getFullYear();
 const month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
 const day = String(todayDate.getDate()).padStart(2, '0'); // Добавляет ведущий ноль, если нужно
-/*
-//Принятие информации c calendarg.js sessionStorage
-const savedDate = sessionStorage.getItem("selectedDate");
-// Очищаем sessionStorage при ручной перезагрузке браузера (но не при location.reload())
-window.addEventListener("beforeunload", function () {
-    if (!sessionStorage.getItem("reloadFlag")) {
-        sessionStorage.clear(); // Полностью очищаем sessionStorage
-    }
-});
-// После JS-перезагрузки убираем флаг
-if (sessionStorage.getItem("reloadFlag")) {
-    sessionStorage.removeItem("reloadFlag");
-}
-*/
 //Принятие информации c calendarg.js события
 //Сегоднешняя дата при загрузке
 planningWork(`${year}-${month}-${day}`);

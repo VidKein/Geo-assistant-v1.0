@@ -31,9 +31,15 @@ for (let i = 0; i < settingBlock.length; i++) {
             //Работаем с языком
             if (e.target.id == "runLangAplikac") {
                     let lang = document.querySelector("#lang");
-                    const currentValue = lang.options[lang.selectedIndex].text;
+                    const currentName = lang.options[lang.selectedIndex].text;
+                    const currentValue = lang.options[lang.selectedIndex].value;
                     // Проверяем, соответствует ли введённое значение одному из доступных вариантов
-                    if(currentValue !== "Select") {console.log("Выбран язык "+currentValue);}else{alert("You haven't selected a language")} 
+                    if(currentValue !== "Select") {
+                        console.log("Выбран язык "+currentName);
+                        //LocalStorage - сохраняем язык сайта
+                        localStorage.setItem('siteLanguage', currentValue);
+                        location.reload(); // Перезагрузка страницы для сброса значений
+                    }else{alert("You haven't selected a language")} 
             }
             //Работаем с загрузкой выгрузкой файла
             if (e.target.id == "runCalendAplikac") {console.log("runCalendAplikac");}
@@ -220,13 +226,16 @@ for (let i = 0; i < settingBlock.length; i++) {
                 }
                 //Отображаем/не отображаем наименование точки на карте       
                 if (e.target.id == "nameDisplay") {
-                    console.log("nameDisplay");
+                    //LocalStorage - сохраняем язык сайта
+                    const showPoints = e.target.checked;
+                    localStorage.setItem('namePointDisplay', showPoints);
+                    location.reload(); // Перезагрузка страницы для сброса значений
+                    console.log("namePointDisplay - "+showPoints);
                 }
         }
     })
 }
 //Функция подготовки для информаци в результате работы с точками
-
 function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray) {
                         //Название Участка работы
                         let firstSelectHtml = `
@@ -265,3 +274,23 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsAr
                             }
                         });
 }
+//Настройки при загрузке страницы
+function loadSettings(){
+    // Загружаем язык
+    const savedLanguage = localStorage.getItem('siteLanguage');
+    if (savedLanguage) {
+        document.getElementById('lang').value = savedLanguage;
+    }
+    // Загружаем настройку отображения точек
+    const showPoints = localStorage.getItem('namePointDisplay') === 'true';
+    document.getElementById('nameDisplay').checked = showPoints;
+}
+//Очистка всех настроек
+document.getElementById('clearSettings').addEventListener('click', () => {
+    if (confirm("Вы уверены, что хотите сбросить все настройки?")) {
+        localStorage.clear();
+        location.reload(); // Перезагрузка страницы для сброса значений
+    }
+});
+//Загружаем настройки при загрузке страницы
+window.addEventListener('DOMContentLoaded', loadSettings);
