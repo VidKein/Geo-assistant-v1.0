@@ -1,5 +1,4 @@
 const namePointDisplay = localStorage.getItem('namePointDisplay') || "false";
-console.log(namePointDisplay);
 /*Карта*/
 //СЛОИ КАРТЫ
 //Спутник
@@ -98,7 +97,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             //Создаем новый div
             const jobDivNiv = document.createElement('div');
             jobDivNiv.className = 'pointJobs'; // Добавляем класс
-            //Создаем доплнительные атрибуты
+            //Создаем дополнительные атрибуты
             jobDivNiv.setAttribute("place", row["place"]);
             jobDivNiv.setAttribute("data-name", "Base");
             jobDivNiv.setAttribute("data-jobs", "niv");

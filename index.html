@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>leafletjs Map</title>
+    <title>Geo assistant</title>
     <link rel="stylesheet" href="./API/leaflet/leaflet.css" /><!--leaflet-->
     <link rel="stylesheet" href="./css/style.css"><!--CSS main-->
     <link rel="stylesheet" href="./css/marker.css"><!--CSS marker namber-->
@@ -99,20 +99,24 @@
                             <button type="button" class="settingButton" id="Language" title="Language" style="background-color: rgb(195, 196, 199);">Language</button>
                             <button type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
                             <button type="button" class="settingButton" id="Points" title="Points">Points</button>
-                            <button type="button" class="settingButton" id="Print" title="Print">Print</button>
-                            <button type="button" class="settingButton" id="Reset" title="Reset">Reset</button>
+                            <button type="button" class="settingButton" id="Codes" title="Codes">Codes</button>
                         </div>
                         <div class="rightSettingFunctional">
                             <div class="links" id="Language" style="display: block;">
-                            <p style="text-align: left;">Language:
-                                <select name="lang" id="lang">
+                                <p style="text-align: left;">Language:
+                                    <select name="lang" id="lang">
                                     <option value="">Select</option>
                                     <option value="eng">English</option>
                                     <option value="ua">Ukrainian</option>
                                     <option value="cz">Czech</option>
-                                </select>
-                            </p>
-                            <button type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
+                                    </select>
+                                    <button type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
+                                </p>
+                                <hr>
+                                <p style="text-align: left;">Display point number - <input type="checkbox" id="nameDisplay"></p>
+                                <hr>
+                                <p style="text-align: left;">Reset all saved settings.<button type="submit" id="clearSettings" title="Reset all saved settings">Submit</button></p>
+                                
                             </div>
                             <div class="links" id="Сalendar" style="display: none;">
                                 <p style="text-align: left;">Please specify the file with the work plan.</p>
@@ -120,20 +124,23 @@
                             </div>
                             <div class="links" id="Points" style="display: none;">
                                 <p style="text-align: left;">Type, jops/plase, name point:
-                                <div class="runTypeAndJobsPoint"></div>
-                                <div class="runPlasePoint"></div> 
-                                <input type="namber" id="namePointAddEditDelat">
+                                    <div class="runTypeAndJobsPoint"></div>
+                                    <div class="runPlasePoint"></div> 
+                                    <input type="namber" id="namePointAddEditDelat">
                                 </p>
                                 <button type="submit" id="runPointAdd" title="Add point">Add point</button>
                                 <button type="submit" id="runPointEdit" title="Edit point">Edit point</button>
                                 <button type="submit" id="runPointDelat" title="Delaet point">Delaet point</button>
                             </div>
-                            <div class="links" id="Print"пглглг style="display: none;">
-                                <p style="text-align: center;">Display point number<input type="checkbox" id="nameDisplay"></p>
-                            </div>
-                            <div class="links" id="Reset" style="display: none;">
-                                <p style="text-align: left;">Reset all saved settings.</p>
-                                <button type="submit" id="clearSettings" title="Reset all saved settings">Submit</button>
+                            <div class="links" id="Codes" style="display: none;">
+                                <div class="codes-wrapper">
+                                    <!--Система коорднат-->
+                                    <button type="button" class="accordion" name="LevelcoordinateSystem">Сoordinate system - <span id="levelingcoordinateSystem">0</span></button>
+                                    <div class="links" id="LevelcoordinateSystem" name="codes"></div>
+                                    <!--Типы расположения точек-->
+                                    <button type="button" class="accordion" name="LevelpositionType">Position type - <span id="levelingpositionType">0</span></button>
+                                    <div class="links" id="LevelpositionType" name="codes"></div>
+                                </div>    
                             </div>
                         </div>
                     </div>

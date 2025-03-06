@@ -41,6 +41,14 @@ for (let i = 0; i < settingBlock.length; i++) {
                         location.reload(); // Перезагрузка страницы для сброса значений
                     }else{alert("You haven't selected a language")} 
             }
+            //Отображаем/не отображаем наименование точки на карте       
+            if (e.target.id == "nameDisplay") {
+                //LocalStorage - сохраняем язык сайта
+                const showPoints = e.target.checked;
+                localStorage.setItem('namePointDisplay', showPoints);
+                location.reload(); // Перезагрузка страницы для сброса значений
+                console.log("namePointDisplay - "+showPoints);
+            }
             //Работаем с загрузкой выгрузкой файла
             if (e.target.id == "runCalendAplikac") {console.log("runCalendAplikac");}
             //Работаем с загрузкой, редоктированием и удалением информации о точки
@@ -49,8 +57,8 @@ for (let i = 0; i < settingBlock.length; i++) {
             let typeAndJobsPoint = document.querySelector(".typeAndJobsPoint");
             //Название Участка работы
             let plasePoint = document.querySelector(".plasePoint");
-                //Edit
-                if (e.target.id == "runPointEdit") {
+            //Edit
+            if (e.target.id == "runPointEdit") {
                     if (Number(namePointAddEditDelat)) {
                         //Запoлняем дополнительную информацию по точкам
                         //Создаем новые атрибуты
@@ -135,9 +143,9 @@ for (let i = 0; i < settingBlock.length; i++) {
                     } else {
                       console.log(alert("Enter point number"));  
                     }
-                }
-                //Add
-                if (e.target.id == "runPointAdd") {
+            }
+            //Add
+            if (e.target.id == "runPointAdd") {
                     if (Number(namePointAddEditDelat && !secondSelect.value == "")) {
                         //Открываем окно для внесения информации
                         settingBlockFull.style.display = "none";
@@ -172,9 +180,9 @@ for (let i = 0; i < settingBlock.length; i++) {
                       } else {
                           console.log(alert("Enter point number and type, jops/plase"));  
                       }
-                }
-                //Delat
-                if (e.target.id == "runPointDelat") {
+            }
+            //Delat
+            if (e.target.id == "runPointDelat") {
                     if (Number(namePointAddEditDelat) && !secondSelect.value == "") {
                         //Открываем окно
                         settingBlockFull.style.display = "none";
@@ -223,15 +231,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                       } else {
                           console.log(alert("Enter point number and type, jops/plase"));  
                       }
-                }
-                //Отображаем/не отображаем наименование точки на карте       
-                if (e.target.id == "nameDisplay") {
-                    //LocalStorage - сохраняем язык сайта
-                    const showPoints = e.target.checked;
-                    localStorage.setItem('namePointDisplay', showPoints);
-                    location.reload(); // Перезагрузка страницы для сброса значений
-                    console.log("namePointDisplay - "+showPoints);
-                }
+            }
         }
     })
 }
@@ -292,5 +292,26 @@ document.getElementById('clearSettings').addEventListener('click', () => {
         location.reload(); // Перезагрузка страницы для сброса значений
     }
 });
+//Заполнение блока Система коорднат-Типы расположения точек
+loadOptions("coordinateSystem");
+loadOptions("positionType");
+async function loadOptions(nameLoad) {
+    const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
+    const response = await fetch(jsonFileKod); // Загружаем JSON
+    const jsonData = await response.json(); // Преобразуем в объект
+    //Заполняем количество
+    document.getElementById("leveling"+nameLoad).textContent = jsonData.kod[nameLoad].length;
+        for (const item of jsonData.kod[nameLoad]) {
+            // Создаем новый div
+            const loadOption = document.createElement('div');
+            loadOption.className = nameLoad; // Добавляем класс
+            loadOption.textContent = item.value; // Устанавливаем текст внутри div
+            let delatCode = document.createElement('div');
+            delatCode.className = 'delatCode';
+            delatCode.setAttribute("title", "Delat code");
+            loadOption.appendChild(delatCode);
+            document.getElementById("Level"+nameLoad).appendChild(loadOption);
+        }
+}
 //Загружаем настройки при загрузке страницы
 window.addEventListener('DOMContentLoaded', loadSettings);
