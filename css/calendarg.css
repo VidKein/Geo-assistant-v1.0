@@ -156,13 +156,14 @@ td.normal{
 @media screen and (max-width: 600px) {
   .calendar-wrapper{
     width: 220px;
-    height: 260px;
+    height: auto;
   }
   #btnPrev, #btnNext {
     font-size: 0.6em;
     margin: 0px 0px;
   }
   td{
-    height: 30px;
+    width: auto;
+    height: 26px;
   }
 }

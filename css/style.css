@@ -189,12 +189,13 @@ body {
   display: inline-block;
   background-color: #cdc4c4;
   padding: 2px 2px;
+  margin: 2px 0;
 }
 .runPlasePoint{
   display: inline-block;
   background-color: cornflowerblue;
   padding: 2px 2px;
-  margin: 0 5px;
+  margin: 2px 0;
 }
 .typeAndJobsPointDelat{
   display: inline-block;
@@ -300,6 +301,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   display: flex;
   flex-direction: column;
   padding: 0.5rem 0.5rem 0.5rem 0 ;
+  width: 450px;
 }
 .settingButton {
   background-color: rgb(242, 242, 242);
@@ -316,7 +318,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   border-top: 5px solid white;
 }
 .links{
-  margin: 1rem;
+  margin: 0.2rem 1rem 0.2rem 1rem;;
 }
 .links p{
   margin: 0.3rem;
@@ -564,7 +566,7 @@ cursor: pointer;
     width: 85%;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .setting-wrapper{
     width: 85%;
   }

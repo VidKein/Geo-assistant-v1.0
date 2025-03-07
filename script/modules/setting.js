@@ -232,14 +232,35 @@ for (let i = 0; i < settingBlock.length; i++) {
                           console.log(alert("Enter point number and type, jops/plase"));  
                       }
             }
-            //coordinateSystem
-            if (e.target.className == "newcoordinateSystem" || e.target.className == "delatCodecoordinateSystem") {
-                console.log(e.target.className);
+            //Добовляем coordinateSystem/positionType
+            if (e.target.className == "newcoordinateSystem" || e.target.className == "newpositionType") {
+              
+                
             }
-            //positionType
-            if (e.target.className == "newpositionType" || e.target.className == "delatCodepositionType") {
-                   console.log(e.target.className);
-                   
+            //Удаляем coordinateSystem/positionType
+            if (e.target.className == "delatCodecoordinateSystem" || e.target.className == "delatCodepositionType") {
+              let dataNameCod = document.querySelector(".delatCodecoordinateSystem").getAttribute('data-name'); 
+              console.log(dataNameCod);
+              
+              //Открываем окно
+              settingBlockFull.style.display = "none";
+              document.querySelector("#infoWindows").style.display = "block";
+              //Создание блока
+              let textDelat = document.createElement('p');
+              textDelat.innerText = "Attention, do you really want to delete - ";
+              let span = document.createElement('span');
+              span.style = "color:red";
+              span.id = "delateNamePoin";
+              span.innerText = dataNameCod;    
+
+
+              //Закрытие изменений
+              document.querySelector(".close-infoWindows").addEventListener("click", ()=>{
+                //Удаление блока
+                textDelat.remove();
+                settingBlockFull.style.display = "block";
+                document.querySelector("#infoWindows").style.display = "none";
+              });
             }
         }
     })
@@ -324,6 +345,7 @@ async function loadOptions(nameLoad) {
             let delatCode = document.createElement('div');
             delatCode.className = 'delatCode'+nameLoad;
             delatCode.setAttribute("title", "Delat code");
+            delatCode.setAttribute("data-name", item.value);// имя кода
             loadOption.appendChild(delatCode);
             document.getElementById("Level"+nameLoad).appendChild(loadOption);
         }
