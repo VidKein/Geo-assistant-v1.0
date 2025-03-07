@@ -512,8 +512,17 @@ cursor: pointer;
 #levelingPositType{
 
 }
+.newcoordinateSystem{
+  font-size: 0.7em;
+  display: inline-block;
+  background-color: green;
+  padding: 4px 3px;
+  margin: 2px 3px;
+  cursor: pointer;
+  color: white;
+}
 .coordinateSystem{
-  font-size: 0.6em;
+  font-size: 0.7em;
   display: inline-block;
   background-color: #cdc4c4;
   padding: 3px 3px;
@@ -521,16 +530,25 @@ cursor: pointer;
   cursor: pointer;
   color: black;
 }
+.newpositionType{
+  font-size: 0.7em;
+  display: inline-block;
+  background-color: green;
+  padding: 3px 2px;
+  margin: 2px 3px;
+  cursor: pointer;
+  color: white;
+}
 .positionType{
   font-size: 0.7em;
-    display: inline-block;
-    background-color: #cdc4c4;
-    padding: 2px 2px;
-    margin: 2px 3px;
-    cursor: pointer;
-    color: black;
+  display: inline-block;
+  background-color: #cdc4c4;
+  padding: 2px 2px;
+  margin: 2px 3px;
+  cursor: pointer;
+  color: black;
 }
-.delatCode{
+.delatCodecoordinateSystem, .delatCodepositionType{
   display: inline-block;
   width: 10px;
   height: 12px;

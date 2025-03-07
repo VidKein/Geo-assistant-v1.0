@@ -232,6 +232,15 @@ for (let i = 0; i < settingBlock.length; i++) {
                           console.log(alert("Enter point number and type, jops/plase"));  
                       }
             }
+            //coordinateSystem
+            if (e.target.className == "newcoordinateSystem" || e.target.className == "delatCodecoordinateSystem") {
+                console.log(e.target.className);
+            }
+            //positionType
+            if (e.target.className == "newpositionType" || e.target.className == "delatCodepositionType") {
+                   console.log(e.target.className);
+                   
+            }
         }
     })
 }
@@ -301,13 +310,19 @@ async function loadOptions(nameLoad) {
     const jsonData = await response.json(); // Преобразуем в объект
     //Заполняем количество
     document.getElementById("leveling"+nameLoad).textContent = jsonData.kod[nameLoad].length;
+    // Создаем новый div для новых классов
+    const loadNewOption = document.createElement('div');
+    loadNewOption.className = "new"+nameLoad; // Добавляем класс
+    loadNewOption.textContent = "New"; // Устанавливаем текст внутри div
+    loadNewOption.setAttribute("title", "New code");
+    document.getElementById("Level"+nameLoad).appendChild(loadNewOption);
         for (const item of jsonData.kod[nameLoad]) {
-            // Создаем новый div
+            // Создаем новый div заполнения
             const loadOption = document.createElement('div');
             loadOption.className = nameLoad; // Добавляем класс
             loadOption.textContent = item.value; // Устанавливаем текст внутри div
             let delatCode = document.createElement('div');
-            delatCode.className = 'delatCode';
+            delatCode.className = 'delatCode'+nameLoad;
             delatCode.setAttribute("title", "Delat code");
             loadOption.appendChild(delatCode);
             document.getElementById("Level"+nameLoad).appendChild(loadOption);
