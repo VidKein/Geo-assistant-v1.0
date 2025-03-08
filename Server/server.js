@@ -194,6 +194,40 @@ app.post('/delatCod', (req, res) => {
   });
 });
 
+// Удаление Cod
+app.post('/newCod', (req, res) => {
+  const {nameCod, nameTyp} = req.body;
+  //Считываем файл  
+  fs.readFile(DATA_COD, 'utf8', (err, data) => {  
+    if (err) {
+      console.error('Ошибка чтения JSON:', err);
+      return res.status(500).json({ error: 'Ошибка чтения JSON-файла' });
+    }
+    //Парсим файл 
+    let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
+    
+    if (!jsonCod.kod[nameTyp]) {
+      return res.status(400).json({ error: 'Неверная категория' });
+    }
+
+    // Определяем новый ID как последний ID + 1
+    const lastId = jsonCod.kod[nameTyp].length > 0 ? jsonCod.kod[nameTyp][jsonCod.kod[nameTyp].length - 1].id : 0;
+    const newId = lastId + 1;
+
+    // Добавление нового элемента
+    jsonCod.kod[nameTyp].push({ id: newId, value: nameCod });
+
+    //Перезаписываем файл
+    fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {
+      if (err) {
+        console.error('Ошибка записи JSON:', err);
+        return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+      }
+      res.json({ success: true, message: `Данный код ${nameCod} записан.` });
+    });
+  });
+  
+});
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`Сервер запущен: http://localhost:${PORT}`);

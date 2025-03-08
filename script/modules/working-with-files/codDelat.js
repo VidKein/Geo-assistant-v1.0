@@ -6,8 +6,8 @@ async function funktionalDelatCod() {
     let nameCod = document.querySelector("#delateNameCod").innerHTML;//name
     let nameTyp = document.querySelector("#delateNameCod").getAttribute('data-typ');//name typ
     //Контроль
-    console.log(nameTyp,nameCod, idCod);
-    if (!nameCod) {
+    //console.log(nameTyp,nameCod, idCod);
+        if (!nameCod) {
         alert("The code was entered incorrectly.");
         e.preventDefault(); // Останавливаем отправку формы
         } else {

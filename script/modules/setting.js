@@ -242,10 +242,11 @@ for (let i = 0; i < settingBlock.length; i++) {
               document.querySelector("#infoWindows").style.display = "block";
               //Создание блока
               let textDelat = document.createElement('p');
-              textDelat.innerText = "Enter code - ";
+              textDelat.innerText = "Enter code - "+e.target.getAttribute('data-typ');
               let input = document.createElement('input');
               input.id = "nameCod";
-              input.type = "namber";
+              input.type = "text";
+              input.setAttribute("data-typ", e.target.getAttribute('data-typ'));// typ кода
               document.querySelector(".textWindows").appendChild(textDelat);  
               textDelat.appendChild(input);  
               //Закрытие изменений
@@ -256,7 +257,6 @@ for (let i = 0; i < settingBlock.length; i++) {
                 document.querySelector("#infoWindows").style.display = "none";
                 document.querySelector("#funktionalNewCod").style.display = "none";
               });
-                
             }
             //Удаляем coordinateSystem/positionType
             if (e.target.className == "delatCodecoordinateSystem" || e.target.className == "delatCodepositionType") {
@@ -271,7 +271,7 @@ for (let i = 0; i < settingBlock.length; i++) {
               span.style = "color:red";
               span.id = "delateNameCod";
               span.setAttribute("data-id", e.target.getAttribute('data-id'));// id кода
-              span.setAttribute("data-typ", e.target.getAttribute('data-typ'));// id кода
+              span.setAttribute("data-typ", e.target.getAttribute('data-typ'));// typ кода
               span.innerText = e.target.getAttribute('data-name');    
               document.querySelector(".textWindows").appendChild(textDelat);  
               textDelat.appendChild(span);  
@@ -358,6 +358,7 @@ async function loadOptions(nameLoad) {
     loadNewOption.className = "new"+nameLoad; // Добавляем класс
     loadNewOption.textContent = "New"; // Устанавливаем текст внутри div
     loadNewOption.setAttribute("title", "New code");
+    loadNewOption.setAttribute("data-typ", nameLoad);// typ кода
     document.getElementById("Level"+nameLoad).appendChild(loadNewOption);
         for (const item of jsonData.kod[nameLoad]) {
             // Создаем новый div заполнения
@@ -369,7 +370,7 @@ async function loadOptions(nameLoad) {
             delatCode.setAttribute("title", "Delat code");
             delatCode.setAttribute("data-name", item.value);// имя кода
             delatCode.setAttribute("data-id", item.id);// id кода
-            delatCode.setAttribute("data-typ", nameLoad);// id кода
+            delatCode.setAttribute("data-typ", nameLoad);// typ кода
             loadOption.appendChild(delatCode);
             document.getElementById("Level"+nameLoad).appendChild(loadOption);
         }
