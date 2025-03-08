@@ -18,7 +18,7 @@ const DATA_FILE = path.join(__dirname,  '..','koordinaty', 'koordinats.json');
 //Cod
 const DATA_COD = path.join(__dirname,  '..','kod', 'kod.json');
 //File
-const UPLOAD_FOLDER = 'xlsx';
+const UPLOAD_FOLDER = path.join(__dirname, '..','xlsx');;
 
 // Редоктирование/чтение данных
 // Чтение данных и вывод
@@ -241,7 +241,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 app.post('/uploadFile', upload.single('file'), (req, res) => {
-  res.json({ message: 'Файл загружен', filename: req.file.originalname });
+  res.json({ message: 'Файл загружен - '+req.file.originalname });
 });
 
 // Запуск сервера

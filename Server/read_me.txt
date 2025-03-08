@@ -2,7 +2,7 @@
 - Установите зависимости:
 npm install express+
 npm install express cors+
---npm install express multer cors
+npm install express multer cors
 - Запуск модуля
 node server.js
 - Установка на сервер без инсталяции модулей noda
