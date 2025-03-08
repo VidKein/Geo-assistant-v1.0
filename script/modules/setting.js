@@ -50,7 +50,13 @@ for (let i = 0; i < settingBlock.length; i++) {
                 console.log("namePointDisplay - "+showPoints);
             }
             //Работаем с загрузкой выгрузкой файла
-            if (e.target.id == "runCalendAplikac") {console.log("runCalendAplikac");}
+            if (e.target.id == "fileInput") {
+                //Загрузка файла
+                document.getElementById('fileInput').addEventListener('change', function () {
+                    let fileName = this.files.length ? this.files[0].name : 'File not selected';
+                    document.getElementById('fileName').textContent = fileName;
+                });
+            }
             //Работаем с загрузкой, редоктированием и удалением информации о точки
             let namePointInfo = document.querySelector(".namePoint");
             //Тип и Вид работы

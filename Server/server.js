@@ -5,6 +5,7 @@ const express = require('express');
 const fs = require('fs');
 const cors = require('cors'); // Для поддержки запросов с других доменов
 const path = require('path');// Абсолютный путь к файлу
+const multer = require('multer');//Модуль для загрузки файла
 
 const app = express();
 const PORT = process.env.PORT || 4000; // Используется переменная окружения или 4000 по умолчанию
@@ -16,7 +17,8 @@ app.use(cors()); // Разрешаем CORS для всех источников
 const DATA_FILE = path.join(__dirname,  '..','koordinaty', 'koordinats.json');
 //Cod
 const DATA_COD = path.join(__dirname,  '..','kod', 'kod.json');
-
+//File
+const UPLOAD_FOLDER = 'xlsx';
 
 // Редоктирование/чтение данных
 // Чтение данных и вывод
@@ -194,7 +196,7 @@ app.post('/delatCod', (req, res) => {
   });
 });
 
-// Удаление Cod
+// Добавление Cod
 app.post('/newCod', (req, res) => {
   const {nameCod, nameTyp} = req.body;
   //Считываем файл  
@@ -226,8 +228,22 @@ app.post('/newCod', (req, res) => {
       res.json({ success: true, message: `Данный код ${nameCod} записан.` });
     });
   });
-  
 });
+
+// Загрузка файла
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, UPLOAD_FOLDER);
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage });
+app.post('/uploadFile', upload.single('file'), (req, res) => {
+  res.json({ message: 'Файл загружен', filename: req.file.originalname });
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`Сервер запущен: http://localhost:${PORT}`);

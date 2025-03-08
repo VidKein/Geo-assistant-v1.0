@@ -120,7 +120,11 @@
                             </div>
                             <div class="links" id="Сalendar" style="display: none;">
                                 <p style="text-align: left;">Please specify the file with the work plan.</p>
-                                <button type="submit" id="runCalendAplikac" title="Submit fail">Submit</button>
+                                <label for="fileInput" class="custom-file-upload" title="Select fale">Select fale</label>
+                                <input type="file" id="fileInput" hidden>
+                                <span id="fileName">file not loaded</span>
+                                <button id="runCalendAplikac" title="Submit fail">Submit fail</button>
+                                <p id="status"></p>
                             </div>
                             <div class="links" id="Points" style="display: none;">
                                 <p style="text-align: left;">Type, jops/plase, name point:
@@ -194,6 +198,7 @@
     <script type="module" src="./script/modules/working-with-files/edit.js"></script><!--working-with-files+EDIT-->
     <script type="module" src="./script/modules/working-with-files/codDelat.js"></script><!--working-with-files+CodDelat-->
     <script type="module" src="./script/modules/working-with-files/codNew.js"></script><!--working-with-files+newCod-->
+    <script type="module" src="./script/modules/working-with-files/loadFiles.js"></script><!--working-with-files+LoadFiles-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
 </body>
 </html>
