@@ -7,7 +7,7 @@ async function funktionalDelat() {
     let dataJobs = document.querySelector("#delateNamePoin").getAttribute('data-jobs');//Тип сьемки Нив Тах
     let id = document.querySelector("#delateNamePoin").textContent;
     // Контроль
-    console.log(dataPlace ,dataName ,dataJobs, id);
+    //console.log(dataPlace ,dataName ,dataJobs, id);
     if (!id || !dataName) {
     alert("You have not filled in all the fields or the fields were filled in incorrectly.");
     e.preventDefault(); // Останавливаем отправку формы

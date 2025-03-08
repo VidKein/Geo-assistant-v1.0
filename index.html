@@ -96,13 +96,13 @@
                     <!--Функционал-->
                     <div class="settingFunctional">
                         <div class="leftSettingFunctional">
-                            <button type="button" class="settingButton" id="Language" title="Language" style="background-color: rgb(195, 196, 199);">Language</button>
+                            <button type="button" class="settingButton" id="General" title="General" style="background-color: rgb(195, 196, 199);">General</button>
                             <button type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
                             <button type="button" class="settingButton" id="Points" title="Points">Points</button>
                             <button type="button" class="settingButton" id="Codes" title="Codes">Codes</button>
                         </div>
                         <div class="rightSettingFunctional">
-                            <div class="links" id="Language" style="display: block;">
+                            <div class="links" id="General" style="display: block;">
                                 <p style="text-align: left;">Language:
                                     <select name="lang" id="lang">
                                     <option value="">Select</option>
@@ -152,7 +152,9 @@
                 <div class="infoWindows-wraper">
                     <button class="close-infoWindows" title="Exit button">X</button>
                     <div class="textWindows"></div>
-                    <input id="funktionalDelat" type="button" value="OK">
+                    <input id="funktionalDelat" type="button" value="OK" style="display: none;">
+                    <input id="funktionalNewCod" type="button" value="OK" style="display: none;">
+                    <input id="funktionalDelatCod" type="button" value="OK" style="display: none;">
                 </div>
             </div>       
         
@@ -190,6 +192,8 @@
     <script type="module" src="./script/modules/working-with-files/add.js"></script><!--working-with-files+ADD-->
     <script type="module" src="./script/modules/working-with-files/delat.js"></script><!--working-with-files+DELAT-->
     <script type="module" src="./script/modules/working-with-files/edit.js"></script><!--working-with-files+EDIT-->
+    <script type="module" src="./script/modules/working-with-files/codDelat.js"></script><!--working-with-files+CodDelat-->
+    <script type="module" src="./script/modules/working-with-files/newCod.js"></script><!--working-with-files+newCod-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
 </body>
 </html>

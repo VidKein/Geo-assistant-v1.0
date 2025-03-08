@@ -186,6 +186,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                     if (Number(namePointAddEditDelat) && !secondSelect.value == "") {
                         //Открываем окно
                         settingBlockFull.style.display = "none";
+                        document.querySelector("#funktionalDelat").style.display = "block"; 
                         document.querySelector("#infoWindows").style.display = "block";
                         //Создание блока
                         let textDelat = document.createElement('p');
@@ -227,6 +228,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                             textDelat.remove();
                             settingBlockFull.style.display = "block";
                             document.querySelector("#infoWindows").style.display = "none";
+                            document.querySelector("#funktionalDelat").style.display = "none"; 
                         });
                       } else {
                           console.log(alert("Enter point number and type, jops/plase"));  
@@ -234,14 +236,31 @@ for (let i = 0; i < settingBlock.length; i++) {
             }
             //Добовляем coordinateSystem/positionType
             if (e.target.className == "newcoordinateSystem" || e.target.className == "newpositionType") {
-              
+               document.querySelector("#funktionalNewCod").style.display = "block"; 
+              //Открываем окно
+              settingBlockFull.style.display = "none";
+              document.querySelector("#infoWindows").style.display = "block";
+              //Создание блока
+              let textDelat = document.createElement('p');
+              textDelat.innerText = "Enter code - ";
+              let input = document.createElement('input');
+              input.id = "nameCod";
+              input.type = "namber";
+              document.querySelector(".textWindows").appendChild(textDelat);  
+              textDelat.appendChild(input);  
+              //Закрытие изменений
+              document.querySelector(".close-infoWindows").addEventListener("click", ()=>{
+                //Удаление блока
+                textDelat.remove();
+                settingBlockFull.style.display = "block";
+                document.querySelector("#infoWindows").style.display = "none";
+                document.querySelector("#funktionalNewCod").style.display = "none";
+              });
                 
             }
             //Удаляем coordinateSystem/positionType
             if (e.target.className == "delatCodecoordinateSystem" || e.target.className == "delatCodepositionType") {
-              let dataNameCod = document.querySelector(".delatCodecoordinateSystem").getAttribute('data-name'); 
-              console.log(dataNameCod);
-              
+              document.querySelector("#funktionalDelatCod").style.display = "block";
               //Открываем окно
               settingBlockFull.style.display = "none";
               document.querySelector("#infoWindows").style.display = "block";
@@ -250,16 +269,19 @@ for (let i = 0; i < settingBlock.length; i++) {
               textDelat.innerText = "Attention, do you really want to delete - ";
               let span = document.createElement('span');
               span.style = "color:red";
-              span.id = "delateNamePoin";
-              span.innerText = dataNameCod;    
-
-
+              span.id = "delateNameCod";
+              span.setAttribute("data-id", e.target.getAttribute('data-id'));// id кода
+              span.setAttribute("data-typ", e.target.getAttribute('data-typ'));// id кода
+              span.innerText = e.target.getAttribute('data-name');    
+              document.querySelector(".textWindows").appendChild(textDelat);  
+              textDelat.appendChild(span);  
               //Закрытие изменений
               document.querySelector(".close-infoWindows").addEventListener("click", ()=>{
                 //Удаление блока
                 textDelat.remove();
                 settingBlockFull.style.display = "block";
                 document.querySelector("#infoWindows").style.display = "none";
+                document.querySelector("#funktionalDelatCod").style.display = "none";
               });
             }
         }
@@ -346,6 +368,8 @@ async function loadOptions(nameLoad) {
             delatCode.className = 'delatCode'+nameLoad;
             delatCode.setAttribute("title", "Delat code");
             delatCode.setAttribute("data-name", item.value);// имя кода
+            delatCode.setAttribute("data-id", item.id);// id кода
+            delatCode.setAttribute("data-typ", nameLoad);// id кода
             loadOption.appendChild(delatCode);
             document.getElementById("Level"+nameLoad).appendChild(loadOption);
         }

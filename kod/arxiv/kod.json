@@ -1,0 +1,16 @@
+{"kod":{
+    "coordinateSystem":[
+        {"id": 1, "value": "JTSK"},
+        {"id": 2, "value": "WGS84"}
+    ],
+    "positionType":[
+        {"id": 1, "value": "wall"},
+        {"id": 2, "value": "target cross"},
+        {"id": 3, "value": "fence"},
+        {"id": 4, "value": "asphalt"},
+        {"id": 5, "value": "earth"},
+        {"id": 6, "value": "pit"},
+        {"id": 7, "value": "pillar-target cross"}
+    ]
+    }
+} 

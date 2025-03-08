@@ -12,7 +12,11 @@ app.use(express.json());
 app.use(cors()); // Разрешаем CORS для всех источников
 
 // Путь к файлу
+//Koordinats
 const DATA_FILE = path.join(__dirname,  '..','koordinaty', 'koordinats.json');
+//Cod
+const DATA_COD = path.join(__dirname,  '..','kod', 'kod.json');
+
 
 // Редоктирование/чтение данных
 // Чтение данных и вывод
@@ -152,6 +156,44 @@ app.post('/delatDat', (req, res) => {
   });
 
 });
+
+// Удаление Cod
+app.post('/delatCod', (req, res) => {
+  const {idCod, nameCod, nameTyp} = req.body;
+  //Считываем файл  
+  fs.readFile(DATA_COD, 'utf8', (err, data) => {  
+    if (err) {
+      console.error('Ошибка чтения JSON:', err);
+      return res.status(500).json({ error: 'Ошибка чтения JSON-файла' });
+    }
+    //Парсим файл 
+    let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
+    
+    if (!jsonCod.kod[nameTyp]) {
+      return res.status(400).json({ error: 'Неверная категория' });
+    }
+
+    // Найти индекс элемента по id
+    const index = jsonCod.kod[nameTyp].findIndex(item => item.id == idCod);
+    if (index === -1) {
+      return res.status(404).json({ error: 'Элемент не найден' });
+    }
+
+    // Удаление элемента без перезаписи всего массива
+    jsonCod.kod[nameTyp].splice(index, 1);
+
+    //Перезаписываем файл
+    fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {
+      if (err) {
+        console.error('Ошибка записи JSON:', err);
+        return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+      }
+      res.json({ success: true, message: `Данный код ${nameCod} удален.` });
+    });
+    
+  });
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`Сервер запущен: http://localhost:${PORT}`);
