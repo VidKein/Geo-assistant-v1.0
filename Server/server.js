@@ -231,17 +231,37 @@ app.post('/newCod', (req, res) => {
 });
 
 // Загрузка файла
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, UPLOAD_FOLDER);
-  },
-  filename: (req, file, cb) => {
-      cb(null, file.originalname);
-  }
+// Настройка Multer (файл загружается в память)
+const storage = multer.memoryStorage();
+
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (
+            file.originalname !== 'Jobs_kalendar.xlsx' || 
+            file.mimetype !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        ) {
+            return cb(new Error('Ошибка: Разрешено загружать только Jobs_kalendar.xlsx!'), false);
+        }
+        cb(null, true);
+    }
 });
-const upload = multer({ storage });
-app.post('/uploadFile', upload.single('file'), (req, res) => {
-  res.json({ message: 'Файл загружен - '+req.file.originalname });
+
+// Маршрут для загрузки файла
+app.post('/uploadFile', (req, res) => {
+    upload.single('file')(req, res, (err) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        if (!req.file) {
+            return res.status(400).json({ error: 'Ошибка: Файл не загружен!' });
+        }
+        const filePath = path.join(UPLOAD_FOLDER, 'Jobs_kalendar.xlsx');
+        fs.writeFile(filePath, req.file.buffer, (err) => {
+            if (err) {return res.status(500).json({ error: 'Ошибка сохранения файла!' });}
+            res.json({ message: 'Файл успешно загружен!' });
+        });
+    });
 });
 
 // Запуск сервера

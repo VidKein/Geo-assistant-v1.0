@@ -1,8 +1,6 @@
 let runCalendAplikac = document.querySelector("#runCalendAplikac");
 runCalendAplikac.addEventListener("click",loadFiles);
 async function loadFiles() {
-    console.log("0000");
-    
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
 

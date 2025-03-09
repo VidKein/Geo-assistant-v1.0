@@ -2,8 +2,7 @@
 let data = document.querySelector(".todayDate");
 let todayDate = new Date();
 let DaysOfWeek = ['Mon','Tue','Wed','Thu','Eri','Sat','Sun'];
-
-data.innerText = DaysOfWeek[todayDate.getDay()-1]+" / "+todayDate.getFullYear()+"-"+(todayDate.getMonth()+1)+"-"+todayDate.getDate();
+data.innerText = todayDate.getDay() > 0 ? DaysOfWeek[todayDate.getDay()-1] : DaysOfWeek[6]+" / "+todayDate.getFullYear()+"-"+(todayDate.getMonth()+1)+"-"+todayDate.getDate();
 //Анимация информации по работе
  let dataBlock = document.querySelector("#dataBlock");
  let infiPointkBlock = document.querySelector("#infoPointkBlock ");

@@ -51,10 +51,19 @@ for (let i = 0; i < settingBlock.length; i++) {
             }
             //Работаем с загрузкой выгрузкой файла
             if (e.target.id == "fileInput") {
+                let fileName = document.getElementById('fileName');
                 //Загрузка файла
                 document.getElementById('fileInput').addEventListener('change', function () {
-                    let fileName = this.files.length ? this.files[0].name : 'File not selected';
-                    document.getElementById('fileName').textContent = fileName;
+                    let nameOpenFile = this.files.length ? this.files[0].name : 'File not selected';
+                    let status = document.querySelector("#status");
+                    status.textContent = "";
+                    fileName.textContent = nameOpenFile;
+                    if (this.files[0].name == "Jobs_kalendar.xlsx") {
+                        fileName.style.color = "green";
+                        status.textContent = "Size - "+(this.files[0].size/1024000).toFixed(3)+"MB. Date"+this.files[0].lastModifiedDate;
+                    } else {
+                        fileName.style.color = "red";
+                    }
                 });
             }
             //Работаем с загрузкой, редоктированием и удалением информации о точки
