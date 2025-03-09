@@ -587,6 +587,11 @@ const buttonSetting = L.Control.extend({
           } else {
             settingBlock.style.display = "none";
             document.querySelector("#namePointAddEditDelat").value = "";
+            let status = document.querySelector("#status");
+            status.textContent = "";
+            status.style.display = "none";
+            document.querySelector("#fileName").textContent = "file not loaded";
+            document.querySelector("#fileName").style.color = "bleck";
           }
          }
         return setting;

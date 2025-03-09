@@ -11,5 +11,6 @@ async function loadFiles() {
     
     const result = await response.json();
     alert(result.message|| result.error);  
-    
+    // Перезагрузка страницы
+    location.reload();
 }
