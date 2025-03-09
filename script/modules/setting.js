@@ -57,12 +57,18 @@ for (let i = 0; i < settingBlock.length; i++) {
                     let nameOpenFile = this.files.length ? this.files[0].name : 'File not selected';
                     let status = document.querySelector("#status");
                     status.textContent = "";
+                    status.style.display = "none";
                     fileName.textContent = nameOpenFile;
                     if (this.files[0].name == "Jobs_kalendar.xlsx") {
                         fileName.style.color = "green";
-                        status.textContent = "Size - "+(this.files[0].size/1024000).toFixed(3)+"MB. Date"+this.files[0].lastModifiedDate;
+                        status.style.display = "block";
+                        status.style.color = "green";
+                        status.textContent = "Size : "+(this.files[0].size/1024000).toFixed(3)+"MB. Date : "+this.files[0].lastModifiedDate;
                     } else {
                         fileName.style.color = "red";
+                        status.style.display = "block";
+                        status.style.color = "red";
+                        status.textContent = "OPENING: Please select a file with the name: Jobs_kalendar.xlsx";
                     }
                 });
             }

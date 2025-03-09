@@ -50,6 +50,7 @@ body {
   padding: 0;
   background: rgba(255, 255, 255, 0.95);
   z-index: 1001;
+  overflow: auto;
 }
 .points-wrapper{
   position: absolute;
@@ -568,7 +569,13 @@ cursor: pointer;
   display: inline-block;
   margin: 5px 0;
 }
-
+#status{
+  display: none;
+  border: 1px solid #2e2a2a;
+  padding: 5px;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
 @media screen and (max-height: 450px) {
   .markerLabel {
     top: 62%;
