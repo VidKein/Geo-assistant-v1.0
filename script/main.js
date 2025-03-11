@@ -502,6 +502,8 @@ const buttonCalendarg = L.Control.extend({
     onAdd: function () {
         const calendarg = L.DomUtil.create('div', 'leaflet-control-calendarg-work leaflet-bar leaflet-control');
         const divCalendargButton = document.createElement('div');//calendarg
+        divCalendargButton.setAttribute("data-lang-key", "calendarg");
+        divCalendargButton.setAttribute("langs-atr", "title");
         divCalendargButton.className = "calendarg";
         divCalendargButton.id = "calendarg";
         divCalendargButton.title = "Work calendar";
@@ -568,6 +570,8 @@ const buttonSetting = L.Control.extend({
     onAdd: function () {
         const setting = L.DomUtil.create('div', 'leaflet-control-setting-map leaflet-bar leaflet-control');
         const divSettingButton = document.createElement('div');//setting
+        divSettingButton.setAttribute("data-lang-key", "setting");
+        divSettingButton.setAttribute("langs-atr", "title");
         divSettingButton.className = 'setting';
         divSettingButton.id = 'setting';
         divSettingButton.title = 'Setting maps';

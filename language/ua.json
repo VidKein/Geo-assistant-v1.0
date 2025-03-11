@@ -1,18 +1,16 @@
 {   
-    "title": "Гео асистент.....",
-    "leaflet-control-zoom-in": "Zoom in",
-    "leaflet-control-zoom-out": "Zoom out",
-    "leaflet-bar-part leaflet-bar-part-single": "Find my location",
-    "leaflet-control-layers-base":{
-        "name": "content"
-    },
-    "settingBlock":{
-        "name": "content"
-    },
-    "contextualColumns":{
-        "name": "content"
-    },
-    "infoPointkBlock":{
-        "name": "content"
-    }
+    "titleHtml": "Гео асистент.....",
+    "leaflet-control-zoom-in": "Приблизить",
+    "leaflet-control-zoom-out": "Отдолить",
+    "leaflet-bar-part leaflet-bar-part-single": "Найди мое место расположениеы",
+    
+    "calendarg":"Рабочий календарь",
+    "close-calendarg":"Выйти из календаря",
+
+    "setting":"Налаштування карт",
+    "close-setting":"Вийти з налаштувань",
+    "SettingH2":"Налаштування:"
+
+    
+  
 }

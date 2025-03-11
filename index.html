@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title langs = "title">Geo assistant</title>
+    <title langs = "titleHtml">Geo assistant</title>
     <link rel="stylesheet" href="./API/leaflet/leaflet.css" /><!--leaflet-->
     <link rel="stylesheet" href="./css/style.css"><!--CSS main-->
     <link rel="stylesheet" href="./css/marker.css"><!--CSS marker namber-->
@@ -79,7 +79,7 @@
                     <button id="btnPrev" type="button"><span class="prev"></span></button>
                     <div id="montYers">February 2025</div>
                     <button id="btnNext" type="button"><span class="next"></span></button>
-                    <button class="close-calendarg" title="Выйти из календаря">X</button>
+                    <button data-lang-key="close-calendarg" langs-atr="title" class="close-calendarg" title="Exit calendar">X</button>
                     <div id="divCal"></div>
                 </div>
             </div>
@@ -89,9 +89,9 @@
                     <!--Шапка-->
                     <div class="settingCap">
                     <div>
-                        <h2>Setting:</h2>
+                        <h2 langs = "SettingH2" >Setting:</h2>
                     </div>
-                    <button class="close-setting" title="Exit Settings">X</button>
+                    <button data-lang-key="close-setting" langs-atr="title" class="close-setting" title="Exit Settings">X</button>
                     </div>
                     <!--Функционал-->
                     <div class="settingFunctional">
