@@ -1,5 +1,20 @@
 //Определение языка
 const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
+//Перевод текста для блока Setting
+let langsInfo = {
+    "eng": {
+        "firstSelect": "Type",
+        "secondSelect": "Select type"
+    },
+    "ua": {
+        "firstSelect": "Тип",
+        "secondSelect": "Виберіть тип"
+    },
+    "cz": {
+        "firstSelect": "Typ",
+        "secondSelect": "Vyberte typ"
+    }
+};
 //Отображение настроек при нажатии на левые кнопки выбора настроек
         let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
         let blockSetting = leftSettingFunctional.children;     
@@ -164,7 +179,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                          }
 
                     } else {
-                      console.log(alert("Enter point number"));  
+                      alert("Enter point number");  
                     }
             }
             //Add
@@ -315,14 +330,14 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsAr
                         //Название Участка работы
                         let firstSelectHtml = `
                             <select id="firstSelect" style="background-color: #cdc4c4; cursor: pointer;">
-                                <option value="">Type</option>
+                                <option value="">`+langsInfo[siteLanguage].firstSelect+`</option>
                             </select>
                         `;
                         runTypeAndJobsPoint.innerHTML = firstSelectHtml;
                         //Название Участка работы
                         let secondSelectHtml =`
                         <select id="secondSelect"  style="background-color: cornflowerblue; cursor: pointer;">
-                            <option value="">Select type</option>
+                            <option value="">`+langsInfo[siteLanguage].secondSelect+`</option>
                         </select>
                         `;
                         runPlasePoint.innerHTML = secondSelectHtml;
@@ -337,7 +352,7 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsAr
 
                         //Обработчик изменения первого select
                         firstSelect.addEventListener("change", function () {
-                            secondSelect.innerHTML = '<option value="">Select</option>'; // Очищаем второй select
+                            secondSelect.innerHTML = '<option value="">'+langsInfo[siteLanguage].secondSelect+'</option>'; // Очищаем второй select
                             const selectedCategory = this.value;
                             if (selectedCategory) {
                                 typeJobsArray[selectedCategory].forEach(subKey => {

@@ -31,13 +31,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const elements = document.querySelectorAll('[langs]');
         elements.forEach(element => {
             //console.log(element);
-            const key = element.getAttribute('langs');
+            const key = element.getAttribute('langs');            
             if (data[key]) {               
                 element.textContent = data[key]; 
             }
         });
         //Вкрапление в butto->span
-        let buttonСhild = document.querySelectorAll('button[langs-child]');         
+        let buttonСhild = document.querySelectorAll('[langs-child]');         
         buttonСhild .forEach(element => {
             const key = element.getAttribute('langs-child');
             if (data[key]) {     
