@@ -96,22 +96,22 @@
                     <!--Функционал-->
                     <div class="settingFunctional">
                         <div class="leftSettingFunctional">
-                            <button type="button" class="settingButton" id="General" title="General" style="background-color: rgb(195, 196, 199);">General</button>
-                            <button type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
-                            <button type="button" class="settingButton" id="Points" title="Points">Points</button>
-                            <button type="button" class="settingButton" id="Codes" title="Codes">Codes</button>
+                            <button langs = "General"  data-lang-key="General" langs-atr="title"  type="button" class="settingButton" id="General" title="General" style="background-color: rgb(195, 196, 199);">General</button>
+                            <button langs = "Сalendar" data-lang-key="Сalendar" langs-atr="title"  type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
+                            <button langs = "Points" data-lang-key="Points" langs-atr="title"  type="button" class="settingButton" id="Points" title="Points">Points</button>
+                            <button langs = "Codes" data-lang-key="Codes" langs-atr="title"  type="button" class="settingButton" id="Codes" title="Codes">Codes</button>
                         </div>
                         <div class="rightSettingFunctional">
                             <div class="links" id="General" style="display: block;">
-                                <p style="text-align: left;">Language:
+                                <p langs = "Language" style="display: inline; text-align: left;" >Language:</p>
                                     <select name="lang" id="lang">
-                                    <option value="">Select</option>
-                                    <option value="eng">English</option>
-                                    <option value="ua">Ukrainian</option>
-                                    <option value="cz">Czech</option>
+                                    <option langs = "option_1" value="">Select</option>
+                                    <option langs = "option_2" value="eng">English</option>
+                                    <option langs = "option_3" value="ua">Ukrainian</option>
+                                    <option langs = "option_4" value="cz">Czech</option>
                                     </select>
-                                    <button type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
-                                </p>
+                                    <button langs = "Сhange" data-lang-key="Сhangelang" langs-atr="title" type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
+                                
                                 <hr>
                                 <p style="text-align: left;">Display point number - <input type="checkbox" id="nameDisplay"></p>
                                 <hr>

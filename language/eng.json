@@ -9,7 +9,19 @@
 
     "setting":"Setting maps",
     "close-setting":"Exit Settings",
-    "SettingH2":"Settings:"
+    "SettingH2":"Settings",
+    "General":"General",
+    "Сalendar":"Сalendar",
+    "Points":"Points",
+    "Codes":"Codes",
+    "Language":"Language:",
+    "option_1":"Select",
+    "option_2":"English",
+    "option_3":"Ukrainian",
+    "option_4":"Czech",
+    "Сhange":"Сhange",
+    "Сhangelang":"Сhange language"
+    
 
 
 

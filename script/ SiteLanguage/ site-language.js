@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 translatePageLeaflets(data);
                 translatePage(data);
-                translatePageAtr(data)
+                translatePageAtr(data);
             })
             .catch(error => console.error("Error loading language file:", error));
     }
@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
     function translatePage(data) {
         const elements = document.querySelectorAll('[langs]');
         elements.forEach(element => {
-            //console.log(element);
+            console.log(element);
             const key = element.getAttribute('langs');
-            if (data[key]) {                
-                element.textContent = data[key];
+            if (data[key]) {               
+                element.textContent = data[key]; 
             }
         });
     }
