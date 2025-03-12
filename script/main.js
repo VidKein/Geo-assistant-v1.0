@@ -1,3 +1,6 @@
+//Определение языка
+const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
+//Перключатель отоброжения точек
 const namePointDisplay = localStorage.getItem('namePointDisplay') || "false";
 /*Карта*/
 //СЛОИ КАРТЫ
@@ -665,21 +668,21 @@ async function loadOptions() {
     const positionSelect = document.getElementById('positionType');
     const coordSystem = document.getElementById('coordSystem');
     // Заполняем select для coordinateSystem
-    jsonData.kod.coordinateSystem.forEach(item => {
+    jsonData[siteLanguage].coordinateSystem.forEach(item => {
       const option = document.createElement('option');
       option.value = item.id;
       option.textContent = item.value;
       coordinateSelect.appendChild(option);
     });
     // Заполняем select для coordinateSystem
-    jsonData.kod.coordinateSystem.forEach(item => {
+    jsonData[siteLanguage].coordinateSystem.forEach(item => {
       const option = document.createElement('option');
       option.value = item.value;
       option.textContent = item.value;
       coordSystem.appendChild(option);
     });
     // Заполняем select для positionType
-    jsonData.kod.positionType.forEach(item => {
+    jsonData[siteLanguage].positionType.forEach(item => {
       const option = document.createElement('option');
       option.value = item.id;
       option.textContent = item.value;
@@ -735,7 +738,7 @@ async function loadOptionSelekt(nameSelekt, value) {
     const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
     const response = await fetch(jsonFileKod); // Загружаем JSON
     const jsonData = await response.json(); // Преобразуем в объект
-        for (const item of jsonData.kod[nameSelekt]) {
+        for (const item of jsonData[siteLanguage][nameSelekt]) {
             if (item.value === value) {
                 document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
             }

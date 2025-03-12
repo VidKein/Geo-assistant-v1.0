@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function translatePage(data) {
         const elements = document.querySelectorAll('[langs]');
         elements.forEach(element => {
-            console.log(element);
+            //console.log(element);
             const key = element.getAttribute('langs');
             if (data[key]) {               
                 element.textContent = data[key]; 
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function translatePageAtr(data) {
         const elementsAtr = document.querySelectorAll('[langs-atr]');
         elementsAtr.forEach(element => {
-            console.log(element);
+            //console.log(element);
             const attr = element.getAttribute('langs-atr'); // Какой атрибут нужно изменить (например, placeholder)
             const key = element.getAttribute('data-lang-key'); // Берём ключ из текущего атрибута
             if (data[key]) {      

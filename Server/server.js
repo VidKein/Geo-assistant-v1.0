@@ -161,7 +161,7 @@ app.post('/delatDat', (req, res) => {
 
 // Удаление Cod
 app.post('/delatCod', (req, res) => {
-  const {idCod, nameCod, nameTyp} = req.body;
+  const {idCod, nameCod, nameTyp, siteLanguage} = req.body;
   //Считываем файл  
   fs.readFile(DATA_COD, 'utf8', (err, data) => {  
     if (err) {
@@ -171,18 +171,18 @@ app.post('/delatCod', (req, res) => {
     //Парсим файл 
     let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
     
-    if (!jsonCod.kod[nameTyp]) {
+    if (!jsonCod[siteLanguage][nameTyp]) {
       return res.status(400).json({ error: 'Неверная категория' });
     }
 
     // Найти индекс элемента по id
-    const index = jsonCod.kod[nameTyp].findIndex(item => item.id == idCod);
+    const index = jsonCod[siteLanguage][nameTyp].findIndex(item => item.id == idCod);
     if (index === -1) {
       return res.status(404).json({ error: 'Элемент не найден' });
     }
 
     // Удаление элемента без перезаписи всего массива
-    jsonCod.kod[nameTyp].splice(index, 1);
+    jsonCod[siteLanguage][nameTyp].splice(index, 1);
 
     //Перезаписываем файл
     fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {
@@ -198,7 +198,7 @@ app.post('/delatCod', (req, res) => {
 
 // Добавление Cod
 app.post('/newCod', (req, res) => {
-  const {nameCod, nameTyp} = req.body;
+  const {nameCod, nameTyp, siteLanguage} = req.body;
   //Считываем файл  
   fs.readFile(DATA_COD, 'utf8', (err, data) => {  
     if (err) {
@@ -208,16 +208,16 @@ app.post('/newCod', (req, res) => {
     //Парсим файл 
     let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
     
-    if (!jsonCod.kod[nameTyp]) {
+    if (!jsonCod[siteLanguage][nameTyp]) {
       return res.status(400).json({ error: 'Неверная категория' });
     }
 
     // Определяем новый ID как последний ID + 1
-    const lastId = jsonCod.kod[nameTyp].length > 0 ? jsonCod.kod[nameTyp][jsonCod.kod[nameTyp].length - 1].id : 0;
+    const lastId = jsonCod[siteLanguage][nameTyp].length > 0 ? jsonCod[siteLanguage][nameTyp][jsonCod[siteLanguage][nameTyp].length - 1].id : 0;
     const newId = lastId + 1;
 
     // Добавление нового элемента
-    jsonCod.kod[nameTyp].push({ id: newId, value: nameCod });
+    jsonCod[siteLanguage][nameTyp].push({ id: newId, value: nameCod });
 
     //Перезаписываем файл
     fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {

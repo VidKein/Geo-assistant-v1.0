@@ -1,5 +1,5 @@
 {
-  "kod": {
+  "eng": {
     "coordinateSystem": [
       {
         "id": 1,
@@ -38,6 +38,90 @@
       {
         "id": 7,
         "value": "pillar-target cross"
+      }
+    ]
+  },
+  "ua": {
+    "coordinateSystem": [
+      {
+        "id": 1,
+        "value": "JTSK"
+      },
+      {
+        "id": 2,
+        "value": "WGS84"
+      }
+    ],
+    "positionType": [
+      {
+        "id": 1,
+        "value": "стіна"
+      },
+      {
+        "id": 2,
+        "value": "цільовий хрест"
+      },
+      {
+        "id": 3,
+        "value": "паркан"
+      },
+      {
+        "id": 4,
+        "value": "асфальт"
+      },
+      {
+        "id": 5,
+        "value": "земля"
+      },
+      {
+        "id": 6,
+        "value": "яма"
+      },
+      {
+        "id": 7,
+        "value": "стовп - цільовий хрест"
+      }
+    ]
+  },
+  "cz": {
+    "coordinateSystem": [
+      {
+        "id": 1,
+        "value": "JTSK"
+      },
+      {
+        "id": 2,
+        "value": "WGS84"
+      }
+    ],
+    "positionType": [
+      {
+        "id": 1,
+        "value": "zeď"
+      },
+      {
+        "id": 2,
+        "value": "cílový kříž"
+      },
+      {
+        "id": 3,
+        "value": "plot"
+      },
+      {
+        "id": 4,
+        "value": "asfalt"
+      },
+      {
+        "id": 5,
+        "value": "Země"
+      },
+      {
+        "id": 6,
+        "value": "jáma"
+      },
+      {
+        "id": 7,
+        "value": "kříž mezi pilířem a cílem"
       }
     ]
   }

@@ -4,6 +4,7 @@ funktionalNewCodOk.addEventListener("click",funktionalDelatCod)
 async function funktionalDelatCod() {
     let nameCod = document.querySelector("#nameCod").value;//name
     let nameTyp = document.querySelector("#nameCod").getAttribute('data-typ');//name typ
+    let siteLanguage = localStorage.getItem('siteLanguage') || "eng";//Определение языка
     //Контроль
     console.log(nameCod, nameTyp);
     if (!nameCod) {
@@ -14,7 +15,7 @@ async function funktionalDelatCod() {
     const response = await fetch(API_URL, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({nameCod, nameTyp})
+         body: JSON.stringify({nameCod, nameTyp, siteLanguage})
     });
     const result = await response.json();
     alert(result.message || result.error);    

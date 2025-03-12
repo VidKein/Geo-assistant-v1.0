@@ -5,6 +5,7 @@ async function funktionalDelatCod() {
     let idCod = document.querySelector("#delateNameCod").getAttribute('data-id');//id
     let nameCod = document.querySelector("#delateNameCod").innerHTML;//name
     let nameTyp = document.querySelector("#delateNameCod").getAttribute('data-typ');//name typ
+    let siteLanguage = localStorage.getItem('siteLanguage') || "eng";//Определение языка
     //Контроль
     //console.log(nameTyp,nameCod, idCod);
         if (!nameCod) {
@@ -15,7 +16,7 @@ async function funktionalDelatCod() {
         const response = await fetch(API_URL, {
              method: 'POST',
              headers: { 'Content-Type': 'application/json' },
-             body: JSON.stringify({idCod, nameCod, nameTyp})
+             body: JSON.stringify({idCod, nameCod, nameTyp, siteLanguage})
         });
         const result = await response.json();
         alert(result.message || result.error);    

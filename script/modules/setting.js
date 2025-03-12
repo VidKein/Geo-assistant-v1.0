@@ -1,3 +1,5 @@
+//Определение языка
+const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 //Отображение настроек при нажатии на левые кнопки выбора настроек
         let leftSettingFunctional = document.querySelector(".leftSettingFunctional");
         let blockSetting = leftSettingFunctional.children;     
@@ -101,7 +103,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                                         const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
                                         const response = await fetch(jsonFileKod); // Загружаем JSON
                                         const jsonData = await response.json(); // Преобразуем в объект
-                                            for (const item of jsonData.kod[nameSelekt]) {
+                                            for (const item of jsonData[siteLanguage][nameSelekt]) {
                                                 if (item.value === value) {
                                                     document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
                                                 }
@@ -373,7 +375,7 @@ async function loadOptions(nameLoad) {
     const response = await fetch(jsonFileKod); // Загружаем JSON
     const jsonData = await response.json(); // Преобразуем в объект
     //Заполняем количество
-    document.getElementById("leveling"+nameLoad).textContent = jsonData.kod[nameLoad].length;
+    document.getElementById("leveling"+nameLoad).textContent = jsonData[siteLanguage][nameLoad].length;
     // Создаем новый div для новых классов
     const loadNewOption = document.createElement('div');
     loadNewOption.className = "new"+nameLoad; // Добавляем класс
@@ -381,7 +383,7 @@ async function loadOptions(nameLoad) {
     loadNewOption.setAttribute("title", "New code");
     loadNewOption.setAttribute("data-typ", nameLoad);// typ кода
     document.getElementById("Level"+nameLoad).appendChild(loadNewOption);
-        for (const item of jsonData.kod[nameLoad]) {
+        for (const item of jsonData[siteLanguage][nameLoad]) {
             // Создаем новый div заполнения
             const loadOption = document.createElement('div');
             loadOption.className = nameLoad; // Добавляем класс

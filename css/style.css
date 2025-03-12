@@ -589,4 +589,7 @@ cursor: pointer;
   .setting-wrapper{
     width: 85%;
   }
+  #status, #fileName{
+    font-size: 10px;
+  }
 }
