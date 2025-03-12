@@ -20,7 +20,24 @@
     "option_3":"Ukrainian",
     "option_4":"Czech",
     "Сhange":"Сhange",
-    "Сhangelang":"Сhange language"
+    "Сhangelang":"Сhange language",
+    "point number":"Display point number - ",
+    "Reset":"Reset all saved settings",
+    "Reset settings":"Reset all saved settings",
+    "clearSettings":"Submit",
+    "file":"Please specify the file with the work plan.",
+    "SelectFile":"Select fale",
+    "fileName":"file not loaded",
+    "runCalendAplikac":"Submit fail",
+    "SelectType":"Type, job/plase, name point:",
+    "Add point":"Add point",
+    "Edit point":"Edit point",
+    "Delat point":"Delat point",
+    "Сoordinate system":"Сoordinate system",
+    "Position type":"Position type",
+    "New kod":"New"
+
+
     
 
 

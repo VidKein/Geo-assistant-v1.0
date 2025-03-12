@@ -36,6 +36,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 element.textContent = data[key]; 
             }
         });
+        //Вкрапление в butto->span
+        let buttonSpan = document.querySelectorAll('button[langs-child]'); 
+        console.log(buttonSpan);
+        
+        buttonSpan.forEach(button => {
+            console.log(button);
+            
+            const key = button.getAttribute('langs-child');
+            // Проверяем, есть ли текст перед <span>
+            let textNode = [...button.childNodes].find(node => node.nodeType === 3);
+            if (data[key]) {     
+                buttonSpan.childNodes[0].nodeValue = data[key]+ " - ";          
+            }
+        });
     }
     // Функция перевода элементов по Тегам langs-atr
     //langs-atr="имя изменяемого атрибута" data-lang-key = "имя ключа в базе"

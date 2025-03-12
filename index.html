@@ -113,36 +113,35 @@
                                     <button langs = "Сhange" data-lang-key="Сhangelang" langs-atr="title" type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
                                 
                                 <hr>
-                                <p style="text-align: left;">Display point number - <input type="checkbox" id="nameDisplay"></p>
+                                <p langs = "point number" style="text-align: left; display: inline;">Display point number - </p><input type="checkbox" id="nameDisplay">
                                 <hr>
-                                <p style="text-align: left;">Reset all saved settings.<button type="submit" id="clearSettings" title="Reset all saved settings">Submit</button></p>
+                                <p langs = "Reset" style="text-align: left; display: inline;">Reset all saved settings.</p><button langs = "clearSettings" data-lang-key="Reset settings" langs-atr="title"  type="submit" id="clearSettings" title="Reset all saved settings">Reset</button></p>
                                 
                             </div>
                             <div class="links" id="Сalendar" style="display: none;">
-                                <p style="text-align: left;">Please specify the file with the work plan.</p>
-                                <label for="fileInput" class="custom-file-upload" title="Select fale">Select fale</label>
+                                <p langs = "file" style="text-align: left;">Please specify the file with the work plan.</p>
+                                <label langs = "SelectFile" data-lang-key="SelectFile" langs-atr="title" for="fileInput" class="custom-file-upload" title="Select fale">Select fale</label>
                                 <input type="file" id="fileInput" hidden>
-                                <span id="fileName">file not loaded</span>
-                                <button id="runCalendAplikac" title="Submit fail">Submit fail</button>
+                                <span langs = "fileName" id="fileName">file not loaded</span>
+                                <button langs = "runCalendAplikac" data-lang-key="runCalendAplikac" langs-atr="title" id="runCalendAplikac" title="Submit fail">Submit fail</button>
                                 <p id="status"></p>
                             </div>
                             <div class="links" id="Points" style="display: none;">
-                                <p style="text-align: left;">Type, jops/plase, name point:
+                                <p langs = "SelectType" style="display: block; text-align: left;">Type, job/plase, name point:</p>
                                     <div class="runTypeAndJobsPoint"></div>
                                     <div class="runPlasePoint"></div> 
                                     <input type="namber" id="namePointAddEditDelat">
-                                </p>
-                                <button type="submit" id="runPointAdd" title="Add point">Add point</button>
-                                <button type="submit" id="runPointEdit" title="Edit point">Edit point</button>
-                                <button type="submit" id="runPointDelat" title="Delaet point">Delaet point</button>
+                                <button langs = "Add point" data-lang-key="SelectFile" langs-atr="title" type="submit" id="runPointAdd" title="Add point">Add point</button>
+                                <button langs = "SelectFile" data-lang-key="SelectFile" langs-atr="title" type="submit" id="runPointEdit" title="Edit point">Edit point</button>
+                                <button langs = "SelectFile" data-lang-key="SelectFile" langs-atr="title" type="submit" id="runPointDelat" title="Delaet point">Delaet point</button>
                             </div>
                             <div class="links" id="Codes" style="display: none;">
                                 <div class="codes-wrapper">
                                     <!--Система коорднат-->
-                                    <button type="button" class="accordion" name="LevelcoordinateSystem">Сoordinate system - <span id="levelingcoordinateSystem">0</span></button>
+                                    <button langs-child = "Сoordinate system" type="button" class="accordion" name="LevelcoordinateSystem">Сoordinate system<span id="levelingcoordinateSystem">0</span></button>
                                     <div class="links" id="LevelcoordinateSystem" name="codes"></div>
                                     <!--Типы расположения точек-->
-                                    <button type="button" class="accordion" name="LevelpositionType">Position type - <span id="levelingpositionType">0</span></button>
+                                    <button langs-child = "Position type" type="button" class="accordion" name="LevelpositionType">Position type<span id="levelingpositionType">0</span></button>
                                     <div class="links" id="LevelpositionType" name="codes"></div>
                                 </div>    
                             </div>

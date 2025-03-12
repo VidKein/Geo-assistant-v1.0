@@ -375,12 +375,15 @@ async function loadOptions(nameLoad) {
     const response = await fetch(jsonFileKod); // Загружаем JSON
     const jsonData = await response.json(); // Преобразуем в объект
     //Заполняем количество
-    document.getElementById("leveling"+nameLoad).textContent = jsonData[siteLanguage][nameLoad].length;
+    document.getElementById("leveling"+nameLoad).textContent = " - "+jsonData[siteLanguage][nameLoad].length;
     // Создаем новый div для новых классов
     const loadNewOption = document.createElement('div');
     loadNewOption.className = "new"+nameLoad; // Добавляем класс
     loadNewOption.textContent = "New"; // Устанавливаем текст внутри div
-    loadNewOption.setAttribute("title", "New code");
+    loadNewOption.setAttribute("langs", "New kod");
+    loadNewOption.setAttribute("data-lang-key", "New kod");
+    loadNewOption.setAttribute("langs-atr", "title");
+    loadNewOption.setAttribute("title", "New kod");
     loadNewOption.setAttribute("data-typ", nameLoad);// typ кода
     document.getElementById("Level"+nameLoad).appendChild(loadNewOption);
         for (const item of jsonData[siteLanguage][nameLoad]) {

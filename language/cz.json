@@ -20,9 +20,22 @@
     "option_3":"Ukrajinština",
     "option_4":"Čeština",
     "Сhange":"Změnit",
-    "Сhangelang":"Změnit jazyk"
-
-
+    "Сhangelang":"Změnit jazyk",
+    "point number":"Číslo bodu zobrazení -",
+    "Reset":"Resetovat všechna uložená nastavení",
+    "Reset settings":"Obnovit všechna uložená nastavení",
+    "clearSettings":"Resett",
+    "file":"Upřesněte prosím soubor s pracovním plánem.",
+    "SelectFile":"Vyberte fale",
+    "fileName":"soubor nenačten",
+    "runCalendAplikac":"Odeslání se nezdařilo",
+    "SelectType":"Typ, úloha/místo, název:",
+    "Add point":"Přidat bod",
+    "Edit point":"Upravit bod",
+    "Delat point":"Odložený bod",
+    "Сoordinate system":"Souřadnicový systém",
+    "Position type":"Typ pozice",
+    "New kod":"Nový"
     
   
 }
