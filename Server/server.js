@@ -1,6 +1,3 @@
-/*Установите зависимости:
-npm install express
-npm install express cors*/
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors'); // Для поддержки запросов с других доменов
@@ -165,20 +162,20 @@ app.post('/delatCod', (req, res) => {
   //Считываем файл  
   fs.readFile(DATA_COD, 'utf8', (err, data) => {  
     if (err) {
-      console.error('Ошибка чтения JSON:', err);
-      return res.status(500).json({ error: 'Ошибка чтения JSON-файла' });
+      console.error('Error reading JSON:', err);
+      return res.status(500).json({ error: 'Error reading JSON' });
     }
     //Парсим файл 
     let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
     
     if (!jsonCod[siteLanguage][nameTyp]) {
-      return res.status(400).json({ error: 'Неверная категория' });
+      return res.status(400).json({ error: 'Invalid category' });
     }
 
     // Найти индекс элемента по id
     const index = jsonCod[siteLanguage][nameTyp].findIndex(item => item.id == idCod);
     if (index === -1) {
-      return res.status(404).json({ error: 'Элемент не найден' });
+      return res.status(404).json({ error: 'Item not found' });
     }
 
     // Удаление элемента без перезаписи всего массива
@@ -187,10 +184,10 @@ app.post('/delatCod', (req, res) => {
     //Перезаписываем файл
     fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {
       if (err) {
-        console.error('Ошибка записи JSON:', err);
-        return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+        console.error('JSON write error:', err);
+        return res.status(500).json({ error: 'JSON write error' });
       }
-      res.json({ success: true, message: `Данный код ${nameCod} удален.` });
+      res.json({ success: true, message: `This code - ${nameCod} deleted.` });
     });
     
   });
@@ -202,14 +199,14 @@ app.post('/newCod', (req, res) => {
   //Считываем файл  
   fs.readFile(DATA_COD, 'utf8', (err, data) => {  
     if (err) {
-      console.error('Ошибка чтения JSON:', err);
-      return res.status(500).json({ error: 'Ошибка чтения JSON-файла' });
+      console.error('Error reading JSON:', err);
+      return res.status(500).json({ error: 'Error reading JSON file' });
     }
     //Парсим файл 
     let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
     
     if (!jsonCod[siteLanguage][nameTyp]) {
-      return res.status(400).json({ error: 'Неверная категория' });
+      return res.status(400).json({ error: 'Invalid category' });
     }
 
     // Определяем новый ID как последний ID + 1
@@ -222,10 +219,10 @@ app.post('/newCod', (req, res) => {
     //Перезаписываем файл
     fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {
       if (err) {
-        console.error('Ошибка записи JSON:', err);
-        return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+        console.error('Error reading JSON:', err);
+        return res.status(500).json({ error: 'Error reading JSON file' });
       }
-      res.json({ success: true, message: `Данный код ${nameCod} записан.` });
+      res.json({ success: true, message: `This code - ${nameCod} deleted.` });
     });
   });
 });
@@ -241,7 +238,7 @@ const upload = multer({
             file.originalname !== 'Jobs_kalendar.xlsx' || 
             file.mimetype !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         ) {
-            return cb(new Error('Ошибка: Разрешено загружать только Jobs_kalendar.xlsx!'), false);
+            return cb(new Error('Error: Only allowed to upload Jobs_kalendar.xlsx!'), false);
         }
         cb(null, true);
     }
@@ -254,12 +251,12 @@ app.post('/uploadFile', (req, res) => {
             return res.status(400).json({ error: err.message });
         }
         if (!req.file) {
-            return res.status(400).json({ error: 'Ошибка: Файл не загружен!' });
+            return res.status(400).json({ error: 'Error: File not loaded!' });
         }
         const filePath = path.join(UPLOAD_FOLDER, 'Jobs_kalendar.xlsx');
         fs.writeFile(filePath, req.file.buffer, (err) => {
-            if (err) {return res.status(500).json({ error: 'Ошибка сохранения файла!' });}
-            res.json({ message: 'Файл успешно загружен!' });
+            if (err) {return res.status(500).json({ error: 'Error saving file!' });}
+            res.json({ message: 'File uploaded successfully!' });
         });
     });
 });

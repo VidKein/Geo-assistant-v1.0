@@ -1,18 +1,36 @@
 //Определение языка
 const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 //Перевод текста для блока Setting
-let langsInfo = {
+let langsInfoSetting = {
     "eng": {
         "firstSelect": "Type",
-        "secondSelect": "Select type"
+        "secondSelect": "Select type",
+        "ErrorLangs":"You haven't selected a language !!!",
+        "ErrorEditNamber":"You have not filled in all the fields or the fields were filled in incorrectly !!!",
+        "ErrorLoadEdit":"Error loading data !!!",
+        "ErrorNamber":"Enter point number !!!",
+        "ErrorTypPoint":"Enter point number and type !!!",
+        "ConfirmLangs":"Do you want to reset all settings ?"
     },
     "ua": {
         "firstSelect": "Тип",
-        "secondSelect": "Виберіть тип"
+        "secondSelect": "Виберіть тип",
+        "ErrorLangs":"Ви не вибрали мову !!!",
+        "ErrorEditNamber":"Ви не заповнили всі поля або поля були заповнені неправильно !!!",
+        "ErrorLoadEdit":"Помилка завантаження даних !!!",
+        "ErrorNamber":"Введіть номер пункту !!!",
+        "ErrorTypPoint":"Введіть номер і тип точки !!!",
+        "ConfirmLangs":"Бажаєте скинути всі налаштування ?"
     },
     "cz": {
         "firstSelect": "Typ",
-        "secondSelect": "Vyberte typ"
+        "secondSelect": "Vyberte typ",
+        "ErrorLangs":"Nevybrali jste jazyk !!!",
+        "ErrorEditNamber":"Nevyplnili jste všechna pole nebo byla pole vyplněna nesprávně !!!",
+        "ErrorLoadEdit":"Chyba při načítání dat !!!",
+        "ErrorNamber":"Zadejte číslo bodu !!!",
+        "ErrorTypPoint":"Zadejte číslo bodu a typ !!!",
+        "ConfirmLangs":"Chcete obnovit všechna nastavení ?"
     }
 };
 //Отображение настроек при нажатии на левые кнопки выбора настроек
@@ -56,7 +74,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                         //LocalStorage - сохраняем язык сайта
                         localStorage.setItem('siteLanguage', currentValue);
                         location.reload(); // Перезагрузка страницы для сброса значений
-                    }else{alert("You haven't selected a language")} 
+                    }else{alert(langsInfoSetting[siteLanguage].ErrorLangs)} 
             }
             //Отображаем/не отображаем наименование точки на карте       
             if (e.target.id == "nameDisplay") {
@@ -110,7 +128,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                         //Передача информации для получения информации
                         async function infoPoint(dataName ,dataJobsPlase, id) {
                             if (!id || !dataName) {
-                            alert("You have not filled in all the fields or the fields were filled in incorrectly.");
+                            alert(langsInfoSetting[siteLanguage].ErrorEditNamber);
                             e.preventDefault(); // Останавливаем отправку формы
                             } else {
                                 try {
@@ -172,14 +190,14 @@ for (let i = 0; i < settingBlock.length; i++) {
                                          alert(data.error);
                                      }
                                 }catch(error) {
-                                    console.error("Ошибка загрузки:", error);
-                                    alert("Ошибка при загрузке данных.");
+                                    console.error("Errors load file", error);
+                                    alert(langsInfoSetting[siteLanguage].ErrorLoadEdit);
                                 }
                            }
                          }
 
                     } else {
-                      alert("Enter point number");  
+                      alert(langsInfoSetting[siteLanguage].ErrorNamber);
                     }
             }
             //Add
@@ -216,7 +234,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                             document.querySelector("#funktionalEdit").style.display = "block";
                         });
                       } else {
-                          console.log(alert("Enter point number and type, jops/plase"));  
+                          alert(langsInfoSetting[siteLanguage].ErrorTypPoint);  
                       }
             }
             //Delat
@@ -269,7 +287,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                             document.querySelector("#funktionalDelat").style.display = "none"; 
                         });
                       } else {
-                          console.log(alert("Enter point number and type, jops/plase"));  
+                          alert(langsInfoSetting[siteLanguage].ErrorTypPoint);  
                       }
             }
             //Добовляем coordinateSystem/positionType
@@ -330,14 +348,14 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsAr
                         //Название Участка работы
                         let firstSelectHtml = `
                             <select id="firstSelect" style="background-color: #cdc4c4; cursor: pointer;">
-                                <option value="">`+langsInfo[siteLanguage].firstSelect+`</option>
+                                <option value="">`+langsInfoSetting[siteLanguage].firstSelect+`</option>
                             </select>
                         `;
                         runTypeAndJobsPoint.innerHTML = firstSelectHtml;
                         //Название Участка работы
                         let secondSelectHtml =`
                         <select id="secondSelect"  style="background-color: cornflowerblue; cursor: pointer;">
-                            <option value="">`+langsInfo[siteLanguage].secondSelect+`</option>
+                            <option value="">`+langsInfoSetting[siteLanguage].secondSelect+`</option>
                         </select>
                         `;
                         runPlasePoint.innerHTML = secondSelectHtml;
@@ -352,7 +370,7 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsAr
 
                         //Обработчик изменения первого select
                         firstSelect.addEventListener("change", function () {
-                            secondSelect.innerHTML = '<option value="">'+langsInfo[siteLanguage].secondSelect+'</option>'; // Очищаем второй select
+                            secondSelect.innerHTML = '<option value="">'+langsInfoSetting[siteLanguage].secondSelect+'</option>'; // Очищаем второй select
                             const selectedCategory = this.value;
                             if (selectedCategory) {
                                 typeJobsArray[selectedCategory].forEach(subKey => {
@@ -377,7 +395,7 @@ function loadSettings(){
 }
 //Очистка всех настроек
 document.getElementById('clearSettings').addEventListener('click', () => {
-    if (confirm("Вы уверены, что хотите сбросить все настройки?")) {
+    if (confirm(langsInfoSetting[siteLanguage].ConfirmLangs)) {
         localStorage.clear();
         location.reload(); // Перезагрузка страницы для сброса значений
     }
