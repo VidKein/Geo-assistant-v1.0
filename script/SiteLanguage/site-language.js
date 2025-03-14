@@ -36,12 +36,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 element.textContent = data[key]; 
             }
         });
-        //Вкрапление в butto->span
+        //Вкрапление tegs->span
         let buttonСhild = document.querySelectorAll('[langs-child]');         
         buttonСhild .forEach(element => {
+            //console.log(element);
             const key = element.getAttribute('langs-child');
+            const tegs = element.getAttribute('tegs-child');
             if (data[key]) {     
-                element.childNodes[0].nodeValue = data[key];          
+                element.childNodes[tegs].nodeValue = data[key];          
             }
         });
     }

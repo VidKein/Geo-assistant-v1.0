@@ -1,9 +1,14 @@
+//Определение языка
+const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 //Дата - выводим информацию о сегоднешей дате
 let data = document.querySelector(".todayDate");
 let todayDate = new Date();
-let DaysOfWeek = ['Mon','Tue','Wed','Thu','Eri','Sat','Sun'];
-let ofWeek = todayDate.getDay() > 0 ? DaysOfWeek[todayDate.getDay()-1] : DaysOfWeek[6];
-
+let Days = {
+  "eng": {1:'Mon',2:'Tue',3:'Wed',4:'Thu',5:'Eri',6:'Sat',7:'Sun'},
+  "ua": {1:'Пн',2:'Вт',3:'Ср',4:'Чт',5:'Пт',6:'Суб',7:'Вс'},
+  "cz": {1:'Po',2:'Út',3:'St',4:'Čt',5:'Pá',6:'So',7:'Ne'}
+};
+let ofWeek = Days[siteLanguage][(todayDate.getDay() + 6) % 7 + 1];
 data.innerText = ofWeek+" / "+todayDate.getFullYear()+"-"+(todayDate.getMonth()+1)+"-"+todayDate.getDate();
 //Анимация информации по работе
  let dataBlock = document.querySelector("#dataBlock");

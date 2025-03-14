@@ -35,5 +35,33 @@
     "Delaet point":"Удалити точку",
     "Сoordinate system":"Система координат",
     "Position type":"Тип позиції",
-    "New kod":"Новий"
+    "New kod":"Новий",
+    
+    "designations":"Умовнi позначення:",
+    "buttonDesing":"Умовнi позначення.",
+    "p_1":" - базови точкi невiлювання;",
+    "p_2":" - базови точкi тахiометрii;",
+    "p_3":" - робочi точкi невiлювання;",
+    "p_4":" - робочi точкi тахеометрі",
+    "p_5":" - позначення використання точки.",
+
+    "Exit the infoblock":"Вийти з інфоблоку",
+    "levelingBasic":"Базові точки невiлювання - ",
+    "tacheometryBasic":"Базові точки тахеометрії - ",
+    "levelingJobs":"Робочі точки невiлювання - ",
+    "tacheometryJobs":"Робочі точки тахеометрії - ",
+
+    "dataBlock": "Iнформацiя по датi",
+    "close-import": "Вийти з імпорту",
+    "position": "позиція: ","determinationСoordinates":"Визначення координат на мапi",
+    "vycka": "вишка: ",
+    "date": "дата: ",
+    "coordinate system": "система координат: ",
+    "position type": "тип позиції: ",
+    "Select": "Виберіть",
+
+    "closeMarkerLabel":"Кнопка виходу",
+    "getCoordinates":"Отримати координати",
+
+    "close-infoWindows":"Кнопка виходу"
 }

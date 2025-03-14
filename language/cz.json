@@ -35,5 +35,34 @@
     "Delaet point":"Odložený bod",
     "Сoordinate system":"Souřadnicový systém",
     "Position type":"Typ pozice",
-    "New kod":"Nový"
+    "New kod":"Nový",
+    
+    "designations":"Mapy označení:",
+    "buttonDesing":"Označení mapy",
+    "p_1":" - vyrovnání základních bodů;",
+    "p_2":" - tacheometrie základních bodů;",
+    "p_3":" - vyrovnání pracovních bodů;",
+    "p_4":" - tacheometrie pracovních bodů;",
+    "p_5":" - označení použití bodu.",
+
+    "Exit the infoblock":"Ukončit infoblok",
+    "levelingBasic":"Základní body vyrovnání - ",
+    "tacheometryBasic":"Základní body tacheometrie - ",
+    "levelingJobs":"Provoz nivelačních bodů - ",
+    "tacheometryJobs":"Operační body tacheometrie - ",
+
+    "dataBlock": "Informace podle data",
+    "close-import": "Ukončit import",
+    "position": "position: ","determinationСoordinates":"Souřadnice určení",
+    "vycka": "vycka: ",
+    "date": "date: ",
+    "coordinate system": "souřadnicový systém: ",
+    "position type": "position type: ",
+    "Select": "Vybrat",
+
+    "closeMarkerLabel":"Souřadnice určení výjezdu",
+    "getCoordinates":"Getc souřadnice",
+
+    "close-infoWindows":"Tlačítko Exit"
+
 }

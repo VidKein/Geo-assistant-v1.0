@@ -3,7 +3,7 @@ const namePointDisplay = localStorage.getItem('namePointDisplay') || "false";
 //Определение языка
 const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 //Перевод текста для блока Setting
-let langsInfoSetting = {
+let langsMaps = {
     "eng": {
         "MapTyp1": "Satelit Map",
         "MapTyp2": "Strit Map type",
@@ -92,8 +92,8 @@ const checkIcon = L.icon({
 /*СЛОИ*/
 //КАРТ
 let baseMaps = {
-    [langsInfoSetting[siteLanguage].MapTyp1]: OSMsatelitMap,
-    [langsInfoSetting[siteLanguage].MapTyp2]: OSMstritMap
+    [langsMaps[siteLanguage].MapTyp1]: OSMsatelitMap,
+    [langsMaps[siteLanguage].MapTyp2]: OSMstritMap
   };
 //Меню отображения слоев Карт
 let overlayMaps = {};
@@ -402,16 +402,16 @@ function customizeLayerControl() {
     let labels = document.querySelectorAll('.leaflet-control-layers-overlays label span span');
     labels.forEach(label => {
         if (label.textContent.trim() === "Base points Niv.") {
-            label.innerHTML = '<span style="color: red;">'+langsInfoSetting[siteLanguage].LayerBaseNiv+'</span>';
+            label.innerHTML = '<span style="color: red;">'+langsMaps[siteLanguage].LayerBaseNiv+'</span>';
         }
         if (label.textContent.trim() === "Operating points Niv.") {
-            label.innerHTML = '<span style="color: green;">'+langsInfoSetting[siteLanguage].LayerOperatingNiv+'</span>';
+            label.innerHTML = '<span style="color: green;">'+langsMaps[siteLanguage].LayerOperatingNiv+'</span>';
         }
         if (label.textContent.trim() === "Base points Tax.") {
-            label.innerHTML = '<span style="color: red;">'+langsInfoSetting[siteLanguage].LayerBaseTrig+'</span>';
+            label.innerHTML = '<span style="color: red;">'+langsMaps[siteLanguage].LayerBaseTrig+'</span>';
         }
         if (label.textContent.trim() === "Operating points Tax.") {
-            label.innerHTML = '<span style="color: green;">'+langsInfoSetting[siteLanguage].LayerOperatingTrig+'</span>';
+            label.innerHTML = '<span style="color: green;">'+langsMaps[siteLanguage].LayerOperatingTrig+'</span>';
         }
     });
 }
@@ -572,6 +572,8 @@ const buttonDesing = L.Control.extend({
     onAdd: function () {
         const desing = L.DomUtil.create('div', 'leaflet-control-desing-map leaflet-bar leaflet-control');
         const divDesingButton = document.createElement('div');//buttonDesing
+        divDesingButton.setAttribute("data-lang-key", "buttonDesing");
+        divDesingButton.setAttribute("langs-atr", "title");
         divDesingButton.className = 'buttonDesing';
         divDesingButton.title = 'Designations maps';
         desing.appendChild(divDesingButton);

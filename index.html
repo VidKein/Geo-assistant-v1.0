@@ -19,27 +19,27 @@
     <div id="map"></div>
     <div class="fullEdit">
             <!--Дата/Информация по работе-->
-            <div id="dataBlock" class="dataBlock" title="Data">
+            <div data-lang-key="dataBlock" langs-atr="title"  id="dataBlock" class="dataBlock" title="Information by date">
                 <div class="data"><span class="todayDate"></span><span class="dataIkom"></span></div>
             </div>
             <!--Информация о точках-->
             <div id="infoPointkBlock" class="infoPointkBlock">
                 <div class="points-wrapper">
-                    <button class="close-points" title="Exit the infoblock">X</button>
+                    <button data-lang-key = "Exit the infoblock" langs-atr="title" class="close-points" title="Exit the infoblock">X</button>
                     <!--Базовые точки-нивелирование-->
-                    <button type="button" class="accordion" name="levelingBasic" lang="levelingBasic">Basic leveling points - <span id="levelingBasicLength">0</span></button>
+                    <button langs-child = "levelingBasic" tegs-child="0" type="button" class="accordion" name="levelingBasic">Basic leveling points - <span id="levelingBasicLength">0</span></button>
                     <div class="links" id="levelingBasic" name="point">
                     </div>
                     <!--Базовые точки--тахеометрия-->
-                    <button type="button" class="accordion" name="tacheometryBasic">Base points of tacheometry - <span id="tacheometryBasicLength">0</span></button>
+                    <button langs-child = "tacheometryBasic" tegs-child="0" type="button" class="accordion" name="tacheometryBasic">Base points of tacheometry - <span id="tacheometryBasicLength">0</span></button>
                     <div class="links" id="tacheometryBasic" name="point">
                     </div>
                     <!--Рабочии точки-нивелирование-->
-                    <button type="button" class="accordion" name="levelingJobs">Operating leveling points - <span id="levelingJobsLength">0</span></button>
+                    <button langs-child = "levelingJobs" tegs-child="0" type="button" class="accordion" name="levelingJobs">Operating leveling points - <span id="levelingJobsLength">0</span></button>
                     <div class="links" id="levelingJobs" name="point">
                     </div>
                     <!--Рабочии точки-тахеометрии-->
-                    <button type="button" class="accordion" name="tacheometryJobs">Operating points of tacheometry - <span id="tacheometryJobsLength">0</span></button>
+                    <button langs-child = "tacheometryJobs" tegs-child="0" type="button" class="accordion" name="tacheometryJobs">Operating points of tacheometry - <span id="tacheometryJobsLength">0</span></button>
                     <div class="links" id="tacheometryJobs" name="point">
                     </div>
                 </div>
@@ -47,23 +47,23 @@
             <!--Импорт точки-->
             <div id="import" class="import">
                 <div class="import-wraper">
-                    <button class="close-import" title="Exit Imports">X</button>
+                    <button data-lang-key="close-import" langs-atr="title" class="close-import" title="Exit Imports">X</button>
                     <div class="importBlock">
                         <div class="typeAndJobsPoint"></div>
                         <div class="plasePoint"></div>        
                         <span class="namePoint" style="color: red; font-weight: 600;"></span>    
                         <div id="importInfo">
-                            <p>position: <input type="text" id="position X" value=700000 required> x <input type="text" id="position Y" value=1000000 required><span class="determinationСoordinates" title="Determination coordinates"></span></p>
-                            <p>vycka: <input type="number" id="vycka" value=100.0000 required></p>
-                            <p>date: <input type="date" id="date" required></p>
-                            <p>coordinate system: 
+                            <p langs-child = "position" tegs-child="0">position: <input type="text" id="position X" value=700000 required> x <input type="text" id="position Y" value=1000000 required><span data-lang-key="determinationСoordinates" langs-atr="title" class="determinationСoordinates" title="Determination coordinates"></span></p>
+                            <p langs-child = "vycka" tegs-child="0">vycka: <input type="number" id="vycka" value=100.0000 required></p>
+                            <p langs-child = "date" tegs-child="0">date: <input type="date" id="date" required></p>
+                            <p langs-child = "coordinate system" tegs-child="0">coordinate system: 
                             <select id="coordinateSystem">
-                              <option value="">Select</option>
+                              <option langs-child = "Select" tegs-child="0" value="">Select</option>
                             </select>
                             </p>
-                            <p>position type: 
+                            <p langs-child = "position type" tegs-child="0">position type: 
                             <select id="positionType">
-                              <option value="">Select</option>
+                              <option langs-child = "Select" tegs-child="0" value="">Select</option>
                             </select>
                             </p>
                         </div> 
@@ -131,16 +131,16 @@
                                     <div class="runPlasePoint"></div> 
                                     <input type="namber" id="namePointAddEditDelat">
                                 <button langs = "Add point" data-lang-key="Add point" langs-atr="title" type="submit" id="runPointAdd" title="Add point">Add point</button>
-                                <button langs = "Edit point" data-lang-key="Edit point" langs-atr="title" type="submit" id="runPointEdit" title="Edit point">Edit point</button>
+                                <button langs = "Edit point" data-lang-key="SEdit point" langs-atr="title" type="submit" id="runPointEdit" title="Edit point">Edit point</button>
                                 <button langs = "Delaet point" data-lang-key="Delaet point" langs-atr="title" type="submit" id="runPointDelat" title="Delaet point">Delaet point</button>
                             </div>
                             <div class="links" id="Codes" style="display: none;">
                                 <div class="codes-wrapper">
                                     <!--Система коорднат-->
-                                    <button langs-child = "Сoordinate system" type="button" class="accordion" name="LevelcoordinateSystem">Сoordinate system<span id="levelingcoordinateSystem">0</span></button>
+                                    <button langs-child = "Сoordinate system" tegs-child="0" type="button" class="accordion" name="LevelcoordinateSystem">Сoordinate system<span id="levelingcoordinateSystem">0</span></button>
                                     <div class="links" id="LevelcoordinateSystem" name="codes"></div>
                                     <!--Типы расположения точек-->
-                                    <button langs-child = "Position type" type="button" class="accordion" name="LevelpositionType">Position type<span id="levelingpositionType">0</span></button>
+                                    <button langs-child = "Position type" tegs-child="0" type="button" class="accordion" name="LevelpositionType">Position type<span id="levelingpositionType">0</span></button>
                                     <div class="links" id="LevelpositionType" name="codes"></div>
                                 </div>    
                             </div>
@@ -149,10 +149,10 @@
                     
                 </div>
             </div>
-            <!--Информационное окно которое используется для: Удаления,-->
+            <!--Информационное окно которое используется для: Удаления,Нового кода точeк, Удаление кода точeк-->
             <div id="infoWindows" class="infoWindows">
                 <div class="infoWindows-wraper">
-                    <button class="close-infoWindows" title="Exit button">X</button>
+                    <button data-lang-key="close-infoWindows" langs-atr="title" class="close-infoWindows" title="Exit button">X</button>
                     <div class="textWindows"></div>
                     <input id="funktionalDelat" type="button" value="OK" style="display: none;">
                     <input id="funktionalNewCod" type="button" value="OK" style="display: none;">
@@ -165,12 +165,12 @@
     <!--Обозначения-->
     <div class="designations">
         <div class="contextualColumns">
-            <p>Designations maps:</p>
-            <p><img class="point" src="./icons/main-niv.png" alt="base points leveling"> - base points leveling;</p>
-            <p><img class="point" src="./icons/main-trig.png" alt="base points tacheometry"> - base points tacheometry;</p>
-            <p><img class="point" src="./icons/jobs-niv.png" alt="operating points leveling"> - operating points leveling;</p>
-            <p><img class="point" src="./icons/jobs-trig.png" alt="operating points tacheometry"> - operating points tacheometry;</p>
-            <p><img class="point" src="./icons/check_red.png" alt="operating points tacheometry"> - point usage designation.</p>
+            <p langs = "designations" >Designations maps:</p>
+            <p langs-child = "p_1" tegs-child="1"><img class="point" src="./icons/main-niv.png" alt="base points leveling"> - base points leveling;</p>
+            <p langs-child = "p_2" tegs-child="1"><img class="point" src="./icons/main-trig.png" alt="base points tacheometry"> - base points tacheometry;</p>
+            <p langs-child = "p_3" tegs-child="1"><img class="point" src="./icons/jobs-niv.png" alt="operating points leveling"> - operating points leveling;</p>
+            <p langs-child = "p_4" tegs-child="1"><img class="point" src="./icons/jobs-trig.png" alt="operating points tacheometry"> - operating points tacheometry;</p>
+            <p langs-child = "p_5" tegs-child="1"><img class="point" src="./icons/check_red.png" alt="operating points tacheometry"> - point usage designation.</p>
         </div>
     </div>
     <!--Определение координат-->
@@ -179,10 +179,10 @@
         <div class="crosshair"></div>
         <div class="dot"></div>
         <div class="markerLabel">
-            <button class="closeMarkerLabel" title="Exit determination coordinates" style="border: 1px solid black;">X</button>
+            <button data-lang-key="closeMarkerLabel" langs-atr="title" class="closeMarkerLabel" title="Exit determination coordinates" style="border: 1px solid black;">X</button>
             <!-- Заполняем список координат -->
             <select id="coordSystem"></select>
-            <button id="getCoordinates" title="Getc oordinates">ОK</button>
+            <button data-lang-key="getCoordinates" langs-atr="title" id="getCoordinates" title="Getc oordinates">ОK</button>
         </div>
     </div>
     <script src="./API/locate/L.Control.Locate.min.js"></script><!--L.Control-->

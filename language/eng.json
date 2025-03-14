@@ -35,5 +35,33 @@
     "Delaet point":"Delaet point",
     "Сoordinate system":"Сoordinate system",
     "Position type":"Position type",
-    "New kod":"New"  
+    "New kod":"New",
+    
+    "designations":"Designations maps:",
+    "buttonDesing":"Designations maps",
+    "p_1":" - base points leveling;",
+    "p_2":" - base points tacheometry;",
+    "p_3":" - operating points leveling;",
+    "p_4":" - operating points tacheometry;",
+    "p_5":" - point usage designation.",
+
+    "Exit the infoblock":"Exit the infoblock",
+    "levelingBasic":"Basic leveling points - ",
+    "tacheometryBasic":"Base points of tacheometry - ",
+    "levelingJobs":"Operating leveling points - ",
+    "tacheometryJobs":"Operating points of tacheometry - ",
+
+    "dataBlock": "Information by date",
+    "close-import": "Exit Imports",
+    "position": "position:","determinationСoordinates":"Determination coordinates",
+    "vycka": "vycka:",
+    "date": "date:",
+    "coordinate system": "coordinate system:",
+    "position type": "position type:",
+    "Select": "Select",
+
+    "closeMarkerLabel":"Exit determination coordinates",
+    "getCoordinates":"Getc oordinates",
+
+    "close-infoWindows":"Exit button"
 }
