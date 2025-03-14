@@ -1,11 +1,22 @@
+//Определение языка
+const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 class Cal {
     constructor(divId) {
         //Сохраняем идентификатор div
         this.divId = divId;
         // Дни недели с понедельника
-        this.DaysOfWeek = ['Mon','Tue','Wed','Thu','Eri','Sat','Sun'];
+        this.DaysOfWeek = {
+            "eng": ['Mon','Tue','Wed','Thu','Eri','Sat','Sun'],
+            "ua": ['Пн','Вт','Ср','Чт','Пт','Суб','Вс'],
+            "cz": ['Po','Út','St','Čt','Pá','So','Ne']
+          };
+
         // Месяцы начиная с января
-        this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        this.Months = {
+            "eng":['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            "ua": ['Січень', 'Лютий', 'Березень', 'Квітень', 'Квітень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+            "cz": ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec']
+          };
         //Устанавливаем текущий месяц, год
         var d = new Date();
         this.currMonth = d.getMonth();
@@ -51,7 +62,7 @@ class Cal {
             , lastDayOfLastMonth = m == 0 ? new Date(y - 1, 11, 0).getDate() : new Date(y, m, 0).getDate();
             
         // Отображаем месец год
-        document.querySelector("#montYers").innerHTML = this.Months[m] + ' ' + y;
+        document.querySelector("#montYers").innerHTML = this.Months[siteLanguage][m] + ' ' + y;
         // Запись выбранного месяца и года
         var html = '<table>';
         html += '<thead"><tr>';
@@ -59,8 +70,8 @@ class Cal {
         html += '</tr></thead>';
         // заголовок дней недели
         html += '<tr class="days">';
-        for (var i = 0; i < this.DaysOfWeek.length; i++) {
-            html += '<td>' + this.DaysOfWeek[i] + '</td>';
+        for (var i = 0; i < this.DaysOfWeek[siteLanguage].length; i++) {
+            html += '<td>' + this.DaysOfWeek[siteLanguage][i] + '</td>';
         }
         html += '</tr>';
         // Записываем дни

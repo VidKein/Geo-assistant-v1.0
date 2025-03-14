@@ -10,7 +10,9 @@ let langsMaps = {
         "LayerBaseNiv":" - base points Niv;",
         "LayerOperatingNiv":" - operating points Niv;",
         "LayerBaseTrig":" - base points Tax;",
-        "LayerOperatingTrig":" - operating points Tax;"
+        "LayerOperatingTrig":" - operating points Tax;",
+        "nouWorkNiv":"No work leveling points",
+        "nouWorkTax":"No work tacheometry points"
     },
     "ua": {
         "MapTyp1": "Супутникова карта",
@@ -18,7 +20,9 @@ let langsMaps = {
         "LayerBaseNiv":" - базові точки Niv;",
         "LayerOperatingNiv":" - робочі точки Niv;",
         "LayerBaseTrig":" - базові точки Tax;",
-        "LayerOperatingTrig":" - робочі точки Tax;"
+        "LayerOperatingTrig":" - робочі точки Tax;",
+        "nouWorkNiv":"Немає точок роботи для Niv",
+        "nouWorkTax":"Немає точок роботи для Tax"
     },
     "cz": {
         "MapTyp1": "Satelitní mapa",
@@ -26,7 +30,9 @@ let langsMaps = {
         "LayerBaseNiv":" - základní body Niv;",
         "LayerOperatingNiv":" - provozní body Niv;",
         "LayerBaseTrig":" - základní body Tax;",
-        "LayerOperatingTrig":" - provozní body Tax;"
+        "LayerOperatingTrig":" - provozní body Tax;",
+        "nouWorkNiv":"Žádné body pro vyrovnávání práce",
+        "nouWorkTax":"Žádné pracovní tachemetrické body"
     }
 };
 
@@ -95,6 +101,7 @@ let baseMaps = {
     [langsMaps[siteLanguage].MapTyp1]: OSMsatelitMap,
     [langsMaps[siteLanguage].MapTyp2]: OSMstritMap
   };
+
 //Меню отображения слоев Карт
 let overlayMaps = {};
 let layerControl = L.control.layers(baseMaps).addTo(map);
@@ -168,7 +175,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let nouWork = document.createElement('div');
         levelingBaseLeng.textContent = planingBaseNiv.length;
         nouWork.className = "pointJobs";
-        nouWork.textContent = "No work leveling points"
+        nouWork.textContent = langsMaps[siteLanguage].nouWorkNiv;
         pointBaseNiv.appendChild(nouWork);
         console.log("Базовых точек для невилированию нет");
         removeOverlayLayer("Base points Niv.",null);
@@ -232,7 +239,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         levelingJobsLeng.textContent = planingWorkNiv.length;
-        nouWork.textContent = "No work leveling points"
+        nouWork.textContent = langsMaps[siteLanguage].nouWorkNiv;
         pointJobsNiv.appendChild(nouWork);
         console.log("Работы по невилированию нет");
         removeOverlayLayer("Operating points Niv.",null);
@@ -296,7 +303,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         tacheometryBaseLength.textContent = planingBaseTrig.length;
-        nouWork.textContent = "No work tacheometry points"
+        nouWork.textContent = langsMaps[siteLanguage].nouWorkTax;
         pointBaseTax.appendChild(nouWork);
         console.log("Базовых точек для тахеoметрии нет");
         removeOverlayLayer("Base points Tax.",null);
@@ -360,7 +367,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         tacheometryJobsLength.textContent = planingWorkTax.length;
-        nouWork.textContent = "No work tacheometry points"
+        nouWork.textContent = langsMaps[siteLanguage].nouWorkTax;
         pointJobsTax.appendChild(nouWork);
         console.log("Работы по тахеoметрии нет");
         removeOverlayLayer("Operating points Tax.",null);
