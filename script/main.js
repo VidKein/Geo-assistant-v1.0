@@ -1,7 +1,35 @@
-//Определение языка
-const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 //Перключатель отоброжения точек
 const namePointDisplay = localStorage.getItem('namePointDisplay') || "false";
+//Определение языка
+const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
+//Перевод текста для блока Setting
+let langsInfoSetting = {
+    "eng": {
+        "MapTyp1": "Satelit Map",
+        "MapTyp2": "Strit Map type",
+        "LayerBaseNiv":" - base points Niv;",
+        "LayerOperatingNiv":" - operating points Niv;",
+        "LayerBaseTrig":" - base points Tax;",
+        "LayerOperatingTrig":" - operating points Tax;"
+    },
+    "ua": {
+        "MapTyp1": "Супутникова карта",
+        "MapTyp2": "Miська карта",
+        "LayerBaseNiv":" - базові точки Niv;",
+        "LayerOperatingNiv":" - робочі точки Niv;",
+        "LayerBaseTrig":" - базові точки Tax;",
+        "LayerOperatingTrig":" - робочі точки Tax;"
+    },
+    "cz": {
+        "MapTyp1": "Satelitní mapa",
+        "MapTyp2": "Typ rozvržení mapy",
+        "LayerBaseNiv":" - základní body Niv;",
+        "LayerOperatingNiv":" - provozní body Niv;",
+        "LayerBaseTrig":" - základní body Tax;",
+        "LayerOperatingTrig":" - provozní body Tax;"
+    }
+};
+
 /*Карта*/
 //СЛОИ КАРТЫ
 //Спутник
@@ -64,8 +92,8 @@ const checkIcon = L.icon({
 /*СЛОИ*/
 //КАРТ
 let baseMaps = {
-    "Satelit Map": OSMsatelitMap,
-    "Strit Map": OSMstritMap
+    [langsInfoSetting[siteLanguage].MapTyp1]: OSMsatelitMap,
+    [langsInfoSetting[siteLanguage].MapTyp2]: OSMstritMap
   };
 //Меню отображения слоев Карт
 let overlayMaps = {};
@@ -374,16 +402,16 @@ function customizeLayerControl() {
     let labels = document.querySelectorAll('.leaflet-control-layers-overlays label span span');
     labels.forEach(label => {
         if (label.textContent.trim() === "Base points Niv.") {
-            label.innerHTML = '<span style="color: red;"> - base points Niv;</span>';
+            label.innerHTML = '<span style="color: red;">'+langsInfoSetting[siteLanguage].LayerBaseNiv+'</span>';
         }
         if (label.textContent.trim() === "Operating points Niv.") {
-            label.innerHTML = '<span style="color: green;"> - operating points Niv;</span>';
+            label.innerHTML = '<span style="color: green;">'+langsInfoSetting[siteLanguage].LayerOperatingNiv+'</span>';
         }
         if (label.textContent.trim() === "Base points Tax.") {
-            label.innerHTML = '<span style="color: red;"> - base points Tax;</span>';
+            label.innerHTML = '<span style="color: red;">'+langsInfoSetting[siteLanguage].LayerBaseTrig+'</span>';
         }
         if (label.textContent.trim() === "Operating points Tax.") {
-            label.innerHTML = '<span style="color: green;"> - operating points Tax;</span>';
+            label.innerHTML = '<span style="color: green;">'+langsInfoSetting[siteLanguage].LayerOperatingTrig+'</span>';
         }
     });
 }
