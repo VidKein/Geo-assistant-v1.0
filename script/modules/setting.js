@@ -132,22 +132,20 @@ for (let i = 0; i < settingBlock.length; i++) {
                             e.preventDefault(); // Останавливаем отправку формы
                             } else {
                                 try {
+                                    //Извликаем информацию из файла с КОДами по id
                                     async function loadOptionSelekt(nameSelekt, value) {
                                         const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
                                         const response = await fetch(jsonFileKod); // Загружаем JSON
                                         const jsonData = await response.json(); // Преобразуем в объект
                                             for (const item of jsonData[siteLanguage][nameSelekt]) {
-                                                if (item.value === value) {
-                                                    document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
+                                                if (item.id === value) {
+                                                    document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем нащзвание
                                                 }
                                             }
                                     }   
-
                                      const API_URL = `http://localhost:4000/pointDat/${dataName}/${dataJobsPlase}/${id}`;
                                      const response = await fetch(API_URL);
                                      const data = await response.json();
-                                     console.log(data);
-                                     
                                      if (response.ok) {
                                         //Открываем окно для внесения информации
                                         settingBlockFull.style.display = "none";

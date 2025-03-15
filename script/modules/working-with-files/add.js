@@ -11,11 +11,10 @@ async function funktionalAdd(e) {
     let vyckaPoint = document.getElementById("vycka").value.trim();
     let date = document.getElementById("date").value.trim();
     // Получаем элементы systemCoordinates
-    let selektCoordinateSystem = document.getElementById("coordinateSystem");
-    let coordinateSystem = selektCoordinateSystem.options[selektCoordinateSystem.selectedIndex].text;
+    let coordinateSystem = Number(document.getElementById("coordinateSystem").value);
     // Получаем элементы systemCoordinates
-    let selektPositionType = document.getElementById("positionType");
-    let positionType = selektPositionType.options[selektPositionType.selectedIndex].text;
+    let positionType = Number(document.getElementById("positionType").value);
+    
     // Контроль
     /*
     add.push(`dataName: ${dataName}, dataJobs: ${dataJobs} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${coordinateSystem}, positionType: ${positionType}}`);    

@@ -183,8 +183,8 @@
       },
       "11025": {
         "position": [
-          742008,
-          1047347
+          742007,
+          1047348
         ],
         "vycka": 268.6095,
         "date": "2025-01-26",
@@ -834,12 +834,12 @@
       "1190101": {
         "position": [
           741965,
-          1047277
+          1047276
         ],
         "vycka": 268.6558,
         "date": "2025-01-26",
         "systemCoordinates": "JTSK",
-        "positionType": "facade-target cross"
+        "positionType": "wall"
       },
       "1190102": {
         "position": [
@@ -1770,7 +1770,7 @@
       "132301": {
         "position": [
           741969,
-          1047269
+          1047270
         ],
         "vycka": 265.9517,
         "date": "2025-01-26",
@@ -2219,23 +2219,23 @@
       },
       "141501": {
         "position": [
-          742296,
-          1048081
+          742076,
+          1047301
         ],
-        "vycka": 268.3339,
-        "date": "2025-01-26",
+        "vycka": 268.2563,
+        "date": "2025-02-10",
         "systemCoordinates": "JTSK",
-        "positionType": "earth"
+        "positionType": "wall"
       },
       "141502": {
         "position": [
-          742296,
-          1048087
+          742076,
+          1047285
         ],
-        "vycka": 268.3232,
-        "date": "2025-01-26",
+        "vycka": 268.0188,
+        "date": "2025-02-10",
         "systemCoordinates": "JTSK",
-        "positionType": "earth"
+        "positionType": "wall"
       },
       "141503": {
         "position": [
@@ -2269,23 +2269,23 @@
       },
       "141506": {
         "position": [
-          742296,
-          1048111
+          742122,
+          1047303
         ],
-        "vycka": 268.3938,
-        "date": "2025-01-26",
+        "vycka": 268.1647,
+        "date": "2025-02-10",
         "systemCoordinates": "JTSK",
-        "positionType": "earth"
+        "positionType": "wall"
       },
       "141507": {
         "position": [
-          742296,
-          1048117
+          742113,
+          1047301
         ],
-        "vycka": 268.3774,
-        "date": "2025-01-26",
+        "vycka": 268.2035,
+        "date": "2025-02-10",
         "systemCoordinates": "JTSK",
-        "positionType": "earth"
+        "positionType": "wall"
       },
       "141701": {
         "position": [
@@ -2537,7 +2537,7 @@
         "systemCoordinates": "JTSK",
         "positionType": "pillar"
       },
-      "480301": {
+      "EXT-309(480301)": {
         "position": [
           741989,
           1047282
@@ -3460,6 +3460,806 @@
         "date": "2025-01-26",
         "systemCoordinates": "JTSK",
         "positionType": "asphalt"
+      },
+      "141401": {
+        "position": [
+          742301,
+          1048089
+        ],
+        "vycka": 267.7326,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "141402": {
+        "position": [
+          742301,
+          1048108
+        ],
+        "vycka": 267.7227,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "141403": {
+        "position": [
+          742302,
+          1048126
+        ],
+        "vycka": 267.7361,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "141404": {
+        "position": [
+          742302,
+          1048144
+        ],
+        "vycka": 267.7284,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "141405": {
+        "position": [
+          742302,
+          1048162
+        ],
+        "vycka": 267.7717,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "141501": {
+        "position": [
+          742296,
+          1048081
+        ],
+        "vycka": 268.3334,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141502": {
+        "position": [
+          742296,
+          1048087
+        ],
+        "vycka": 268.3231,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141503": {
+        "position": [
+          742296,
+          1048093
+        ],
+        "vycka": 268.4752,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141504": {
+        "position": [
+          742296,
+          1048099
+        ],
+        "vycka": 268.3675,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141505": {
+        "position": [
+          742296,
+          1048105
+        ],
+        "vycka": 268.411,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141506": {
+        "position": [
+          742296,
+          1048111
+        ],
+        "vycka": 268.3935,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141507": {
+        "position": [
+          742296,
+          1048117
+        ],
+        "vycka": 268.3772,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141508": {
+        "position": [
+          742296,
+          1048123
+        ],
+        "vycka": 268.4394,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141509": {
+        "position": [
+          742296,
+          1048129
+        ],
+        "vycka": 268.3411,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141510": {
+        "position": [
+          742295,
+          1048135
+        ],
+        "vycka": 268.1307,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141511": {
+        "position": [
+          742296,
+          1048141
+        ],
+        "vycka": 268.3645,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141512": {
+        "position": [
+          742296,
+          1048147
+        ],
+        "vycka": 268.4675,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141513": {
+        "position": [
+          742296,
+          1048153
+        ],
+        "vycka": 268.353,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141514": {
+        "position": [
+          742297,
+          1048159
+        ],
+        "vycka": 268.3612,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141515": {
+        "position": [
+          742297,
+          1048165
+        ],
+        "vycka": 268.4198,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141516": {
+        "position": [
+          742297,
+          1048171
+        ],
+        "vycka": 268.2905,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141601": {
+        "position": [
+          742309,
+          1048081
+        ],
+        "vycka": 268.5641,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141602": {
+        "position": [
+          742309,
+          1048093
+        ],
+        "vycka": 268.4844,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141603": {
+        "position": [
+          742310,
+          1048099
+        ],
+        "vycka": 268.4511,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141604": {
+        "position": [
+          742310,
+          1048111
+        ],
+        "vycka": 268.5233,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141605": {
+        "position": [
+          742310,
+          1048117
+        ],
+        "vycka": 268.5725,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141606": {
+        "position": [
+          742309,
+          1048129
+        ],
+        "vycka": 268.4946,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141607": {
+        "position": [
+          742310,
+          1048135
+        ],
+        "vycka": 268.4929,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141608": {
+        "position": [
+          742310,
+          1048147
+        ],
+        "vycka": 268.4564,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141609": {
+        "position": [
+          742310,
+          1048153
+        ],
+        "vycka": 268.3856,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141610": {
+        "position": [
+          742310,
+          1048165
+        ],
+        "vycka": 268.4509,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "141611": {
+        "position": [
+          742310,
+          1048171
+        ],
+        "vycka": 268.4505,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "metal pin"
+      },
+      "143801": {
+        "position": [
+          742297,
+          1048081
+        ],
+        "vycka": 267.7156,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "143802": {
+        "position": [
+          742302,
+          1048081
+        ],
+        "vycka": 267.7586,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "143803": {
+        "position": [
+          742308,
+          1048081
+        ],
+        "vycka": 267.7324,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "143901": {
+        "position": [
+          742297,
+          1048087
+        ],
+        "vycka": 267.6853,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "143902": {
+        "position": [
+          742301,
+          1048087
+        ],
+        "vycka": 267.7153,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "143903": {
+        "position": [
+          742308,
+          1048087
+        ],
+        "vycka": 267.6269,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144001": {
+        "position": [
+          742297,
+          1048093
+        ],
+        "vycka": 267.7236,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144002": {
+        "position": [
+          742301,
+          1048093
+        ],
+        "vycka": 267.6996,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144003": {
+        "position": [
+          742308,
+          1048093
+        ],
+        "vycka": 267.7077,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144101": {
+        "position": [
+          742297,
+          1048099
+        ],
+        "vycka": 267.7078,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144102": {
+        "position": [
+          742302,
+          1048099
+        ],
+        "vycka": 267.69,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144103": {
+        "position": [
+          742308,
+          1048099
+        ],
+        "vycka": 267.7214,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144201": {
+        "position": [
+          742297,
+          1048105
+        ],
+        "vycka": 267.7269,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144202": {
+        "position": [
+          742302,
+          1048105
+        ],
+        "vycka": 267.7231,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144203": {
+        "position": [
+          742308,
+          1048105
+        ],
+        "vycka": 267.7175,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144301": {
+        "position": [
+          742297,
+          1048111
+        ],
+        "vycka": 267.6873,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144302": {
+        "position": [
+          742302,
+          1048111
+        ],
+        "vycka": 267.7097,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144303": {
+        "position": [
+          742309,
+          1048111
+        ],
+        "vycka": 267.7055,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144401": {
+        "position": [
+          742297,
+          1048117
+        ],
+        "vycka": 267.7162,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144402": {
+        "position": [
+          742302,
+          1048117
+        ],
+        "vycka": 267.7304,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144403": {
+        "position": [
+          742309,
+          1048117
+        ],
+        "vycka": 267.7187,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144501": {
+        "position": [
+          742297,
+          1048123
+        ],
+        "vycka": 267.7246,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144502": {
+        "position": [
+          742302,
+          1048123
+        ],
+        "vycka": 267.7278,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144503": {
+        "position": [
+          742309,
+          1048123
+        ],
+        "vycka": 267.7415,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144601": {
+        "position": [
+          742297,
+          1048129
+        ],
+        "vycka": 267.7298,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144602": {
+        "position": [
+          742302,
+          1048129
+        ],
+        "vycka": 267.7499,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144603": {
+        "position": [
+          742309,
+          1048129
+        ],
+        "vycka": 267.7421,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144701": {
+        "position": [
+          742297,
+          1048135
+        ],
+        "vycka": 267.7345,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144702": {
+        "position": [
+          742303,
+          1048135
+        ],
+        "vycka": 267.7392,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144703": {
+        "position": [
+          742309,
+          1048135
+        ],
+        "vycka": 267.7365,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144801": {
+        "position": [
+          742297,
+          1048141
+        ],
+        "vycka": 267.7407,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144802": {
+        "position": [
+          742302,
+          1048141
+        ],
+        "vycka": 267.7458,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144803": {
+        "position": [
+          742309,
+          1048141
+        ],
+        "vycka": 267.7602,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144901": {
+        "position": [
+          742297,
+          1048148
+        ],
+        "vycka": 267.7237,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144902": {
+        "position": [
+          742302,
+          1048148
+        ],
+        "vycka": 267.7212,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "144903": {
+        "position": [
+          742309,
+          1048147
+        ],
+        "vycka": 267.7338,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145001": {
+        "position": [
+          742298,
+          1048153
+        ],
+        "vycka": 267.7246,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145002": {
+        "position": [
+          742303,
+          1048153
+        ],
+        "vycka": 267.7292,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145003": {
+        "position": [
+          742309,
+          1048153
+        ],
+        "vycka": 267.7701,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145101": {
+        "position": [
+          742298,
+          1048159
+        ],
+        "vycka": 267.7297,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145102": {
+        "position": [
+          742302,
+          1048159
+        ],
+        "vycka": 267.7558,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145103": {
+        "position": [
+          742309,
+          1048159
+        ],
+        "vycka": 267.7319,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145201": {
+        "position": [
+          742298,
+          1048166
+        ],
+        "vycka": 267.7106,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145202": {
+        "position": [
+          742302,
+          1048166
+        ],
+        "vycka": 267.7423,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145203": {
+        "position": [
+          742309,
+          1048166
+        ],
+        "vycka": 267.7476,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145301": {
+        "position": [
+          742298,
+          1048171
+        ],
+        "vycka": 267.7174,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145302": {
+        "position": [
+          742302,
+          1048171
+        ],
+        "vycka": 267.75,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
+      },
+      "145303": {
+        "position": [
+          742309,
+          1048171
+        ],
+        "vycka": 267.7362,
+        "date": "2025-03-03",
+        "systemCoordinates": "JTSK",
+        "positionType": "nail in the wall"
       }
     }
   }

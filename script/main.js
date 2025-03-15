@@ -389,7 +389,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     console.log(layerControl._layers);
     console.log(overlayMaps);
 };
-//Функция создаюшаяя слои
+//Функция создаюшая слои
 function removeOverlayLayer(layerName, pointLayer) {  
     if (pointLayer === null) {
         delete overlayMaps[layerName];
@@ -428,7 +428,7 @@ function parsinWork(planing) {
         throw new Error("Input must be an array of strings");
     }
     const arrayPoint = [];
-    const regex = /place:\s*([\w-]+)|namber:\s*([\w-]+(?:\([\d]+\))?)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|systemCoordinates:\s*([\w]+)|positionType:\s*(\w+)/g;
+    const regex = /place:\s*([\w-]+)|namber:\s*([\w-]+(?:\([\d]+\))?)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d{4}-\d{2}-\d{2}]+)|systemCoordinates:\s*([\d.]+)|positionType:\s*([\d.]+)/g;
     planing.forEach(point => {
         const parsedData = {};
         let match;
@@ -441,17 +441,18 @@ function parsinWork(planing) {
                 .map(Number);
             if (match[4]) parsedData["vycka"] = parseFloat(match[4].replace(',', '.'));
             if (match[5]) parsedData["date"] = match[5];
-            if (match[6]) parsedData["systemCoordinates"] = match[6].trim();
+            if (match[6]) parsedData["systemCoordinates"] = match[6];
             if (match[7]) parsedData["positionType"] = match[7];
         }
         arrayPoint.push(parsedData);
     });
+    console.log(arrayPoint);
+    
     return arrayPoint;
 }
-
 //Функция формированм маркеров
-function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {   
-  if (systemCoordinates == "JTSK") {
+function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
+  if (systemCoordinates == 1) {
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
         //Подключение маркера с конвертацией JTSKtoWGS84
@@ -776,7 +777,7 @@ async function loadOptionSelekt(nameSelekt, value) {
     const response = await fetch(jsonFileKod); // Загружаем JSON
     const jsonData = await response.json(); // Преобразуем в объект
         for (const item of jsonData[siteLanguage][nameSelekt]) {
-            if (item.value === value) {
+            if (item.id === value) {
                 document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
             }
         }

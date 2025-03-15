@@ -38,7 +38,32 @@
       {
         "id": 7,
         "value": "pillar-target cross"
+      },
+      {
+        "id": 8,
+        "value": "facade-target cross"
+      },
+      {
+        "id": 9,
+        "value": "extenzo"
+      },
+      {
+        "id": 10,
+        "value": "pillar"
+      },
+      {
+        "id": 11,
+        "value": "concrete cover"
+      },
+      {
+        "id": 12,
+        "value": "nail in the wall"
+      },
+      {
+        "id": 13,
+        "value": "metal pin"
       }
+
     ]
   },
   "ua": {
@@ -80,6 +105,30 @@
       {
         "id": 7,
         "value": "стовп - цільовий хрест"
+      },
+      {
+        "id": 8,
+        "value": "фасадно-цільовий хрест"
+      },
+      {
+        "id": 9,
+        "value": "extenzo"
+      },
+      {
+        "id": 10,
+        "value": "стовп"
+      },
+      {
+        "id": 11,
+        "value": "бетонне покриття"
+      },
+      {
+        "id": 12,
+        "value": "репер у стіні"
+      },
+      {
+        "id": 13,
+        "value": "металевий штирь"
       }
     ]
   },
@@ -122,6 +171,30 @@
       {
         "id": 7,
         "value": "kříž mezi pilířem a cílem"
+      },
+      {
+        "id": 8,
+        "value": "fasáda-cílový kříž"
+      },
+      {
+        "id": 9,
+        "value": "extenzo"
+      },
+      {
+        "id": 10,
+        "value": "pilíř"
+      },
+      {
+        "id": 11,
+        "value": "betonový kryt"
+      },
+      {
+        "id": 12,
+        "value": "hřebík do zdi"
+      },
+      {
+        "id": 13,
+        "value": "kovový kolík"
       }
     ]
   }
