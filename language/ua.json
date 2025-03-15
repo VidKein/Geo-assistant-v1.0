@@ -63,5 +63,7 @@
     "closeMarkerLabel":"Кнопка виходу",
     "getCoordinates":"Отримати координати",
 
-    "close-infoWindows":"Кнопка виходу"
+    "close-infoWindows":"Кнопка виходу",
+
+    "textTodaj":"Сьогодні"
 }

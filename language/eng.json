@@ -63,5 +63,7 @@
     "closeMarkerLabel":"Exit determination coordinates",
     "getCoordinates":"Getc oordinates",
 
-    "close-infoWindows":"Exit button"
+    "close-infoWindows":"Exit button",
+
+    "textTodaj":"Todaj"
 }

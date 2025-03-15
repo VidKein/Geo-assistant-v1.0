@@ -97,7 +97,7 @@ class Cal {
             var chkY = chk.getFullYear();
             var chkM = chk.getMonth();
             if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-                html += '<td class="today" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '<div class="textTodaj">Today</div></td>';
+                html += '<td class="today" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '<div langs = "textTodaj" class="textTodaj">Today</div></td>';
             } else {
                 html += '<td class="normal" date="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'"   title="'+y+'-'+String(m + 1).padStart(2, '0')+'-'+String(i).padStart(2, '0')+'" >' + i + '</td>';
             }

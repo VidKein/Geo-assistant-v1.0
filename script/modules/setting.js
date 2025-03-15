@@ -142,10 +142,12 @@ for (let i = 0; i < settingBlock.length; i++) {
                                                 }
                                             }
                                     }   
-                                    
+
                                      const API_URL = `http://localhost:4000/pointDat/${dataName}/${dataJobsPlase}/${id}`;
                                      const response = await fetch(API_URL);
                                      const data = await response.json();
+                                     console.log(data);
+                                     
                                      if (response.ok) {
                                         //Открываем окно для внесения информации
                                         settingBlockFull.style.display = "none";
