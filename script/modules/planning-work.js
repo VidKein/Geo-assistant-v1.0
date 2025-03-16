@@ -1,3 +1,5 @@
+//Определение языка
+const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 //Дата сегодня
 const todayDate = new Date();
 const year = todayDate.getFullYear();
@@ -109,8 +111,6 @@ async function planningWork(dateWorld) {
                 .map(row => row[columnIndex]); // Значения из найденного столбца
             const hasOne = colData.some(value => value === 1);
  
- 
- 
             //Для контроля
             //console.log(`Количество найденных точек на листе "${sheetName}":`, colData[0]);
             //Передаем информацию о количестве рабочих точек в календарь  calendarg.js
@@ -125,6 +125,16 @@ async function planningWork(dateWorld) {
                         B: row[1], // Столбец B
                         C: row[2], // Столбец C
                     }));
+                    //Функция вставки текста в вместо id текст используя kod.json
+                    async function loadOptionsMarker(nameSelekt) {
+                        const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
+                        const response = await fetch(jsonFileKod); // Загружаем JSON
+                        const jsonData = await response.json(); // Преобразуем в объект 
+                        const langData = jsonData[siteLanguage];
+                        return Object.fromEntries((langData[nameSelekt]).map(item => [item.id, item.value]));
+                    }
+                    const coordinateSystemMap = await loadOptionsMarker("coordinateSystem");
+                    const positionTypemMap = await loadOptionsMarker("positionType");
                     //Для контроля
                    //console.log(columnData);
                     if (sheetName == "Base") {
@@ -132,12 +142,12 @@ async function planningWork(dateWorld) {
                         columnData.forEach(row => {  
                             if (row.C == 'n') {    
                                 if (jsonData.Base.niv[row.B] !== undefined) {
-                                    resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.niv[row.B].position[0]} , ${jsonData.Base.niv[row.B].position[1]}, vycka: ${jsonData.Base.niv[row.B].vycka}, date: ${jsonData.Base.niv[row.B].date}, systemCoordinates: ${jsonData.Base.niv[row.B].systemCoordinates}, positionType: ${jsonData.Base.niv[row.B].positionType}`);
+                                    resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.niv[row.B].position[0]} , ${jsonData.Base.niv[row.B].position[1]}, vycka: ${jsonData.Base.niv[row.B].vycka}, date: ${jsonData.Base.niv[row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.Base.niv[row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.Base.niv[row.B].positionType, 10)]}`);
                                 }
                                 else{resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             } else {
                                 if (jsonData.Base.trig[row.B] !== undefined) {
-                                    resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.trig[row.B].position[0]} , ${jsonData.Base.trig[row.B].position[1]}, vycka: ${jsonData.Base.trig[row.B].vycka}, date: ${jsonData.Base.trig[row.B].date}, systemCoordinates: ${jsonData.Base.trig[row.B].systemCoordinates}, positionType: ${jsonData.Base.trig[row.B].positionType}`);
+                                    resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.trig[row.B].position[0]} , ${jsonData.Base.trig[row.B].position[1]}, vycka: ${jsonData.Base.trig[row.B].vycka}, date: ${jsonData.Base.trig[row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.Base.trig[row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.Base.trig[row.B].positionType, 10)]}`);
                                 }
                                 else{resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             }
@@ -147,12 +157,12 @@ async function planningWork(dateWorld) {
                         columnData.forEach(row => {  
                             if (row.C == 'n') { 
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
-                                    resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
+                                    resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.poligons[sheetName][row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.poligons[sheetName][row.B].positionType, 10)]}`);
                                 }
                                 else{resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             } else {
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
-                                    resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${jsonData.poligons[sheetName][row.B].systemCoordinates}, positionType: ${jsonData.poligons[sheetName][row.B].positionType}`);
+                                    resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.poligons[sheetName][row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.poligons[sheetName][row.B].positionType, 10)]}`);
                                 }
                                 else{resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
                             }

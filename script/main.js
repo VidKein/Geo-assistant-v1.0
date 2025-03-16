@@ -126,7 +126,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     if (pointBaseNiv.querySelectorAll(".pointJobsError")) {pointBaseNiv.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
     if (planingBaseNiv.length > 0) {
         levelingBaseLeng.textContent = planingBaseNiv.length;
-        let parsedData =  parsinWork(planingBaseNiv);
+        let parsedData = parsinWork(planingBaseNiv);
         //Нивилирования базовые
         var pointBaseLayerNiv = [];
         parsedData.forEach(row => {
@@ -378,7 +378,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
         if (operatingPointsNiv !== undefined) {operatingPointsNiv.layerName = 'operatingPointsNiv';};
         if (operatingBaseTax !== undefined) {operatingBaseTax.layerName = 'operatingBaseTax';};
         if (operatingPointsTax !== undefined) {operatingPointsTax.layerName = 'operatingPointsTax';};
-        onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
+       onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseTax, operatingPointsTax); 
     } else {
         console.log("Слоев по работе нет");  
     } 
@@ -428,7 +428,7 @@ function parsinWork(planing) {
         throw new Error("Input must be an array of strings");
     }
     const arrayPoint = [];
-    const regex = /place:\s*([\w-]+)|namber:\s*([\w-]+(?:\([\d]+\))?)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d{4}-\d{2}-\d{2}]+)|systemCoordinates:\s*([\d.]+)|positionType:\s*([\d.]+)/g;
+    const regex = /place:\s*([\w-]+)|namber:\s*([\w-]+(?:\([\d]+\))?)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d{4}-\d{2}-\d{2}]+)|systemCoordinates:\s*([\w-]+)|positionType:\s*([\w-]+)/g;
     planing.forEach(point => {
         const parsedData = {};
         let match;
@@ -442,21 +442,18 @@ function parsinWork(planing) {
             if (match[4]) parsedData["vycka"] = parseFloat(match[4].replace(',', '.'));
             if (match[5]) parsedData["date"] = match[5];
             if (match[6]) parsedData["systemCoordinates"] = match[6];
-            if (match[7]) parsedData["positionType"] = match[7];
+            if (match[7]) parsedData["positionType"] =  match[7]; 
         }
         arrayPoint.push(parsedData);
-    });
-    console.log(arrayPoint);
-    
+    }); 
     return arrayPoint;
 }
 //Функция формированм маркеров
 function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
-  if (systemCoordinates == 1) {
+  if (systemCoordinates == "JTSK") {
+        //Подключение маркера с конвертацией JTSKtoWGS84
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
-        //Подключение маркера с конвертацией JTSKtoWGS84
-        /*var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup("<b>"+name+"</b><br>Vycka: "+vycka+" m.<br>Type: "+positionType);*/
         // Создаем всплывающее меню с радиокнопкой
         const popupContent = `<input type="checkbox" id="checkbox"> completed`;
         if (namePointDisplay == "false") {
@@ -650,7 +647,7 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
      let markers = {};//Создаем обьект для хранения маркеров
      let checkMarker;//Маркер
     //Функция изменения состояния галочки 
-    function checkedMarkers(layerName) {
+     function checkedMarkers(layerName) {
         const pointCheckedMarkers = layerName.getLayers();
         for (let i = 0; i < pointCheckedMarkers.length; i++) {
             pointCheckedMarkers[i].on('click', function(event) { 
@@ -681,7 +678,7 @@ function onLayerGroup(operatingBasePointsNiv, operatingPointsNiv, operatingBaseT
     //Запускаем функцию создания маркера
     if (operatingBasePointsNiv) {checkedMarkers(operatingBasePointsNiv);};
     if (operatingPointsNiv) {checkedMarkers(operatingPointsNiv);};
-    if ( operatingBaseTax) {checkedMarkers(operatingBaseTax);};
+    if (operatingBaseTax) {checkedMarkers(operatingBaseTax);};
     if (operatingPointsTax) {checkedMarkers(operatingPointsTax);};
 };
 
@@ -694,9 +691,9 @@ map.on('overlayremove', function(e) {
 });
 
 //Наполнение селекта для coordinateSystem и positionType
-const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
 // Функция загрузки JSON и заполнения select
 async function loadOptions() {
+  const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
   try {
     const response = await fetch(jsonFileKod); // Загружаем JSON
     const jsonData = await response.json(); // Преобразуем в объект
@@ -777,7 +774,7 @@ async function loadOptionSelekt(nameSelekt, value) {
     const response = await fetch(jsonFileKod); // Загружаем JSON
     const jsonData = await response.json(); // Преобразуем в объект
         for (const item of jsonData[siteLanguage][nameSelekt]) {
-            if (item.id === value) {
+            if (item.value === value) {
                 document.getElementById(nameSelekt).value = item.id; // Нашли → возвращаем ID
             }
         }
