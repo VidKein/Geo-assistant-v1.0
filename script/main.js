@@ -111,8 +111,8 @@ let operatingBaseTax;
 let operatingPointsTax;
 
 //Импорт информации с таблицы с планом работы planning-work.js
-document.addEventListener("planningWork", (planning) => {
-    layerControlPoint(planning.detail.baseNiv, mainNiv, planning.detail.baseTrig, mainTrig, planning.detail.planningNiv, jobsNiv, planning.detail.planningTrig, jobsTrig);
+document.addEventListener("planningWork", (jobs) => {
+    layerControlPoint(jobs.detail.baseNiv, mainNiv, jobs.detail.baseTrig, mainTrig, jobs.detail.planningNiv, jobsNiv, jobs.detail.planningTrig, jobsTrig);
 });
 
 //Функция обработки данных переданных из planing-work.js и формирует слои с маркерами
@@ -124,23 +124,22 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     //Очишаем блок с информацией
     pointBaseNiv.querySelectorAll(".pointJobs").forEach(el => el.remove());
     if (pointBaseNiv.querySelectorAll(".pointJobsError")) {pointBaseNiv.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
-    if (planingBaseNiv.length > 0) {
-        levelingBaseLeng.textContent = planingBaseNiv.length;
-        let parsedData = parsinWork(planingBaseNiv);
+    if (Object.keys(planingBaseNiv).length > 0) {
+        levelingBaseLeng.textContent = Object.keys(planingBaseNiv).length;
         //Нивилирования базовые
         var pointBaseLayerNiv = [];
-        parsedData.forEach(row => {
-           if (row["position"] !== undefined) { 
-            pointBaseLayerNiv.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerBasePointNiv)); 
+        for (const row in planingBaseNiv) {
+           if (planingBaseNiv[row].position !== undefined) { 
+            pointBaseLayerNiv.push(createMarker(planingBaseNiv[row].namber, planingBaseNiv[row].position, planingBaseNiv[row].systemCoordinates, planingBaseNiv[row].vycka, planingBaseNiv[row].positionType, markerBasePointNiv));             
             //Создаем новый div
             const jobDivNiv = document.createElement('div');
             jobDivNiv.className = 'pointJobs'; // Добавляем класс
             //Создаем дополнительные атрибуты
-            jobDivNiv.setAttribute("place", row["place"]);
+            jobDivNiv.setAttribute("place", planingBaseNiv[row].place);
             jobDivNiv.setAttribute("data-name", "Base");
             jobDivNiv.setAttribute("data-jobs", "niv");
-            jobDivNiv.setAttribute("title", "Base/niv "+row["place"]);
-            jobDivNiv.textContent = row["namber"]; // Устанавливаем текст внутри div
+            jobDivNiv.setAttribute("title", "Base/niv "+planingBaseNiv[row].place);
+            jobDivNiv.textContent = planingBaseNiv[row].namber; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointBaseNiv.appendChild(jobDivNiv);
             }else{
@@ -148,16 +147,16 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
                  const jobDivNivError = document.createElement('div');
                  jobDivNivError.className = 'pointJobsError'; // Добавляем класс
                  //Создаем доплнительные атрибуты
-                 jobDivNivError.setAttribute("place", row["place"]);
+                 jobDivNivError.setAttribute("place", planingBaseNiv[row].place);
                  jobDivNivError.setAttribute("data-name", "Base");
                  jobDivNivError.setAttribute("data-jobs", "niv");
-                 jobDivNivError.setAttribute("title", "Base/niv "+row["place"]);
-                 if (row["namber"] == "undefined" || row["namber"] == "body") {
+                 jobDivNivError.setAttribute("title", "Base/niv "+planingBaseNiv[row].place);
+                 if (planingBaseNiv[row].namber == "undefined" || planingBaseNiv[row].namber == "body") {
                     jobDivNivError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
                     //Добавляем div в контейнер
                     pointBaseNiv.appendChild(jobDivNivError);
                 } else {
-                    jobDivNivError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                    jobDivNivError.textContent = planingBaseNiv[row].namber; // Устанавливаем текст внутри div
                     //Добавляем div в контейнер
                     pointBaseNiv.appendChild(jobDivNivError);
                     //Добавляем span с финкцией изменения 
@@ -165,15 +164,15 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
                     pointError.className = 'pointError';
                     jobDivNivError.appendChild(pointError);
                 }
-                 console.log("Базовые точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
+                 console.log("Базовые точки НИВ с числом - "+planingBaseNiv[row].namber+" в базе не найдены"); 
             }  
-        }) 
+        };
        //Выводим точки на карту и привязываем к переключателю
         operatingBasePointsNiv = L.layerGroup(pointBaseLayerNiv);  
         removeOverlayLayer("Base points Niv.",operatingBasePointsNiv);
     }else {
         let nouWork = document.createElement('div');
-        levelingBaseLeng.textContent = planingBaseNiv.length;
+        levelingBaseLeng.textContent = Object.keys(planingBaseNiv).length;
         nouWork.className = "pointJobs";
         nouWork.textContent = langsMaps[siteLanguage].nouWorkNiv;
         pointBaseNiv.appendChild(nouWork);
@@ -188,23 +187,22 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     //Очишаем блок с информацией
     pointJobsNiv.querySelectorAll(".pointJobs").forEach(el => el.remove());
     if (pointJobsNiv.querySelectorAll(".pointJobsError")) {pointJobsNiv.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
-    if (planingWorkNiv.length > 0) { 
-        levelingJobsLeng.textContent = planingWorkNiv.length;
-        let parsedData =  parsinWork(planingWorkNiv);
+    if (Object.keys(planingWorkNiv).length > 0) { 
+        levelingJobsLeng.textContent = Object.keys(planingWorkNiv).length;
         //Нивелирования рабочие
         var pointOperatingLayerNiv = [];
-        parsedData.forEach(row => {
-           if (row["position"] !== undefined) { 
-            pointOperatingLayerNiv.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerPointNiv)); 
+        for (const row in planingWorkNiv) {
+           if (planingWorkNiv[row].position !== undefined) { 
+            pointOperatingLayerNiv.push(createMarker(planingWorkNiv[row].namber, planingWorkNiv[row].position, planingWorkNiv[row].systemCoordinates, planingWorkNiv[row].vycka, planingWorkNiv[row].positionType, markerPointNiv)); 
             //Создаем новый div
             const jobDivNiv = document.createElement('div');
             jobDivNiv.className = 'pointJobs'; // Добавляем класс
             //Создаем доплнительные атрибуты
-            jobDivNiv.setAttribute("place", row["place"]);
+            jobDivNiv.setAttribute("place", planingWorkNiv[row].place);
             jobDivNiv.setAttribute("data-name", "poligons");
             jobDivNiv.setAttribute("data-jobs", "niv");
-            jobDivNiv.setAttribute("title", "Poligons/niv "+row["place"]);
-            jobDivNiv.textContent = row["namber"]; // Устанавливаем текст внутри div
+            jobDivNiv.setAttribute("title", "Poligons/niv "+planingWorkNiv[row].place);
+            jobDivNiv.textContent = planingWorkNiv[row].namber; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointJobsNiv.appendChild(jobDivNiv);
             }else{
@@ -212,16 +210,16 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
                 const jobDivNivError = document.createElement('div');
                 jobDivNivError.className = 'pointJobsError'; // Добавляем класс
                 //Создаем доплнительные атрибуты
-                jobDivNivError.setAttribute("place", row["place"]);
+                jobDivNivError.setAttribute("place", planingWorkNiv[row].place);
                 jobDivNivError.setAttribute("data-name", "poligons");
                 jobDivNivError.setAttribute("data-jobs", "niv");
-                jobDivNivError.setAttribute("title", "Poligons/niv "+row["place"]);
-                if (row["namber"] == "undefined" || row["namber"] == "body") {
+                jobDivNivError.setAttribute("title", "Poligons/niv "+planingWorkNiv[row].place);
+                if (planingWorkNiv[row].namber == "undefined" || planingWorkNiv[row].namber == "body") {
                     jobDivNivError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
                     //Добавляем div в контейнер
                     pointJobsNiv.appendChild(jobDivNivError);
                 } else {
-                    jobDivNivError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                    jobDivNivError.textContent = planingWorkNiv[row].namber; // Устанавливаем текст внутри div
                     //Добавляем div в контейнер
                     pointJobsNiv.appendChild(jobDivNivError);
                     //Добавляем span с финкцией изменения 
@@ -229,16 +227,16 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
                     pointError.className = 'pointError';
                     jobDivNivError.appendChild(pointError);
                 }
-                console.log("Точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
+                console.log("Точки НИВ с числом - "+planingWorkNiv[row].namber+" в базе не найдены"); 
             }  
-        }) 
+        }
         //Выводим точки на карту и привязываем к переключателю
         operatingPointsNiv = L.layerGroup(pointOperatingLayerNiv);
         removeOverlayLayer("Operating points Niv.",operatingPointsNiv);
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
-        levelingJobsLeng.textContent = planingWorkNiv.length;
+        levelingJobsLeng.textContent = Object.keys(planingWorkNiv).length;
         nouWork.textContent = langsMaps[siteLanguage].nouWorkNiv;
         pointJobsNiv.appendChild(nouWork);
         console.log("Работы по невилированию нет");
@@ -252,23 +250,22 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     //Очишаем блок с информацией
     pointBaseTax.querySelectorAll(".pointJobs").forEach(el => el.remove());
     if (pointBaseTax.querySelectorAll(".pointJobsError")) {pointBaseTax.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
-    if (planingBaseTrig.length > 0) {
-        tacheometryBaseLength.textContent = planingBaseTrig.length;
-        let parsedData =  parsinWork(planingBaseTrig); 
+    if (Object.keys(planingBaseTrig).length > 0) {
+        tacheometryBaseLength.textContent = Object.keys(planingBaseTrig).length;
         //Тахеометрии базовые
         var pointBaseLayerTax = [];
-        parsedData.forEach(row => {
-           if (row["position"] !== undefined) {
-            pointBaseLayerTax.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerBasePointTrig)); 
+        for (const row in planingBaseTrig) {
+           if (planingBaseTrig[row].position !== undefined) {
+            pointBaseLayerTax.push(createMarker(planingBaseTrig[row].namber, planingBaseTrig[row].position, planingBaseTrig[row].systemCoordinates, planingBaseTrig[row].vycka, planingBaseTrig[row].positionType, markerBasePointTrig)); 
             //Создаем новый div
             const jobDivTax = document.createElement('div');
             jobDivTax.className = 'pointJobs'; // Добавляем класс
             //Создаем доплнительные атрибуты
-            jobDivTax.setAttribute("place", row["place"]);
+            jobDivTax.setAttribute("place", planingBaseTrig[row].place);
             jobDivTax.setAttribute("data-name", "Base");
             jobDivTax.setAttribute("data-jobs", "trig");
-            jobDivTax.setAttribute("title", "Base/trig "+row["place"]);
-            jobDivTax.textContent = row["namber"]; // Устанавливаем текст внутри div
+            jobDivTax.setAttribute("title", "Base/trig "+planingBaseTrig[row].place);
+            jobDivTax.textContent = planingBaseTrig[row].namber; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointBaseTax.appendChild(jobDivTax);
             }else{
@@ -276,16 +273,16 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             const jobDivTaxError = document.createElement('div');
             jobDivTaxError.className = 'pointJobsError'; // Добавляем класс
             //Создаем доплнительные атрибуты
-            jobDivTaxError.setAttribute("place", row["place"]);
+            jobDivTaxError.setAttribute("place", planingBaseTrig[row].place);
             jobDivTaxError.setAttribute("data-name", "Base");
             jobDivTaxError.setAttribute("data-jobs", "trig");
-            jobDivTaxError.setAttribute("title", "Base/trig "+row["place"]);
-            if (row["namber"] == "undefined" || row["namber"] == "body") {
+            jobDivTaxError.setAttribute("title", "Base/trig "+planingBaseTrig[row].place);
+            if (planingBaseTrig[row].namber == "undefined" || planingBaseTrig[row].namber == "body") {
                 jobDivTaxError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
                 //Добавляем div в контейнер
                 pointBaseTax.appendChild(jobDivTaxError);
             } else {
-                jobDivTaxError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                jobDivTaxError.textContent = planingBaseTrig[row].namber; // Устанавливаем текст внутри div
                 //Добавляем div в контейнер
                 pointBaseTax.appendChild(jobDivTaxError);
                 //Добавляем span с финкцией изменения 
@@ -293,22 +290,22 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
                 pointError.className = 'pointError';
                 jobDivTaxError.appendChild(pointError);
             }
-            console.log("Базовые точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
+            console.log("Базовые точки ТАХ с числом - "+planingBaseTrig[row].namber+" в базе не найдены"); 
             }  
-        }) 
+        }
         //Выводим точки на карту и привязываем к переключателю
         operatingBaseTax = L.layerGroup(pointBaseLayerTax);
         removeOverlayLayer("Base points Tax.",operatingBaseTax);
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
-        tacheometryBaseLength.textContent = planingBaseTrig.length;
+        tacheometryBaseLength.textContent = Object.keys(planingBaseTrig).length;
         nouWork.textContent = langsMaps[siteLanguage].nouWorkTax;
         pointBaseTax.appendChild(nouWork);
         console.log("Базовых точек для тахеoметрии нет");
         removeOverlayLayer("Base points Tax.",null);
     }
-    
+
     //Тахеометрия - рабочие 
     //Информацинный блок Нивелирования
     let pointJobsTax = document.querySelector("#tacheometryJobs"); 
@@ -316,23 +313,22 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
     //Очишаем блок с информацией
     pointJobsTax.querySelectorAll(".pointJobs").forEach(el => el.remove());
     if (pointJobsTax.querySelectorAll(".pointJobsError")) {pointJobsTax.querySelectorAll(".pointJobsError").forEach(el => el.remove());};
-    if (planingWorkTax.length > 0) {
-        tacheometryJobsLength.textContent = planingWorkTax.length;
-        let parsedData =  parsinWork(planingWorkTax); 
+    if (Object.keys(planingWorkTax).length > 0) {
+        tacheometryJobsLength.textContent = Object.keys(planingWorkTax).length ;
         //Тахеометпии рабочие
         var pointOperatingLayerTax = [];
-        parsedData.forEach(row => {
-           if (row["position"] !== undefined) {
-            pointOperatingLayerTax.push(createMarker(row["namber"], row["position"], row["systemCoordinates"], row["vycka"], row["positionType"], markerPointTax)); 
+        for (const row in planingWorkTax) {
+           if (planingWorkTax[row].position !== undefined) {
+            pointOperatingLayerTax.push(createMarker(planingWorkTax[row].namber, planingWorkTax[row].position, planingWorkTax[row].systemCoordinates, planingWorkTax[row].vycka, planingWorkTax[row].positionType, markerPointTax)); 
             //Создаем новый div
             const jobDivTax = document.createElement('div');
             jobDivTax.className = 'pointJobs'; // Добавляем класс
             //Создаем доплнительные атрибуты
-            jobDivTax.setAttribute("place", row["place"]);
+            jobDivTax.setAttribute("place", planingWorkTax[row].place);
             jobDivTax.setAttribute("data-name", "poligons");
             jobDivTax.setAttribute("data-jobs", "trig");
-            jobDivTax.setAttribute("title", "Poligons/trig "+row["place"]);
-            jobDivTax.textContent = row["namber"]; // Устанавливаем текст внутри div
+            jobDivTax.setAttribute("title", "Poligons/trig "+planingWorkTax[row].place);
+            jobDivTax.textContent = planingWorkTax[row].namber; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointJobsTax.appendChild(jobDivTax);
             }else{
@@ -340,16 +336,16 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             const jobDivTaxError = document.createElement('div');
             jobDivTaxError.className = 'pointJobsError'; // Добавляем класс
             //Создаем доплнительные атрибуты
-            jobDivTaxError.setAttribute("place", row["place"]);
+            jobDivTaxError.setAttribute("place", planingWorkTax[row].place);
             jobDivTaxError.setAttribute("data-name", "poligons");
             jobDivTaxError.setAttribute("data-jobs", "trig");
-            jobDivTaxError.setAttribute("title", "Poligons/trig "+row["place"]);
-            if (row["namber"] == "undefined" || row["namber"] == "body") {
+            jobDivTaxError.setAttribute("title", "Poligons/trig "+planingWorkTax[row].place);
+            if (planingWorkTax[row].namber == "undefined" || planingWorkTax[row].namber == "body") {
                 jobDivTaxError.textContent = "The point is not on the calendar"; // Устанавливаем текст внутри div
                 //Добавляем div в контейнер
                 pointJobsTax.appendChild(jobDivTaxError);
             } else {
-                jobDivTaxError.textContent = row["namber"]; // Устанавливаем текст внутри div
+                jobDivTaxError.textContent = planingWorkTax[row].namber; // Устанавливаем текст внутри div
                 //Добавляем div в контейнер
                 pointJobsTax.appendChild(jobDivTaxError);
                 //Добавляем span с финкцией изменения 
@@ -357,23 +353,23 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
                 pointError.className = 'pointError';
                 jobDivTaxError.appendChild(pointError);
             }
-            console.log("Точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
+            console.log("Точки ТАХ с числом - "+planingWorkTax[row].namber+" в базе не найдены"); 
             }  
-        }) 
+        }
          //Выводим точки на карту и привязываем к переключателю
         operatingPointsTax = L.layerGroup(pointOperatingLayerTax);
         removeOverlayLayer("Operating points Tax.",operatingPointsTax);
     }else{
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
-        tacheometryJobsLength.textContent = planingWorkTax.length;
+        tacheometryJobsLength.textContent = Object.keys(planingWorkTax).length;
         nouWork.textContent = langsMaps[siteLanguage].nouWorkTax;
         pointJobsTax.appendChild(nouWork);
         console.log("Работы по тахеoметрии нет");
         removeOverlayLayer("Operating points Tax.",null);
     } 
     //Присваеваем имена слоям
-    if (planingBaseNiv.length > 0 || planingWorkNiv.length > 0 || planingBaseTrig.length > 0 || planingWorkTax.length > 0) {
+    if (Object.keys(planingBaseNiv).length > 0 || Object.keys(planingWorkNiv).length > 0 || Object.keys(planingBaseTrig).length > 0 || Object.keys(planingWorkTax).length > 0 ) {
         if (operatingBasePointsNiv !== undefined) {operatingBasePointsNiv.layerName = 'operatingBasePointsNiv';};
         if (operatingPointsNiv !== undefined) {operatingPointsNiv.layerName = 'operatingPointsNiv';};
         if (operatingBaseTax !== undefined) {operatingBaseTax.layerName = 'operatingBaseTax';};
@@ -402,7 +398,7 @@ function removeOverlayLayer(layerName, pointLayer) {
         }
     }
     //Удаляем базовый слой и входяший в него
-    map.removeControl(layerControl);
+    map.removeControl(layerControl);    
 }
 //Кастомизируем информационный текст переключателей слоев
 function customizeLayerControl() {
@@ -422,35 +418,9 @@ function customizeLayerControl() {
         }
     });
 }
-//Функция парсинга информации переданной из planing-work.js
-function parsinWork(planing) {
-    if (!Array.isArray(planing)) {
-        throw new Error("Input must be an array of strings");
-    }
-    const arrayPoint = [];
-    const regex = /place:\s*([\w-]+)|namber:\s*([\w-]+(?:\([\d]+\))?)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d{4}-\d{2}-\d{2}]+)|systemCoordinates:\s*([\w-]+)|positionType:\s*([\w-]+)/g;
-    planing.forEach(point => {
-        const parsedData = {};
-        let match;
-        while ((match = regex.exec(point)) !== null) {
-            if (match[1]) parsedData["place"] = match[1];
-            if (match[2]) parsedData["namber"] = match[2];
-            if (match[3]) parsedData["position"] = match[3]
-                .split(/[,\s]+/)
-                .filter(num => num.trim() !== "")
-                .map(Number);
-            if (match[4]) parsedData["vycka"] = parseFloat(match[4].replace(',', '.'));
-            if (match[5]) parsedData["date"] = match[5];
-            if (match[6]) parsedData["systemCoordinates"] = match[6];
-            if (match[7]) parsedData["positionType"] =  match[7]; 
-        }
-        arrayPoint.push(parsedData);
-    }); 
-    return arrayPoint;
-}
 //Функция формированм маркеров
 function createMarker(name, position, systemCoordinates, vycka, positionType, iconPoint) {
-  if (systemCoordinates == "JTSK") {
+  if (systemCoordinates == "JTSK") {    
         //Подключение маркера с конвертацией JTSKtoWGS84
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
@@ -459,7 +429,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         if (namePointDisplay == "false") {
             var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent);
         } else {
-            var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent).bindTooltip(name, { 
+            var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent).bindTooltip(String(name), { 
                 permanent: true, // Постоянное отображение
                 direction: "bottom", // Направление отображения
                 opacity :1,// прозрачность
@@ -479,7 +449,7 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
 //Контролируем переключатель карты
 map.on('baselayerchange', function(e) {   
     let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");   
-    if (e.name == 'Satelit Map' && leafletTooltip.length !== 0) {
+    if (e.name == langsMaps[siteLanguage].MapTyp1 && leafletTooltip.length !== 0) {
           // Изменяем цвет текста у всех tooltip
           leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
       }else{
@@ -491,7 +461,7 @@ map.on('baselayerchange', function(e) {
 map.on('overlayadd', function(e) {
     let leafletTooltip = document.querySelectorAll(".leaflet-tooltip");  
     if (e.layer.layerName == "operatingBasePointsNiv" || e.layer.layerName == "operatingPointsNiv" || e.layer.layerName == "operatingBaseTax" || e.layer.layerName == "operatingPointsTax") {
-        if (getActiveMapsLayer() == "Satelit Map") {
+        if (getActiveMapsLayer() == langsMaps[siteLanguage].MapTyp1) {
             // Изменяем цвет текста у всех tooltip
             leafletTooltip.forEach(tooltip => {tooltip.style.color = 'rgb(255, 255, 255)';});
         } else {

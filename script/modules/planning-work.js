@@ -60,6 +60,14 @@ async function planningWork(dateWorld) {
         const results = [];
         const resultsTip = {niv: [], trig: [], nivBase: [], trigBase: []};
         const infoJobsPoint = {};
+        //baseNiv
+        const resultsTipJobsNivBase = {};
+        //baseTrig
+         const resultsTipJobsTrigBase = {};
+        //planningNiv
+        const resultsTipJobsNiv = {}; 
+        //planningTrig
+        const resultsTipJobsTrig = {};
 
         // Обрабатываем каждый лист
         for (const sheetName of workbook.SheetNames) {
@@ -135,6 +143,18 @@ async function planningWork(dateWorld) {
                     }
                     const coordinateSystemMap = await loadOptionsMarker("coordinateSystem");
                     const positionTypemMap = await loadOptionsMarker("positionType");
+                     //Создание обьекта с выброной информацией
+                     let i=0;
+                     async function addPlace(data, placeInfo, namberInfo, positionInfo, vyckaInfo, dateInfo, systemCoordinatesInfo, positionTypeInfo) {
+                        data[i++] = {
+                            place: placeInfo,
+                            namber: namberInfo,
+                            position: positionInfo === undefined ? undefined : [positionInfo[0], positionInfo[1]],
+                            vycka: vyckaInfo,
+                            date: dateInfo,
+                            systemCoordinates: coordinateSystemMap[parseInt(systemCoordinatesInfo, 10)],
+                            positionType: positionTypemMap[parseInt(positionTypeInfo, 10)]}
+                        }
                     //Для контроля
                    //console.log(columnData);
                     if (sheetName == "Base") {
@@ -142,14 +162,26 @@ async function planningWork(dateWorld) {
                         columnData.forEach(row => {  
                             if (row.C == 'n') {    
                                 if (jsonData.Base.niv[row.B] !== undefined) {
-                                    resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.niv[row.B].position[0]} , ${jsonData.Base.niv[row.B].position[1]}, vycka: ${jsonData.Base.niv[row.B].vycka}, date: ${jsonData.Base.niv[row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.Base.niv[row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.Base.niv[row.B].positionType, 10)]}`);
+                                    addPlace(resultsTipJobsNivBase, sheetName, row.B, jsonData.Base.niv[row.B].position, jsonData.Base.niv[row.B].vycka, jsonData.Base.niv[row.B].date, jsonData.Base.niv[row.B].systemCoordinates, jsonData.Base.niv[row.B].positionType);
+                                    //Для контроля
+                                    resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.niv[row.B].position} , ${jsonData.Base.niv[row.B].position[1]}, vycka: ${jsonData.Base.niv[row.B].vycka}, date: ${jsonData.Base.niv[row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.Base.niv[row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.Base.niv[row.B].positionType, 10)]}`);
                                 }
-                                else{resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
+                                else{
+                                    addPlace(resultsTipJobsNivBase, sheetName, row.B, undefined, undefined, undefined, undefined, undefined);
+                                    //Для контроля
+                                    resultsTip.nivBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);
+                                }
                             } else {
                                 if (jsonData.Base.trig[row.B] !== undefined) {
+                                    addPlace(resultsTipJobsTrigBase, sheetName, row.B, jsonData.Base.trig[row.B].position, jsonData.Base.trig[row.B].vycka, jsonData.Base.trig[row.B].date, jsonData.Base.trig[row.B].systemCoordinates, jsonData.Base.trig[row.B].positionType);
+                                    //Для контроля
                                     resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.trig[row.B].position[0]} , ${jsonData.Base.trig[row.B].position[1]}, vycka: ${jsonData.Base.trig[row.B].vycka}, date: ${jsonData.Base.trig[row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.Base.trig[row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.Base.trig[row.B].positionType, 10)]}`);
                                 }
-                                else{resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
+                                else{
+                                    addPlace(resultsTipJobsTrigBase, sheetName, row.B, undefined, undefined, undefined, undefined, undefined);
+                                    //Для контроля
+                                    resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);
+                                }
                             }
                         });
                         results.push(`${sheetName} (leng ${colData[0]}):\n` + resultsTip.nivBase.join('\n') + resultsTip.trigBase.join('\n'));  
@@ -157,19 +189,33 @@ async function planningWork(dateWorld) {
                         columnData.forEach(row => {  
                             if (row.C == 'n') { 
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
+                                    addPlace(resultsTipJobsNiv, sheetName, row.B, jsonData.poligons[sheetName][row.B].position, jsonData.poligons[sheetName][row.B].vycka, jsonData.poligons[sheetName][row.B].date, jsonData.poligons[sheetName][row.B].systemCoordinates, jsonData.poligons[sheetName][row.B].positionType);
+                                    //Для контроля
                                     resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.poligons[sheetName][row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.poligons[sheetName][row.B].positionType, 10)]}`);
                                 }
-                                else{resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
+                                else{
+                                    addPlace(resultsTipJobsNiv, sheetName, row.B, undefined, undefined, undefined, undefined, undefined);
+                                    //Для контроля
+                                    resultsTip.niv.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);
+                                }
                             } else {
                                 if (jsonData.poligons[sheetName][row.B] !== undefined) {
+                                    addPlace(resultsTipJobsTrig, sheetName, row.B, jsonData.poligons[sheetName][row.B].position, jsonData.poligons[sheetName][row.B].vycka, jsonData.poligons[sheetName][row.B].date, jsonData.poligons[sheetName][row.B].systemCoordinates, jsonData.poligons[sheetName][row.B].positionType);
+                                    //Для контроля
                                     resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.poligons[sheetName][row.B].position[0]} , ${jsonData.poligons[sheetName][row.B].position[1]}, vycka: ${jsonData.poligons[sheetName][row.B].vycka}, date: ${jsonData.poligons[sheetName][row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.poligons[sheetName][row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.poligons[sheetName][row.B].positionType, 10)]}`);
                                 }
-                                else{resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);}
+                                else{
+                                    addPlace(resultsTipJobsTrig, sheetName, row.B, undefined, undefined, undefined, undefined, undefined);
+                                    //Для контроля
+                                    resultsTip.trig.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);
+                                }
                             }
                         });
+                        //Для контроля
                         results.push(`${sheetName} (leng ${colData[0]}):\n` + resultsTip.niv.join('\n') + resultsTip.trig.join('\n')); 
                     }
             } else {
+                    //Для контроля
                     results.push(`${sheetName}: В столбце нет значения "1".`); 
             }
         }
@@ -177,8 +223,9 @@ async function planningWork(dateWorld) {
         //console.log(results.join('\n\n\n'));
         ///Создаем и отправляем пользовательское событие с данными
         //План работы
-        const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTip.nivBase, baseTrig: resultsTip.trigBase ,planningNiv: resultsTip.niv, planningTrig: resultsTip.trig}});
+        const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTipJobsNivBase, baseTrig: resultsTipJobsTrigBase, planningNiv: resultsTipJobsNiv, planningTrig: resultsTipJobsTrig}});
         document.dispatchEvent(planning);
+
         //Передача данных по типк и виде работ в другой скрипт setting.js
         const type = new CustomEvent("typeJobsArray", { detail: typeJobs });
         document.dispatchEvent(type);
@@ -189,4 +236,5 @@ async function planningWork(dateWorld) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
     }  
+
 }
