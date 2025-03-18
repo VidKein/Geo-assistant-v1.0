@@ -575,6 +575,10 @@ cursor: pointer;
   margin: 10px 0 0 0;
   text-align: center;
 }
+/*Cod jobs*/
+#nameCod{
+  margin: 3px 0;
+}
 @media screen and (max-height: 450px) {
   .markerLabel {
     top: 62%;

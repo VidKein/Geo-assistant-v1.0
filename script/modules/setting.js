@@ -10,7 +10,9 @@ let langsInfoSetting = {
         "ErrorLoadEdit":"Error loading data !!!",
         "ErrorNamber":"Enter point number !!!",
         "ErrorTypPoint":"Enter point number and type !!!",
-        "ConfirmLangs":"Do you want to reset all settings ?"
+        "ConfirmLangs":"Do you want to reset all settings ?",
+        "newCod":"Enter code - ",
+        "deladCod":"Attention, do you really want to delete - "
     },
     "ua": {
         "firstSelect": "Тип",
@@ -20,7 +22,9 @@ let langsInfoSetting = {
         "ErrorLoadEdit":"Помилка завантаження даних !!!",
         "ErrorNamber":"Введіть номер пункту !!!",
         "ErrorTypPoint":"Введіть номер і тип точки !!!",
-        "ConfirmLangs":"Бажаєте скинути всі налаштування ?"
+        "ConfirmLangs":"Бажаєте скинути всі налаштування ?",
+        "newCod":"Введіть код - ",
+        "deladCod":"Увага, ви справді хочете видалити - "
     },
     "cz": {
         "firstSelect": "Typ",
@@ -30,7 +34,9 @@ let langsInfoSetting = {
         "ErrorLoadEdit":"Chyba při načítání dat !!!",
         "ErrorNamber":"Zadejte číslo bodu !!!",
         "ErrorTypPoint":"Zadejte číslo bodu a typ !!!",
-        "ConfirmLangs":"Chcete obnovit všechna nastavení ?"
+        "ConfirmLangs":"Chcete obnovit všechna nastavení ?",
+        "newCod":"Zadejte kód - ",
+        "deladCod":"Pozor, opravdu chcete smazat - "
     }
 };
 //Отображение настроек при нажатии на левые кнопки выбора настроек
@@ -246,7 +252,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                         document.querySelector("#infoWindows").style.display = "block";
                         //Создание блока
                         let textDelat = document.createElement('p');
-                        textDelat.innerText = "Attention, do you really want to delete - ";
+                        textDelat.innerText = langsInfoSetting[siteLanguage].deladCod;
                         let span = document.createElement('span');
                         span.style = "color:red";
                         span.id = "delateNamePoin";
@@ -298,7 +304,7 @@ for (let i = 0; i < settingBlock.length; i++) {
               document.querySelector("#infoWindows").style.display = "block";
               //Создание блока
               let textDelat = document.createElement('p');
-              textDelat.innerText = "Enter code - "+e.target.getAttribute('data-typ');
+              textDelat.innerText = langsInfoSetting[siteLanguage].newCod+e.target.getAttribute('data-typ');
               let input = document.createElement('input');
               input.id = "nameCod";
               input.type = "text";
@@ -322,7 +328,7 @@ for (let i = 0; i < settingBlock.length; i++) {
               document.querySelector("#infoWindows").style.display = "block";
               //Создание блока
               let textDelat = document.createElement('p');
-              textDelat.innerText = "Attention, do you really want to delete - ";
+              textDelat.innerText = langsInfoSetting[siteLanguage].deladCod;
               let span = document.createElement('span');
               span.style = "color:red";
               span.id = "delateNameCod";

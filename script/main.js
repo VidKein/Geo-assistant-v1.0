@@ -12,7 +12,10 @@ let langsMaps = {
         "LayerBaseTrig":" - base points Tax;",
         "LayerOperatingTrig":" - operating points Tax;",
         "nouWorkNiv":"No work leveling points",
-        "nouWorkTax":"No work tacheometry points"
+        "nouWorkTax":"No work tacheometry points",
+        "vyckaMarcer":"Height: ",
+        "typeMarcer":"Type: ",
+        "chekMarcer":" selected"
     },
     "ua": {
         "MapTyp1": "Супутникова карта",
@@ -22,7 +25,10 @@ let langsMaps = {
         "LayerBaseTrig":" - базові точки Tax;",
         "LayerOperatingTrig":" - робочі точки Tax;",
         "nouWorkNiv":"Немає точок роботи для Niv",
-        "nouWorkTax":"Немає точок роботи для Tax"
+        "nouWorkTax":"Немає точок роботи для Tax",
+        "vyckaMarcer":"Висота: ",
+        "typeMarcer":"Тип: ",
+        "chekMarcer":" вибрано",
     },
     "cz": {
         "MapTyp1": "Satelitní mapa",
@@ -32,7 +38,10 @@ let langsMaps = {
         "LayerBaseTrig":" - základní body Tax;",
         "LayerOperatingTrig":" - provozní body Tax;",
         "nouWorkNiv":"Žádné body pro vyrovnávání práce",
-        "nouWorkTax":"Žádné pracovní tachemetrické body"
+        "nouWorkTax":"Žádné pracovní tachemetrické body",
+        "vyckaMarcer":"Vycka: ",
+        "typeMarcer":"Typ: ",
+        "chekMarcer":" vybráno"
     }
 };
 
@@ -425,11 +434,12 @@ function createMarker(name, position, systemCoordinates, vycka, positionType, ic
         var conv = new JTSK_Converter();
         var wgs = conv.JTSKtoWGS84(position[1], position[0]);
         // Создаем всплывающее меню с радиокнопкой
-        const popupContent = `<input type="checkbox" id="checkbox"> completed`;
+        const popupContent = `<input type="checkbox" id="checkbox"> `+langsMaps[siteLanguage].chekMarcer;
         if (namePointDisplay == "false") {
-            var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent);
+            var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>"+langsMaps[siteLanguage].vyckaMarcer+vycka+" m.<br>"+langsMaps[siteLanguage].typeMarcer
+                +positionType+"<br>"+popupContent);
         } else {
-            var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>Vycka: "+vycka+" m.<br>Type: "+positionType+"<br>"+popupContent).bindTooltip(String(name), { 
+            var marker = L.marker([wgs.lat,wgs.lon],{icon: iconPoint}).bindPopup(name+"<br>"+langsMaps[siteLanguage].vyckaMarcer+vycka+" m.<br>"+langsMaps[siteLanguage].typeMarcer+positionType+"<br>"+popupContent).bindTooltip(String(name), { 
                 permanent: true, // Постоянное отображение
                 direction: "bottom", // Направление отображения
                 opacity :1,// прозрачность
