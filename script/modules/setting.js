@@ -360,7 +360,7 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsAr
                         runTypeAndJobsPoint.innerHTML = firstSelectHtml;
                         //Название Участка работы
                         let secondSelectHtml =`
-                        <select id="secondSelect"  style="background-color: cornflowerblue; cursor: pointer;">
+                        <select id="secondSelect"  style="background-color: #0de42b; cursor: pointer;">
                             <option value="">`+langsInfoSetting[siteLanguage].secondSelect+`</option>
                         </select>
                         `;
