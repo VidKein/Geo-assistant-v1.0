@@ -69,7 +69,7 @@ app.post('/editDat', (req, res) => {
                 console.error('JSON write error: ', err);
                 return res.status(500).json({ error: 'Error writing JSON file.' });
               }
-              res.json({ success: true, message: `Point data ${id} added.` });
+              res.json({ success: true, message: `Point data ${id} edited.` });
           });
       }
   });
@@ -222,7 +222,7 @@ app.post('/newCod', (req, res) => {
         console.error('Error reading JSON:', err);
         return res.status(500).json({ error: 'Error reading JSON file.' });
       }
-      res.json({ success: true, message: `This code - ${nameCod} deleted.` });
+      res.json({ success: true, message: `This code - ${nameCod} added.` });
     });
   });
 });
