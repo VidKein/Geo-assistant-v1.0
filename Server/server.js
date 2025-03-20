@@ -40,10 +40,10 @@ app.post('/editDat', (req, res) => {
   const {dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, coordinateSystem, positionType } = req.body;     
   fs.readFile(DATA_FILE, 'utf8', (err, data) => {
       if (err) {
-          return res.status(500).json({ error: 'Ошибка чтения данных' });
+          return res.status(500).json({ error: 'Error reading data.' });
       } else {
           const jsonData = JSON.parse(data);
-          if (jsonData[id]) {return res.status(400).json({ error: 'Элемент с таким ID уже существует' });}
+          if (jsonData[id]) {return res.status(400).json({ error: 'An element with this ID already exists.' });}
           //Собираем в массив 
           if (dataName == "poligons") { 
               jsonData[dataName][dataPlace][id] = {
@@ -66,10 +66,10 @@ app.post('/editDat', (req, res) => {
           //Вносим иформацию в файл
           fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, "\t"), (err) => {
               if (err) {
-                console.error('Ошибка записи JSON:', err);
-                return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+                console.error('JSON write error: ', err);
+                return res.status(500).json({ error: 'Error writing JSON file.' });
               }
-              res.json({ success: true, message: `Данные точки ${id} добавлены.` });
+              res.json({ success: true, message: `Point data ${id} added.` });
           });
       }
   });
@@ -80,10 +80,10 @@ app.post('/addDat', (req, res) => {
     const {dataPlace, dataName, dataJobs, id, positionX, positionY, vyckaPoint, date, coordinateSystem, positionType } = req.body;     
     fs.readFile(DATA_FILE, 'utf8', (err, data) => {
         if (err) {
-            return res.status(500).json({ error: 'Ошибка чтения данных' });
+            return res.status(500).json({ error: 'Error reading data.' });
         } else {
             const jsonData = JSON.parse(data);
-            if (jsonData[id]) {return res.status(400).json({ error: 'Элемент с таким ID уже существует' });}
+            if (jsonData[id]) {return res.status(400).json({ error: 'An element with this ID already exists.' });}
             //Собираем в массив 
             if (dataName == "poligons") { 
                 jsonData[dataName][dataPlace][id] = {
@@ -106,10 +106,10 @@ app.post('/addDat', (req, res) => {
             //Вносим иформацию в файл
             fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, "\t"), (err) => {
                 if (err) {
-                  console.error('Ошибка записи JSON:', err);
-                  return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+                  console.error('JSON write error:', err);
+                  return res.status(500).json({ error: 'Error writing JSON file.' });
                 }
-                res.json({ success: true, message: `Данные точки ${id} добавлены.` });
+                res.json({ success: true, message: `Point data ${id} added.` });
             });
         }
     });
@@ -121,15 +121,15 @@ app.post('/delatDat', (req, res) => {
   //Считываем файл  
   fs.readFile(DATA_FILE, 'utf8', (err, data) => {
     if (err) {
-      console.error('Ошибка чтения JSON:', err);
-      return res.status(500).json({ error: 'Ошибка чтения JSON-файла' });
+      console.error('Error reading JSON:', err);
+      return res.status(500).json({ error: 'Error reading JSON file.' });
     }
     //Парсим файл 
     let jsonData = JSON.parse(data);// Преобразуем JSON в объект
     //Base
     if (dataJobs !== null) {
       if (!jsonData[dataName][dataJobs][id]) {
-        return res.status(404).json({ error: 'Элемент не найден' });
+        return res.status(404).json({ error: 'Item not found.' });
       }
       //Удаляем элемент
       delete jsonData[dataName][dataJobs][id]; // Удаляем элемент по ID
@@ -137,7 +137,7 @@ app.post('/delatDat', (req, res) => {
     //poligons
     if (dataPlace !== null) {
       if (!jsonData[dataName][dataPlace][id]) {
-        return res.status(404).json({ error: 'Элемент не найден' });
+        return res.status(404).json({ error: 'Item not found.' });
       }
       //Удаляем элемент
       delete jsonData[dataName][dataPlace][id]; // Удаляем элемент по ID
@@ -146,10 +146,10 @@ app.post('/delatDat', (req, res) => {
     //Перезаписываем файл
     fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2), (err) => {
       if (err) {
-        console.error('Ошибка записи JSON:', err);
-        return res.status(500).json({ error: 'Ошибка записи JSON-файла' });
+        console.error('JSON write error:', err);
+        return res.status(500).json({ error: 'Error writing JSON file.' });
       }
-      res.json({ success: true, message: `Данные для ID ${id} удалены.` });
+      res.json({ success: true, message: `Data for ID ${id} has been removed.` });
     });
 
   });
@@ -163,19 +163,19 @@ app.post('/delatCod', (req, res) => {
   fs.readFile(DATA_COD, 'utf8', (err, data) => {  
     if (err) {
       console.error('Error reading JSON:', err);
-      return res.status(500).json({ error: 'Error reading JSON' });
+      return res.status(500).json({ error: 'Error reading JSON.' });
     }
     //Парсим файл 
     let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
     
     if (!jsonCod[siteLanguage][nameTyp]) {
-      return res.status(400).json({ error: 'Invalid category' });
+      return res.status(400).json({ error: 'Invalid category.' });
     }
 
     // Найти индекс элемента по id
     const index = jsonCod[siteLanguage][nameTyp].findIndex(item => item.id == idCod);
     if (index === -1) {
-      return res.status(404).json({ error: 'Item not found' });
+      return res.status(404).json({ error: 'Item not found.' });
     }
 
     // Удаление элемента без перезаписи всего массива
@@ -185,7 +185,7 @@ app.post('/delatCod', (req, res) => {
     fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {
       if (err) {
         console.error('JSON write error:', err);
-        return res.status(500).json({ error: 'JSON write error' });
+        return res.status(500).json({ error: 'JSON write error.' });
       }
       res.json({ success: true, message: `This code - ${nameCod} deleted.` });
     });
@@ -200,13 +200,13 @@ app.post('/newCod', (req, res) => {
   fs.readFile(DATA_COD, 'utf8', (err, data) => {  
     if (err) {
       console.error('Error reading JSON:', err);
-      return res.status(500).json({ error: 'Error reading JSON file' });
+      return res.status(500).json({ error: 'Error reading JSON file.' });
     }
     //Парсим файл 
     let jsonCod = JSON.parse(data);// Преобразуем JSON в объект
     
     if (!jsonCod[siteLanguage][nameTyp]) {
-      return res.status(400).json({ error: 'Invalid category' });
+      return res.status(400).json({ error: 'Invalid category.' });
     }
 
     // Определяем новый ID как последний ID + 1
@@ -220,7 +220,7 @@ app.post('/newCod', (req, res) => {
     fs.writeFile(DATA_COD, JSON.stringify(jsonCod, null, 2), (err) => {
       if (err) {
         console.error('Error reading JSON:', err);
-        return res.status(500).json({ error: 'Error reading JSON file' });
+        return res.status(500).json({ error: 'Error reading JSON file.' });
       }
       res.json({ success: true, message: `This code - ${nameCod} deleted.` });
     });
