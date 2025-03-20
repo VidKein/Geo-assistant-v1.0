@@ -62,6 +62,10 @@
       {
         "id": 13,
         "value": "metal pin"
+      },
+      {
+        "id": 14,
+        "value": "barcode sticker"
       }
     ]
   },
@@ -128,6 +132,10 @@
       {
         "id": 13,
         "value": "металевий штирь"
+      },
+      {
+        "id": 13,
+        "value": "наклейка зі штрих-кодом"
       }
     ]
   },
@@ -194,6 +202,10 @@
       {
         "id": 13,
         "value": "kovový kolík"
+      },
+      {
+        "id": 14,
+        "value": "nálepka s čárovým kódem"
       }
     ]
   }
