@@ -12,16 +12,16 @@ async function funktionalEdit(e) {
     let date = document.getElementById("date").value.trim();
     // Получаем элементы systemCoordinates
     let selektCoordinateSystem = document.getElementById("coordinateSystem");
-    let coordinateSystem = selektCoordinateSystem.options[selektCoordinateSystem.selectedIndex].text;
+    let coordinateSystem = Number(selektCoordinateSystem.options[selektCoordinateSystem.selectedIndex].value);
     // Получаем элементы systemCoordinates
-    let selektPositionType = document.getElementById("positionType");
-    let positionType = selektPositionType.options[selektPositionType.selectedIndex].text;
+    let selektPositionType = document.getElementById("positionType");    
+    let positionType = Number(selektPositionType.options[selektPositionType.selectedIndex].value);
     // Контроль 
     /*add.push(`dataName: ${dataName}, dataJobs: ${dataName} / ${id}:{position:[${positionX},${positionY}], vycka: ${vycka}, date: ${date}, systemCoordinates : ${coordinateSystem}, positionType: ${positionType}}`);    
     console.log(add);*/
     
   
-   if (!positionX || !positionY || !vyckaPoint || !date || positionType == "Select" || coordinateSystem == "Select") {
+   if (!positionX || !positionY || !vyckaPoint || !date || positionType == "" || coordinateSystem == "") {
    alert("You have not filled in all the fields or the fields were filled in incorrectly.");
     e.preventDefault(); // Останавливаем отправку формы
    } else {
