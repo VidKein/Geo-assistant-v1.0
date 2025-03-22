@@ -811,6 +811,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let progressText = document.getElementById("progress-text");
     let progressInterval;
 
+    // Получаем данные о скорости и мощности устройства
+    let netSpeed = navigator.connection ? navigator.connection.downlink || 5 : 5; // Мбит/с
+    let cpuCores = navigator.hardwareConcurrency || 4; // Количество ядер процессора
+    let ramSize = navigator.deviceMemory || 4; // Объём ОЗУ в ГБ
+
+    console.log(`Скорость интернета: ${netSpeed} Мбит/с`);
+    console.log(`Ядер процессора: ${cpuCores}`);
+    console.log(`ОЗУ: ${ramSize} ГБ`);
+
+    // Определяем коэффициент загрузки
+    let speedFactor = Math.min(netSpeed / 10, 1); // Чем выше скорость интернета, тем быстрее анимация
+    let powerFactor = Math.min((cpuCores + ramSize) / 10, 1); // Чем мощнее устройство, тем быстрее
+
+    // Итоговый коэффициент (от 0.3 до 1)
+    let loadFactor = Math.max(0.3, (speedFactor + powerFactor) / 2);
+    console.log(`Фактор загрузки: ${loadFactor}`);
+
     function showLoader() {
         progressContainer.style.display = "block";
         progressBar.style.width = "0%";
@@ -819,29 +836,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function hideLoader() {
-        clearInterval(progressInterval); // Останавливаем анимацию
-        progressBar.style.transition = "width 0.5s ease-in-out"; // Добавляем плавное завершение
-        progressBar.style.width = "100%"; // Заполняем до конца перед скрытием
+        clearInterval(progressInterval);
+        progressBar.style.transition = `width ${0.5 / loadFactor}s ease-in-out`; // Плавная анимация в зависимости от мощности
+        progressBar.style.width = "100%";
 
         setTimeout(() => {
-            progressContainer.style.display = "none"; // Полностью скрываем контейнер
-        }, 20); // Подождём завершения анимации
+            progressContainer.style.display = "none";
+        }, 600 / loadFactor); // Ускоряем скрытие, если устройство мощное
     }
 
     function startProgressAnimation() {
         let percent = 0;
+        let intervalTime = 100 / loadFactor; // Чем мощнее, тем быстрее
+        console.log(`Скорость анимации: ${intervalTime} мс`);
+
         progressInterval = setInterval(() => {
             percent += 5;
-            if (percent > 95) percent = 5; // Перезапускаем анимацию на случай долгой загрузки
+            if (percent > 95) percent = 5; // Циклическая анимация
             progressBar.style.width = percent + "%";
-        }, 20);
+        }, intervalTime);
     }
 
     // Показываем лоадер при старте
     showLoader();
 
-    // Ждём, пока Leaflet полностью загрузится
+    // Эмулируем загрузку Leaflet (можно заменить на реальную проверку)
     setTimeout(() => {
-        hideLoader(); // Скрываем лоадер после загрузки плагина
-    }, 20); // Увеличь, если нужно больше времени
+        hideLoader();
+        console.log("Leaflet загружен!");
+    }, 150 / loadFactor); // Ускоряем загрузку на мощных системах
 });
