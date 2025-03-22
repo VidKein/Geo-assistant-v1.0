@@ -605,17 +605,22 @@ cursor: pointer;
   transform: translate(-50%, -50%);
   z-index: 1010;
   background: #ddd;
+  width: 120px;
   border-radius: 5px;
   overflow: hidden;
   display: none; /* По умолчанию скрыто */
-  margin: 10px 0;
 }
 #progress-bar {
   width: 0%;
   height: 30px;
   background: #4caf50;
+}
+#progress-text{
+  position: absolute; 
+  width: 100%; 
+  top: 50%;
+  transform: translateY(-50%);
   text-align: center;
-  line-height: 30px;
   color: white;
   font-weight: bold;
 }
