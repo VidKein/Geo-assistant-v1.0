@@ -804,51 +804,73 @@ setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
 */
-// Индикатор загрузки
-let progressContainer = document.getElementById("progress-container");
-let progressBar = document.getElementById("progress-bar");
 
-function attachProgressBar(tileLayer) {
-    let totalTiles = 0;
-    let loadedTiles = 0;
 
-    tileLayer.on('loading', function () {
-        totalTiles = 0;
-        loadedTiles = 0;
+    let progressContainer = document.getElementById("progress-container");
+    let progressBar = document.getElementById("progress-bar");
+
+    function showLoader() {
+        progressContainer.style.display = "block";
         progressBar.style.width = "0%";
-        progressBar.innerText = "0%";
-        progressContainer.style.display = "block"; // Показываем индикатор
-    });
+        progressBar.innerText = "Загрузка...";
+    }
 
-    tileLayer.on('tileloadstart', function () {
-        totalTiles++;
-    });
+    function hideLoader() {
+        setTimeout(() => {
+            progressContainer.style.display = "none";
+        }, 500);
+    }
 
-    tileLayer.on('tileload', function () {
-        loadedTiles++;
-        updateProgress();
-    });
+    // Показываем загрузку Leaflet
+    showLoader();
 
-    tileLayer.on('tileerror', function () { // Если ошибка загрузки, тоже учитываем
-        loadedTiles++;
-        updateProgress();
-    });
+    // Ожидание полной загрузки плагина Leaflet
+    setTimeout(() => {
+        hideLoader(); // Скрываем индикатор после полной инициализации карты
+    }, 50); // 2 секунды — можно изменить на большее значение, если карта грузится дольше
 
-    function updateProgress() {
-        if (totalTiles > 0) {
-            let percent = (loadedTiles / totalTiles) * 100;
-            progressBar.style.width = percent + "%";
-            progressBar.innerText = Math.round(percent) + "%";
-        }
+    function attachProgressBar(tileLayer) {
+        
+        let totalTiles = 0;
+        let loadedTiles = 0;
 
-        if (loadedTiles >= totalTiles && totalTiles > 0) {
-            setTimeout(() => {
-                progressContainer.style.display = "none"; // Скрываем индикатор
-            }, 500);
+        tileLayer.on('loading', function () {
+            progressContainer.style.width = "50%";
+            totalTiles = 0;
+            loadedTiles = 0;
+            progressBar.style.width = "0%";
+            progressBar.innerText = "0%";
+            progressContainer.style.display = "block";
+        });
+
+        tileLayer.on('tileloadstart', function () {
+            totalTiles++;
+        });
+
+        tileLayer.on('tileload', function () {
+            loadedTiles++;
+            updateProgress();
+        });
+
+        tileLayer.on('tileerror', function () {
+            loadedTiles++; // Если тайл не загрузился, все равно считаем его загруженным
+            updateProgress();
+        });
+
+        function updateProgress() {
+            if (totalTiles > 0) {
+                let percent = (loadedTiles / totalTiles) * 100;
+                progressBar.style.width = percent + "%";
+                progressBar.innerText = Math.round(percent) + "%";
+            }
+
+            if (loadedTiles >= totalTiles && totalTiles > 0) {
+                hideLoader();
+            }
         }
     }
-}
 
-// Подключаем индикатор загрузки к слоям
-attachProgressBar(OSMsatelitMap);
-attachProgressBar(OSMstritMap);
+    // Подключаем индикатор загрузки к слоям
+    attachProgressBar(OSMsatelitMap);
+    attachProgressBar(OSMstritMap);
+
