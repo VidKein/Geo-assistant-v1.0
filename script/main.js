@@ -804,3 +804,51 @@ setting.addEventListener("click",()=>{
     promise = navigator.mediaDevices.getUserMedia(constraints);
 })
 */
+// Индикатор загрузки
+let progressContainer = document.getElementById("progress-container");
+let progressBar = document.getElementById("progress-bar");
+
+function attachProgressBar(tileLayer) {
+    let totalTiles = 0;
+    let loadedTiles = 0;
+
+    tileLayer.on('loading', function () {
+        totalTiles = 0;
+        loadedTiles = 0;
+        progressBar.style.width = "0%";
+        progressBar.innerText = "0%";
+        progressContainer.style.display = "block"; // Показываем индикатор
+    });
+
+    tileLayer.on('tileloadstart', function () {
+        totalTiles++;
+    });
+
+    tileLayer.on('tileload', function () {
+        loadedTiles++;
+        updateProgress();
+    });
+
+    tileLayer.on('tileerror', function () { // Если ошибка загрузки, тоже учитываем
+        loadedTiles++;
+        updateProgress();
+    });
+
+    function updateProgress() {
+        if (totalTiles > 0) {
+            let percent = (loadedTiles / totalTiles) * 100;
+            progressBar.style.width = percent + "%";
+            progressBar.innerText = Math.round(percent) + "%";
+        }
+
+        if (loadedTiles >= totalTiles && totalTiles > 0) {
+            setTimeout(() => {
+                progressContainer.style.display = "none"; // Скрываем индикатор
+            }, 500);
+        }
+    }
+}
+
+// Подключаем индикатор загрузки к слоям
+attachProgressBar(OSMsatelitMap);
+attachProgressBar(OSMstritMap);

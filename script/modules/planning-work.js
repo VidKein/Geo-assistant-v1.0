@@ -232,31 +232,6 @@ async function planningWork(dateWorld) {
         //Название участка и количество точек
         const infoJobs = new CustomEvent("infoJobsPoint", { detail: infoJobsPoint });
         document.dispatchEvent(infoJobs);
-
-        async function startTask() {
-            let steps = 10; // Количество шагов
-            let progressContainer = document.getElementById("progress-container");
-            let progressBar = document.getElementById("progress-bar");
-
-            // Показываем индикатор
-            progressContainer.style.display = "block";
-
-            for (let i = 1; i <= steps; i++) {
-                await new Promise(resolve => setTimeout(resolve, 100)); // Задержка 0.1 сек
-
-                let percent = (i / steps) * 100;
-                progressBar.style.width = percent + "%";
-                progressBar.innerText = Math.round(percent) + "%";
-            }
-
-            // Скрываем индикатор после завершения
-            setTimeout(() => {
-                progressContainer.style.display = "none";
-            }, 200);
-        }
-        startTask();
-
-
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
