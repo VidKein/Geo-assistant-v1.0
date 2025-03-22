@@ -842,7 +842,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             progressContainer.style.display = "none";
-        }, 600 / loadFactor); // Ускоряем скрытие, если устройство мощное
+        }, 300 / loadFactor); // Ускоряем скрытие, если устройство мощное
     }
 
     function startProgressAnimation() {
@@ -864,5 +864,5 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
         hideLoader();
         console.log("Leaflet загружен!");
-    }, 150 / loadFactor); // Ускоряем загрузку на мощных системах
+    }, 1500 / loadFactor); // Ускоряем загрузку на мощных системах
 });
