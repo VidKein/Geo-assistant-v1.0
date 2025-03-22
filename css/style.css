@@ -596,3 +596,27 @@ cursor: pointer;
     font-size: 10px;
   }
 }
+
+/*-----------------*/
+#progress-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1010;
+  width: 50%;
+  background: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  display: none; /* По умолчанию скрыто */
+  margin: 10px 0;
+}
+#progress-bar {
+  width: 0%;
+  height: 30px;
+  background: #4caf50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+}
