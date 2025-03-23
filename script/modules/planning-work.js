@@ -31,7 +31,6 @@ function hideLoader() {
     clearInterval(progressInterval);
     progressBar.style.transition = `width 0.5s ease-in-out`;
     progressBar.style.width = "100%";
-    progressText.innerText = "Готово!";
 
     setTimeout(() => {
         progressContainer.style.display = "none";
