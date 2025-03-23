@@ -48,7 +48,7 @@ body {
   right: 0;
   margin: 0;
   padding: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.75);
   z-index: 1001;
   overflow: auto;
 }
@@ -149,7 +149,7 @@ body {
   right: 0;
   margin: 0;
   padding: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.75);
   z-index: 1002;
 }
 .import-wraper{
@@ -257,7 +257,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   right: 0;
   margin: 0;
   padding: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.75);
   z-index: 1001;
 }
 .setting-wrapper{
@@ -395,7 +395,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   right: 0;
   margin: 0;
   padding: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.75);
   z-index: 1001;
 }
 .infoWindows-wraper{
