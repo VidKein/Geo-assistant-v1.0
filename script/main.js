@@ -864,5 +864,5 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
         hideLoader();
         console.log("Leaflet загружен!");
-    }, 2000 / loadFactor); // Ускоряем загрузку на мощных системах
+    }, 300 / loadFactor); // Ускоряем загрузку на мощных системах
 });

@@ -14,8 +14,61 @@ document.addEventListener("infoJDataClik", (dataCalendarg) => {
     document.querySelector(".todayDate").innerText = dataCalendarg.detail;
 });
 
-
 async function planningWork(dateWorld) {
+//Получаем HTML-элементы индикатора загрузки
+let progressContainer = document.getElementById("progress-container");
+let progressBar = document.getElementById("progress-bar");
+let progressText = document.getElementById("progress-text");
+let progressInterval;
+
+function showLoader() {
+    progressContainer.style.display = "block";
+    progressBar.style.width = "0%";
+    startProgress();
+}
+
+function hideLoader() {
+    clearInterval(progressInterval);
+    progressBar.style.transition = `width 0.5s ease-in-out`;
+    progressBar.style.width = "100%";
+    progressText.innerText = "Готово!";
+
+    setTimeout(() => {
+        progressContainer.style.display = "none";
+    }, 600);
+}
+
+function startProgress() {
+    let percent = 0;
+    let intervalTime = 100 / loadFactor;
+    let estimatedTime = 5000 / loadFactor; 
+    let step = 100 / (estimatedTime / intervalTime);
+
+    progressInterval = setInterval(() => {
+        percent += step;
+        if (percent >= 100) {
+            clearInterval(progressInterval);
+            hideLoader();
+        }
+        progressBar.style.width = percent + "%";
+        progressText.innerText = `${Math.round(percent)}%`;
+    }, intervalTime);
+}
+
+//Определяем скорость интернета и мощность системы
+let netSpeed = navigator.connection ? navigator.connection.downlink || 5 : 5;
+let cpuCores = navigator.hardwareConcurrency || 4;
+let ramSize = navigator.deviceMemory || 4;
+
+let speedFactor = Math.min(netSpeed / 10, 1);
+let powerFactor = Math.min((cpuCores + ramSize) / 10, 1);
+let loadFactor = Math.max(0.3, (speedFactor + powerFactor) / 2);
+
+console.log(`Фактор загрузки: ${loadFactor}`);
+
+//Показываем лоадер перед началом загрузки
+showLoader();
+
     const searchDateInput = dateWorld;//${year}-${month}-${day} `2024-11-14`
     const fileUrl = './xlsx/Jobs_kalendar.xlsx'; // Укажите URL-адрес Excel файла
     const jsonFileUrl = './koordinaty/koordinats.json'; // Укажите URL-адрес json файла
@@ -235,6 +288,8 @@ async function planningWork(dateWorld) {
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
+        setTimeout(() => progressContainer.style.display = "none", 300);
     }  
-
+    //Скрываем индикатор после завершения загрузки
+    hideLoader();
 }
