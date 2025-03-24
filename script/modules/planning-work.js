@@ -38,7 +38,6 @@ function hideLoader() {
 }
 
 function startProgress() {
-    if (loadFactor < 0.7) {
     let percent = 0;
     let intervalTime = 100 / loadFactor;
     let estimatedTime = 5000 / loadFactor; 
@@ -53,7 +52,6 @@ function startProgress() {
         progressBar.style.width = percent + "%";
         progressText.innerText = `${Math.round(percent)}%`;
     }, intervalTime);
-    }
 }
 
 //Определяем скорость интернета и мощность системы
