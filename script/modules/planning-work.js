@@ -38,6 +38,7 @@ function hideLoader() {
 }
 
 function startProgress() {
+    if (loadFactor < 1) {
     let percent = 0;
     let intervalTime = 100 / loadFactor;
     let estimatedTime = 5000 / loadFactor; 
@@ -52,6 +53,7 @@ function startProgress() {
         progressBar.style.width = percent + "%";
         progressText.innerText = `${Math.round(percent)}%`;
     }, intervalTime);
+    }
 }
 
 //Определяем скорость интернета и мощность системы
@@ -287,7 +289,7 @@ showLoader();
     } catch (error) {
         console.error('Ошибка при обработке файла:', error);
         alert('Ошибка при обработке файла. Проверьте файл и повторите попытку.');
-        setTimeout(() => progressContainer.style.display = "none", 300);
+        setTimeout(() => progressContainer.style.display = "none", 2000);
     }  
     //Скрываем индикатор после завершения загрузки
     hideLoader();
