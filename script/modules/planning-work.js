@@ -38,7 +38,7 @@ function hideLoader() {
 }
 
 function startProgress() {
-    if (loadFactor < 1) {
+    if (loadFactor < 0.7) {
     let percent = 0;
     let intervalTime = 100 / loadFactor;
     let estimatedTime = 5000 / loadFactor; 
