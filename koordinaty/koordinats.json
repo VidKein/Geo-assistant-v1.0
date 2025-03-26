@@ -3448,7 +3448,34 @@
 				"date": "2025-01-26",
 				"systemCoordinates": 1,
 				"positionType": 6
-			}
+			},
+			"105104": {"position": [742221,1047897],"vycka": 268.7331,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105105": {"position": [742265,1048007],"vycka": 267.5074,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105203": {"position": [742209,1047904],"vycka": 269.0815,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105204": {"position": [742242,1048011],"vycka": 268.5729,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105301": {"position": [742177,1047919],"vycka": 269.2330,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105303": {"position": [742201,1047907],"vycka": 268.7693,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105304": {"position": [742216,1047900],"vycka": 268.8230,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105305": {"position": [742227,1047895],"vycka": 268.5290,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105307": {"position": [742256,1047881],"vycka": 267.8653,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105401": {"position": [742189,1047960],"vycka": 269.2088,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105402": {"position": [742203,1047955],"vycka": 268.9172,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105403": {"position": [742223,1047950],"vycka": 268.7043,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105404": {"position": [742232,1047946],"vycka": 268.3986,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105501": {"position": [742193,1048021],"vycka": 268.8055,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105502": {"position": [742202,1048019],"vycka": 268.5701,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105503": {"position": [742212,1048017],"vycka": 268.3581,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105504": {"position": [742223,1048015],"vycka": 268.3956,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105505": {"position": [742235,1048013],"vycka": 268.4103,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105506": {"position": [742246,1048011],"vycka": 268.5702,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105507": {"position": [742257,1048008],"vycka": 268.7150,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105508": {"position": [742267,1048006],"vycka": 267.3700,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "105509": {"position": [742279,1048004],"vycka": 266.9345,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "181001": {"position": [742300,1047988],"vycka": 266.0900,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "181002": {"position": [742304,1047991],"vycka": 265.3756,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "181003": {"position": [742288,1048004],"vycka": 267.0689,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4},
+            "181004": {"position": [742295,1048009],"vycka": 265.8749,"date": "2025-03-20","systemCoordinates": 1,"positionType": 4}
+
 		},
 		"SOD-13": {
 			"131506": {
@@ -4797,7 +4824,6 @@
 			"14xx02": {"position": [742297,1048135],"vycka": 100.0000,"date": "2025-03-18","systemCoordinates": 1,"positionType": 12},
             "14xx03": {"position": [742297,1048136],"vycka": 100.0000,"date": "2025-03-18","systemCoordinates": 1,"positionType": 12},
             "14xx04": {"position": [742297,1048141],"vycka": 100.0000,"date": "2025-03-18","systemCoordinates": 1,"positionType": 12}
-
-		}
+			}
 	}
 }
