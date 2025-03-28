@@ -13,4 +13,5 @@ async function loadFiles() {
     alert(result.message|| result.error);  
     // Перезагрузка страницы
     location.reload();
+    document.querySelector("#runCalendAplikac").setAttribute('disabled', '');
 }

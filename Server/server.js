@@ -260,6 +260,36 @@ app.post('/uploadFile', (req, res) => {
         });
     });
 });
+//Импорт списка точек
+// Конфигурация Multer (загрузка в папку uploads/)
+const storageImport = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, "importLispPoint/");
+  },
+  filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname)); // Уникальное имя файла
+  },
+});
+
+const uploadImport = multer({ storageImport });
+
+// Маршрут для загрузки файла
+app.post("/importLispPoint", uploadImport.single("file"), (req, res) => {
+  if (!req.file) {
+      return res.status(400).send("Файл не загружен.");
+  }
+
+  const filePath = req.file.path;
+
+  // Читаем содержимое файла
+  fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+          return res.status(500).send("Ошибка чтения файла.");
+      }
+
+      res.send(`Файл успешно загружен! Содержимое:<br><pre>${data}</pre>`);
+  });
+});
 
 // Запуск сервера
 app.listen(PORT, () => {

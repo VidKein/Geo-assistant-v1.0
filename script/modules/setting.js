@@ -3,8 +3,8 @@ const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
 //Перевод текста для блока Setting
 let langsInfoSetting = {
     "eng": {
-        "firstSelect": "Type",
-        "secondSelect": "Select type",
+        "firstSelectPoint": "Type",
+        "secondSelectPoint": "Select type",
         "ErrorLangs":"You haven't selected a language !!!",
         "ErrorEditNamber":"You have not filled in all the fields or the fields were filled in incorrectly !!!",
         "ErrorLoadEdit":"Error loading data !!!",
@@ -15,8 +15,8 @@ let langsInfoSetting = {
         "deladCod":"Attention, do you really want to delete - "
     },
     "ua": {
-        "firstSelect": "Тип",
-        "secondSelect": "Виберіть тип",
+        "firstSelectPoint": "Тип",
+        "secondSelectPoint": "Виберіть тип",
         "ErrorLangs":"Ви не вибрали мову !!!",
         "ErrorEditNamber":"Ви не заповнили всі поля або поля були заповнені неправильно !!!",
         "ErrorLoadEdit":"Помилка завантаження даних !!!",
@@ -27,8 +27,8 @@ let langsInfoSetting = {
         "deladCod":"Увага, ви справді хочете видалити - "
     },
     "cz": {
-        "firstSelect": "Typ",
-        "secondSelect": "Vyberte typ",
+        "firstSelectPoint": "Typ",
+        "secondSelectPoint": "Vyberte typ",
         "ErrorLangs":"Nevybrali jste jazyk !!!",
         "ErrorEditNamber":"Nevyplnili jste všechna pole nebo byla pole vyplněna nesprávně !!!",
         "ErrorLoadEdit":"Chyba při načítání dat !!!",
@@ -59,10 +59,14 @@ let settingBlockFull = document.querySelector("#settingBlock");
 //Тип и Вид работы при Создании, Редоктировании и Удаления точки
 let runTypeAndJobsPoint = document.querySelector(".runTypeAndJobsPoint");
 let runPlasePoint = document.querySelector(".runPlasePoint");
+//Тип и Вид работы при Создании, Редоктировании и Удаления точки
+let runTypeAndJobsPointImport = document.querySelector(".runTypeAndJobsPointImport");
+let runPlasePointImport = document.querySelector(".runPlasePointImport");
 // Слушаем сообщение от другого скрипта о тип работы
 document.addEventListener("typeJobsArray", (type) => {
     let typeJobsArray = type.detail;
-    preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray);
+    preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray, "Point");
+    preparationInfoEditPoint(runTypeAndJobsPointImport, runPlasePointImport, typeJobsArray, "Input");
 });
 for (let i = 0; i < settingBlock.length; i++) {
     settingBlock[i].addEventListener("click",(e)=>{
@@ -101,11 +105,13 @@ for (let i = 0; i < settingBlock.length; i++) {
                     status.style.display = "none";
                     fileName.textContent = nameOpenFile;
                     if (this.files[0].name == "Jobs_kalendar.xlsx") {
+                        document.querySelector("#runCalendAplikac").removeAttribute("disabled");
                         fileName.style.color = "green";
                         status.style.display = "block";
                         status.style.color = "green";
                         status.textContent = "Size : "+(this.files[0].size/1024000).toFixed(3)+"MB. Date : "+this.files[0].lastModifiedDate;
                     } else {
+                        document.querySelector("#runCalendAplikac").setAttribute('disabled', '');
                         fileName.style.color = "red";
                         status.style.display = "block";
                         status.style.color = "red";
@@ -124,8 +130,8 @@ for (let i = 0; i < settingBlock.length; i++) {
                     if (Number(namePointAddEditDelat)) {
                         //Запoлняем дополнительную информацию по точкам
                         //Создаем новые атрибуты
-                        let type = document.querySelector("#firstSelect");
-                        let place = document.querySelector("#secondSelect");
+                        let type = document.querySelector("#firstSelectPoint");
+                        let place = document.querySelector("#secondSelectPoint");
                         let dataName = type.value;//имя тип точек Рабочии Базовые
                         let dataJobsPlase = place.value;//имя участка работы SOD-11/Нив Тах 
                         typeAndJobsPoint.innerText = type.value;
@@ -161,8 +167,8 @@ for (let i = 0; i < settingBlock.length; i++) {
                                         document.querySelector(".close-import").id ='editPoint';
                                         //Запoлняем дополнительную информацию по точкам
                                         //Создаем новые атрибуты
-                                        let type = document.querySelector("#firstSelect");
-                                        let place = document.querySelector("#secondSelect");
+                                        let type = document.querySelector("#firstSelectPoint");
+                                        let place = document.querySelector("#secondSelectPoint");
                                         if (type.value =="Base") {
                                             namePointInfo.setAttribute("data-name", type.value);//имя тип точек Базовые
                                             namePointInfo.setAttribute("data-jobs", place.value);//Тип сьемки Нив Тах
@@ -208,7 +214,7 @@ for (let i = 0; i < settingBlock.length; i++) {
             }
             //Add
             if (e.target.id == "runPointAdd") {
-                    if (Number(namePointAddEditDelat && !secondSelect.value == "")) {
+                    if (Number(namePointAddEditDelat && !secondSelectPoint.value == "")) {
                         //Открываем окно для внесения информации
                         settingBlockFull.style.display = "none";
                         document.querySelector("#import").style.display = "block";
@@ -217,8 +223,8 @@ for (let i = 0; i < settingBlock.length; i++) {
                         document.querySelector(".close-import").id ='addPoint';
                         //Запoлняем дополнительную информацию по точкам
                         //Создаем новые атрибуты
-                        let type = document.querySelector("#firstSelect");
-                        let place = document.querySelector("#secondSelect");
+                        let type = document.querySelector("#firstSelectPoint");
+                        let place = document.querySelector("#secondSelectPoint");
                         if (type.value =="Base") {
                             namePointInfo.setAttribute("data-name", type.value);//имя тип точек Базовые
                             namePointInfo.setAttribute("data-jobs", place.value);//Тип сьемки Нив Тах
@@ -245,7 +251,7 @@ for (let i = 0; i < settingBlock.length; i++) {
             }
             //Delat
             if (e.target.id == "runPointDelat") {
-                    if (Number(namePointAddEditDelat) && !secondSelect.value == "") {
+                    if (Number(namePointAddEditDelat) && !secondSelectPoint.value == "") {
                         //Открываем окно
                         settingBlockFull.style.display = "none";
                         document.querySelector("#funktionalDelat").style.display = "block"; 
@@ -267,8 +273,8 @@ for (let i = 0; i < settingBlock.length; i++) {
                         typeAndJobsPointDelat.after(plasePointDelat);        
                         //Запoлняем дополнительную информацию по точкам
                         //Создаем новые атрибуты
-                        let type = document.querySelector("#firstSelect");
-                        let place = document.querySelector("#secondSelect");
+                        let type = document.querySelector("#firstSelectPoint");
+                        let place = document.querySelector("#secondSelectPoint");
                         if (type.value =="Base") {
                             span.setAttribute("data-name", type.value);//имя тип точек Базовые
                             span.setAttribute("data-jobs", place.value);//Тип сьемки Нив Тах
@@ -346,22 +352,47 @@ for (let i = 0; i < settingBlock.length; i++) {
                 document.querySelector("#funktionalDelatCod").style.display = "none";
               });
             }
+            //Import Списком в формате .csv, .txt
+            if (e.target.id == "fileInputList") {
+                let fileName = document.getElementById('fileNameImport');
+                //Загрузка файла
+                document.getElementById('fileInputList').addEventListener('change', function () {
+                    let nameOpenFile = this.files.length ? this.files[0].name : 'File not selected';
+                    let status = document.querySelector("#statusImport");
+                    status.textContent = "";
+                    status.style.display = "none";
+                    fileName.textContent = nameOpenFile;
+                    if (this.files[0].type == "text/plain" || this.files[0].type == "text/csv") {
+                        document.querySelector("#runImportAplikac").removeAttribute("disabled");
+                        fileName.style.color = "green";
+                        status.style.display = "block";
+                        status.style.color = "green";
+                        status.textContent = "Size : "+(this.files[0].size/102400).toFixed(3)+"MB. Date : "+this.files[0].lastModifiedDate;
+                    } else {
+                        document.querySelector("#runImportAplikac").setAttribute('disabled', '');
+                        fileName.style.color = "red";
+                        status.style.display = "block";
+                        status.style.color = "red";
+                        status.textContent = "OPENING: Please select a file with extension: .csv, .txt";
+                    }
+                })
+            }
         }
     })
 }
 //Функция подготовки для информаци в результате работы с точками
-function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray) {
+function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray, nameId) {
                         //Название Участка работы
                         let firstSelectHtml = `
-                            <select id="firstSelect" style="background-color: #cdc4c4; cursor: pointer;">
-                                <option value="">`+langsInfoSetting[siteLanguage].firstSelect+`</option>
+                            <select id="firstSelect`+nameId+`" style="background-color: #cdc4c4; cursor: pointer;">
+                                <option value="">`+langsInfoSetting[siteLanguage].firstSelectPoint+`</option>
                             </select>
                         `;
                         runTypeAndJobsPoint.innerHTML = firstSelectHtml;
                         //Название Участка работы
                         let secondSelectHtml =`
-                        <select id="secondSelect"  style="background-color: #0de42b; cursor: pointer;">
-                            <option value="">`+langsInfoSetting[siteLanguage].secondSelect+`</option>
+                        <select id="secondSelect`+nameId+`"  style="background-color: #0de42b; cursor: pointer;">
+                            <option value="">`+langsInfoSetting[siteLanguage].secondSelectPoint+`</option>
                         </select>
                         `;
                         runPlasePoint.innerHTML = secondSelectHtml;
@@ -371,19 +402,19 @@ function preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsAr
                             const option = document.createElement("option");
                             option.value = key;
                             option.textContent = key;
-                            firstSelect.appendChild(option);
+                            document.getElementById("firstSelect"+nameId).appendChild(option);
                         });
 
                         //Обработчик изменения первого select
-                        firstSelect.addEventListener("change", function () {
-                            secondSelect.innerHTML = '<option value="">'+langsInfoSetting[siteLanguage].secondSelect+'</option>'; // Очищаем второй select
+                        document.getElementById("firstSelect"+nameId).addEventListener("change", function () {
+                            document.getElementById("secondSelect"+nameId).innerHTML = '<option value="">'+langsInfoSetting[siteLanguage].secondSelectPoint+'</option>'; // Очищаем второй select
                             const selectedCategory = this.value;
                             if (selectedCategory) {
                                 typeJobsArray[selectedCategory].forEach(subKey => {
                                     const option = document.createElement("option");
                                     option.value = subKey;
                                     option.textContent = subKey;
-                                    secondSelect.appendChild(option);
+                                    document.getElementById("secondSelect"+nameId).appendChild(option);
                                 });
                             }
                         });

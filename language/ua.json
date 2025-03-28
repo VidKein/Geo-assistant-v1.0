@@ -14,6 +14,7 @@
     "Сalendar":"Календар",
     "Points":"Точки",
     "Codes":"Коди",
+    "Import":"Импорт",
     "Language":"Мова: ",
     "option_1":"Виберіть",
     "option_2":"Aнглійська",
@@ -36,6 +37,8 @@
     "Сoordinate system":"Система координат",
     "Position type":"Тип позиції",
     "New kod":"Новий",
+    "file_points":"Выберите файл, для импорта.",
+    "SelectTypeInput":"виберіть тип, роботу/місце: ",
     
     "designations":"Умовнi позначення: ",
     "buttonDesing":"Умовнi позначення.",

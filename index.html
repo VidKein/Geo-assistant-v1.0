@@ -15,13 +15,11 @@
     <script src="./script/modules/scale-bar.js"></script><!--scale ruler-->
 </head>
 <body>
-
+    <!--Load-->
     <div id="progress-container">
         <div id="progress-bar"></div>
         <div id="progress-text">Load...</div>
     </div>
-    
-
     <!--Карта-->
     <div id="map"></div>
     <div class="fullEdit">
@@ -106,6 +104,7 @@
                             <button langs = "Сalendar" data-lang-key="Сalendar" langs-atr="title"  type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
                             <button langs = "Points" data-lang-key="Points" langs-atr="title"  type="button" class="settingButton" id="Points" title="Points">Points</button>
                             <button langs = "Codes" data-lang-key="Codes" langs-atr="title"  type="button" class="settingButton" id="Codes" title="Codes">Codes</button>
+                            <button langs = "Import" data-lang-key="Import" langs-atr="title"  type="button" class="settingButton" id="Import" title="Import">Import</button>
                         </div>
                         <div class="rightSettingFunctional">
                             <div class="links" id="General" style="display: block;">
@@ -129,7 +128,7 @@
                                 <label langs = "SelectFile" data-lang-key="SelectFile" langs-atr="title" for="fileInput" class="custom-file-upload" title="Select fale">Select fale</label>
                                 <input type="file" id="fileInput" hidden>
                                 <span langs = "fileName" id="fileName">file not loaded</span>
-                                <button langs = "runCalendAplikac" data-lang-key="runCalendAplikac" langs-atr="title" id="runCalendAplikac" title="Submit fail">Submit fail</button>
+                                <button langs = "runCalendAplikac" data-lang-key="runCalendAplikac" langs-atr="title" id="runCalendAplikac" title="Submit fail" disabled>Submit fail</button>
                                 <p id="status"></p>
                             </div>
                             <div class="links" id="Points" style="display: none;">
@@ -150,6 +149,17 @@
                                     <button langs-child = "Position type" tegs-child="0" type="button" class="accordion" name="LevelpositionType">Position type<span id="levelingpositionType">0</span></button>
                                     <div class="links" id="LevelpositionType" name="codes"></div>
                                 </div>    
+                            </div>
+                            <div class="links" id="Import" style="display: none;">
+                                <p langs = "file_points" style="text-align: left;">Select a file to import</p>
+                                <label langs = "SelectFile" data-lang-key="SelectFile" langs-atr="title" for="fileInputList" class="custom-file-upload" title="Select fale">Select fale</label>
+                                <input type="file" id="fileInputList" hidden>
+                                <span langs = "fileName" id="fileNameImport">file not loaded</span>
+                                <p langs = "SelectTypeInput" style="display: block; text-align: left;">Type, job/plase, name point:</p>
+                                <div class="runTypeAndJobsPointImport"></div>
+                                <div class="runPlasePointImport"></div>
+                                <p id="statusImport"></p> 
+                                <button langs = "runCalendAplikac" data-lang-key="runCalendAplikac" langs-atr="title" id="runImportAplikac" title="Submit fail" disabled>Submit fail</button>
                             </div>
                         </div>
                     </div>
@@ -204,6 +214,7 @@
     <script type="module" src="./script/modules/working-with-files/codDelat.js"></script><!--working-with-files+CodDelat-->
     <script type="module" src="./script/modules/working-with-files/codNew.js"></script><!--working-with-files+newCod-->
     <script type="module" src="./script/modules/working-with-files/loadFiles.js"></script><!--working-with-files+LoadFiles-->
+    <script type="module" src="./script/modules/working-with-files/imput.js"></script><!--working-with-files+Import lisp point-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
     <script src="./script/SiteLanguage/site-language.js"></script><!--Site Language-->
 </body>

@@ -579,25 +579,27 @@ cursor: pointer;
 #nameCod{
   margin: 3px 0;
 }
-@media screen and (max-height: 450px) {
-  .markerLabel {
-    top: 62%;
-    left: 50%;
-  }
-  .setting-wrapper{
-    width: 85%;
-  }
+/*Import*/
+.runTypeAndJobsPointImport{
+  display: inline-block;
+  background-color: #cdc4c4;
+  padding: 2px 2px;
+  margin: 2px 0;
 }
-@media screen and (max-width: 550px) {
-  .setting-wrapper{
-    width: 85%;
-  }
-  #status, #fileName{
-    font-size: 10px;
-  }
+.runPlasePointImport{
+  display: inline-block;
+  background-color: cornflowerblue;
+  padding: 2px 2px;
+  margin: 2px 0;
 }
-
-/*-----------------*/
+#statusImport{ 
+  display: none;
+  border: 1px solid #2e2a2a;
+  padding: 5px;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+/*Load*/
 #progress-container {
   position: fixed;
   top: 50%;
@@ -623,4 +625,24 @@ cursor: pointer;
   text-align: center;
   color: white;
   font-weight: bold;
+}
+@media screen and (max-height: 450px) {
+  .markerLabel {
+    top: 62%;
+    left: 50%;
+  }
+  .setting-wrapper{
+    width: 85%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .setting-wrapper{
+    width: 85%;
+  }
+  #status, #fileName{
+    font-size: 10px;
+  }
+  #statusImport, #fileNameImport{
+    font-size: 10px;
+  }
 }

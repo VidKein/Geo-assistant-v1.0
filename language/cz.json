@@ -14,6 +14,7 @@
     "Сalendar":"Сalendar",
     "Points":"Body",
     "Codes":"Kódy",
+    "Import":"Import",
     "Language":"Jazyk: ",
     "option_1":"Vybrat",
     "option_2":"Angličtina",
@@ -36,6 +37,8 @@
     "Сoordinate system":"Souřadnicový systém",
     "Position type":"Typ pozice",
     "New kod":"Nový",
+    "file_points":"Vyberte soubor, který chcete importovat.",
+    "SelectTypeInput":"vyberte typ, práci/místo: ",
     
     "designations":"Mapy označení: ",
     "buttonDesing":"Označení mapy",

@@ -14,6 +14,7 @@
     "Сalendar":"Сalendar",
     "Points":"Points",
     "Codes":"Codes",
+    "Import":"Import",
     "Language":"Language:",
     "option_1":"Select",
     "option_2":"English",
@@ -36,6 +37,8 @@
     "Сoordinate system":"Сoordinate system",
     "Position type":"Position type",
     "New kod":"New",
+    "file_points":"Select a file to import.",
+    "SelectTypeInput":"select, job/place type: ",
     
     "designations":"Designations maps: ",
     "buttonDesing":"Designations maps",

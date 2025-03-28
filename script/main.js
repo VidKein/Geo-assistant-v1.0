@@ -214,7 +214,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
             jobDivNiv.textContent = planingWorkNiv[row].namber; // Устанавливаем текст внутри div
             //Добавляем div в контейнер
             pointJobsNiv.appendChild(jobDivNiv);
-            }else{
+            }else{                
                 // Создаем новый div
                 const jobDivNivError = document.createElement('div');
                 jobDivNivError.className = 'pointJobsError'; // Добавляем класс
@@ -237,6 +237,7 @@ function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, 
                     jobDivNivError.appendChild(pointError);
                 }
                 console.log("Точки НИВ с числом - "+planingWorkNiv[row].namber+" в базе не найдены"); 
+                
             }  
         }
         //Выводим точки на карту и привязываем к переключателю
@@ -608,12 +609,22 @@ const buttonSetting = L.Control.extend({
             settingBlock.style.display = "block";
           } else {
             settingBlock.style.display = "none";
+            //pointAddEditDelat
             document.querySelector("#namePointAddEditDelat").value = "";
+            //Load fail Kolendarg
             let status = document.querySelector("#status");
             status.textContent = "";
             status.style.display = "none";
             document.querySelector("#fileName").textContent = "file not loaded";
             document.querySelector("#fileName").style.color = "bleck";
+            document.querySelector("#runCalendAplikac").setAttribute('disabled', '');
+            //Input list point
+            let statusImport = document.querySelector("#statusImport");
+            statusImport.textContent = "";
+            statusImport.style.display = "none";
+            document.querySelector("#fileNameImport").textContent = "file not loaded";
+            document.querySelector("#fileNameImport").style.color = "bleck";
+            document.querySelector("#runInputAplikac").setAttribute('disabled', '');
           }
          }
         return setting;
@@ -795,12 +806,3 @@ function getCoordinatesClick() {
         document.querySelector(".markerDeterminationСoordinates").style.display = "none";
     } 
 }
-/*------------------------------------------*/
-/*
-//Подключаем камеру
-let constraints = { audio: false, video: { width: 1280, height: 720 } };
-let setting = document.querySelector(".setting");
-setting.addEventListener("click",()=>{
-    promise = navigator.mediaDevices.getUserMedia(constraints);
-})
-*/
