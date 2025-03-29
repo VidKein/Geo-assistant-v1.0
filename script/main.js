@@ -624,7 +624,7 @@ const buttonSetting = L.Control.extend({
             statusImport.style.display = "none";
             document.querySelector("#fileNameImport").textContent = "file not loaded";
             document.querySelector("#fileNameImport").style.color = "bleck";
-            document.querySelector("#runInputAplikac").setAttribute('disabled', '');
+            document.querySelector("#runImportAplikac").setAttribute('disabled', '');
           }
          }
         return setting;

@@ -17,8 +17,8 @@ const DATA_COD = path.join(__dirname,  '..','kod', 'kod.json');
 //File
 const UPLOAD_FOLDER = path.join(__dirname, '..','xlsx');;
 
-// Редоктирование/чтение данных
-// Чтение данных и вывод
+//Редоктирование/чтение данных
+//Чтение данных и вывод
 app.get('/pointDat/:dataName/:dataJobsPlase/:id', (req, res) => {
     const {dataName ,dataJobsPlase, id} = req.params;   
     fs.readFile(DATA_FILE, 'utf8', (err, data) => {
@@ -261,34 +261,85 @@ app.post('/uploadFile', (req, res) => {
     });
 });
 //Импорт списка точек
-// Конфигурация Multer (загрузка в папку uploads/)
-const storageImport = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, "importLispPoint/");
-  },
-  filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname)); // Уникальное имя файла
-  },
-});
+const uploadImport = multer({ storage: multer.memoryStorage() }); // Храним в памяти
+app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
+  if (!req.file) return res.status(400).send("The file has not been uploaded.");
+  const { type, place } = req.body; // Данные из запроса тип , вид/место работы
+  const filePoit = req.file; // Файл
+  const ext = path.extname(req.file.originalname).toLowerCase();
+  let data = [];
 
-const uploadImport = multer({ storageImport });
+  // Обработка CSV или TXT файла
+  if (ext === '.csv' || ext === '.txt') {
+    const fileContent = req.file.buffer.toString('utf-8');
+    const lines = fileContent.split('\n');
+    
+    lines.forEach((line) => {
+      const values = line.split(';');
+      if (values.length >= 7) {
+        data.push({
+          id: values[0],
+          X: parseFloat(values[1]),
+          Y: parseFloat(values[2]),
+          H: parseFloat(values[3]),
+          date: values[4],
+          systemCoordinates: parseInt(values[5]),
+          positionType: parseInt(values[6])
+        });
+      }
+    });
 
-// Маршрут для загрузки файла
-app.post("/importLispPoint", uploadImport.single("file"), (req, res) => {
-  if (!req.file) {
-      return res.status(400).send("Файл не загружен.");
-  }
-
-  const filePath = req.file.path;
-
-  // Читаем содержимое файла
-  fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-          return res.status(500).send("Ошибка чтения файла.");
+    // Чтение существующего JSON файла
+    fs.readFile(DATA_FILE, 'utf-8', (err, existingData) => {
+      if (err && err.code !== 'ENOENT') {
+        return res.status(500).send('Error reading JSON file.');
       }
 
-      res.send(`Файл успешно загружен! Содержимое:<br><pre>${data}</pre>`);
-  });
+      let jsonData = {};
+      if (existingData) {
+        try {
+          jsonData = JSON.parse(existingData);
+        } catch (e) {
+          return res.status(500).send('Error parsing existing JSON data.');
+        }
+      }
+
+      // Проверка на дублирование номеров точек
+      const addedPoints = [];
+      let errors = [];
+      data.forEach(item => {
+        if (jsonData[type][place][item.id]) {
+          errors.push(`Point namber ${item.id} already exists`);
+        } else {
+          jsonData[type][place][item.id] = {
+            position: [item.X, item.Y],
+            vycka: item.H,
+            date: item.date,
+            systemCoordinates: item.systemCoordinates,
+            positionType: item.positionType
+          };
+          addedPoints.push(item.id);
+        }
+      });
+
+      // Если есть ошибки, возвращаем их в ответ
+      if (errors.length > 0) {
+        return res.status(400).json({ errors });
+      }
+
+      // Запись обновленных данных в файл
+      fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2), (err) => {
+        if (err) {
+          return res.status(500).send('Error writing to JSON file.');
+        }
+        res.json({ message: 'Data successfully uploaded and added to JSON file.',addedPoints });
+      });
+    });
+
+
+  } else {
+    return res.status(400).send('Unsupported file format.');
+  }
 });
 
 // Запуск сервера
