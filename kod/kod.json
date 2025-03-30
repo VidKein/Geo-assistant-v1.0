@@ -66,6 +66,10 @@
       {
         "id": 14,
         "value": "barcode sticker"
+      },
+      {
+        "id": 15,
+        "value": "prizma"
       }
     ]
   },
@@ -136,6 +140,10 @@
       {
         "id": 14,
         "value": "наклейка зі штрих-кодом"
+      },
+      {
+        "id": 15,
+        "value": "prizma"
       }
     ]
   },
@@ -206,6 +214,10 @@
       {
         "id": 14,
         "value": "nálepka s čárovým kódem"
+      },
+      {
+        "id": 15,
+        "value": "prizma"
       }
     ]
   }
