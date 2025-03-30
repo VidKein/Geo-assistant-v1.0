@@ -3439,6 +3439,186 @@
         "systemCoordinates": 1,
         "positionType": 8
       },
+      "330801": {
+        "position": [
+          742256,
+          1048004
+        ],
+        "vycka": 272.3643,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330802": {
+        "position": [
+          742241,
+          1048003
+        ],
+        "vycka": 272.3919,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330803": {
+        "position": [
+          742242,
+          1047978
+        ],
+        "vycka": 271.8613,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330804": {
+        "position": [
+          742231,
+          1047977
+        ],
+        "vycka": 271.5224,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330805": {
+        "position": [
+          742231,
+          1047971
+        ],
+        "vycka": 271.525,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330806": {
+        "position": [
+          742232,
+          1047959
+        ],
+        "vycka": 271.52,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330807": {
+        "position": [
+          742234,
+          1047943
+        ],
+        "vycka": 271.2701,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330808": {
+        "position": [
+          742236,
+          1047917
+        ],
+        "vycka": 271.0057,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330809": {
+        "position": [
+          742238,
+          1047899
+        ],
+        "vycka": 271.9921,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330810": {
+        "position": [
+          742262,
+          1047901
+        ],
+        "vycka": 271.9909,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330811": {
+        "position": [
+          742297,
+          1047904
+        ],
+        "vycka": 272.0027,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330812": {
+        "position": [
+          742286,
+          1047964
+        ],
+        "vycka": 270.9089,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330813": {
+        "position": [
+          742268,
+          1047962
+        ],
+        "vycka": 270.9012,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330814": {
+        "position": [
+          742262,
+          1047968
+        ],
+        "vycka": 271.4061,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330815": {
+        "position": [
+          742262,
+          1047980
+        ],
+        "vycka": 271.8529,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330816": {
+        "position": [
+          742261,
+          1047992
+        ],
+        "vycka": 271.8059,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330817": {
+        "position": [
+          742241,
+          1047990
+        ],
+        "vycka": 271.8459,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
+      "330818": {
+        "position": [
+          742246,
+          1048002
+        ],
+        "vycka": 284.1491,
+        "date": "2025-03-25",
+        "systemCoordinates": 1,
+        "positionType": 15
+      },
       "330901": {
         "position": [
           741993,
