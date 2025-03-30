@@ -593,56 +593,6 @@
       }
     },
     "niv": {
-      "1": {
-        "position": [
-          741976,
-          1047497
-        ],
-        "vycka": 268.1013,
-        "date": "2025-03-21",
-        "systemCoordinates": 1,
-        "positionType": 12
-      },
-      "2": {
-        "position": [
-          741989,
-          1047481
-        ],
-        "vycka": 268.1359,
-        "date": "2025-03-21",
-        "systemCoordinates": 1,
-        "positionType": 12
-      },
-      "3": {
-        "position": [
-          742006,
-          1047458
-        ],
-        "vycka": 268.0843,
-        "date": "2025-03-21",
-        "systemCoordinates": 1,
-        "positionType": 12
-      },
-      "4": {
-        "position": [
-          741995,
-          1047449
-        ],
-        "vycka": 268.0484,
-        "date": "2025-03-21",
-        "systemCoordinates": 1,
-        "positionType": 12
-      },
-      "9102": {
-        "position": [
-          741860,
-          1047192
-        ],
-        "vycka": 266.4284,
-        "date": "2025-01-26",
-        "systemCoordinates": 1,
-        "positionType": 1
-      },
       "9181": {
         "position": [
           742086,

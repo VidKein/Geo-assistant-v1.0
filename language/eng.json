@@ -37,7 +37,7 @@
     "Сoordinate system":"Сoordinate system",
     "Position type":"Position type",
     "New kod":"New",
-    "file_points":"Select a file to import.",
+    "file_points":"Select a file to import (*.txt,*.csv).",
     "SelectTypeInput":"select, job/place type: ",
     "runImportAplikac":"Send information",
     

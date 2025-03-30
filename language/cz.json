@@ -37,7 +37,7 @@
     "Сoordinate system":"Souřadnicový systém",
     "Position type":"Typ pozice",
     "New kod":"Nový",
-    "file_points":"Vyberte soubor, který chcete importovat.",
+    "file_points":"Vyberte soubor, který chcete importovat (*.txt,*.csv).",
     "SelectTypeInput":"vyberte typ, práci/místo: ",
     "runImportAplikac":"Odešlete informace",
     
