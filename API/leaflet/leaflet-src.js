@@ -5759,7 +5759,8 @@
 
   		// @option prefix: String|false = 'Leaflet'
   		// The HTML text shown before the attributions. Pass `false` to disable.
-  		prefix: '<a href="https://.com" title="A JavaScript library for interactive maps">' + (Browser.inlineSvg ? ukrainianFlag + ' ' : '') + 'Leaflet</a>'
+  		prefix: '<a href="https://.com/" id="helpGeo" title="Help Geo Asistent">Help</a> | <a href="https://leafletjs.com/" title="A JavaScript library for interactive maps">' + (Browser.inlineSvg ? ukrainianFlag + ' ' : '') + 'Leaflet</a>',
+		
   	},
 
   	initialize: function (options) {

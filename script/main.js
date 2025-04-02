@@ -44,6 +44,11 @@ let langsMaps = {
         "chekMarcer":" vybráno"
     }
 };
+/*Help Geo Asistent*/
+console.log(document.querySelector("#helpGeo"));
+
+
+
 
 /*Карта*/
 //СЛОИ КАРТЫ
