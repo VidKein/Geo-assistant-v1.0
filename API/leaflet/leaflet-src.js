@@ -5750,6 +5750,14 @@
    *
    * The attribution control allows you to display attribution data in a small text box on a map. It is put on the map by default unless you set its [`attributionControl` option](#map-attributioncontrol) to `false`, and it fetches attribution texts from layers with the [`getAttribution` method](#layer-getattribution) automatically. Extends Control.
    */
+/*Help Geo Asistent*/
+//Определение языка
+const siteLanguage = localStorage.getItem('siteLanguage') || "eng";
+// Задаем URL PDF-файла, расположенного в папке help на сервере
+const pdfUrl = '/my-app-leaflet/help/help_geo_asistent_'+siteLanguage+'.pdf';
+// Создание ссылки для открытия PDF
+const pdfLink = `<a href="${pdfUrl}" target="_blank" id="helpGeo" title="Help Geo Asistent">Help</a>`;
+
 
   var Attribution = Control.extend({
   	// @section
@@ -5759,7 +5767,7 @@
 
   		// @option prefix: String|false = 'Leaflet'
   		// The HTML text shown before the attributions. Pass `false` to disable.
-  		prefix: '<a href="/my-app-leaflet/help/help_geo_asistent_ua.pdf" target="_blank" id="helpGeo" title="Help Geo Asistent">Help</a> | <a href="https://leafletjs.com/" title="A JavaScript library for interactive maps">' + (Browser.inlineSvg ? ukrainianFlag + ' ' : '') + 'Leaflet</a>',
+  		prefix: pdfLink+' | <a href="https://leafletjs.com/" title="A JavaScript library for interactive maps">' + (Browser.inlineSvg ? ukrainianFlag + ' ' : '') + 'Leaflet</a>',
 		
   	},
 

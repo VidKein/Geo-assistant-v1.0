@@ -44,19 +44,13 @@ let langsMaps = {
         "chekMarcer":" vybráno"
     }
 };
-/*Help Geo Asistent*/
-console.log(document.querySelector("#helpGeo"));
-
-
-
-
 /*Карта*/
 //СЛОИ КАРТЫ
 //Спутник
 let key = "328W3i5uAdhtTMZr8hrV";
-let OSMsatelitMap = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key='+key, {maxZoom: 22,attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>'});
+let OSMsatelitMap = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key='+key, {maxZoom: 22,attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a>'});
 //Растр
-let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 22, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'});
+let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 22, attribution: '<a href="https://www.openstreetmap.org/copyright target="_blank"">OpenStreetMap</a>'});
 //Определие слоя КАРТЫ
 let map = L.map('map', {
   center: [50.047266, 14.440722],
