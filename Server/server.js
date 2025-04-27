@@ -273,6 +273,8 @@ app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
   if (ext === '.csv' || ext === '.txt') {
     const fileContent = req.file.buffer.toString('utf-8');
     const lines = fileContent.split('\n');
+    console.log(lines);
+    
     
     lines.forEach((line) => {
       const values = line.split(';');
@@ -288,7 +290,7 @@ app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
         });
       }
     });
-
+    console.log(data);
     // Чтение существующего JSON файла
     fs.readFile(DATA_FILE, 'utf-8', (err, existingData) => {
       if (err && err.code !== 'ENOENT') {
