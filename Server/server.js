@@ -260,6 +260,7 @@ app.post('/uploadFile', (req, res) => {
         });
     });
 });
+
 //Импорт списка точек
 const uploadImport = multer({ storage: multer.memoryStorage() }); // Храним в памяти
 app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
@@ -272,9 +273,9 @@ app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
   // Обработка CSV или TXT файла
   if (ext === '.csv' || ext === '.txt') {
     const fileContent = req.file.buffer.toString('utf-8');
-    const lines = fileContent.split('\n');
+    const lines = fileContent.split(/\r?\n/).filter(line => line.trim() !== '');
+
     console.log(lines);
-    
     
     lines.forEach((line) => {
       const values = line.split(';');
@@ -290,7 +291,9 @@ app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
         });
       }
     });
+
     console.log(data);
+
     // Чтение существующего JSON файла
     fs.readFile(DATA_FILE, 'utf-8', (err, existingData) => {
       if (err && err.code !== 'ENOENT') {
