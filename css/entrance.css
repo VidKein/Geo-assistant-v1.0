@@ -56,11 +56,14 @@ h3{
     width: 1rem;
     cursor: pointer;
 }
-@media screen and (max-height: 320px) {
+@media screen and (max-height: 450px) {
   .entrance-bar {
     text-align: center;
   }
   .screensaver{
-    width: 35%;
+    width: 75px;
   }
+  .textCheckbox{
+    font-size: 12px;
+}
 }
