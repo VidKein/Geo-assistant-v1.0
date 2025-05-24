@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title langs = "titleHtml">Geo assistant</title>
     <link rel="stylesheet" href="./API/leaflet/leaflet.css" /><!--leaflet-->
+    <link rel="stylesheet" href="./css/entrance.css"><!--entrance-->
     <link rel="stylesheet" href="./css/style.css"><!--CSS main-->
     <link rel="stylesheet" href="./css/marker.css"><!--CSS marker namber-->
     <link rel="stylesheet" href="./css/calendarg.css"><!--CSS calendarg-->
@@ -19,6 +20,25 @@
     <div id="progress-container">
         <div id="progress-bar"></div>
         <div id="progress-text">Load...</div>
+    </div>
+    <!--Entrance-->
+    <div class = "entrance">
+        <div class = "entrance-bar">
+            <img class = "screensaver" src="./icons/geo assistent.png" alt="">
+            <h3>Enter your login details</h3>
+            <div id="entranceInfo">
+                <p class="textSubmit">E-mail:</p>
+                <input type="text" id="email">
+                <p class="textSubmit">Password:</p>
+                <input type="text" id="pass">
+                <p class="submit-bar">
+                    <input type="checkbox" name="rememberme" id="rememberme" title="Remember me">
+                    <label for="rememberme">Remember me</label>
+                    <button type="submit" id="button-submit" title="Сhange language">Login</button>
+                </p>
+                
+            </div>
+        </div>
     </div>
     <!--Карта-->
     <div id="map"></div>
