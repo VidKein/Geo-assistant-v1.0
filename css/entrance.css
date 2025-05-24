@@ -1,3 +1,7 @@
+.textGeo{
+    font-size: 14px;
+    display: none;
+}
 .entrance{
     position: fixed;
     top: 0;
@@ -67,9 +71,10 @@ h3{
     font-size: 12px}
 }
 @media screen and (max-height: 300px) {
-
   .screensaver{
     display: none;
   }
-
+  .textGeo{
+    display: block;
+}
 }
