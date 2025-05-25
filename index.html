@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title langs = "titleHtml">Geo assistant</title>
     <link rel="stylesheet" href="./API/leaflet/leaflet.css" /><!--leaflet-->
-    <link rel="stylesheet" href="./css/entrance.css"><!--entrance-->
+    <link rel="stylesheet" href="./css/entrance.css"><!--CSS entrance-->
     <link rel="stylesheet" href="./css/style.css"><!--CSS main-->
     <link rel="stylesheet" href="./css/marker.css"><!--CSS marker namber-->
     <link rel="stylesheet" href="./css/calendarg.css"><!--CSS calendarg-->
@@ -35,7 +35,7 @@
                 <p class="submit-bar">
                     <input type="checkbox" name="rememberme" id="rememberme" title="Remember me">
                     <label for="rememberme" class="textCheckbox">Remember me</label>
-                    <button type="submit" id="button-submit" title="Сhange language">Login</button>
+                    <button type="submit" id="button-submit" title="Сhange language" onclick="login()">Login</button>
                 </p>
             </div>
         </div>
@@ -237,5 +237,6 @@
     <script type="module" src="./script/modules/working-with-files/imput.js"></script><!--working-with-files+Import lisp point-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
     <script src="./script/SiteLanguage/site-language.js"></script><!--Site Language-->
+    <script src="./script/modules/entrance.js"></script><!--Entrance ?????????-->
 </body>
 </html>
