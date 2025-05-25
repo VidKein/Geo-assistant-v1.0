@@ -1,12 +1,3 @@
-//Флаг определяюший как загружатся
-const isLoggedIn = localStorage.getItem('isLoggedIn') || "false";
-console.log(isLoggedIn);
-
-if (isLoggedIn == "true") {
-    showSecretContent();
-} 
-
-
 // Настроенные логин/пароль
 const validEmail = "vidkein75@gmail.com";
 const validPasswordHash = "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"; // хэш от "password123"
@@ -39,3 +30,8 @@ async function login() {
 }
 //Закрытие окна
 function showSecretContent() {document.querySelector(".entrance").style.display = 'none';}
+
+// При загрузке страницы — проверка логина
+if (localStorage.getItem('isLoggedIn') === 'true') {
+  showSecretContent();
+}
