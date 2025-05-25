@@ -3,6 +3,14 @@
     "leaflet-control-zoom-in": "Přiblížit",
     "leaflet-control-zoom-out": "Přiblížit od",
     "leaflet-bar-part leaflet-bar-part-single": "Najděte nám umístění",
+
+    "textGeo":"Geo asistent",
+    "textEnter":"Zadejte své přihlašovací údaje",
+    "textSubmitEmail":"E-mail:",
+    "textSubmitPass":"Heslo:",
+    "textCheckbox":"Pamatuj si mě",
+    "load":"Přihlášení",
+    "textLoad":"Posílat informace",
     
     "calendarg":"Pracovní kalendář",
     "close-calendarg":"Ukončete kalendář",
@@ -15,6 +23,9 @@
     "Points":"Body",
     "Codes":"Kódy",
     "Import":"Import",
+
+    "Sign":"Registrace",
+
     "Language":"Jazyk: ",
     "option_1":"Vybrat",
     "option_2":"Angličtina",
@@ -40,6 +51,9 @@
     "file_points":"Vyberte soubor, který chcete importovat (*.txt,*.csv).",
     "SelectTypeInput":"vyberte typ, práci/místo: ",
     "runImportAplikac":"Odešlete informace",
+
+    "SelectTypeLogout":"Odhlášení z registrace.",
+    "runImportLogout":"Odhlášení",
     
     "designations":"Mapy označení: ",
     "buttonDesing":"Označení mapy",

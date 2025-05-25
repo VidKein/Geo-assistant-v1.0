@@ -3,6 +3,14 @@
     "leaflet-control-zoom-in": "Приблизить",
     "leaflet-control-zoom-out": "Отдолить",
     "leaflet-bar-part leaflet-bar-part-single": "Найди мое место расположениеы",
+
+    "textGeo":"Гео помічник",
+    "textEnter":"Введіть свої дані для входу",
+    "textSubmitEmail":"E-mail:",
+    "textSubmitPass":"Пароль:",
+    "textCheckbox":"запам'ятай мене",
+    "load":"Завантажит",
+    "textLoad":"Надіслати інформацію",
     
     "calendarg":"Рабочий календарь",
     "close-calendarg":"Выйти из календаря",
@@ -15,6 +23,9 @@
     "Points":"Точки",
     "Codes":"Коди",
     "Import":"Импорт",
+
+    "Sign":"Реєстрація",
+    
     "Language":"Мова: ",
     "option_1":"Виберіть",
     "option_2":"Aнглійська",
@@ -40,6 +51,9 @@
     "file_points":"Выберите файл, для импорта (*.txt,*.csv).",
     "SelectTypeInput":"виберіть тип, роботу/місце: ",
     "runImportAplikac":"Відправити інформацію",
+
+    "SelectTypeLogout":"Вийти з реєстрації.",
+    "runImportLogout":"Вихід",
     
     "designations":"Умовнi позначення: ",
     "buttonDesing":"Умовнi позначення.",

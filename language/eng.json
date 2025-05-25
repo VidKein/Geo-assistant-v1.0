@@ -4,17 +4,29 @@
     "leaflet-control-zoom-out": "Zoom out",
     "leaflet-bar-part leaflet-bar-part-single": "Find my location",
 
+    "textGeo":"Geo assistent",
+    "textEnter":"Enter your login details",
+    "textSubmitEmail":"E-mail:",
+    "textSubmitPass":"Password:",
+    "textCheckbox":"Remember me",
+    "load":"Login",
+    "textLoad":"Send information",
+
+
     "calendarg":"Work calendar",
     "close-calendarg":"Exit calendar",
 
     "setting":"Setting maps",
     "close-setting":"Exit Settings",
-    "SettingH2":"Settings",
+    "SettingH2":"Settings:",
     "General":"General",
     "Сalendar":"Сalendar",
     "Points":"Points",
     "Codes":"Codes",
     "Import":"Import",
+
+    "Sign":"Sign up",
+
     "Language":"Language:",
     "option_1":"Select",
     "option_2":"English",
@@ -40,6 +52,9 @@
     "file_points":"Select a file to import (*.txt,*.csv).",
     "SelectTypeInput":"select, job/place type: ",
     "runImportAplikac":"Send information",
+
+    "SelectTypeLogout":"Logout of registration.",
+    "runImportLogout":"Logout",
     
     "designations":"Designations maps: ",
     "buttonDesing":"Designations maps",

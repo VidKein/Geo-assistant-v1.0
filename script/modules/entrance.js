@@ -1,5 +1,5 @@
 // Настроенные логин/пароль
-const validEmail = "vidkein75@gmail.com";
+const validEmail = "a5b4bfe7a087861bd36f51452d11fddb313918dc4c98125b78931bdb7053201c";// хэш от "vidkein75@gmail.com"
 const validPasswordHash = "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"; // хэш от "password123"
 
 // Функция хеширования SHA-256
@@ -16,8 +16,9 @@ async function login() {
   const rememberme = document.getElementById('rememberme');
   
   const hash = await sha256(password);
+  const emailSHA = await sha256(email);
 
-  if (email === validEmail && hash === validPasswordHash) {
+  if (emailSHA === validEmail && hash === validPasswordHash) {
     if (rememberme.checked) {
         localStorage.setItem('isLoggedIn', 'true');
         showSecretContent();
@@ -30,6 +31,15 @@ async function login() {
 }
 //Закрытие окна
 function showSecretContent() {document.querySelector(".entrance").style.display = 'none';}
+
+
+// Выход
+function logout() {
+  localStorage.removeItem('isLoggedIn');
+  location.reload();
+  showLoginForm();
+}
+function showLoginForm() {document.querySelector(".entrance").style.display = 'block';}
 
 // При загрузке страницы — проверка логина
 if (localStorage.getItem('isLoggedIn') === 'true') {
