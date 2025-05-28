@@ -603,26 +603,6 @@
         "systemCoordinates": 1,
         "positionType": 12
       },
-      "9181": {
-        "position": [
-          742086,
-          1048136
-        ],
-        "vycka": 269.25265,
-        "date": "2025-01-26",
-        "systemCoordinates": 1,
-        "positionType": 3
-      },
-      "9182": {
-        "position": [
-          742101,
-          1048137
-        ],
-        "vycka": 269.27935,
-        "date": "2025-01-26",
-        "systemCoordinates": 1,
-        "positionType": 3
-      },
       "9183": {
         "position": [
           742173,
@@ -645,8 +625,8 @@
       },
       "9185": {
         "position": [
-          741773,
-          1047796
+          741809,
+          1047827
         ],
         "vycka": 270.67765,
         "date": "2025-01-26",
