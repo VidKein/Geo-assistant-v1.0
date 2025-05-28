@@ -274,7 +274,7 @@ showLoader();
         //Для контроля
         //console.log(results.join('\n\n\n'));
         ///Создаем и отправляем пользовательское событие с данными
-        //План работы
+        //План работы    
         const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTipJobsNivBase, baseTrig: resultsTipJobsTrigBase, planningNiv: resultsTipJobsNiv, planningTrig: resultsTipJobsTrig}});
         document.dispatchEvent(planning);
 
