@@ -45,6 +45,8 @@ let langsMaps = {
     }
 };
 /*Карта*/
+//Массив для сбора координат для центрирования карты
+let center=[];
 //СЛОИ КАРТЫ
 //Спутник
 let key = "328W3i5uAdhtTMZr8hrV";
@@ -52,11 +54,11 @@ let OSMsatelitMap = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}
 //Растр
 let OSMstritMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 22, attribution: '<a href="https://www.openstreetmap.org/copyright target="_blank" title="OpenStreetMap"">OpenStreetMap</a>'});
 //Определие слоя КАРТЫ
+
 let map = L.map('map', {
   center: [50.047266, 14.440722],
   zoom: 15,
   layers: [OSMstritMap]});
-
 //Наполнение слоя
 //Формируем наполнение на карте
 //Базовые точки
@@ -121,7 +123,56 @@ let operatingPointsTax;
 //Импорт информации с таблицы с планом работы planning-work.js
 document.addEventListener("planningWork", (jobs) => {
     layerControlPoint(jobs.detail.baseNiv, mainNiv, jobs.detail.baseTrig, mainTrig, jobs.detail.planningNiv, jobsNiv, jobs.detail.planningTrig, jobsTrig);
+    extractValidObjectsWithPosition(jobs.detail.baseNiv, jobs.detail.baseTrig, jobs.detail.planningNiv, jobs.detail.planningTrig);  
 });
+// Функция для сбора информации и центрированя карты
+function extractValidObjectsWithPosition(...coordinateArrays) {
+    const all = coordinateArrays.filter(obj => Object.keys(obj).length > 0).flat();
+    //сбрасываем массив, иначе он накапливается!
+    center = [];   
+    //Конвертация JTSK > WGS84
+    let conv = new JTSK_Converter();
+        for (let row of all) {
+            for (let i = 0; i < Object.keys(row).length; i++) {             
+                if (row[i] !== undefined && row[i].position !== undefined) {
+                    const point = row[i];
+                    if (
+                        point &&
+                        Array.isArray(point.position) &&
+                        point.position.length === 2 &&
+                        typeof point.position[0] === "number" &&
+                        typeof point.position[1] === "number" &&
+                        !isNaN(point.position[0]) &&
+                        !isNaN(point.position[1])
+                    ) {
+                        const wgsCenter = conv.JTSKtoWGS84(point.position[1], point.position[0]);
+                        if (
+                            typeof wgsCenter.lat === "number" &&
+                            typeof wgsCenter.lon === "number" &&
+                            !isNaN(wgsCenter.lat) &&
+                            !isNaN(wgsCenter.lon)
+                        ) {
+                            //Заполнение массива
+                            center.push([wgsCenter.lat, wgsCenter.lon]);
+                        }
+                    }
+                } 
+            }  
+        }
+    // Безопасная проверка перед fitBounds
+    if (center.length === 0) {
+        console.warn("Нет валидных координат для центрирования карты.");
+        return;
+    }
+    const bounds = L.latLngBounds(center);
+    if (!bounds.isValid()) {
+        console.error("Ошибка: bounds невалидны");
+        return;
+    }    
+    //Центрировка
+    map.fitBounds(bounds, {padding: [40, 40],  // мягкий отступ
+    });
+}
 
 //Функция обработки данных переданных из planing-work.js и формирует слои с маркерами
 function layerControlPoint(planingBaseNiv, markerBasePointNiv, planingBaseTrig, markerBasePointTrig, planingWorkNiv, markerPointNiv, planingWorkTax, markerPointTax) {
