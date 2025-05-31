@@ -136,6 +136,7 @@ function extractValidObjectsWithPosition(...coordinateArrays) {
             for (let i = 0; i < Object.keys(row).length; i++) {             
                 if (row[i] !== undefined && row[i].position !== undefined) {
                     const point = row[i];
+                    //Сортируем масив
                     if (
                         point &&
                         Array.isArray(point.position) &&
