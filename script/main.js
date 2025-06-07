@@ -122,7 +122,6 @@ let operatingPointsTax;
 
 //Импорт информации с таблицы с планом работы planning-work.js
 document.addEventListener("planningWork", (jobs) => {
-    console.log(jobs.detail.baseNiv, jobs.detail.baseTrig, jobs.detail.planningNiv, jobs.detail.planningTrig);
     layerControlPoint(jobs.detail.baseNiv, mainNiv, jobs.detail.baseTrig, mainTrig, jobs.detail.planningNiv, jobsNiv, jobs.detail.planningTrig, jobsTrig);
     extractValidObjectsWithPosition(jobs.detail.baseNiv, jobs.detail.baseTrig, jobs.detail.planningNiv, jobs.detail.planningTrig);  
 });
