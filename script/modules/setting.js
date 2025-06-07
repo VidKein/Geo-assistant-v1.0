@@ -433,7 +433,8 @@ function loadSettings(){
 //Очистка всех настроек
 document.getElementById('clearSettings').addEventListener('click', () => {
     if (confirm(langsInfoSetting[siteLanguage].ConfirmLangs)) {
-        localStorage.clear();
+        localStorage.removeItem('namePointDisplay');
+        localStorage.removeItem('siteLanguage');
         location.reload(); // Перезагрузка страницы для сброса значений
     }
 });
