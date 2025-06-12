@@ -9,9 +9,15 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch("./language/"+siteLanguage+".json")
             .then(response => response.json())
             .then(data => {
+                //Переводим + /geo-assistant.html страницу
+                if (location.pathname == "/geo-assistant.html") {
                 translatePageLeaflets(data);
                 translatePage(data);
                 translatePageAtr(data);
+                }else{
+                translatePage(data);
+                translatePageAtr(data);
+                }
             })
             .catch(error => console.error("Error loading language file:", error));
     }

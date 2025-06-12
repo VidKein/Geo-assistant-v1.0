@@ -474,3 +474,9 @@ async function loadOptions(nameLoad) {
 }
 //Загружаем настройки при загрузке страницы
 window.addEventListener('DOMContentLoaded', loadSettings);
+
+//Выход cо страницы geo-assintent.html на страницу аудентификации
+document.getElementById('logout').addEventListener('click',()=>{
+  localStorage.removeItem('isLoggedIn');
+  window.location.href = 'index.html'; // основная страница
+});
