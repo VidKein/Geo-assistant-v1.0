@@ -183,12 +183,12 @@
         "positionType": "pillar-target cross"
       }
     },
-    "niv": { ... }
+    "niv": { "..." }
   },
   "poligons": {
-    "SOD-11": { ... },
-    "SOD-12": { ... },
-    "SOD-13": { ... }
+    "SOD-11": { "..." },
+    "SOD-12": { "..." },
+    "SOD-13": { "..." }
   }
 }
 ```
