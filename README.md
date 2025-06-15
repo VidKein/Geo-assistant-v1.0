@@ -1,11 +1,11 @@
 # 🌍 Geo-assistant v1.0
 
 🗺️ Multi-language README:  
-[🇬🇧 English](#english) | [🇨🇿 Čeština](#čeština) | [🇺🇦 Українська](#українська)
+[🇬🇧 English](#english) | [🇨🇿 Czech](#czech) | [🇺🇦 Ukrainian](#ukrainian)
 
 ---
 
-## 🇬🇧 English
+## English
 
 **Geo-assistant** is a tool designed to assist with geodetic surveys. It serves as a testing ground for various technologies. This is an early-stage demo and **not intended for business use**.
 
@@ -45,7 +45,7 @@
 
 ---
 
-## 🇨🇿 Čeština
+## Czech
 
 **Geo-assistant** je aplikace pro usnadnění geodetických prací. Slouží k testování různých technologií. Jde o demonstrační verzi **nevhodnou pro komerční použití**.
 
@@ -85,7 +85,7 @@
 
 ---
 
-## 🇺🇦 Українська
+## Ukrainian
 
 **Geo-assistant** — це інструмент для оптимізації геодезичних робіт. Проєкт створено для тестування різних технологій. Це демонстраційна версія і **не призначена для комерційного використання**.
 
@@ -147,3 +147,9 @@
     "SOD-13": { ... }
   }
 }
+```
+
+---
+
+📧 Contact: [Your GitHub Username]  
+📘 License: MIT
