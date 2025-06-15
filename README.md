@@ -15,7 +15,7 @@
 
 ### 📌 Features
 - User authentication (client-side).
-- Manage geodetic points (stored in `koordinats.json`):
+- Manage geodetic points (stored in [koordinats.json](#Data)):
   - Point number
   - Location (e.g., SOD-11)
   - Placement type (asphalt, pipe, wall, etc.)
@@ -55,7 +55,7 @@
 
 ### 📌 Funkce
 - Přihlášení uživatele
-- Práce s body (soubor `koordinats.json`):
+- Práce s body (soubor [koordinats.json](#Data)):
   - Číslo bodu
   - Název lokality (SOD-11 atd.)
   - Typ umístění
@@ -95,7 +95,7 @@
 
 ### 📌 Можливості
 - Аутентифікація користувача
-- Робота з точками (`koordinats.json`):
+- Робота з точками ([koordinats.json](#Data)):
   - Номер
   - Назва ділянки (SOD-11...)
   - Тип розміщення
@@ -124,7 +124,7 @@
 - Допомога (відповідно до вибраної мови)
 
 ---
-
+## Data
 📄 **Data structure (`koordinats.json`)**:
 
 ```json
