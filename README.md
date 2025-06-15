@@ -1,5 +1,5 @@
 # 🌍 Geo-assistant v1.0
-[https://vidkein.github.io/Geo-assistant-v1.0/](https://vidkein.github.io/Geo-assistant-v1.0/).
+[https://vidkein.github.io/Geo-assistant-v1.0/](https://vidkein.github.io/Geo-assistant-v1.0/)
 
 🗺️ Multi-language README:  
 [🇬🇧 English](#english) | [🇨🇿 Czech](#czech) | [🇺🇦 Ukrainian](#ukrainian)
@@ -146,8 +146,11 @@
   - Імпорт точок у вигляді списку
     Імпортування списку точок за допомогою файлів формату .csv, .txt
     ПРИКЛАД РОЗМІЩЕННЯ СТОЛБЧІВ РОЗДІЛЮВАЧ ";"
+    
+  ```json
      Number|      X    |      Y     |   H    |   date   |systemCoordinates|positionType
       1;     741976.7448;1047497.7509;268.1013;25-05-25;         1;           12
+  ```
   - Вийти із реєстрації    
   8. #### Умовні позначення:
    - ТОЧКИ:
