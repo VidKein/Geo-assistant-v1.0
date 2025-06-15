@@ -195,5 +195,5 @@
 
 ---
 
-📧 Contact: [Your GitHub Username]  
+📧 Contact: [VidKein](https://github.com/VidKein) 
 📘 License: MIT
