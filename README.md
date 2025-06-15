@@ -1,5 +1,5 @@
 # 🌍 Geo-assistant v1.0
-[Geo-assistant v1.0](https://vidkein.github.io/Geo-assistant-v1.0/).
+[https://vidkein.github.io/Geo-assistant-v1.0/](https://vidkein.github.io/Geo-assistant-v1.0/).
 
 🗺️ Multi-language README:  
 [🇬🇧 English](#english) | [🇨🇿 Czech](#czech) | [🇺🇦 Ukrainian](#ukrainian)
