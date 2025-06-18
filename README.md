@@ -64,25 +64,91 @@
   - Systém souřadnic
   - Výška
   - Datum
-- Import z tabulek (.csv, .txt s `;`)
-- Transformace souřadnic: JTSK → WGS84
-- Zobrazení aktuální polohy zařízení
-- Vrstvy mapy:
-  - Základní / satelitní
-  - Body: základní / pracovní
-- Detail bodu: číslo, výška, typ, přepínač měření
-- Ovládací prvky mapy
-- Kalendář plánovaných prací
-- Nastavení:
-  - Jazyk
-  - Čísla bodů
-  - Reset
-  - Import kalendáře
-  - Přidat/editovat/smazat body
-  - Import kódů
-- Legenda
-- Měřítko mapy
-- Nápověda
+- Vytvoření pracovního plánu pomocí tabulek (Jobs_kalendar.xlsx)
+- Převod souřadnic JTSK → WGS84
+- Určení aktuální polohy
+- Práce s body
+- Práce s typy bodů
+
+
+### 🌍 Funkční
+
+![Map](./icons/readme/Menu%205.jpg)
+### Vrstvy na mapě
+#### - Mapě:
+  1. Základní
+  2. Satelitní
+ #### - Body:
+  1. Základní
+  2. Pracovní
+ #### - Informace o bodech (zobrazí se po kliknutí na složku):
+  1. Číslo
+  2. Výška bodu
+  3. Typ umístění
+  4. Přepínač Měřeno/neměřeno
+
+![Zoom](./icons/readme/Menu%206.png)
+### Tlačítka přiblížení mapy
+
+![Global](./icons/readme/Menu.jpg)
+### Polohovací tlačítko
+
+Pokud je povolena geolokace, bod polohy je modrý kruh (se směrovou šipkou - záleží na telefonu)
+
+![Kalendarg](./icons/readme/Menu%202.jpg)
+### Kalendář:
+
+Zobrazí se kalendář s plány měření (totální stanice/nivelace). Při prvním načtení nebo výběru data se v kalendáři zobrazí datum a informace podle pracoviště (zobrazení počtu bodů).
+
+![Seting](./icons/readme/Menu%203.jpg)
+### Nastavení:
+  1. Obecná nastavení:
+    * Jazyk zobrazení webu
+    * Výběr, zda se má zobrazovat číslo bodu
+    * Obnovení všech obecných nastavení
+  2. Import pracovního kalendáře
+  
+  PRAVIDLA PRO VYPLNĚNÍ TABULKY PRACOVNÍHO PLÁNU:
+  - SLOUPEC A - vyplňte libovolné
+  - SLOUPEC B - číslo bodu (možnosti vyplnění číslo 141801 nebo extenso EXT-306(480901), EXT-336(550401))
+  - SLOUPEC C - druh práce (možnosti vyplnění písmenem (druh práce n-úrovňové zaměření, t-tachyometrické zaměření))
+  3. Práce s body:
+    * Přidávání
+    * Úpravy
+    * Mazání
+  4. Kódy typů bodů/souřadnicový systém:
+    * Přidávání
+    * Mazání
+  5. Import bodů jako seznamu
+
+  Import seznamu bodů pomocí souborů .csv, .txt. 
+
+  PŘÍKLAD ODDĚLOVAČE USPOŘÁDÁNÍ SLOUPCŮ ";"
+
+  ```txt
+
+     Number|      X    |      Y     |   H    |   date   |systemCoordinates|positionType
+      1;     741976.7448;1047497.7509;268.1013;25-05-25;         1;           12
+  
+  ```
+  6. Odhlaste se   
+### Symboly:
+- BODY:
+  * Základní:
+    1. nivelace - zelený trojúhelník
+    2. tachyometrie - modrý přeškrtnutý kruh
+  * Pracovní:
+    1. nivelace - zelený kruh s písmenem H uvnitř
+    2. tachyometrie - zelený kruh s písmenem T uvnitř
+- Zaškrtávací značka označující, že bod je změřen nebo orientován
+
+![Data](./icons/readme/data_ua.png)
+### Informace podle data
+Zobrazuje den v týdnu a datum. Po stisknutí se zobrazí informace o datu vybraném v kalendáři.
+### Měřítko - metry/km v závislosti na měřítku
+### Nápověda - odkaz v pravém rohu
+
+Po kliknutí se otevře stránka s nápovědou pro práci s programem (v závislosti na zvoleném jazyce zobrazení webu).
 
 ---
 
@@ -188,7 +254,6 @@
 ### Допомога - посилання в крайньому правому кутку
 
 При натисканні відкриває сторінку допомоги для роботи з програмою (залежно від вибраної мови відображення сайту). 
-    
 
 ---
 ## Data
