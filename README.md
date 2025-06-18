@@ -111,7 +111,7 @@
 
 ### 🌍 Функціонал
 ### Шари на картi
-![Map](https://vidkein.github.io/Geo-assistant-v1.0/icons/readme/Menu 5.jpg)
+![Map](./icons/readme/Menu%205.jpg)
 #### - Мапа:
   1. Базова
   2. Супутникова
