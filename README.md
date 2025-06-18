@@ -24,25 +24,90 @@
   - Coordinate system
   - Elevation
   - Date added
-- Import from spreadsheets (.csv or .txt with `;` as separator).
-- Coordinate system transformation: JTSK → WGS84.
-- Show current device location on map.
-- Layered map display:
-  - Base/Satellite maps
-  - Points: Base/Working
-- Point info popup: number, height, type, measured toggle
-- Zoom and geolocation controls
-- Calendar for planned surveys (nivelling/theodolite)
-- Settings:
-  - Language
-  - Toggle point numbers
-  - Reset settings
-  - Work calendar import
-  - Add/edit/delete points
-  - Point/system code import
-- Symbol legend (triangle, circle, etc.)
-- Scale bar
-- Help link (per language)
+- Forming a work plan using tables (Jobs_kalendar.xlsx)
+- Converting coordinates JTSK → WGS84
+- Determining the current location
+- Working with points
+- Working with point types
+
+### 🌍 Functional
+
+![Map](./icons/readme/Menu%205.jpg)
+### Layers on the map
+#### - Map:
+  1. Base
+  2. Satellite
+#### - Folders:
+  1. Base
+  2. Working
+#### - Point information (appears when you click on the folder):
+  1. Number
+  2. Point height
+  3. Location type
+  4. Switch - measured/not measured
+
+![Zoom](./icons/readme/Menu%206.png)
+### Map zoom buttons
+
+![Global](./icons/readme/Menu.jpg)
+### Positioning button
+
+When geolocation is enabled, the location point is a blue circle (with a direction arrow - depends on the phone)
+
+![Kalendarg](./icons/readme/Menu%202.jpg)
+### Calendar:
+
+Displays a calendar with measurement plans (total station/leveling). When initially loaded or a date selected, the calendar displays the date and information by work location (displaying the number of points).
+
+![Seting](./icons/readme/Menu%203.jpg)
+### Settings:
+  1. General settings:
+    * Site display language
+    * Choose whether to display the point number or not
+    * Reset all general settings
+  2. Import work calendar
+
+  RULES FOR COMPLETING THE WORK PLAN TABLE:
+  - COLUMN A - fill in any
+  - COLUMN B - point number (filling options number 141801 or extenso EXT-306(480901), EXT-336(550401))
+  - COLUMN C - type of work (filling options with a letter (type of work n-level survey, t-tacheometric survey))
+  3. Working with points:
+    * Adding
+    * Editing
+    * Deleting
+  4. Point type codes/coordinate system:
+    * Adding
+    * Deleting
+  5. Importing points as a list
+
+  Importing a list of points using .csv, .txt format files. 
+
+  EXAMPLE OF COLUMN ARRANGEMENT SEPARATOR ";"
+
+  ```txt
+
+     Number|      X    |      Y     |   H    |   date   |systemCoordinates|positionType
+      1;     741976.7448;1047497.7509;268.1013;25-05-25;         1;           12
+  
+  ```
+  6. Log out  
+### Symbols:
+  - POINTS:
+    * Basic:
+      1. leveling - green triangle
+      2. tacheometric - blue crossed-out circle
+    * Working:
+      1. leveling - green circle with the letter H inside
+      2. tacheometric - green circle with the letter T inside
+  - A checkmark, which means that the point is measured or oriented
+
+![Data](./icons/readme/data_ua.png)
+### Information by date 
+Displays the day of the week and date. When clicked, information about the date selected in the calendar is displayed.
+### Scale bar - meters/km depending on the scale
+### Help - link in the far right corner
+
+When clicked, opens the help page for working with the program (depending on the selected site display language).
 
 ---
 
