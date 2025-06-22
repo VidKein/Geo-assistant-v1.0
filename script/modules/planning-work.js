@@ -185,6 +185,7 @@ showLoader();
                         B: row[1], // Столбец B
                         C: row[2], // Столбец C
                     }));
+                    
                     //Функция вставки текста в вместо id текст используя kod.json
                     async function loadOptionsMarker(nameSelekt) {
                         const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
@@ -229,7 +230,7 @@ showLoader();
                                     //Для контроля
                                     resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , position: ${jsonData.Base.trig[row.B].position[0]} , ${jsonData.Base.trig[row.B].position[1]}, vycka: ${jsonData.Base.trig[row.B].vycka}, date: ${jsonData.Base.trig[row.B].date}, systemCoordinates: ${coordinateSystemMap[parseInt(jsonData.Base.trig[row.B].systemCoordinates, 10)]}, positionType: ${positionTypemMap[parseInt(jsonData.Base.trig[row.B].positionType, 10)]}`);
                                 }
-                                else{
+                                else{  
                                     addPlace(resultsTipJobsTrigBase, sheetName, row.B, undefined, undefined, undefined, undefined, undefined);
                                     //Для контроля
                                     resultsTip.trigBase.push(`place: ${sheetName} , namber: ${row.B} , data not found in database`);
@@ -271,8 +272,11 @@ showLoader();
                     results.push(`${sheetName}: В столбце нет значения "1".`); 
             }
         }
-        //Для контроля
+        //Для контроля        
         //console.log(results.join('\n\n\n'));
+        //console.log(resultsTip.niv.join('\n'));
+        //console.log(resultsTip.trig.join('\n'));
+    
         ///Создаем и отправляем пользовательское событие с данными
         //План работы    
         const planning = new CustomEvent("planningWork", { detail: {baseNiv: resultsTipJobsNivBase, baseTrig: resultsTipJobsTrigBase, planningNiv: resultsTipJobsNiv, planningTrig: resultsTipJobsTrig}});
