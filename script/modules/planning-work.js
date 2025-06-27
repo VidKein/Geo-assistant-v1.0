@@ -197,9 +197,9 @@ showLoader();
                     const coordinateSystemMap = await loadOptionsMarker("coordinateSystem");
                     const positionTypemMap = await loadOptionsMarker("positionType");
                      //Создание обьекта с выброной информацией
-                     let i=0;
                      async function addPlace(data, placeInfo, namberInfo, positionInfo, vyckaInfo, dateInfo, systemCoordinatesInfo, positionTypeInfo) {
-                        data[i++] = {
+                       const i = Object.keys(data).length;
+                        data[i] = {
                             place: placeInfo,
                             namber: namberInfo,
                             position: positionInfo === undefined ? undefined : [positionInfo[0], positionInfo[1]],
