@@ -1297,6 +1297,26 @@
 				"systemCoordinates": 1,
 				"positionType": 4
 			},
+			"130703": {
+				"position": [
+					742002,
+					1047298
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
+			"130704": {
+				"position": [
+					741995,
+					1047302
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
 			"130706": {
 				"position": [
 					741971,
@@ -1407,6 +1427,26 @@
 				"systemCoordinates": 1,
 				"positionType": 4
 			},
+			"131107": {
+				"position": [
+					741986,
+					1047336
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
+			"131108": {
+				"position": [
+					741993,
+					1047334
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
 			"131109": {
 				"position": [
 					742006,
@@ -1414,6 +1454,16 @@
 				],
 				"vycka": 267.2094,
 				"date": "2025-01-26",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
+			"131110": {
+				"position": [
+					742015,
+					1047329
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
 				"systemCoordinates": 1,
 				"positionType": 4
 			},
@@ -1514,6 +1564,16 @@
 				],
 				"vycka": 265.9628,
 				"date": "2025-01-26",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
+			"131415": {
+				"position": [
+					741974,
+					1047256
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
 				"systemCoordinates": 1,
 				"positionType": 4
 			},
@@ -1637,6 +1697,26 @@
 				"systemCoordinates": 1,
 				"positionType": 4
 			},
+			"132005": {
+				"position": [
+					741980,
+					1047282
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
+			"132006": {
+				"position": [
+					741991,
+					1047283
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
 			"132007": {
 				"position": [
 					742001,
@@ -1657,6 +1737,26 @@
 				"systemCoordinates": 1,
 				"positionType": 4
 			},
+			"132106": {
+				"position": [
+					741989,
+					1047317
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
+			"132107": {
+				"position": [
+					741994,
+					1047317
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
 			"132201": {
 				"position": [
 					741978,
@@ -1664,6 +1764,16 @@
 				],
 				"vycka": 265.8378,
 				"date": "2025-01-26",
+				"systemCoordinates": 1,
+				"positionType": 4
+			},
+			"132202": {
+				"position": [
+					741982,
+					1047255
+				],
+				"vycka": 100,
+				"date": "2025-07-04",
 				"systemCoordinates": 1,
 				"positionType": 4
 			},
@@ -5916,7 +6026,7 @@
 					742284,
 					1048156
 				],
-				"vycka": 269.2590,
+				"vycka": 269.259,
 				"date": "2025-07-02",
 				"systemCoordinates": 1,
 				"positionType": 13
