@@ -59,14 +59,18 @@ let settingBlockFull = document.querySelector("#settingBlock");
 //Тип и Вид работы при Создании, Редоктировании и Удаления точки
 let runTypeAndJobsPoint = document.querySelector(".runTypeAndJobsPoint");
 let runPlasePoint = document.querySelector(".runPlasePoint");
-//Тип и Вид работы при Создании, Редоктировании и Удаления точки
+//Тип и Вид работы при Импорте точки
 let runTypeAndJobsPointImport = document.querySelector(".runTypeAndJobsPointImport");
 let runPlasePointImport = document.querySelector(".runPlasePointImport");
+//Тип и Вид работы при Экспорте точки
+let runTypeAndJobsPointEmport = document.querySelector(".runTypeAndJobsPointExport");
+let runPlasePointEmport = document.querySelector(".runPlasePointExport");
 // Слушаем сообщение от другого скрипта о тип работы
 document.addEventListener("typeJobsArray", (type) => {
     let typeJobsArray = type.detail;
     preparationInfoEditPoint(runTypeAndJobsPoint, runPlasePoint, typeJobsArray, "Point");
     preparationInfoEditPoint(runTypeAndJobsPointImport, runPlasePointImport, typeJobsArray, "Input");
+    preparationInfoEditPoint(runTypeAndJobsPointEmport, runPlasePointEmport, typeJobsArray, "Emport");
 });
 for (let i = 0; i < settingBlock.length; i++) {
     settingBlock[i].addEventListener("click",(e)=>{
@@ -376,6 +380,19 @@ for (let i = 0; i < settingBlock.length; i++) {
                         status.textContent = "OPENING: Please select a file with extension: .csv, .txt";
                     }
                 })
+            }
+            //Emport Списком в формате .csv, .txt
+            if (e.target.id == "runExportAplikac"){
+            let type = document.querySelector("#firstSelectEmport").value;
+            let place = document.querySelector("#secondSelectEmport").value;
+            let statusExport = document.querySelector("#statusExport");
+            statusExport.textContent = "";
+            statusExport.style.display = "none";
+                if (place == '' || type == '') {
+                    statusExport.style.display = "block";
+                    statusExport.style.color = "red";
+                    statusExport.textContent = "Select type, destination";
+                } 
             }
         }
     })

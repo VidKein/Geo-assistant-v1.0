@@ -676,6 +676,10 @@ const buttonSetting = L.Control.extend({
             document.querySelector("#fileNameImport").textContent = "file not loaded";
             document.querySelector("#fileNameImport").style.color = "bleck";
             document.querySelector("#runImportAplikac").setAttribute('disabled', '');
+            //Export list point
+            let statusExport = document.querySelector("#statusExport");
+            statusExport.textContent = "";
+            statusExport.style.display = "none";
           }
          }
         return setting;

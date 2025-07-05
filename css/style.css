@@ -599,6 +599,26 @@ cursor: pointer;
   margin: 10px 0 0 0;
   text-align: center;
 }
+/*Export*/
+.runTypeAndJobsPointExport{
+  display: inline-block;
+  background-color: #cdc4c4;
+  padding: 2px 2px;
+  margin: 2px 0;
+}
+.runPlasePointExport{
+  display: inline-block;
+  background-color: cornflowerblue;
+  padding: 2px 2px;
+  margin: 2px 0;
+}
+#statusExport{ 
+  display: none;
+  border: 1px solid #2e2a2a;
+  padding: 5px;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
 /*Load*/
 #progress-container {
   position: fixed;

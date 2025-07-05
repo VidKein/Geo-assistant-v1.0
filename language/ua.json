@@ -22,7 +22,8 @@
     "Сalendar":"Календар",
     "Points":"Точки",
     "Codes":"Коди",
-    "Import":"Импорт",
+    "Import":"Iмпорт",
+    "Export":"Eкспорт",
 
     "Sign":"Реєстрація",
     
@@ -51,6 +52,8 @@
     "file_points":"Выберите файл, для импорта (*.txt,*.csv).",
     "SelectTypeInput":"виберіть тип, роботу/місце: ",
     "runImportAplikac":"Відправити інформацію",
+    "SelectTypeExport":"Виберіть тип, роботу/місце: ",
+    "runExportAplikac":"Відправити інформацію",
 
     "SelectTypeLogout":"Вийти з реєстрації.",
     "runImportLogout":"Вихід",

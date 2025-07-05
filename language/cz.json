@@ -23,6 +23,7 @@
     "Points":"Body",
     "Codes":"Kódy",
     "Import":"Import",
+    "Export":"Export",
 
     "Sign":"Registrace",
 
@@ -51,6 +52,8 @@
     "file_points":"Vyberte soubor, který chcete importovat (*.txt,*.csv).",
     "SelectTypeInput":"vyberte typ, práci/místo: ",
     "runImportAplikac":"Odešlete informace",
+    "SelectTypeExport":"Vyberte typ, práci/místo: ",
+    "runExportAplikac":"Odešlete informace",
 
     "SelectTypeLogout":"Odhlášení z registrace.",
     "runImportLogout":"Odhlášení",

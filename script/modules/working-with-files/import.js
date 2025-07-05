@@ -4,7 +4,7 @@ async function importLispPoint(e) {
     let type = document.querySelector("#firstSelectInput").value;
     let place = document.querySelector("#secondSelectInput").value;
     //Контроль
-    console.log(type,place);
+    //console.log(type,place);
     
     try{
         if (!type && !place) {

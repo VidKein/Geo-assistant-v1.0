@@ -24,6 +24,7 @@
     "Points":"Points",
     "Codes":"Codes",
     "Import":"Import",
+    "Export":"Export",
 
     "Sign":"Sign up",
 
@@ -52,6 +53,8 @@
     "file_points":"Select a file to import (*.txt,*.csv).",
     "SelectTypeInput":"select, job/place type: ",
     "runImportAplikac":"Send information",
+    "SelectTypeExport":"Select, job/place type: ",
+    "runExportAplikac":"Send information",
 
     "SelectTypeLogout":"Logout of registration.",
     "runImportLogout":"Logout",

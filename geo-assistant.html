@@ -100,7 +100,7 @@
                     <!--Шапка-->
                     <div class="settingCap">
                     <div>
-                        <h2 langs = "SettingH2" >Setting:</h2>
+                        <h3 langs = "SettingH2" >Setting:</h3>
                     </div>
                     <button data-lang-key="close-setting" langs-atr="title" class="close-setting" title="Exit Settings">X</button>
                     </div>
@@ -112,6 +112,7 @@
                             <button langs = "Points" data-lang-key="Points" langs-atr="title"  type="button" class="settingButton" id="Points" title="Points">Points</button>
                             <button langs = "Codes" data-lang-key="Codes" langs-atr="title"  type="button" class="settingButton" id="Codes" title="Codes">Codes</button>
                             <button langs = "Import" data-lang-key="Import" langs-atr="title"  type="button" class="settingButton" id="Import" title="Import">Import</button>
+                            <button langs = "Export" data-lang-key="Export" langs-atr="title"  type="button" class="settingButton" id="Export" title="Export">Export</button>
                             <button langs = "Sign" data-lang-key="Sign" langs-atr="title"  type="button" class="settingButton" id="Sign" title="Sign up">Sign up</button>
                         </div>
                         <div class="rightSettingFunctional">
@@ -168,6 +169,13 @@
                                 <div class="runPlasePointImport"></div>
                                 <p id="statusImport"></p> 
                                 <button langs = "runImportAplikac" data-lang-key="runImportAplikac" langs-atr="title" id="runImportAplikac" title="Submit fail" disabled>Send information</button>
+                            </div>
+                            <div class="links" id="Export" style="display: none;">
+                                <p langs = "SelectTypeExport" style="display: block; text-align: left;">Type, job/plase, name point:</p>
+                                <div class="runTypeAndJobsPointExport"></div>
+                                <div class="runPlasePointExport"></div>
+                                <p id="statusExport"></p> 
+                                <button langs = "runExportAplikac" data-lang-key="runExportAplikac" langs-atr="title" id="runExportAplikac" title="Submit fail" >Send information</button>
                             </div>
                             <div class="links" id="Sign" style="display: none;">
                                 <p langs = "SelectTypeLogout" style="text-align: left; display: inline;">Logout of registration.</p><button langs = "runImportLogout" data-lang-key="runImportLogout" langs-atr="title" type="submit" id="logout" title="Logout">Logout</button></p>
@@ -227,7 +235,8 @@
     <script type="module" src="./script/modules/working-with-files/codDelat.js"></script><!--working-with-files+CodDelat-->
     <script type="module" src="./script/modules/working-with-files/codNew.js"></script><!--working-with-files+newCod-->
     <script type="module" src="./script/modules/working-with-files/loadFiles.js"></script><!--working-with-files+LoadFiles-->
-    <script type="module" src="./script/modules/working-with-files/imput.js"></script><!--working-with-files+Import lisp point-->
+    <script type="module" src="./script/modules/working-with-files/import.js"></script><!--working-with-files+Import lisp point-->
+    <script type="module" src="./script/modules/working-with-files/export.js"></script><!--working-with-files+Export lisp point-->
     <script type="module" src="./script/main.js"></script><!--MAIN-->
     <script src="./script/SiteLanguage/site-language.js"></script><!--Site Language-->
 </body>

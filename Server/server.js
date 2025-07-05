@@ -22,16 +22,16 @@ const UPLOAD_FOLDER = path.join(__dirname, '..','xlsx');;
 app.get('/pointDat/:dataName/:dataJobsPlase/:id', (req, res) => {
     const {dataName ,dataJobsPlase, id} = req.params;   
     fs.readFile(DATA_FILE, 'utf8', (err, data) => {
-      if (err) return res.status(500).json({ error: 'Ошибка сервера' });
+      if (err) return res.status(500).json({ error: 'Server error' });
       try {
           const jsonData = JSON.parse(data);
           const targetPoint = jsonData[dataName]?.[dataJobsPlase]?.[id];
           if (!targetPoint) {
-              return res.status(404).json({ error: `Точка ${id} не найдена в ${dataName}/${dataJobsPlase}` });
+              return res.status(404).json({ error: `Point ${id} not found in ${dataName}/${dataJobsPlase}` });
           }
           res.json(targetPoint);
       } catch {
-          res.status(500).json({ error: 'Ошибка обработки JSON' });
+          res.status(500).json({ error: 'JSON processing error' });
       }
   });
 });
@@ -345,6 +345,23 @@ app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
   } else {
     return res.status(400).send('Unsupported file format.');
   }
+});
+
+// Экспорт данных
+app.post('/exportLispPoint', (req, res) => {
+  const {type, place} = req.body; 
+  fs.readFile(DATA_FILE, 'utf8', (err, data) => {
+      if (err) return res.status(500).json({ error: 'Server error' });
+      try {
+          const jsonData = JSON.parse(data);
+          const targetPoint = jsonData[type][place];
+          console.log(targetPoint);
+          
+          res.json({ message: `Information from  - ${type}/${place} transfer to file ${place}.csv` });
+      } catch {
+          res.status(500).json({ error: 'JSON processing error' });
+      }
+  });
 });
 
 // Запуск сервера
