@@ -109,6 +109,7 @@
                         <div class="leftSettingFunctional">
                             <button langs = "General"  data-lang-key="General" langs-atr="title"  type="button" class="settingButton" id="General" title="General" style="background-color: rgb(195, 196, 199);">General</button>
                             <button langs = "Сalendar" data-lang-key="Сalendar" langs-atr="title"  type="button" class="settingButton" id="Сalendar" title="Сalendar">Сalendar</button>
+                            <button langs = "Plots" data-lang-key="Plots" langs-atr="title"  type="button" class="settingButton" id="Plots" title="Plots">Plots</button>
                             <button langs = "Points" data-lang-key="Points" langs-atr="title"  type="button" class="settingButton" id="Points" title="Points">Points</button>
                             <button langs = "Codes" data-lang-key="Codes" langs-atr="title"  type="button" class="settingButton" id="Codes" title="Codes">Codes</button>
                             <button langs = "Import" data-lang-key="Import" langs-atr="title"  type="button" class="settingButton" id="Import" title="Import">Import</button>
@@ -125,7 +126,6 @@
                                     <option langs = "option_4" value="cz">Czech</option>
                                     </select>
                                     <button langs = "Сhange" data-lang-key="Сhangelang" langs-atr="title" type="button" id="runLangAplikac" title="Сhange language">Сhange</button>
-                                
                                 <hr>
                                 <p langs = "point number" style="text-align: left; display: inline;">Display point number - </p><input type="checkbox" id="nameDisplay">
                                 <hr>
@@ -139,6 +139,16 @@
                                 <span langs = "fileName" id="fileName">file not loaded</span>
                                 <button langs = "runCalendAplikac" data-lang-key="runCalendAplikac" langs-atr="title" id="runCalendAplikac" title="Submit fail" disabled>Submit fail</button>
                                 <p id="status"></p>
+                            </div>
+                            <div class="links" id="Plots" style="display: none;">
+                                <div class="plots-wrapper">
+                                    <!--Базовые  точки-->
+                                    <button langs-child = "Base" tegs-child="0" type="button" class="accordion" name="LevelBase">Base<span id="levelingBase">0</span></button>
+                                    <div class="links" id="LevelBase" name="codes"></div>
+                                    <!--Рабочие точки-->
+                                    <button langs-child = "Poligons" tegs-child="0" type="button" class="accordion" name="LevelPoligons">Poligons<span id="levelingPoligons">0</span></button>
+                                    <div class="links" id="LevelPoligons" name="codes"></div>
+                                </div>    
                             </div>
                             <div class="links" id="Points" style="display: none;">
                                 <p langs = "SelectType" style="display: block; text-align: left;">Type, job/plase, name point:</p>

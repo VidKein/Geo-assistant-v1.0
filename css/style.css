@@ -76,7 +76,6 @@ body {
   outline: none;
   background: transparent;
 }
-
 /*Информационный блок*/
 .accordion{
   background-color: rgb(242, 242, 242);
@@ -329,7 +328,57 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   padding-top: 0.3rem;
   cursor: pointer;
 }
-
+/*Участки работ*/
+.plots-wrapper > .links {
+  display: none;
+  background-color: white;
+  overflow: hidden;
+  width: auto;
+  margin: 0;
+}
+.newcoordinateSystem{
+  font-size: 0.7em;
+  display: inline-block;
+  background-color: green;
+  padding: 4px 3px;
+  margin: 2px 3px;
+  cursor: pointer;
+  color: white;
+}
+.coordinateSystem{
+  font-size: 0.7em;
+  display: inline-block;
+  background-color: #cdc4c4;
+  padding: 3px 3px;
+  margin: 2px 3px;
+  cursor: pointer;
+  color: black;
+}
+.newpositionType{
+  font-size: 0.7em;
+  display: inline-block;
+  background-color: green;
+  padding: 3px 2px;
+  margin: 2px 3px;
+  cursor: pointer;
+  color: white;
+}
+.positionType{
+  font-size: 0.7em;
+  display: inline-block;
+  background-color: #cdc4c4;
+  padding: 2px 2px;
+  margin: 2px 3px;
+  cursor: pointer;
+  color: black;
+}
+.delatCodecoordinateSystem, .delatCodepositionType{
+  display: inline-block;
+  width: 10px;
+  height: 12px;
+  margin: 1px 5px -1px 5px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>');
+}
 /*Условные обозначения*/
 .designations{
   display: none;
@@ -422,7 +471,6 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   outline: none;
   background: transparent;
 }
-
 /*кнопка определения координат*/
 .markerDeterminationСoordinates{display: none;}
 .determinationСoordinates{
