@@ -52,7 +52,7 @@
     "file_points":"Vyberte soubor, který chcete importovat (*.txt,*.csv).",
     "SelectTypeInput":"vyberte typ, práci/místo: ",
     "runImportAplikac":"Odešlete informace",
-    "SelectTypeExport":"Vyberte typ, práci/místo: ",
+    "SelectTypeExport":"Vyberte typ úlohy/místa a formát souboru: ",
     "runExportAplikac":"Odešlete informace",
 
     "SelectTypeLogout":"Odhlášení z registrace.",

@@ -53,7 +53,7 @@
     "file_points":"Select a file to import (*.txt,*.csv).",
     "SelectTypeInput":"select, job/place type: ",
     "runImportAplikac":"Send information",
-    "SelectTypeExport":"Select, job/place type: ",
+    "SelectTypeExport":"Select, job/place type and file format: ",
     "runExportAplikac":"Send information",
 
     "SelectTypeLogout":"Logout of registration.",

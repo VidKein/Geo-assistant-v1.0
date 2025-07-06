@@ -52,7 +52,7 @@
     "file_points":"Выберите файл, для импорта (*.txt,*.csv).",
     "SelectTypeInput":"виберіть тип, роботу/місце: ",
     "runImportAplikac":"Відправити інформацію",
-    "SelectTypeExport":"Виберіть тип, роботу/місце: ",
+    "SelectTypeExport":"Виберіть тип, роботу/місце та формат файлу: ",
     "runExportAplikac":"Відправити інформацію",
 
     "SelectTypeLogout":"Вийти з реєстрації.",

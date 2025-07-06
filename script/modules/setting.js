@@ -392,7 +392,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                 if (place == '' || type == '' || tapeFain == '') {
                     statusExport.style.display = "block";
                     statusExport.style.color = "red";
-                    statusExport.textContent = "Select type, destination";
+                    statusExport.textContent = "Select type, destination and file format";
                 } 
             }
         }
