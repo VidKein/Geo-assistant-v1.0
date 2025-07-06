@@ -174,8 +174,14 @@
                                 <p langs = "SelectTypeExport" style="display: block; text-align: left;">Type, job/plase, name point:</p>
                                 <div class="runTypeAndJobsPointExport"></div>
                                 <div class="runPlasePointExport"></div>
-                                <p id="statusExport"></p> 
+                                <div class="runTapeFailExport">
+                                    <select id="tapeFailExport">
+                                        <option value=".csv">.csv</option>
+                                        <option value=".txt">.txt</option>
+                                    </select>
+                                </div>
                                 <button langs = "runExportAplikac" data-lang-key="runExportAplikac" langs-atr="title" id="runExportAplikac" title="Submit fail" >Send information</button>
+                                <p id="statusExport"></p> 
                             </div>
                             <div class="links" id="Sign" style="display: none;">
                                 <p langs = "SelectTypeLogout" style="text-align: left; display: inline;">Logout of registration.</p><button langs = "runImportLogout" data-lang-key="runImportLogout" langs-atr="title" type="submit" id="logout" title="Logout">Logout</button></p>

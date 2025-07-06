@@ -385,10 +385,11 @@ for (let i = 0; i < settingBlock.length; i++) {
             if (e.target.id == "runExportAplikac"){
             let type = document.querySelector("#firstSelectEmport").value;
             let place = document.querySelector("#secondSelectEmport").value;
+            let tapeFain = document.querySelector("#tapeFailExport").value;
             let statusExport = document.querySelector("#statusExport");
             statusExport.textContent = "";
             statusExport.style.display = "none";
-                if (place == '' || type == '') {
+                if (place == '' || type == '' || tapeFain == '') {
                     statusExport.style.display = "block";
                     statusExport.style.color = "red";
                     statusExport.textContent = "Select type, destination";

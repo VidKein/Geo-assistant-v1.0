@@ -348,15 +348,34 @@ app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
 });
 
 // Экспорт данных
+// Путь
+const exportDir = path.join(__dirname,'..','export');
 app.post('/exportLispPoint', (req, res) => {
-  const {type, place} = req.body; 
+  const {type, place, tapeFain} = req.body; 
   fs.readFile(DATA_FILE, 'utf8', (err, data) => {
       if (err) return res.status(500).json({ error: 'Server error' });
       try {
           const jsonData = JSON.parse(data);
           const targetPoint = jsonData[type][place];
           console.log(targetPoint);
-          
+          // Преобразуем в массив строк
+          const lines = Object.entries(targetPoint).map(([id, obj]) => {
+            const [x, y] = obj.position;
+            return `${id};${x};${y};${obj.vycka};${obj.date};${obj.systemCoordinates};${obj.positionType}`;
+          });
+          const output = lines.join('\n');
+
+          // Создание папки, если нет
+          if (!fs.existsSync(exportDir)) {
+            fs.mkdirSync(exportDir, { recursive: true });
+          }
+          // Запись в CSV и TXT
+          if (tapeFain == ".csv") {
+            fs.writeFileSync(path.join(exportDir, place+'.csv'), output, 'utf8');
+          }
+          if (tapeFain == ".txt") {
+            fs.writeFileSync(path.join(exportDir, place+'.txt'), output, 'utf8');
+          }
           res.json({ message: `Information from  - ${type}/${place} transfer to file ${place}.csv` });
       } catch {
           res.status(500).json({ error: 'JSON processing error' });
