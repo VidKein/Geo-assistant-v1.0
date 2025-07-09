@@ -12,6 +12,7 @@ let langsInfoSetting = {
         "ErrorTypPoint":"Enter point number and type !!!",
         "ConfirmLangs":"Do you want to reset all settings ?",
         "newCod":"Enter code - ",
+        "newPlots":"Enter name plots - ",
         "deladCod":"Attention, do you really want to delete - "
     },
     "ua": {
@@ -24,6 +25,7 @@ let langsInfoSetting = {
         "ErrorTypPoint":"Введіть номер і тип точки !!!",
         "ConfirmLangs":"Бажаєте скинути всі налаштування ?",
         "newCod":"Введіть код - ",
+        "newPlots":"Введіть назву ділянки - ",
         "deladCod":"Увага, ви справді хочете видалити - "
     },
     "cz": {
@@ -36,6 +38,7 @@ let langsInfoSetting = {
         "ErrorTypPoint":"Zadejte číslo bodu a typ !!!",
         "ConfirmLangs":"Chcete obnovit všechna nastavení ?",
         "newCod":"Zadejte kód - ",
+        "newPlots":"Zadejte grafy jmen - ",
         "deladCod":"Pozor, opravdu chcete smazat - "
     }
 };
@@ -121,6 +124,56 @@ for (let i = 0; i < settingBlock.length; i++) {
                         status.style.color = "red";
                         status.textContent = "OPENING: Please select a file with the name: Jobs_kalendar.xlsx";
                     }
+                });
+            }
+            //Добовляем планы участков работы
+             if (e.target.className == "newBase" || e.target.className == "newpoligons") {
+                document.querySelector("#funktionalNewCod").style.display = "block"; 
+                //Открываем окно
+                settingBlockFull.style.display = "none";
+                document.querySelector("#infoWindows").style.display = "block";
+                //Создание блока
+                let textDelat = document.createElement('p');
+                textDelat.innerText = langsInfoSetting[siteLanguage].newPlots+e.target.getAttribute('data-typ');
+                let input = document.createElement('input');
+                input.id = "nameCod";
+                input.type = "text";
+                input.setAttribute("data-typ", e.target.getAttribute('data-typ'));// typ кода
+                document.querySelector(".textWindows").appendChild(textDelat);  
+                textDelat.appendChild(input);  
+                  //Закрытие изменений
+                  document.querySelector(".close-infoWindows").addEventListener("click", ()=>{
+                    //Удаление блока
+                    textDelat.remove();
+                    settingBlockFull.style.display = "block";
+                    document.querySelector("#infoWindows").style.display = "none";
+                    document.querySelector("#funktionalNewCod").style.display = "none";
+                  });
+             }
+            //Удаляем планы участков работы
+             if (e.target.className == "delatBase" || e.target.className == "delatpoligons") {
+                document.querySelector("#funktionalDelatCod").style.display = "block";
+                //Открываем окно
+                settingBlockFull.style.display = "none";
+                document.querySelector("#infoWindows").style.display = "block";
+                //Создание блока
+                let textDelat = document.createElement('p');
+                textDelat.innerText = langsInfoSetting[siteLanguage].deladCod;
+                let span = document.createElement('span');
+                span.style = "color:red";
+                span.id = "delateNameCod";
+                span.setAttribute("data-id", e.target.getAttribute('data-id'));// id кода
+                span.setAttribute("data-typ", e.target.getAttribute('data-typ'));// typ кода
+                span.innerText = e.target.getAttribute('data-name');    
+                document.querySelector(".textWindows").appendChild(textDelat);  
+                textDelat.appendChild(span);  
+                  //Закрытие изменений
+                  document.querySelector(".close-infoWindows").addEventListener("click", ()=>{
+                    //Удаление блока
+                    textDelat.remove();
+                    settingBlockFull.style.display = "block";
+                    document.querySelector("#infoWindows").style.display = "none";
+                    document.querySelector("#funktionalDelatCod").style.display = "none";
                 });
             }
             //Работаем с загрузкой, редоктированием и удалением информации о точки
@@ -457,24 +510,24 @@ document.getElementById('clearSettings').addEventListener('click', () => {
     }
 });
 //Заполнение блока Система коорднат-Типы расположения точек
-loadOptions("coordinateSystem");
-loadOptions("positionType");
-async function loadOptions(nameLoad) {
+loadCodesOptions("coordinateSystem");
+loadCodesOptions("positionType");
+async function loadCodesOptions(nameLoad) {
     const jsonFileKod = './kod/kod.json'; // Укажите URL-адрес json файла
     const response = await fetch(jsonFileKod); // Загружаем JSON
     const jsonData = await response.json(); // Преобразуем в объект
     //Заполняем количество
     document.getElementById("leveling"+nameLoad).textContent = " - "+jsonData[siteLanguage][nameLoad].length;
     // Создаем новый div для новых классов
-    const loadNewOption = document.createElement('div');
-    loadNewOption.className = "new"+nameLoad; // Добавляем класс
-    loadNewOption.textContent = "New"; // Устанавливаем текст внутри div
-    loadNewOption.setAttribute("langs", "New kod");
-    loadNewOption.setAttribute("data-lang-key", "New kod");
-    loadNewOption.setAttribute("langs-atr", "title");
-    loadNewOption.setAttribute("title", "New kod");
-    loadNewOption.setAttribute("data-typ", nameLoad);// typ кода
-    document.getElementById("Level"+nameLoad).appendChild(loadNewOption);
+    const loadCodesOptions = document.createElement('div');
+    loadCodesOptions.className = "new"+nameLoad; // Добавляем класс
+    loadCodesOptions.textContent = "New"; // Устанавливаем текст внутри div
+    loadCodesOptions.setAttribute("langs", "New kod");
+    loadCodesOptions.setAttribute("data-lang-key", "New kod");
+    loadCodesOptions.setAttribute("langs-atr", "title");
+    loadCodesOptions.setAttribute("title", "New kod");
+    loadCodesOptions.setAttribute("data-typ", nameLoad);// typ кода
+    document.getElementById("Level"+nameLoad).appendChild(loadCodesOptions);
         for (const item of jsonData[siteLanguage][nameLoad]) {
             // Создаем новый div заполнения
             const loadOption = document.createElement('div');
@@ -490,6 +543,47 @@ async function loadOptions(nameLoad) {
             document.getElementById("Level"+nameLoad).appendChild(loadOption);
         }
 }
+//Заполнение блока Участка коорднат - место работы
+loadPlotsOptions("Base");
+loadPlotsOptions("poligons");
+async function loadPlotsOptions(nameLoad){
+    //Извлекаем информацию
+    const jsonFileKod = './koordinaty/koordinats.json'; // Укажите URL-адрес json файла
+    const response = await fetch(jsonFileKod); // Загружаем JSON
+    const jsonData = await response.json(); // Преобразуем в объект
+    //Извлекаем только ключи второго уровня
+    const typeJobs = Object.keys(jsonData).reduce((acc, key) => {
+            acc[key] = Object.keys(jsonData[key]); // Берём только ключи второго уровня
+            return acc;
+    }, {});
+    //Заполняем количество  
+    document.getElementById("leveling"+nameLoad).textContent = " - "+typeJobs[nameLoad].length;
+    // Создаем новый div для новых классов
+    const loadNewOption = document.createElement('div');
+    loadNewOption.className = "new"+nameLoad; // Добавляем класс
+    loadNewOption.textContent = "New"; // Устанавливаем текст внутри div
+    loadNewOption.setAttribute("langs", "New kod");
+    loadNewOption.setAttribute("data-lang-key", "New kod");
+    loadNewOption.setAttribute("langs-atr", "title");
+    loadNewOption.setAttribute("title", "New kod");
+    loadNewOption.setAttribute("data-typ", nameLoad);// typ кода
+    document.getElementById("Level"+nameLoad).appendChild(loadNewOption);
+    for (const item of typeJobs[nameLoad]) {
+            // Создаем новый div заполнения
+            const loadOption = document.createElement('div');
+            loadOption.className = nameLoad; // Добавляем класс
+            loadOption.textContent = item; // Устанавливаем текст внутри div
+            let delatCode = document.createElement('div');
+            delatCode.className = 'delat'+nameLoad;
+            delatCode.setAttribute("title", "Delat "+nameLoad);
+            delatCode.setAttribute("data-name", item);// имя кода
+            delatCode.setAttribute("data-id", item);// id кода
+            delatCode.setAttribute("data-typ", nameLoad);// typ кода
+            loadOption.appendChild(delatCode);
+            document.getElementById("Level"+nameLoad).appendChild(loadOption);
+    }
+}
+
 //Загружаем настройки при загрузке страницы
 window.addEventListener('DOMContentLoaded', loadSettings);
 

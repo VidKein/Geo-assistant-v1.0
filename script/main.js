@@ -125,7 +125,8 @@ document.addEventListener("planningWork", (jobs) => {
     layerControlPoint(jobs.detail.baseNiv, mainNiv, jobs.detail.baseTrig, mainTrig, jobs.detail.planningNiv, jobsNiv, jobs.detail.planningTrig, jobsTrig);
     extractValidObjectsWithPosition(jobs.detail.baseNiv, jobs.detail.baseTrig, jobs.detail.planningNiv, jobs.detail.planningTrig);  
 });
-// Функция для сбора информации и центрированя карты
+
+// Функция для сбора информации и центрирование карты
 function extractValidObjectsWithPosition(...coordinateArrays) {
     const all = coordinateArrays.filter(obj => Object.keys(obj).length > 0).flat();
     //сбрасываем массив, иначе он накапливается!

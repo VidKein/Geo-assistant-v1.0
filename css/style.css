@@ -336,7 +336,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   width: auto;
   margin: 0;
 }
-.newcoordinateSystem{
+.newpoligons{
   font-size: 0.7em;
   display: inline-block;
   background-color: green;
@@ -345,7 +345,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   cursor: pointer;
   color: white;
 }
-.coordinateSystem{
+.Base{
   font-size: 0.7em;
   display: inline-block;
   background-color: #cdc4c4;
@@ -354,7 +354,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   cursor: pointer;
   color: black;
 }
-.newpositionType{
+.newBase{
   font-size: 0.7em;
   display: inline-block;
   background-color: green;
@@ -363,7 +363,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   cursor: pointer;
   color: white;
 }
-.positionType{
+.poligons{
   font-size: 0.7em;
   display: inline-block;
   background-color: #cdc4c4;
@@ -372,7 +372,7 @@ background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w
   cursor: pointer;
   color: black;
 }
-.delatCodecoordinateSystem, .delatCodepositionType{
+.delatBase, .delatpoligons{
   display: inline-block;
   width: 10px;
   height: 12px;
