@@ -52,6 +52,7 @@
     "Сoordinate system":"Система координат",
     "Position type":"Тип позиції",
     "New kod":"Новий",
+    "New plots":"Новий",
     "file_points":"Выберите файл, для импорта (*.txt,*.csv).",
     "SelectTypeInput":"виберіть тип, роботу/місце: ",
     "runImportAplikac":"Відправити інформацію",

@@ -227,6 +227,66 @@ app.post('/newCod', (req, res) => {
   });
 });
 
+// Удаление Места расположения
+ app.post('/delatPlot', (req, res) => {
+  const {namePlot, nameTyp} = req.body;
+    //Считываем файл  
+  fs.readFile(DATA_FILE, 'utf8', (err, data) => { 
+    if (err) {
+      console.error('Error reading JSON:', err);
+      return res.status(500).json({ error: 'Error reading JSON file.' });
+    }
+    //Парсим файл 
+    let jsonPlot = JSON.parse(data);// Преобразуем JSON в объект
+    
+    if (!jsonPlot[nameTyp]) {
+      return res.status(400).json({ error: 'Invalid category.' });
+    }
+    if (Object.keys(jsonPlot[nameTyp][namePlot]).length > 0) {
+        res.json({ success: true, message: `Cannot delete full array - ${namePlot}.` });
+    } else {
+      delete jsonPlot[nameTyp][namePlot];
+      //Перезаписываем файл
+      fs.writeFile(DATA_FILE, JSON.stringify(jsonPlot, null, 2), (err) => {
+        if (err) {
+          console.error('Error reading JSON:', err);
+          return res.status(500).json({ error: 'Error reading JSON file.' });
+        }
+        res.json({ success: true, message: `This plot - ${namePlot} delat.` });
+      });
+    }
+  });
+});
+// Добавление Места расположения
+app.post('/newPlot', (req, res) => {
+  const {namePlot, nameTyp} = req.body;
+  //Считываем файл  
+  fs.readFile(DATA_FILE, 'utf8', (err, data) => {  
+    if (err) {
+      console.error('Error reading JSON:', err);
+      return res.status(500).json({ error: 'Error reading JSON file.' });
+    }
+    //Парсим файл 
+    let jsonPlot = JSON.parse(data);// Преобразуем JSON в объект
+    
+    if (!jsonPlot[nameTyp]) {
+      return res.status(400).json({ error: 'Invalid category.' });
+    }
+
+    // Добавление нового элемента
+    jsonPlot[nameTyp][namePlot] = {};
+
+    //Перезаписываем файл
+    fs.writeFile(DATA_FILE, JSON.stringify(jsonPlot, null, 2), (err) => {
+      if (err) {
+        console.error('Error reading JSON:', err);
+        return res.status(500).json({ error: 'Error reading JSON file.' });
+      }
+      res.json({ success: true, message: `This plot - ${namePlot} added.` });
+    });
+  });
+});
+
 // Загрузка файла
 // Настройка Multer (файл загружается в память)
 const storage = multer.memoryStorage();

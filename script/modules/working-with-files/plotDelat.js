@@ -1,22 +1,20 @@
 //Функционал
-let funktionalDelatCodOk = document.querySelector("#funktionalDelatCod");  
-funktionalDelatCodOk.addEventListener("click",funktionalDelatCod)
-async function funktionalDelatCod(e) {
-    let idCod = document.querySelector("#delateNameCod").getAttribute('data-id');//id
-    let nameCod = document.querySelector("#delateNameCod").innerHTML;//name
+let funktionalDelatPlotsOk = document.querySelector("#funktionalDelatPlots");
+funktionalDelatPlotsOk.addEventListener("click",funktionalDelatPlots)
+async function funktionalDelatPlots() {
+    let namePlot = document.querySelector("#delateNameCod").innerHTML;//name
     let nameTyp = document.querySelector("#delateNameCod").getAttribute('data-typ');//name typ
-    let siteLanguage = localStorage.getItem('siteLanguage') || "eng";//Определение языка
     //Контроль
-    //console.log(nameTyp,nameCod, idCod);
-        if (!nameCod) {
+    console.log(namePlot, nameTyp);
+        if (!namePlot) {
         alert("The code was entered incorrectly.");
         e.preventDefault(); // Останавливаем отправку формы
         } else {
-        const API_URL = `http://localhost:4000/delatCod`;
+        const API_URL = `http://localhost:4000/delatPlot`;
         const response = await fetch(API_URL, {
              method: 'POST',
              headers: { 'Content-Type': 'application/json' },
-             body: JSON.stringify({idCod, nameCod, nameTyp, siteLanguage})
+             body: JSON.stringify({namePlot, nameTyp})
         });
         const result = await response.json();
         alert(result.message || result.error);    
@@ -27,6 +25,4 @@ async function funktionalDelatCod(e) {
         //обнуление
         document.querySelector("#infoWindows").style.display = "none";
         }
-    
-}    
-
+}

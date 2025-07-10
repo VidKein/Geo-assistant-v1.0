@@ -128,7 +128,7 @@ for (let i = 0; i < settingBlock.length; i++) {
             }
             //Добовляем планы участков работы
              if (e.target.className == "newBase" || e.target.className == "newpoligons") {
-                document.querySelector("#funktionalNewCod").style.display = "block"; 
+                document.querySelector("#funktionalNewPlots").style.display = "block"; 
                 //Открываем окно
                 settingBlockFull.style.display = "none";
                 document.querySelector("#infoWindows").style.display = "block";
@@ -147,12 +147,12 @@ for (let i = 0; i < settingBlock.length; i++) {
                     textDelat.remove();
                     settingBlockFull.style.display = "block";
                     document.querySelector("#infoWindows").style.display = "none";
-                    document.querySelector("#funktionalNewCod").style.display = "none";
+                    document.querySelector("#funktionalNewPlots").style.display = "none";
                   });
              }
             //Удаляем планы участков работы
              if (e.target.className == "delatBase" || e.target.className == "delatpoligons") {
-                document.querySelector("#funktionalDelatCod").style.display = "block";
+                document.querySelector("#funktionalDelatPlots").style.display = "block";
                 //Открываем окно
                 settingBlockFull.style.display = "none";
                 document.querySelector("#infoWindows").style.display = "block";
@@ -173,7 +173,7 @@ for (let i = 0; i < settingBlock.length; i++) {
                     textDelat.remove();
                     settingBlockFull.style.display = "block";
                     document.querySelector("#infoWindows").style.display = "none";
-                    document.querySelector("#funktionalDelatCod").style.display = "none";
+                    document.querySelector("#funktionalDelatPlots").style.display = "none";
                 });
             }
             //Работаем с загрузкой, редоктированием и удалением информации о точки
@@ -562,10 +562,10 @@ async function loadPlotsOptions(nameLoad){
     const loadNewOption = document.createElement('div');
     loadNewOption.className = "new"+nameLoad; // Добавляем класс
     loadNewOption.textContent = "New"; // Устанавливаем текст внутри div
-    loadNewOption.setAttribute("langs", "New kod");
-    loadNewOption.setAttribute("data-lang-key", "New kod");
+    loadNewOption.setAttribute("langs", "New plots");
+    loadNewOption.setAttribute("data-lang-key", "New plots");
     loadNewOption.setAttribute("langs-atr", "title");
-    loadNewOption.setAttribute("title", "New kod");
+    loadNewOption.setAttribute("title", "New plots");
     loadNewOption.setAttribute("data-typ", nameLoad);// typ кода
     document.getElementById("Level"+nameLoad).appendChild(loadNewOption);
     for (const item of typeJobs[nameLoad]) {
