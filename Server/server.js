@@ -417,7 +417,7 @@ app.post('/exportLispPoint', (req, res) => {
       try {
           const jsonData = JSON.parse(data);
           const targetPoint = jsonData[type][place];
-          console.log(targetPoint);
+          //console.log(targetPoint);
           // Преобразуем в массив строк
           const lines = Object.entries(targetPoint).map(([id, obj]) => {
             const [x, y] = obj.position;
