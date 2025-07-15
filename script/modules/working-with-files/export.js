@@ -16,12 +16,25 @@ async function importLispPoint(e) {
              headers: { 'Content-Type': 'application/json' },
              body: JSON.stringify({type, place, tapeFain})
         });
-        const result = await response.json();
-        alert(result.message || result.error);
+
+        if (!response.ok) throw new Error('Ошибка сервера');
+
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${place}${tapeFain}`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+
+        //Уведомление
+        alert(`Information from  - ${type}/${place} transfer to file ${place}${tapeFain}.`);
+
         // Перезагрузка страницы
         location.reload();
         }
-    } catch (error) {
-    alert('Server error.');
-    }
+    } catch (error) {alert('Error: ' + error.message);}
 }

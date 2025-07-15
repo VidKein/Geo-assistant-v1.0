@@ -408,7 +408,8 @@ app.post('/importLispPoint', uploadImport.single("file"), (req, res) => {
 
 // Экспорт данных
 // Путь
-const exportDir = path.join(__dirname,'..','export');
+const EXPORT_DIR = path.join(__dirname,'..','export');
+app.use(express.json()); // вместо body-parser
 app.post('/exportLispPoint', (req, res) => {
   const {type, place, tapeFain} = req.body; 
   fs.readFile(DATA_FILE, 'utf8', (err, data) => {
@@ -425,20 +426,26 @@ app.post('/exportLispPoint', (req, res) => {
           const output = lines.join('\n');
 
           // Создание папки, если нет
-          if (!fs.existsSync(exportDir)) {
-            fs.mkdirSync(exportDir, { recursive: true });
+          if (!fs.existsSync(EXPORT_DIR)) {
+            fs.mkdirSync(EXPORT_DIR, { recursive: true });
           }
+
           // Запись в CSV и TXT
-          if (tapeFain == ".csv") {
-            fs.writeFileSync(path.join(exportDir, place+'.csv'), output, 'utf8');
-          }
-          if (tapeFain == ".txt") {
-            fs.writeFileSync(path.join(exportDir, place+'.txt'), output, 'utf8');
-          }
-          res.json({ message: `Information from  - ${type}/${place} transfer to file ${place}.csv` });
-      } catch {
-          res.status(500).json({ error: 'JSON processing error' });
-      }
+          const ext = tapeFain === '.txt' ? '.txt' : '.csv';
+          const fileName = `${place}${ext}`;
+          const filePath = path.join(EXPORT_DIR, fileName);
+
+          fs.writeFileSync(filePath, output, 'utf8');
+
+          res.download(filePath, fileName, err => {
+            if (err) {
+             console.error('Error:', err);
+            } else {
+            // Файл можно удалить после отправки, если нужно (опционально)
+            fs.unlinkSync(filePath);
+            }
+          });
+      } catch {res.status(500).send('JSON processing error');} 
   });
 });
 
