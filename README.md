@@ -72,15 +72,15 @@ Displays a calendar with measurement plans (total station/leveling). When initia
   - COLUMN B - point number (filling options number 141801 or extenso EXT-306(480901), EXT-336(550401))
   - COLUMN C - type of work (filling options with a letter (type of work n-level survey, t-tacheometric survey))
   3. Name of the work location:
-    * Add
-    * Delete
+     * Add
+     * Delete
   4. Working with points:
-    * Adding
-    * Editing
-    * Deleting
+     * Adding
+     * Editing
+     * Deleting
   5. Point type codes/coordinate system:
-    * Adding
-    * Deleting
+     * Adding
+     * Deleting
   6. Importing points as a list
 
   Importing a list of points using .csv, .txt format files. 
@@ -186,15 +186,15 @@ Zobrazí se kalendář s plány měření (totální stanice/nivelace). Při prv
   - SLOUPEC B - číslo bodu (možnosti vyplnění číslo 141801 nebo extenso EXT-306(480901), EXT-336(550401))
   - SLOUPEC C - druh práce (možnosti vyplnění písmenem (druh práce n-úrovňové zaměření, t-tachyometrické zaměření))
   3. Název pracoviště:
-    * Přidávání
-    * Mazání
+     * Přidávání
+     * Mazání
   4. Práce s body:
-    * Přidávání
-    * Úpravy
-    * Mazání
+     * Přidávání
+     * Úpravy
+     * Mazání
   5. Kódy typů bodů/souřadnicový systém:
-    * Přidávání
-    * Mazání
+     * Přidávání
+     * Mazání
   6. Import bodů jako seznamu
 
   Import seznamu bodů pomocí souborů .csv, .txt. 
