@@ -71,14 +71,18 @@ Displays a calendar with measurement plans (total station/leveling). When initia
   - COLUMN A - fill in any
   - COLUMN B - point number (filling options number 141801 or extenso EXT-306(480901), EXT-336(550401))
   - COLUMN C - type of work (filling options with a letter (type of work n-level survey, t-tacheometric survey))
-  3. Working with points:
+  
+  3. Name of the work location:
+    * Add
+    * Delete
+  4. Working with points:
     * Adding
     * Editing
     * Deleting
-  4. Point type codes/coordinate system:
+  5. Point type codes/coordinate system:
     * Adding
     * Deleting
-  5. Importing points as a list
+  6. Importing points as a list
 
   Importing a list of points using .csv, .txt format files. 
 
@@ -90,7 +94,12 @@ Displays a calendar with measurement plans (total station/leveling). When initia
       1;     741976.7448;1047497.7509;268.1013;25-05-25;         1;           12
   
   ```
-  6. Log out  
+  
+  7. Exmporting points as a list
+
+  Exporting a list of points in .csv, .txt format. 
+
+  8. Log out  
 ### Symbols:
   - POINTS:
     * Basic:
@@ -177,14 +186,17 @@ Zobrazí se kalendář s plány měření (totální stanice/nivelace). Při prv
   - SLOUPEC A - vyplňte libovolné
   - SLOUPEC B - číslo bodu (možnosti vyplnění číslo 141801 nebo extenso EXT-306(480901), EXT-336(550401))
   - SLOUPEC C - druh práce (možnosti vyplnění písmenem (druh práce n-úrovňové zaměření, t-tachyometrické zaměření))
-  3. Práce s body:
+  3. Název pracoviště:
+    * Přidávání
+    * Mazání
+  4. Práce s body:
     * Přidávání
     * Úpravy
     * Mazání
-  4. Kódy typů bodů/souřadnicový systém:
+  5. Kódy typů bodů/souřadnicový systém:
     * Přidávání
     * Mazání
-  5. Import bodů jako seznamu
+  6. Import bodů jako seznamu
 
   Import seznamu bodů pomocí souborů .csv, .txt. 
 
@@ -196,7 +208,11 @@ Zobrazí se kalendář s plány měření (totální stanice/nivelace). Při prv
       1;     741976.7448;1047497.7509;268.1013;25-05-25;         1;           12
   
   ```
-  6. Odhlaste se   
+  7. Export bodů jako seznamu
+
+  Export seznamu bodů ve formátu .csv, .txt.
+
+  8. Odhlaste se   
 ### Symboly:
 - BODY:
   * Základní:
@@ -307,7 +323,7 @@ Po kliknutí se otevře stránka s nápovědou pro práci s programem (v závisl
   7. Експорт точок у вигляді списку.
 
   Експортування списку точок в формату .csv, .txt. 
-  
+
   8. Вийти із реєстрації    
 ### Умовні позначення:
    - ТОЧКИ:
