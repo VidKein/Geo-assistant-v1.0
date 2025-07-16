@@ -71,7 +71,6 @@ Displays a calendar with measurement plans (total station/leveling). When initia
   - COLUMN A - fill in any
   - COLUMN B - point number (filling options number 141801 or extenso EXT-306(480901), EXT-336(550401))
   - COLUMN C - type of work (filling options with a letter (type of work n-level survey, t-tacheometric survey))
-  
   3. Name of the work location:
     * Add
     * Delete
