@@ -62,9 +62,9 @@ Displays a calendar with measurement plans (total station/leveling). When initia
 ![Seting](./icons/readme/Menu%203.jpg)
 ### Settings:
   1. General settings:
-    * Site display language
-    * Choose whether to display the point number or not
-    * Reset all general settings
+     * Site display language
+     * Choose whether to display the point number or not
+     * Reset all general settings
   2. Import work calendar
 
   RULES FOR COMPLETING THE WORK PLAN TABLE:
@@ -176,9 +176,9 @@ Zobrazí se kalendář s plány měření (totální stanice/nivelace). Při prv
 ![Seting](./icons/readme/Menu%203.jpg)
 ### Nastavení:
   1. Obecná nastavení:
-    * Jazyk zobrazení webu
-    * Výběr, zda se má zobrazovat číslo bodu
-    * Obnovení všech obecných nastavení
+     * Jazyk zobrazení webu
+     * Výběr, zda se má zobrazovat číslo bodu
+     * Obnovení všech obecných nastavení
   2. Import pracovního kalendáře
   
   PRAVIDLA PRO VYPLNĚNÍ TABULKY PRACOVNÍHO PLÁNU:
